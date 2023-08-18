@@ -24,6 +24,10 @@ func isValidType(t string) bool {
 	return false
 }
 
+func camelCase(s string) string {
+	return strcase.LowerCamelCase(s)
+}
+
 func convertArg(t string) string {
 	if t == "type" {
 		t = "t"
@@ -54,5 +58,6 @@ var (
 		"isValidType":     isValidType,
 		"convertArg":      convertArg,
 		"convertToString": convertToString,
+		"camelCase":       camelCase,
 	}
 )

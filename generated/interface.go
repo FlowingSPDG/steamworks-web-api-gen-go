@@ -7,14 +7,18 @@ import (
 	"strconv"
 )
 
-type IClientStats_1046930 struct {
+type iClientStats1046930 struct {
 }
 
-func NewIClientStats_1046930() *IClientStats_1046930 {
-	return &IClientStats_1046930{}
+type IClientStats_1046930 interface {
+	ReportEventV1() (Response, error)
 }
 
-func (i *IClientStats_1046930) ReportEventV1() (Response, error) {
+func NewIClientStats_1046930() IClientStats_1046930 {
+	return &iClientStats1046930{}
+}
+
+func (i *iClientStats1046930) ReportEventV1() (Response, error) {
 	p := getPath("IClientStats_1046930", "ReportEvent", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -27,14 +31,22 @@ func (i *IClientStats_1046930) ReportEventV1() (Response, error) {
 	return response, nil
 }
 
-type ICSGOPlayers_730 struct {
+type icsgoPlayers730 struct {
 }
 
-func NewICSGOPlayers_730() *ICSGOPlayers_730 {
-	return &ICSGOPlayers_730{}
+type ICSGOPlayers_730 interface {
+	GetNextMatchSharingCodeV1(
+		steamid uint64,
+		steamidkey string,
+		knowncode string,
+	) (Response, error)
 }
 
-func (i *ICSGOPlayers_730) GetNextMatchSharingCodeV1(
+func NewICSGOPlayers_730() ICSGOPlayers_730 {
+	return &icsgoPlayers730{}
+}
+
+func (i *icsgoPlayers730) GetNextMatchSharingCodeV1(
 	steamid uint64,
 	steamidkey string,
 	knowncode string,
@@ -55,14 +67,23 @@ func (i *ICSGOPlayers_730) GetNextMatchSharingCodeV1(
 	return response, nil
 }
 
-type ICSGOServers_730 struct {
+type icsgoServers730 struct {
 }
 
-func NewICSGOServers_730() *ICSGOServers_730 {
-	return &ICSGOServers_730{}
+type ICSGOServers_730 interface {
+	GetGameMapsPlaytimeV1(
+		interval string,
+		gamemode string,
+		mapgroup string,
+	) (Response, error)
+	GetGameServersStatusV1() (Response, error)
 }
 
-func (i *ICSGOServers_730) GetGameMapsPlaytimeV1(
+func NewICSGOServers_730() ICSGOServers_730 {
+	return &icsgoServers730{}
+}
+
+func (i *icsgoServers730) GetGameMapsPlaytimeV1(
 	interval string,
 	gamemode string,
 	mapgroup string,
@@ -82,7 +103,7 @@ func (i *ICSGOServers_730) GetGameMapsPlaytimeV1(
 
 	return response, nil
 }
-func (i *ICSGOServers_730) GetGameServersStatusV1() (Response, error) {
+func (i *icsgoServers730) GetGameServersStatusV1() (Response, error) {
 	p := getPath("ICSGOServers_730", "GetGameServersStatus", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -95,14 +116,61 @@ func (i *ICSGOServers_730) GetGameServersStatusV1() (Response, error) {
 	return response, nil
 }
 
-type ICSGOTournaments_730 struct {
+type icsgoTournaments730 struct {
 }
 
-func NewICSGOTournaments_730() *ICSGOTournaments_730 {
-	return &ICSGOTournaments_730{}
+type ICSGOTournaments_730 interface {
+	GetTournamentFantasyLineupV1(
+		event uint32,
+		steamid uint64,
+		steamidkey string,
+	) (Response, error)
+	GetTournamentItemsV1(
+		event uint32,
+		steamid uint64,
+		steamidkey string,
+	) (Response, error)
+	GetTournamentLayoutV1(
+		event uint32,
+	) (Response, error)
+	GetTournamentPredictionsV1(
+		event uint32,
+		steamid uint64,
+		steamidkey string,
+	) (Response, error)
+	UploadTournamentFantasyLineupV1(
+		event uint32,
+		steamid uint64,
+		steamidkey string,
+		sectionid uint32,
+		pickid0 uint32,
+		itemid0 uint64,
+		pickid1 uint32,
+		itemid1 uint64,
+		pickid2 uint32,
+		itemid2 uint64,
+		pickid3 uint32,
+		itemid3 uint64,
+		pickid4 uint32,
+		itemid4 uint64,
+	) (Response, error)
+	UploadTournamentPredictionsV1(
+		event uint32,
+		steamid uint64,
+		steamidkey string,
+		sectionid uint32,
+		groupid uint32,
+		index uint32,
+		pickid uint32,
+		itemid uint64,
+	) (Response, error)
 }
 
-func (i *ICSGOTournaments_730) GetTournamentFantasyLineupV1(
+func NewICSGOTournaments_730() ICSGOTournaments_730 {
+	return &icsgoTournaments730{}
+}
+
+func (i *icsgoTournaments730) GetTournamentFantasyLineupV1(
 	event uint32,
 	steamid uint64,
 	steamidkey string,
@@ -122,7 +190,7 @@ func (i *ICSGOTournaments_730) GetTournamentFantasyLineupV1(
 
 	return response, nil
 }
-func (i *ICSGOTournaments_730) GetTournamentItemsV1(
+func (i *icsgoTournaments730) GetTournamentItemsV1(
 	event uint32,
 	steamid uint64,
 	steamidkey string,
@@ -142,7 +210,7 @@ func (i *ICSGOTournaments_730) GetTournamentItemsV1(
 
 	return response, nil
 }
-func (i *ICSGOTournaments_730) GetTournamentLayoutV1(
+func (i *icsgoTournaments730) GetTournamentLayoutV1(
 	event uint32,
 ) (Response, error) {
 	p := getPath("ICSGOTournaments_730", "GetTournamentLayout", 1)
@@ -158,7 +226,7 @@ func (i *ICSGOTournaments_730) GetTournamentLayoutV1(
 
 	return response, nil
 }
-func (i *ICSGOTournaments_730) GetTournamentPredictionsV1(
+func (i *icsgoTournaments730) GetTournamentPredictionsV1(
 	event uint32,
 	steamid uint64,
 	steamidkey string,
@@ -178,7 +246,7 @@ func (i *ICSGOTournaments_730) GetTournamentPredictionsV1(
 
 	return response, nil
 }
-func (i *ICSGOTournaments_730) UploadTournamentFantasyLineupV1(
+func (i *icsgoTournaments730) UploadTournamentFantasyLineupV1(
 	event uint32,
 	steamid uint64,
 	steamidkey string,
@@ -220,7 +288,7 @@ func (i *ICSGOTournaments_730) UploadTournamentFantasyLineupV1(
 
 	return response, nil
 }
-func (i *ICSGOTournaments_730) UploadTournamentPredictionsV1(
+func (i *icsgoTournaments730) UploadTournamentPredictionsV1(
 	event uint32,
 	steamid uint64,
 	steamidkey string,
@@ -251,14 +319,20 @@ func (i *ICSGOTournaments_730) UploadTournamentPredictionsV1(
 	return response, nil
 }
 
-type IDOTA2MatchStats_205790 struct {
+type idota2matchStats205790 struct {
 }
 
-func NewIDOTA2MatchStats_205790() *IDOTA2MatchStats_205790 {
-	return &IDOTA2MatchStats_205790{}
+type IDOTA2MatchStats_205790 interface {
+	GetRealtimeStatsV1(
+		serverSteamId uint64,
+	) (Response, error)
 }
 
-func (i *IDOTA2MatchStats_205790) GetRealtimeStatsV1(
+func NewIDOTA2MatchStats_205790() IDOTA2MatchStats_205790 {
+	return &idota2matchStats205790{}
+}
+
+func (i *idota2matchStats205790) GetRealtimeStatsV1(
 	serverSteamId uint64,
 ) (Response, error) {
 	p := getPath("IDOTA2MatchStats_205790", "GetRealtimeStats", 1)
@@ -275,14 +349,20 @@ func (i *IDOTA2MatchStats_205790) GetRealtimeStatsV1(
 	return response, nil
 }
 
-type IDOTA2MatchStats_570 struct {
+type idota2matchStats570 struct {
 }
 
-func NewIDOTA2MatchStats_570() *IDOTA2MatchStats_570 {
-	return &IDOTA2MatchStats_570{}
+type IDOTA2MatchStats_570 interface {
+	GetRealtimeStatsV1(
+		serverSteamId uint64,
+	) (Response, error)
 }
 
-func (i *IDOTA2MatchStats_570) GetRealtimeStatsV1(
+func NewIDOTA2MatchStats_570() IDOTA2MatchStats_570 {
+	return &idota2matchStats570{}
+}
+
+func (i *idota2matchStats570) GetRealtimeStatsV1(
 	serverSteamId uint64,
 ) (Response, error) {
 	p := getPath("IDOTA2MatchStats_570", "GetRealtimeStats", 1)
@@ -299,14 +379,69 @@ func (i *IDOTA2MatchStats_570) GetRealtimeStatsV1(
 	return response, nil
 }
 
-type IDOTA2Match_205790 struct {
+type idota2match205790 struct {
 }
 
-func NewIDOTA2Match_205790() *IDOTA2Match_205790 {
-	return &IDOTA2Match_205790{}
+type IDOTA2Match_205790 interface {
+	GetLiveLeagueGamesV1(
+		leagueId uint32,
+		matchId uint64,
+		dpc bool,
+	) (Response, error)
+	GetMatchDetailsV1(
+		matchId uint64,
+		includePersonaNames bool,
+	) (Response, error)
+	GetMatchHistoryV1(
+		heroId uint32,
+		gameMode uint32,
+		skill uint32,
+		minPlayers string,
+		accountId string,
+		leagueId string,
+		startAtMatchId uint64,
+		matchesRequested string,
+	) (Response, error)
+	GetMatchHistoryBySequenceNumV1(
+		startAtMatchSeqNum uint64,
+		matchesRequested uint32,
+	) (Response, error)
+	GetTeamInfoByTeamIDV1(
+		startAtTeamId uint64,
+		teamsRequested uint32,
+	) (Response, error)
+	GetTopLiveEventGameV1(
+		partner int32,
+	) (Response, error)
+	GetTopLiveGameV1(
+		partner int32,
+	) (Response, error)
+	GetTopWeekendTourneyGamesV1(
+		partner int32,
+		homeDivision int32,
+	) (Response, error)
+	GetTournamentPlayerStatsV1(
+		accountId string,
+		leagueId string,
+		heroId string,
+		timeFrame string,
+		matchId uint64,
+	) (Response, error)
+	GetTournamentPlayerStatsV2(
+		accountId string,
+		leagueId string,
+		heroId string,
+		timeFrame string,
+		matchId uint64,
+		phaseId uint32,
+	) (Response, error)
 }
 
-func (i *IDOTA2Match_205790) GetLiveLeagueGamesV1(
+func NewIDOTA2Match_205790() IDOTA2Match_205790 {
+	return &idota2match205790{}
+}
+
+func (i *idota2match205790) GetLiveLeagueGamesV1(
 	leagueId uint32,
 	matchId uint64,
 	dpc bool,
@@ -326,7 +461,7 @@ func (i *IDOTA2Match_205790) GetLiveLeagueGamesV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_205790) GetMatchDetailsV1(
+func (i *idota2match205790) GetMatchDetailsV1(
 	matchId uint64,
 	includePersonaNames bool,
 ) (Response, error) {
@@ -344,7 +479,7 @@ func (i *IDOTA2Match_205790) GetMatchDetailsV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_205790) GetMatchHistoryV1(
+func (i *idota2match205790) GetMatchHistoryV1(
 	heroId uint32,
 	gameMode uint32,
 	skill uint32,
@@ -374,7 +509,7 @@ func (i *IDOTA2Match_205790) GetMatchHistoryV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_205790) GetMatchHistoryBySequenceNumV1(
+func (i *idota2match205790) GetMatchHistoryBySequenceNumV1(
 	startAtMatchSeqNum uint64,
 	matchesRequested uint32,
 ) (Response, error) {
@@ -392,7 +527,7 @@ func (i *IDOTA2Match_205790) GetMatchHistoryBySequenceNumV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_205790) GetTeamInfoByTeamIDV1(
+func (i *idota2match205790) GetTeamInfoByTeamIDV1(
 	startAtTeamId uint64,
 	teamsRequested uint32,
 ) (Response, error) {
@@ -410,7 +545,7 @@ func (i *IDOTA2Match_205790) GetTeamInfoByTeamIDV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_205790) GetTopLiveEventGameV1(
+func (i *idota2match205790) GetTopLiveEventGameV1(
 	partner int32,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_205790", "GetTopLiveEventGame", 1)
@@ -426,7 +561,7 @@ func (i *IDOTA2Match_205790) GetTopLiveEventGameV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_205790) GetTopLiveGameV1(
+func (i *idota2match205790) GetTopLiveGameV1(
 	partner int32,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_205790", "GetTopLiveGame", 1)
@@ -442,7 +577,7 @@ func (i *IDOTA2Match_205790) GetTopLiveGameV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_205790) GetTopWeekendTourneyGamesV1(
+func (i *idota2match205790) GetTopWeekendTourneyGamesV1(
 	partner int32,
 	homeDivision int32,
 ) (Response, error) {
@@ -460,7 +595,7 @@ func (i *IDOTA2Match_205790) GetTopWeekendTourneyGamesV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_205790) GetTournamentPlayerStatsV1(
+func (i *idota2match205790) GetTournamentPlayerStatsV1(
 	accountId string,
 	leagueId string,
 	heroId string,
@@ -484,7 +619,7 @@ func (i *IDOTA2Match_205790) GetTournamentPlayerStatsV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_205790) GetTournamentPlayerStatsV2(
+func (i *idota2match205790) GetTournamentPlayerStatsV2(
 	accountId string,
 	leagueId string,
 	heroId string,
@@ -511,14 +646,69 @@ func (i *IDOTA2Match_205790) GetTournamentPlayerStatsV2(
 	return response, nil
 }
 
-type IDOTA2Match_570 struct {
+type idota2match570 struct {
 }
 
-func NewIDOTA2Match_570() *IDOTA2Match_570 {
-	return &IDOTA2Match_570{}
+type IDOTA2Match_570 interface {
+	GetLiveLeagueGamesV1(
+		leagueId uint32,
+		matchId uint64,
+		dpc bool,
+	) (Response, error)
+	GetMatchDetailsV1(
+		matchId uint64,
+		includePersonaNames bool,
+	) (Response, error)
+	GetMatchHistoryV1(
+		heroId uint32,
+		gameMode uint32,
+		skill uint32,
+		minPlayers string,
+		accountId string,
+		leagueId string,
+		startAtMatchId uint64,
+		matchesRequested string,
+	) (Response, error)
+	GetMatchHistoryBySequenceNumV1(
+		startAtMatchSeqNum uint64,
+		matchesRequested uint32,
+	) (Response, error)
+	GetTeamInfoByTeamIDV1(
+		startAtTeamId uint64,
+		teamsRequested uint32,
+	) (Response, error)
+	GetTopLiveEventGameV1(
+		partner int32,
+	) (Response, error)
+	GetTopLiveGameV1(
+		partner int32,
+	) (Response, error)
+	GetTopWeekendTourneyGamesV1(
+		partner int32,
+		homeDivision int32,
+	) (Response, error)
+	GetTournamentPlayerStatsV1(
+		accountId string,
+		leagueId string,
+		heroId string,
+		timeFrame string,
+		matchId uint64,
+	) (Response, error)
+	GetTournamentPlayerStatsV2(
+		accountId string,
+		leagueId string,
+		heroId string,
+		timeFrame string,
+		matchId uint64,
+		phaseId uint32,
+	) (Response, error)
 }
 
-func (i *IDOTA2Match_570) GetLiveLeagueGamesV1(
+func NewIDOTA2Match_570() IDOTA2Match_570 {
+	return &idota2match570{}
+}
+
+func (i *idota2match570) GetLiveLeagueGamesV1(
 	leagueId uint32,
 	matchId uint64,
 	dpc bool,
@@ -538,7 +728,7 @@ func (i *IDOTA2Match_570) GetLiveLeagueGamesV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_570) GetMatchDetailsV1(
+func (i *idota2match570) GetMatchDetailsV1(
 	matchId uint64,
 	includePersonaNames bool,
 ) (Response, error) {
@@ -556,7 +746,7 @@ func (i *IDOTA2Match_570) GetMatchDetailsV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_570) GetMatchHistoryV1(
+func (i *idota2match570) GetMatchHistoryV1(
 	heroId uint32,
 	gameMode uint32,
 	skill uint32,
@@ -586,7 +776,7 @@ func (i *IDOTA2Match_570) GetMatchHistoryV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_570) GetMatchHistoryBySequenceNumV1(
+func (i *idota2match570) GetMatchHistoryBySequenceNumV1(
 	startAtMatchSeqNum uint64,
 	matchesRequested uint32,
 ) (Response, error) {
@@ -604,7 +794,7 @@ func (i *IDOTA2Match_570) GetMatchHistoryBySequenceNumV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_570) GetTeamInfoByTeamIDV1(
+func (i *idota2match570) GetTeamInfoByTeamIDV1(
 	startAtTeamId uint64,
 	teamsRequested uint32,
 ) (Response, error) {
@@ -622,7 +812,7 @@ func (i *IDOTA2Match_570) GetTeamInfoByTeamIDV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_570) GetTopLiveEventGameV1(
+func (i *idota2match570) GetTopLiveEventGameV1(
 	partner int32,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_570", "GetTopLiveEventGame", 1)
@@ -638,7 +828,7 @@ func (i *IDOTA2Match_570) GetTopLiveEventGameV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_570) GetTopLiveGameV1(
+func (i *idota2match570) GetTopLiveGameV1(
 	partner int32,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_570", "GetTopLiveGame", 1)
@@ -654,7 +844,7 @@ func (i *IDOTA2Match_570) GetTopLiveGameV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_570) GetTopWeekendTourneyGamesV1(
+func (i *idota2match570) GetTopWeekendTourneyGamesV1(
 	partner int32,
 	homeDivision int32,
 ) (Response, error) {
@@ -672,7 +862,7 @@ func (i *IDOTA2Match_570) GetTopWeekendTourneyGamesV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_570) GetTournamentPlayerStatsV1(
+func (i *idota2match570) GetTournamentPlayerStatsV1(
 	accountId string,
 	leagueId string,
 	heroId string,
@@ -696,7 +886,7 @@ func (i *IDOTA2Match_570) GetTournamentPlayerStatsV1(
 
 	return response, nil
 }
-func (i *IDOTA2Match_570) GetTournamentPlayerStatsV2(
+func (i *idota2match570) GetTournamentPlayerStatsV2(
 	accountId string,
 	leagueId string,
 	heroId string,
@@ -723,14 +913,21 @@ func (i *IDOTA2Match_570) GetTournamentPlayerStatsV2(
 	return response, nil
 }
 
-type IDOTA2StreamSystem_205790 struct {
+type idota2streamSystem205790 struct {
 }
 
-func NewIDOTA2StreamSystem_205790() *IDOTA2StreamSystem_205790 {
-	return &IDOTA2StreamSystem_205790{}
+type IDOTA2StreamSystem_205790 interface {
+	GetBroadcasterInfoV1(
+		broadcasterSteamId uint64,
+		leagueId uint32,
+	) (Response, error)
 }
 
-func (i *IDOTA2StreamSystem_205790) GetBroadcasterInfoV1(
+func NewIDOTA2StreamSystem_205790() IDOTA2StreamSystem_205790 {
+	return &idota2streamSystem205790{}
+}
+
+func (i *idota2streamSystem205790) GetBroadcasterInfoV1(
 	broadcasterSteamId uint64,
 	leagueId uint32,
 ) (Response, error) {
@@ -749,14 +946,21 @@ func (i *IDOTA2StreamSystem_205790) GetBroadcasterInfoV1(
 	return response, nil
 }
 
-type IDOTA2StreamSystem_570 struct {
+type idota2streamSystem570 struct {
 }
 
-func NewIDOTA2StreamSystem_570() *IDOTA2StreamSystem_570 {
-	return &IDOTA2StreamSystem_570{}
+type IDOTA2StreamSystem_570 interface {
+	GetBroadcasterInfoV1(
+		broadcasterSteamId uint64,
+		leagueId uint32,
+	) (Response, error)
 }
 
-func (i *IDOTA2StreamSystem_570) GetBroadcasterInfoV1(
+func NewIDOTA2StreamSystem_570() IDOTA2StreamSystem_570 {
+	return &idota2streamSystem570{}
+}
+
+func (i *idota2streamSystem570) GetBroadcasterInfoV1(
 	broadcasterSteamId uint64,
 	leagueId uint32,
 ) (Response, error) {
@@ -775,14 +979,31 @@ func (i *IDOTA2StreamSystem_570) GetBroadcasterInfoV1(
 	return response, nil
 }
 
-type IDOTA2Ticket_205790 struct {
+type idota2ticket205790 struct {
 }
 
-func NewIDOTA2Ticket_205790() *IDOTA2Ticket_205790 {
-	return &IDOTA2Ticket_205790{}
+type IDOTA2Ticket_205790 interface {
+	GetSteamIDForBadgeIDV1(
+		badgeId string,
+	) (Response, error)
+	SetSteamAccountPurchasedV1(
+		steamid uint64,
+		badgeType uint32,
+	) (Response, error)
+	SteamAccountValidForBadgeTypeV1(
+		steamid uint64,
+		validBadgeType1 uint32,
+		validBadgeType2 uint32,
+		validBadgeType3 uint32,
+		validBadgeType4 uint32,
+	) (Response, error)
 }
 
-func (i *IDOTA2Ticket_205790) GetSteamIDForBadgeIDV1(
+func NewIDOTA2Ticket_205790() IDOTA2Ticket_205790 {
+	return &idota2ticket205790{}
+}
+
+func (i *idota2ticket205790) GetSteamIDForBadgeIDV1(
 	badgeId string,
 ) (Response, error) {
 	p := getPath("IDOTA2Ticket_205790", "GetSteamIDForBadgeID", 1)
@@ -798,7 +1019,7 @@ func (i *IDOTA2Ticket_205790) GetSteamIDForBadgeIDV1(
 
 	return response, nil
 }
-func (i *IDOTA2Ticket_205790) SetSteamAccountPurchasedV1(
+func (i *idota2ticket205790) SetSteamAccountPurchasedV1(
 	steamid uint64,
 	badgeType uint32,
 ) (Response, error) {
@@ -816,7 +1037,7 @@ func (i *IDOTA2Ticket_205790) SetSteamAccountPurchasedV1(
 
 	return response, nil
 }
-func (i *IDOTA2Ticket_205790) SteamAccountValidForBadgeTypeV1(
+func (i *idota2ticket205790) SteamAccountValidForBadgeTypeV1(
 	steamid uint64,
 	validBadgeType1 uint32,
 	validBadgeType2 uint32,
@@ -841,14 +1062,31 @@ func (i *IDOTA2Ticket_205790) SteamAccountValidForBadgeTypeV1(
 	return response, nil
 }
 
-type IDOTA2Ticket_570 struct {
+type idota2ticket570 struct {
 }
 
-func NewIDOTA2Ticket_570() *IDOTA2Ticket_570 {
-	return &IDOTA2Ticket_570{}
+type IDOTA2Ticket_570 interface {
+	GetSteamIDForBadgeIDV1(
+		badgeId string,
+	) (Response, error)
+	SetSteamAccountPurchasedV1(
+		steamid uint64,
+		badgeType uint32,
+	) (Response, error)
+	SteamAccountValidForBadgeTypeV1(
+		steamid uint64,
+		validBadgeType1 uint32,
+		validBadgeType2 uint32,
+		validBadgeType3 uint32,
+		validBadgeType4 uint32,
+	) (Response, error)
 }
 
-func (i *IDOTA2Ticket_570) GetSteamIDForBadgeIDV1(
+func NewIDOTA2Ticket_570() IDOTA2Ticket_570 {
+	return &idota2ticket570{}
+}
+
+func (i *idota2ticket570) GetSteamIDForBadgeIDV1(
 	badgeId string,
 ) (Response, error) {
 	p := getPath("IDOTA2Ticket_570", "GetSteamIDForBadgeID", 1)
@@ -864,7 +1102,7 @@ func (i *IDOTA2Ticket_570) GetSteamIDForBadgeIDV1(
 
 	return response, nil
 }
-func (i *IDOTA2Ticket_570) SetSteamAccountPurchasedV1(
+func (i *idota2ticket570) SetSteamAccountPurchasedV1(
 	steamid uint64,
 	badgeType uint32,
 ) (Response, error) {
@@ -882,7 +1120,7 @@ func (i *IDOTA2Ticket_570) SetSteamAccountPurchasedV1(
 
 	return response, nil
 }
-func (i *IDOTA2Ticket_570) SteamAccountValidForBadgeTypeV1(
+func (i *idota2ticket570) SteamAccountValidForBadgeTypeV1(
 	steamid uint64,
 	validBadgeType1 uint32,
 	validBadgeType2 uint32,
@@ -907,14 +1145,41 @@ func (i *IDOTA2Ticket_570) SteamAccountValidForBadgeTypeV1(
 	return response, nil
 }
 
-type IEconDOTA2_205790 struct {
+type iEconDota2205790 struct {
 }
 
-func NewIEconDOTA2_205790() *IEconDOTA2_205790 {
-	return &IEconDOTA2_205790{}
+type IEconDOTA2_205790 interface {
+	GetEventStatsForAccountV1(
+		eventid uint32,
+		accountid uint32,
+		language string,
+	) (Response, error)
+	GetGameItemsV1(
+		language string,
+	) (Response, error)
+	GetHeroesV1(
+		language string,
+		itemizedonly bool,
+	) (Response, error)
+	GetItemCreatorsV1(
+		itemdef uint32,
+	) (Response, error)
+	GetItemWorkshopPublishedFileIDsV1(
+		itemdef uint32,
+	) (Response, error)
+	GetRaritiesV1(
+		language string,
+	) (Response, error)
+	GetTournamentPrizePoolV1(
+		leagueid uint32,
+	) (Response, error)
 }
 
-func (i *IEconDOTA2_205790) GetEventStatsForAccountV1(
+func NewIEconDOTA2_205790() IEconDOTA2_205790 {
+	return &iEconDota2205790{}
+}
+
+func (i *iEconDota2205790) GetEventStatsForAccountV1(
 	eventid uint32,
 	accountid uint32,
 	language string,
@@ -934,7 +1199,7 @@ func (i *IEconDOTA2_205790) GetEventStatsForAccountV1(
 
 	return response, nil
 }
-func (i *IEconDOTA2_205790) GetGameItemsV1(
+func (i *iEconDota2205790) GetGameItemsV1(
 	language string,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_205790", "GetGameItems", 1)
@@ -950,7 +1215,7 @@ func (i *IEconDOTA2_205790) GetGameItemsV1(
 
 	return response, nil
 }
-func (i *IEconDOTA2_205790) GetHeroesV1(
+func (i *iEconDota2205790) GetHeroesV1(
 	language string,
 	itemizedonly bool,
 ) (Response, error) {
@@ -968,7 +1233,7 @@ func (i *IEconDOTA2_205790) GetHeroesV1(
 
 	return response, nil
 }
-func (i *IEconDOTA2_205790) GetItemCreatorsV1(
+func (i *iEconDota2205790) GetItemCreatorsV1(
 	itemdef uint32,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_205790", "GetItemCreators", 1)
@@ -984,7 +1249,7 @@ func (i *IEconDOTA2_205790) GetItemCreatorsV1(
 
 	return response, nil
 }
-func (i *IEconDOTA2_205790) GetItemWorkshopPublishedFileIDsV1(
+func (i *iEconDota2205790) GetItemWorkshopPublishedFileIDsV1(
 	itemdef uint32,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_205790", "GetItemWorkshopPublishedFileIDs", 1)
@@ -1000,7 +1265,7 @@ func (i *IEconDOTA2_205790) GetItemWorkshopPublishedFileIDsV1(
 
 	return response, nil
 }
-func (i *IEconDOTA2_205790) GetRaritiesV1(
+func (i *iEconDota2205790) GetRaritiesV1(
 	language string,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_205790", "GetRarities", 1)
@@ -1016,7 +1281,7 @@ func (i *IEconDOTA2_205790) GetRaritiesV1(
 
 	return response, nil
 }
-func (i *IEconDOTA2_205790) GetTournamentPrizePoolV1(
+func (i *iEconDota2205790) GetTournamentPrizePoolV1(
 	leagueid uint32,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_205790", "GetTournamentPrizePool", 1)
@@ -1033,14 +1298,38 @@ func (i *IEconDOTA2_205790) GetTournamentPrizePoolV1(
 	return response, nil
 }
 
-type IEconDOTA2_570 struct {
+type iEconDota2570 struct {
 }
 
-func NewIEconDOTA2_570() *IEconDOTA2_570 {
-	return &IEconDOTA2_570{}
+type IEconDOTA2_570 interface {
+	GetEventStatsForAccountV1(
+		eventid uint32,
+		accountid uint32,
+		language string,
+	) (Response, error)
+	GetHeroesV1(
+		language string,
+		itemizedonly bool,
+	) (Response, error)
+	GetItemCreatorsV1(
+		itemdef uint32,
+	) (Response, error)
+	GetItemWorkshopPublishedFileIDsV1(
+		itemdef uint32,
+	) (Response, error)
+	GetRaritiesV1(
+		language string,
+	) (Response, error)
+	GetTournamentPrizePoolV1(
+		leagueid uint32,
+	) (Response, error)
 }
 
-func (i *IEconDOTA2_570) GetEventStatsForAccountV1(
+func NewIEconDOTA2_570() IEconDOTA2_570 {
+	return &iEconDota2570{}
+}
+
+func (i *iEconDota2570) GetEventStatsForAccountV1(
 	eventid uint32,
 	accountid uint32,
 	language string,
@@ -1060,7 +1349,7 @@ func (i *IEconDOTA2_570) GetEventStatsForAccountV1(
 
 	return response, nil
 }
-func (i *IEconDOTA2_570) GetHeroesV1(
+func (i *iEconDota2570) GetHeroesV1(
 	language string,
 	itemizedonly bool,
 ) (Response, error) {
@@ -1078,7 +1367,7 @@ func (i *IEconDOTA2_570) GetHeroesV1(
 
 	return response, nil
 }
-func (i *IEconDOTA2_570) GetItemCreatorsV1(
+func (i *iEconDota2570) GetItemCreatorsV1(
 	itemdef uint32,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_570", "GetItemCreators", 1)
@@ -1094,7 +1383,7 @@ func (i *IEconDOTA2_570) GetItemCreatorsV1(
 
 	return response, nil
 }
-func (i *IEconDOTA2_570) GetItemWorkshopPublishedFileIDsV1(
+func (i *iEconDota2570) GetItemWorkshopPublishedFileIDsV1(
 	itemdef uint32,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_570", "GetItemWorkshopPublishedFileIDs", 1)
@@ -1110,7 +1399,7 @@ func (i *IEconDOTA2_570) GetItemWorkshopPublishedFileIDsV1(
 
 	return response, nil
 }
-func (i *IEconDOTA2_570) GetRaritiesV1(
+func (i *iEconDota2570) GetRaritiesV1(
 	language string,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_570", "GetRarities", 1)
@@ -1126,7 +1415,7 @@ func (i *IEconDOTA2_570) GetRaritiesV1(
 
 	return response, nil
 }
-func (i *IEconDOTA2_570) GetTournamentPrizePoolV1(
+func (i *iEconDota2570) GetTournamentPrizePoolV1(
 	leagueid uint32,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_570", "GetTournamentPrizePool", 1)
@@ -1143,14 +1432,20 @@ func (i *IEconDOTA2_570) GetTournamentPrizePoolV1(
 	return response, nil
 }
 
-type IEconItems_1046930 struct {
+type iEconItems1046930 struct {
 }
 
-func NewIEconItems_1046930() *IEconItems_1046930 {
-	return &IEconItems_1046930{}
+type IEconItems_1046930 interface {
+	GetPlayerItemsV1(
+		steamid uint64,
+	) (Response, error)
 }
 
-func (i *IEconItems_1046930) GetPlayerItemsV1(
+func NewIEconItems_1046930() IEconItems_1046930 {
+	return &iEconItems1046930{}
+}
+
+func (i *iEconItems1046930) GetPlayerItemsV1(
 	steamid uint64,
 ) (Response, error) {
 	p := getPath("IEconItems_1046930", "GetPlayerItems", 1)
@@ -1167,14 +1462,21 @@ func (i *IEconItems_1046930) GetPlayerItemsV1(
 	return response, nil
 }
 
-type IEconItems_1269260 struct {
+type iEconItems1269260 struct {
 }
 
-func NewIEconItems_1269260() *IEconItems_1269260 {
-	return &IEconItems_1269260{}
+type IEconItems_1269260 interface {
+	GetEquippedPlayerItemsV1(
+		steamid uint64,
+		classId uint32,
+	) (Response, error)
 }
 
-func (i *IEconItems_1269260) GetEquippedPlayerItemsV1(
+func NewIEconItems_1269260() IEconItems_1269260 {
+	return &iEconItems1269260{}
+}
+
+func (i *iEconItems1269260) GetEquippedPlayerItemsV1(
 	steamid uint64,
 	classId uint32,
 ) (Response, error) {
@@ -1193,14 +1495,27 @@ func (i *IEconItems_1269260) GetEquippedPlayerItemsV1(
 	return response, nil
 }
 
-type IEconItems_205790 struct {
+type iEconItems205790 struct {
 }
 
-func NewIEconItems_205790() *IEconItems_205790 {
-	return &IEconItems_205790{}
+type IEconItems_205790 interface {
+	GetEquippedPlayerItemsV1(
+		steamid uint64,
+		classId uint32,
+	) (Response, error)
+	GetPlayerItemsV1(
+		steamid uint64,
+	) (Response, error)
+	GetStoreMetaDataV1(
+		language string,
+	) (Response, error)
 }
 
-func (i *IEconItems_205790) GetEquippedPlayerItemsV1(
+func NewIEconItems_205790() IEconItems_205790 {
+	return &iEconItems205790{}
+}
+
+func (i *iEconItems205790) GetEquippedPlayerItemsV1(
 	steamid uint64,
 	classId uint32,
 ) (Response, error) {
@@ -1218,7 +1533,7 @@ func (i *IEconItems_205790) GetEquippedPlayerItemsV1(
 
 	return response, nil
 }
-func (i *IEconItems_205790) GetPlayerItemsV1(
+func (i *iEconItems205790) GetPlayerItemsV1(
 	steamid uint64,
 ) (Response, error) {
 	p := getPath("IEconItems_205790", "GetPlayerItems", 1)
@@ -1234,7 +1549,7 @@ func (i *IEconItems_205790) GetPlayerItemsV1(
 
 	return response, nil
 }
-func (i *IEconItems_205790) GetStoreMetaDataV1(
+func (i *iEconItems205790) GetStoreMetaDataV1(
 	language string,
 ) (Response, error) {
 	p := getPath("IEconItems_205790", "GetStoreMetaData", 1)
@@ -1251,14 +1566,50 @@ func (i *IEconItems_205790) GetStoreMetaDataV1(
 	return response, nil
 }
 
-type IEconItems_238460 struct {
+type iEconItems221540 struct {
 }
 
-func NewIEconItems_238460() *IEconItems_238460 {
-	return &IEconItems_238460{}
+type IEconItems_221540 interface {
+	GetPlayerItemsV1(
+		steamid uint64,
+	) (Response, error)
 }
 
-func (i *IEconItems_238460) GetPlayerItemsV1(
+func NewIEconItems_221540() IEconItems_221540 {
+	return &iEconItems221540{}
+}
+
+func (i *iEconItems221540) GetPlayerItemsV1(
+	steamid uint64,
+) (Response, error) {
+	p := getPath("IEconItems_221540", "GetPlayerItems", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
+
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}
+
+type iEconItems238460 struct {
+}
+
+type IEconItems_238460 interface {
+	GetPlayerItemsV1(
+		steamid uint64,
+	) (Response, error)
+}
+
+func NewIEconItems_238460() IEconItems_238460 {
+	return &iEconItems238460{}
+}
+
+func (i *iEconItems238460) GetPlayerItemsV1(
 	steamid uint64,
 ) (Response, error) {
 	p := getPath("IEconItems_238460", "GetPlayerItems", 1)
@@ -1275,14 +1626,35 @@ func (i *IEconItems_238460) GetPlayerItemsV1(
 	return response, nil
 }
 
-type IEconItems_440 struct {
+type iEconItems440 struct {
 }
 
-func NewIEconItems_440() *IEconItems_440 {
-	return &IEconItems_440{}
+type IEconItems_440 interface {
+	GetPlayerItemsV1(
+		steamid uint64,
+	) (Response, error)
+	GetSchemaV1(
+		language string,
+	) (Response, error)
+	GetSchemaItemsV1(
+		language string,
+		start int32,
+	) (Response, error)
+	GetSchemaOverviewV1(
+		language string,
+	) (Response, error)
+	GetSchemaURLV1() (Response, error)
+	GetStoreMetaDataV1(
+		language string,
+	) (Response, error)
+	GetStoreStatusV1() (Response, error)
 }
 
-func (i *IEconItems_440) GetPlayerItemsV1(
+func NewIEconItems_440() IEconItems_440 {
+	return &iEconItems440{}
+}
+
+func (i *iEconItems440) GetPlayerItemsV1(
 	steamid uint64,
 ) (Response, error) {
 	p := getPath("IEconItems_440", "GetPlayerItems", 1)
@@ -1298,7 +1670,7 @@ func (i *IEconItems_440) GetPlayerItemsV1(
 
 	return response, nil
 }
-func (i *IEconItems_440) GetSchemaV1(
+func (i *iEconItems440) GetSchemaV1(
 	language string,
 ) (Response, error) {
 	p := getPath("IEconItems_440", "GetSchema", 1)
@@ -1314,7 +1686,7 @@ func (i *IEconItems_440) GetSchemaV1(
 
 	return response, nil
 }
-func (i *IEconItems_440) GetSchemaItemsV1(
+func (i *iEconItems440) GetSchemaItemsV1(
 	language string,
 	start int32,
 ) (Response, error) {
@@ -1332,7 +1704,7 @@ func (i *IEconItems_440) GetSchemaItemsV1(
 
 	return response, nil
 }
-func (i *IEconItems_440) GetSchemaOverviewV1(
+func (i *iEconItems440) GetSchemaOverviewV1(
 	language string,
 ) (Response, error) {
 	p := getPath("IEconItems_440", "GetSchemaOverview", 1)
@@ -1348,7 +1720,7 @@ func (i *IEconItems_440) GetSchemaOverviewV1(
 
 	return response, nil
 }
-func (i *IEconItems_440) GetSchemaURLV1() (Response, error) {
+func (i *iEconItems440) GetSchemaURLV1() (Response, error) {
 	p := getPath("IEconItems_440", "GetSchemaURL", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1360,7 +1732,7 @@ func (i *IEconItems_440) GetSchemaURLV1() (Response, error) {
 
 	return response, nil
 }
-func (i *IEconItems_440) GetStoreMetaDataV1(
+func (i *iEconItems440) GetStoreMetaDataV1(
 	language string,
 ) (Response, error) {
 	p := getPath("IEconItems_440", "GetStoreMetaData", 1)
@@ -1376,7 +1748,7 @@ func (i *IEconItems_440) GetStoreMetaDataV1(
 
 	return response, nil
 }
-func (i *IEconItems_440) GetStoreStatusV1() (Response, error) {
+func (i *iEconItems440) GetStoreStatusV1() (Response, error) {
 	p := getPath("IEconItems_440", "GetStoreStatus", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1389,14 +1761,23 @@ func (i *IEconItems_440) GetStoreStatusV1() (Response, error) {
 	return response, nil
 }
 
-type IEconItems_570 struct {
+type iEconItems570 struct {
 }
 
-func NewIEconItems_570() *IEconItems_570 {
-	return &IEconItems_570{}
+type IEconItems_570 interface {
+	GetPlayerItemsV1(
+		steamid uint64,
+	) (Response, error)
+	GetStoreMetaDataV1(
+		language string,
+	) (Response, error)
 }
 
-func (i *IEconItems_570) GetPlayerItemsV1(
+func NewIEconItems_570() IEconItems_570 {
+	return &iEconItems570{}
+}
+
+func (i *iEconItems570) GetPlayerItemsV1(
 	steamid uint64,
 ) (Response, error) {
 	p := getPath("IEconItems_570", "GetPlayerItems", 1)
@@ -1412,7 +1793,7 @@ func (i *IEconItems_570) GetPlayerItemsV1(
 
 	return response, nil
 }
-func (i *IEconItems_570) GetStoreMetaDataV1(
+func (i *iEconItems570) GetStoreMetaDataV1(
 	language string,
 ) (Response, error) {
 	p := getPath("IEconItems_570", "GetStoreMetaData", 1)
@@ -1429,14 +1810,21 @@ func (i *IEconItems_570) GetStoreMetaDataV1(
 	return response, nil
 }
 
-type IEconItems_583950 struct {
+type iEconItems583950 struct {
 }
 
-func NewIEconItems_583950() *IEconItems_583950 {
-	return &IEconItems_583950{}
+type IEconItems_583950 interface {
+	GetEquippedPlayerItemsV1(
+		steamid uint64,
+		classId uint32,
+	) (Response, error)
 }
 
-func (i *IEconItems_583950) GetEquippedPlayerItemsV1(
+func NewIEconItems_583950() IEconItems_583950 {
+	return &iEconItems583950{}
+}
+
+func (i *iEconItems583950) GetEquippedPlayerItemsV1(
 	steamid uint64,
 	classId uint32,
 ) (Response, error) {
@@ -1455,14 +1843,23 @@ func (i *IEconItems_583950) GetEquippedPlayerItemsV1(
 	return response, nil
 }
 
-type IEconItems_620 struct {
+type iEconItems620 struct {
 }
 
-func NewIEconItems_620() *IEconItems_620 {
-	return &IEconItems_620{}
+type IEconItems_620 interface {
+	GetPlayerItemsV1(
+		steamid uint64,
+	) (Response, error)
+	GetSchemaV1(
+		language string,
+	) (Response, error)
 }
 
-func (i *IEconItems_620) GetPlayerItemsV1(
+func NewIEconItems_620() IEconItems_620 {
+	return &iEconItems620{}
+}
+
+func (i *iEconItems620) GetPlayerItemsV1(
 	steamid uint64,
 ) (Response, error) {
 	p := getPath("IEconItems_620", "GetPlayerItems", 1)
@@ -1478,7 +1875,7 @@ func (i *IEconItems_620) GetPlayerItemsV1(
 
 	return response, nil
 }
-func (i *IEconItems_620) GetSchemaV1(
+func (i *iEconItems620) GetSchemaV1(
 	language string,
 ) (Response, error) {
 	p := getPath("IEconItems_620", "GetSchema", 1)
@@ -1495,14 +1892,27 @@ func (i *IEconItems_620) GetSchemaV1(
 	return response, nil
 }
 
-type IEconItems_730 struct {
+type iEconItems730 struct {
 }
 
-func NewIEconItems_730() *IEconItems_730 {
-	return &IEconItems_730{}
+type IEconItems_730 interface {
+	GetPlayerItemsV1(
+		steamid uint64,
+	) (Response, error)
+	GetSchemaV2(
+		language string,
+	) (Response, error)
+	GetSchemaURLV2() (Response, error)
+	GetStoreMetaDataV1(
+		language string,
+	) (Response, error)
 }
 
-func (i *IEconItems_730) GetPlayerItemsV1(
+func NewIEconItems_730() IEconItems_730 {
+	return &iEconItems730{}
+}
+
+func (i *iEconItems730) GetPlayerItemsV1(
 	steamid uint64,
 ) (Response, error) {
 	p := getPath("IEconItems_730", "GetPlayerItems", 1)
@@ -1518,7 +1928,7 @@ func (i *IEconItems_730) GetPlayerItemsV1(
 
 	return response, nil
 }
-func (i *IEconItems_730) GetSchemaV2(
+func (i *iEconItems730) GetSchemaV2(
 	language string,
 ) (Response, error) {
 	p := getPath("IEconItems_730", "GetSchema", 2)
@@ -1534,7 +1944,7 @@ func (i *IEconItems_730) GetSchemaV2(
 
 	return response, nil
 }
-func (i *IEconItems_730) GetSchemaURLV2() (Response, error) {
+func (i *iEconItems730) GetSchemaURLV2() (Response, error) {
 	p := getPath("IEconItems_730", "GetSchemaURL", 2)
 	request := map[string]string{}
 	response := Response{}
@@ -1546,7 +1956,7 @@ func (i *IEconItems_730) GetSchemaURLV2() (Response, error) {
 
 	return response, nil
 }
-func (i *IEconItems_730) GetStoreMetaDataV1(
+func (i *iEconItems730) GetStoreMetaDataV1(
 	language string,
 ) (Response, error) {
 	p := getPath("IEconItems_730", "GetStoreMetaData", 1)
@@ -1563,14 +1973,19 @@ func (i *IEconItems_730) GetStoreMetaDataV1(
 	return response, nil
 }
 
-type IGCVersion_1046930 struct {
+type igcVersion1046930 struct {
 }
 
-func NewIGCVersion_1046930() *IGCVersion_1046930 {
-	return &IGCVersion_1046930{}
+type IGCVersion_1046930 interface {
+	GetClientVersionV1() (Response, error)
+	GetServerVersionV1() (Response, error)
 }
 
-func (i *IGCVersion_1046930) GetClientVersionV1() (Response, error) {
+func NewIGCVersion_1046930() IGCVersion_1046930 {
+	return &igcVersion1046930{}
+}
+
+func (i *igcVersion1046930) GetClientVersionV1() (Response, error) {
 	p := getPath("IGCVersion_1046930", "GetClientVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1582,7 +1997,7 @@ func (i *IGCVersion_1046930) GetClientVersionV1() (Response, error) {
 
 	return response, nil
 }
-func (i *IGCVersion_1046930) GetServerVersionV1() (Response, error) {
+func (i *igcVersion1046930) GetServerVersionV1() (Response, error) {
 	p := getPath("IGCVersion_1046930", "GetServerVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1595,14 +2010,19 @@ func (i *IGCVersion_1046930) GetServerVersionV1() (Response, error) {
 	return response, nil
 }
 
-type IGCVersion_1269260 struct {
+type igcVersion1269260 struct {
 }
 
-func NewIGCVersion_1269260() *IGCVersion_1269260 {
-	return &IGCVersion_1269260{}
+type IGCVersion_1269260 interface {
+	GetClientVersionV1() (Response, error)
+	GetServerVersionV1() (Response, error)
 }
 
-func (i *IGCVersion_1269260) GetClientVersionV1() (Response, error) {
+func NewIGCVersion_1269260() IGCVersion_1269260 {
+	return &igcVersion1269260{}
+}
+
+func (i *igcVersion1269260) GetClientVersionV1() (Response, error) {
 	p := getPath("IGCVersion_1269260", "GetClientVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1614,7 +2034,7 @@ func (i *IGCVersion_1269260) GetClientVersionV1() (Response, error) {
 
 	return response, nil
 }
-func (i *IGCVersion_1269260) GetServerVersionV1() (Response, error) {
+func (i *igcVersion1269260) GetServerVersionV1() (Response, error) {
 	p := getPath("IGCVersion_1269260", "GetServerVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1627,14 +2047,19 @@ func (i *IGCVersion_1269260) GetServerVersionV1() (Response, error) {
 	return response, nil
 }
 
-type IGCVersion_205790 struct {
+type igcVersion205790 struct {
 }
 
-func NewIGCVersion_205790() *IGCVersion_205790 {
-	return &IGCVersion_205790{}
+type IGCVersion_205790 interface {
+	GetClientVersionV1() (Response, error)
+	GetServerVersionV1() (Response, error)
 }
 
-func (i *IGCVersion_205790) GetClientVersionV1() (Response, error) {
+func NewIGCVersion_205790() IGCVersion_205790 {
+	return &igcVersion205790{}
+}
+
+func (i *igcVersion205790) GetClientVersionV1() (Response, error) {
 	p := getPath("IGCVersion_205790", "GetClientVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1646,7 +2071,7 @@ func (i *IGCVersion_205790) GetClientVersionV1() (Response, error) {
 
 	return response, nil
 }
-func (i *IGCVersion_205790) GetServerVersionV1() (Response, error) {
+func (i *igcVersion205790) GetServerVersionV1() (Response, error) {
 	p := getPath("IGCVersion_205790", "GetServerVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1659,14 +2084,19 @@ func (i *IGCVersion_205790) GetServerVersionV1() (Response, error) {
 	return response, nil
 }
 
-type IGCVersion_440 struct {
+type igcVersion440 struct {
 }
 
-func NewIGCVersion_440() *IGCVersion_440 {
-	return &IGCVersion_440{}
+type IGCVersion_440 interface {
+	GetClientVersionV1() (Response, error)
+	GetServerVersionV1() (Response, error)
 }
 
-func (i *IGCVersion_440) GetClientVersionV1() (Response, error) {
+func NewIGCVersion_440() IGCVersion_440 {
+	return &igcVersion440{}
+}
+
+func (i *igcVersion440) GetClientVersionV1() (Response, error) {
 	p := getPath("IGCVersion_440", "GetClientVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1678,7 +2108,7 @@ func (i *IGCVersion_440) GetClientVersionV1() (Response, error) {
 
 	return response, nil
 }
-func (i *IGCVersion_440) GetServerVersionV1() (Response, error) {
+func (i *igcVersion440) GetServerVersionV1() (Response, error) {
 	p := getPath("IGCVersion_440", "GetServerVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1691,14 +2121,19 @@ func (i *IGCVersion_440) GetServerVersionV1() (Response, error) {
 	return response, nil
 }
 
-type IGCVersion_570 struct {
+type igcVersion570 struct {
 }
 
-func NewIGCVersion_570() *IGCVersion_570 {
-	return &IGCVersion_570{}
+type IGCVersion_570 interface {
+	GetClientVersionV1() (Response, error)
+	GetServerVersionV1() (Response, error)
 }
 
-func (i *IGCVersion_570) GetClientVersionV1() (Response, error) {
+func NewIGCVersion_570() IGCVersion_570 {
+	return &igcVersion570{}
+}
+
+func (i *igcVersion570) GetClientVersionV1() (Response, error) {
 	p := getPath("IGCVersion_570", "GetClientVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1710,7 +2145,7 @@ func (i *IGCVersion_570) GetClientVersionV1() (Response, error) {
 
 	return response, nil
 }
-func (i *IGCVersion_570) GetServerVersionV1() (Response, error) {
+func (i *igcVersion570) GetServerVersionV1() (Response, error) {
 	p := getPath("IGCVersion_570", "GetServerVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1723,14 +2158,19 @@ func (i *IGCVersion_570) GetServerVersionV1() (Response, error) {
 	return response, nil
 }
 
-type IGCVersion_583950 struct {
+type igcVersion583950 struct {
 }
 
-func NewIGCVersion_583950() *IGCVersion_583950 {
-	return &IGCVersion_583950{}
+type IGCVersion_583950 interface {
+	GetClientVersionV1() (Response, error)
+	GetServerVersionV1() (Response, error)
 }
 
-func (i *IGCVersion_583950) GetClientVersionV1() (Response, error) {
+func NewIGCVersion_583950() IGCVersion_583950 {
+	return &igcVersion583950{}
+}
+
+func (i *igcVersion583950) GetClientVersionV1() (Response, error) {
 	p := getPath("IGCVersion_583950", "GetClientVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1742,7 +2182,7 @@ func (i *IGCVersion_583950) GetClientVersionV1() (Response, error) {
 
 	return response, nil
 }
-func (i *IGCVersion_583950) GetServerVersionV1() (Response, error) {
+func (i *igcVersion583950) GetServerVersionV1() (Response, error) {
 	p := getPath("IGCVersion_583950", "GetServerVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1755,14 +2195,18 @@ func (i *IGCVersion_583950) GetServerVersionV1() (Response, error) {
 	return response, nil
 }
 
-type IGCVersion_730 struct {
+type igcVersion730 struct {
 }
 
-func NewIGCVersion_730() *IGCVersion_730 {
-	return &IGCVersion_730{}
+type IGCVersion_730 interface {
+	GetServerVersionV1() (Response, error)
 }
 
-func (i *IGCVersion_730) GetServerVersionV1() (Response, error) {
+func NewIGCVersion_730() IGCVersion_730 {
+	return &igcVersion730{}
+}
+
+func (i *igcVersion730) GetServerVersionV1() (Response, error) {
 	p := getPath("IGCVersion_730", "GetServerVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1775,14 +2219,20 @@ func (i *IGCVersion_730) GetServerVersionV1() (Response, error) {
 	return response, nil
 }
 
-type IPortal2Leaderboards_620 struct {
+type iPortal2leaderboards620 struct {
 }
 
-func NewIPortal2Leaderboards_620() *IPortal2Leaderboards_620 {
-	return &IPortal2Leaderboards_620{}
+type IPortal2Leaderboards_620 interface {
+	GetBucketizedDataV1(
+		leaderboardName string,
+	) (Response, error)
 }
 
-func (i *IPortal2Leaderboards_620) GetBucketizedDataV1(
+func NewIPortal2Leaderboards_620() IPortal2Leaderboards_620 {
+	return &iPortal2leaderboards620{}
+}
+
+func (i *iPortal2leaderboards620) GetBucketizedDataV1(
 	leaderboardName string,
 ) (Response, error) {
 	p := getPath("IPortal2Leaderboards_620", "GetBucketizedData", 1)
@@ -1799,14 +2249,29 @@ func (i *IPortal2Leaderboards_620) GetBucketizedDataV1(
 	return response, nil
 }
 
-type ISteamApps struct {
+type iSteamApps struct {
 }
 
-func NewISteamApps() *ISteamApps {
-	return &ISteamApps{}
+type ISteamApps interface {
+	GetAppListV1() (Response, error)
+	GetAppListV2() (Response, error)
+	GetSDRConfigV1(
+		appid uint32,
+	) (Response, error)
+	GetServersAtAddressV1(
+		addr string,
+	) (Response, error)
+	UpToDateCheckV1(
+		appid uint32,
+		version uint32,
+	) (Response, error)
 }
 
-func (i *ISteamApps) GetAppListV1() (Response, error) {
+func NewISteamApps() ISteamApps {
+	return &iSteamApps{}
+}
+
+func (i *iSteamApps) GetAppListV1() (Response, error) {
 	p := getPath("ISteamApps", "GetAppList", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1818,7 +2283,7 @@ func (i *ISteamApps) GetAppListV1() (Response, error) {
 
 	return response, nil
 }
-func (i *ISteamApps) GetAppListV2() (Response, error) {
+func (i *iSteamApps) GetAppListV2() (Response, error) {
 	p := getPath("ISteamApps", "GetAppList", 2)
 	request := map[string]string{}
 	response := Response{}
@@ -1830,7 +2295,7 @@ func (i *ISteamApps) GetAppListV2() (Response, error) {
 
 	return response, nil
 }
-func (i *ISteamApps) GetSDRConfigV1(
+func (i *iSteamApps) GetSDRConfigV1(
 	appid uint32,
 ) (Response, error) {
 	p := getPath("ISteamApps", "GetSDRConfig", 1)
@@ -1846,7 +2311,7 @@ func (i *ISteamApps) GetSDRConfigV1(
 
 	return response, nil
 }
-func (i *ISteamApps) GetServersAtAddressV1(
+func (i *iSteamApps) GetServersAtAddressV1(
 	addr string,
 ) (Response, error) {
 	p := getPath("ISteamApps", "GetServersAtAddress", 1)
@@ -1862,7 +2327,7 @@ func (i *ISteamApps) GetServersAtAddressV1(
 
 	return response, nil
 }
-func (i *ISteamApps) UpToDateCheckV1(
+func (i *iSteamApps) UpToDateCheckV1(
 	appid uint32,
 	version uint32,
 ) (Response, error) {
@@ -1881,14 +2346,23 @@ func (i *ISteamApps) UpToDateCheckV1(
 	return response, nil
 }
 
-type ISteamBroadcast struct {
+type iSteamBroadcast struct {
 }
 
-func NewISteamBroadcast() *ISteamBroadcast {
-	return &ISteamBroadcast{}
+type ISteamBroadcast interface {
+	ViewerHeartbeatV1(
+		steamid uint64,
+		sessionid uint64,
+		token uint64,
+		stream int32,
+	) (Response, error)
 }
 
-func (i *ISteamBroadcast) ViewerHeartbeatV1(
+func NewISteamBroadcast() ISteamBroadcast {
+	return &iSteamBroadcast{}
+}
+
+func (i *iSteamBroadcast) ViewerHeartbeatV1(
 	steamid uint64,
 	sessionid uint64,
 	token uint64,
@@ -1911,14 +2385,32 @@ func (i *ISteamBroadcast) ViewerHeartbeatV1(
 	return response, nil
 }
 
-type ISteamCDN struct {
+type iSteamCdn struct {
 }
 
-func NewISteamCDN() *ISteamCDN {
-	return &ISteamCDN{}
+type ISteamCDN interface {
+	SetClientFiltersV1(
+		key string,
+		cdnname string,
+		allowedipblocks string,
+		allowedasns string,
+		allowedipcountries string,
+	) (Response, error)
+	SetPerformanceStatsV1(
+		key string,
+		cdnname string,
+		mbpsSent uint32,
+		mbpsRecv uint32,
+		cpuPercent uint32,
+		cacheHitPercent uint32,
+	) (Response, error)
 }
 
-func (i *ISteamCDN) SetClientFiltersV1(
+func NewISteamCDN() ISteamCDN {
+	return &iSteamCdn{}
+}
+
+func (i *iSteamCdn) SetClientFiltersV1(
 	key string,
 	cdnname string,
 	allowedipblocks string,
@@ -1942,7 +2434,7 @@ func (i *ISteamCDN) SetClientFiltersV1(
 
 	return response, nil
 }
-func (i *ISteamCDN) SetPerformanceStatsV1(
+func (i *iSteamCdn) SetPerformanceStatsV1(
 	key string,
 	cdnname string,
 	mbpsSent uint32,
@@ -1969,14 +2461,28 @@ func (i *ISteamCDN) SetPerformanceStatsV1(
 	return response, nil
 }
 
-type ISteamDirectory struct {
+type iSteamDirectory struct {
 }
 
-func NewISteamDirectory() *ISteamDirectory {
-	return &ISteamDirectory{}
+type ISteamDirectory interface {
+	GetCMListV1(
+		cellid uint32,
+		maxcount uint32,
+	) (Response, error)
+	GetCMListForConnectV1(
+		cellid uint32,
+		cmtype string,
+		realm string,
+		maxcount uint32,
+	) (Response, error)
+	GetSteamPipeDomainsV1() (Response, error)
 }
 
-func (i *ISteamDirectory) GetCMListV1(
+func NewISteamDirectory() ISteamDirectory {
+	return &iSteamDirectory{}
+}
+
+func (i *iSteamDirectory) GetCMListV1(
 	cellid uint32,
 	maxcount uint32,
 ) (Response, error) {
@@ -1994,7 +2500,7 @@ func (i *ISteamDirectory) GetCMListV1(
 
 	return response, nil
 }
-func (i *ISteamDirectory) GetCMListForConnectV1(
+func (i *iSteamDirectory) GetCMListForConnectV1(
 	cellid uint32,
 	cmtype string,
 	realm string,
@@ -2016,7 +2522,7 @@ func (i *ISteamDirectory) GetCMListForConnectV1(
 
 	return response, nil
 }
-func (i *ISteamDirectory) GetSteamPipeDomainsV1() (Response, error) {
+func (i *iSteamDirectory) GetSteamPipeDomainsV1() (Response, error) {
 	p := getPath("ISteamDirectory", "GetSteamPipeDomains", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2029,14 +2535,29 @@ func (i *ISteamDirectory) GetSteamPipeDomainsV1() (Response, error) {
 	return response, nil
 }
 
-type ISteamEconomy struct {
+type iSteamEconomy struct {
 }
 
-func NewISteamEconomy() *ISteamEconomy {
-	return &ISteamEconomy{}
+type ISteamEconomy interface {
+	GetAssetClassInfoV1(
+		appid uint32,
+		language string,
+		classCount uint32,
+		classid0 uint64,
+		instanceid0 uint64,
+	) (Response, error)
+	GetAssetPricesV1(
+		appid uint32,
+		currency string,
+		language string,
+	) (Response, error)
 }
 
-func (i *ISteamEconomy) GetAssetClassInfoV1(
+func NewISteamEconomy() ISteamEconomy {
+	return &iSteamEconomy{}
+}
+
+func (i *iSteamEconomy) GetAssetClassInfoV1(
 	appid uint32,
 	language string,
 	classCount uint32,
@@ -2060,7 +2581,7 @@ func (i *ISteamEconomy) GetAssetClassInfoV1(
 
 	return response, nil
 }
-func (i *ISteamEconomy) GetAssetPricesV1(
+func (i *iSteamEconomy) GetAssetPricesV1(
 	appid uint32,
 	currency string,
 	language string,
@@ -2081,14 +2602,32 @@ func (i *ISteamEconomy) GetAssetPricesV1(
 	return response, nil
 }
 
-type ISteamNews struct {
+type iSteamNews struct {
 }
 
-func NewISteamNews() *ISteamNews {
-	return &ISteamNews{}
+type ISteamNews interface {
+	GetNewsForAppV1(
+		appid uint32,
+		maxlength uint32,
+		enddate uint32,
+		count uint32,
+		tags string,
+	) (Response, error)
+	GetNewsForAppV2(
+		appid uint32,
+		maxlength uint32,
+		enddate uint32,
+		count uint32,
+		feeds string,
+		tags string,
+	) (Response, error)
 }
 
-func (i *ISteamNews) GetNewsForAppV1(
+func NewISteamNews() ISteamNews {
+	return &iSteamNews{}
+}
+
+func (i *iSteamNews) GetNewsForAppV1(
 	appid uint32,
 	maxlength uint32,
 	enddate uint32,
@@ -2112,7 +2651,7 @@ func (i *ISteamNews) GetNewsForAppV1(
 
 	return response, nil
 }
-func (i *ISteamNews) GetNewsForAppV2(
+func (i *iSteamNews) GetNewsForAppV2(
 	appid uint32,
 	maxlength uint32,
 	enddate uint32,
@@ -2139,14 +2678,30 @@ func (i *ISteamNews) GetNewsForAppV2(
 	return response, nil
 }
 
-type ISteamRemoteStorage struct {
+type iSteamRemoteStorage struct {
 }
 
-func NewISteamRemoteStorage() *ISteamRemoteStorage {
-	return &ISteamRemoteStorage{}
+type ISteamRemoteStorage interface {
+	GetCollectionDetailsV1(
+		collectioncount uint32,
+		publishedfileids uint64,
+	) (Response, error)
+	GetPublishedFileDetailsV1(
+		itemcount uint32,
+		publishedfileids uint64,
+	) (Response, error)
+	GetUGCFileDetailsV1(
+		steamid uint64,
+		ugcid uint64,
+		appid uint32,
+	) (Response, error)
 }
 
-func (i *ISteamRemoteStorage) GetCollectionDetailsV1(
+func NewISteamRemoteStorage() ISteamRemoteStorage {
+	return &iSteamRemoteStorage{}
+}
+
+func (i *iSteamRemoteStorage) GetCollectionDetailsV1(
 	collectioncount uint32,
 	publishedfileids uint64,
 ) (Response, error) {
@@ -2164,7 +2719,7 @@ func (i *ISteamRemoteStorage) GetCollectionDetailsV1(
 
 	return response, nil
 }
-func (i *ISteamRemoteStorage) GetPublishedFileDetailsV1(
+func (i *iSteamRemoteStorage) GetPublishedFileDetailsV1(
 	itemcount uint32,
 	publishedfileids uint64,
 ) (Response, error) {
@@ -2182,7 +2737,7 @@ func (i *ISteamRemoteStorage) GetPublishedFileDetailsV1(
 
 	return response, nil
 }
-func (i *ISteamRemoteStorage) GetUGCFileDetailsV1(
+func (i *iSteamRemoteStorage) GetUGCFileDetailsV1(
 	steamid uint64,
 	ugcid uint64,
 	appid uint32,
@@ -2203,14 +2758,43 @@ func (i *ISteamRemoteStorage) GetUGCFileDetailsV1(
 	return response, nil
 }
 
-type ISteamUser struct {
+type iSteamUser struct {
 }
 
-func NewISteamUser() *ISteamUser {
-	return &ISteamUser{}
+type ISteamUser interface {
+	GetFriendListV1(
+		key string,
+		steamid uint64,
+		relationship string,
+	) (Response, error)
+	GetPlayerBansV1(
+		key string,
+		steamids string,
+	) (Response, error)
+	GetPlayerSummariesV1(
+		key string,
+		steamids string,
+	) (Response, error)
+	GetPlayerSummariesV2(
+		key string,
+		steamids string,
+	) (Response, error)
+	GetUserGroupListV1(
+		key string,
+		steamid uint64,
+	) (Response, error)
+	ResolveVanityURLV1(
+		key string,
+		vanityurl string,
+		urlType int32,
+	) (Response, error)
 }
 
-func (i *ISteamUser) GetFriendListV1(
+func NewISteamUser() ISteamUser {
+	return &iSteamUser{}
+}
+
+func (i *iSteamUser) GetFriendListV1(
 	key string,
 	steamid uint64,
 	relationship string,
@@ -2230,7 +2814,7 @@ func (i *ISteamUser) GetFriendListV1(
 
 	return response, nil
 }
-func (i *ISteamUser) GetPlayerBansV1(
+func (i *iSteamUser) GetPlayerBansV1(
 	key string,
 	steamids string,
 ) (Response, error) {
@@ -2248,7 +2832,7 @@ func (i *ISteamUser) GetPlayerBansV1(
 
 	return response, nil
 }
-func (i *ISteamUser) GetPlayerSummariesV1(
+func (i *iSteamUser) GetPlayerSummariesV1(
 	key string,
 	steamids string,
 ) (Response, error) {
@@ -2266,7 +2850,7 @@ func (i *ISteamUser) GetPlayerSummariesV1(
 
 	return response, nil
 }
-func (i *ISteamUser) GetPlayerSummariesV2(
+func (i *iSteamUser) GetPlayerSummariesV2(
 	key string,
 	steamids string,
 ) (Response, error) {
@@ -2284,7 +2868,7 @@ func (i *ISteamUser) GetPlayerSummariesV2(
 
 	return response, nil
 }
-func (i *ISteamUser) GetUserGroupListV1(
+func (i *iSteamUser) GetUserGroupListV1(
 	key string,
 	steamid uint64,
 ) (Response, error) {
@@ -2302,7 +2886,7 @@ func (i *ISteamUser) GetUserGroupListV1(
 
 	return response, nil
 }
-func (i *ISteamUser) ResolveVanityURLV1(
+func (i *iSteamUser) ResolveVanityURLV1(
 	key string,
 	vanityurl string,
 	urlType int32,
@@ -2323,14 +2907,25 @@ func (i *ISteamUser) ResolveVanityURLV1(
 	return response, nil
 }
 
-type ISteamUserAuth struct {
+type iSteamUserAuth struct {
 }
 
-func NewISteamUserAuth() *ISteamUserAuth {
-	return &ISteamUserAuth{}
+type ISteamUserAuth interface {
+	AuthenticateUserV1(
+		steamid uint64,
+	) (Response, error)
+	AuthenticateUserTicketV1(
+		key string,
+		appid uint32,
+		ticket string,
+	) (Response, error)
 }
 
-func (i *ISteamUserAuth) AuthenticateUserV1(
+func NewISteamUserAuth() ISteamUserAuth {
+	return &iSteamUserAuth{}
+}
+
+func (i *iSteamUserAuth) AuthenticateUserV1(
 	steamid uint64,
 ) (Response, error) {
 	p := getPath("ISteamUserAuth", "AuthenticateUser", 1)
@@ -2346,7 +2941,7 @@ func (i *ISteamUserAuth) AuthenticateUserV1(
 
 	return response, nil
 }
-func (i *ISteamUserAuth) AuthenticateUserTicketV1(
+func (i *iSteamUserAuth) AuthenticateUserTicketV1(
 	key string,
 	appid uint32,
 	ticket string,
@@ -2367,14 +2962,20 @@ func (i *ISteamUserAuth) AuthenticateUserTicketV1(
 	return response, nil
 }
 
-type ISteamUserOAuth struct {
+type iSteamUserOAuth struct {
 }
 
-func NewISteamUserOAuth() *ISteamUserOAuth {
-	return &ISteamUserOAuth{}
+type ISteamUserOAuth interface {
+	GetTokenDetailsV1(
+		accessToken string,
+	) (Response, error)
 }
 
-func (i *ISteamUserOAuth) GetTokenDetailsV1(
+func NewISteamUserOAuth() ISteamUserOAuth {
+	return &iSteamUserOAuth{}
+}
+
+func (i *iSteamUserOAuth) GetTokenDetailsV1(
 	accessToken string,
 ) (Response, error) {
 	p := getPath("ISteamUserOAuth", "GetTokenDetails", 1)
@@ -2391,14 +2992,59 @@ func (i *ISteamUserOAuth) GetTokenDetailsV1(
 	return response, nil
 }
 
-type ISteamUserStats struct {
+type iSteamUserStats struct {
 }
 
-func NewISteamUserStats() *ISteamUserStats {
-	return &ISteamUserStats{}
+type ISteamUserStats interface {
+	GetGlobalAchievementPercentagesForAppV1(
+		gameid uint64,
+	) (Response, error)
+	GetGlobalAchievementPercentagesForAppV2(
+		gameid uint64,
+	) (Response, error)
+	GetGlobalStatsForGameV1(
+		appid uint32,
+		count uint32,
+		name string,
+		startdate uint32,
+		enddate uint32,
+	) (Response, error)
+	GetNumberOfCurrentPlayersV1(
+		appid uint32,
+	) (Response, error)
+	GetPlayerAchievementsV1(
+		key string,
+		steamid uint64,
+		appid uint32,
+		l string,
+	) (Response, error)
+	GetSchemaForGameV1(
+		key string,
+		appid uint32,
+		l string,
+	) (Response, error)
+	GetSchemaForGameV2(
+		key string,
+		appid uint32,
+		l string,
+	) (Response, error)
+	GetUserStatsForGameV1(
+		key string,
+		steamid uint64,
+		appid uint32,
+	) (Response, error)
+	GetUserStatsForGameV2(
+		key string,
+		steamid uint64,
+		appid uint32,
+	) (Response, error)
 }
 
-func (i *ISteamUserStats) GetGlobalAchievementPercentagesForAppV1(
+func NewISteamUserStats() ISteamUserStats {
+	return &iSteamUserStats{}
+}
+
+func (i *iSteamUserStats) GetGlobalAchievementPercentagesForAppV1(
 	gameid uint64,
 ) (Response, error) {
 	p := getPath("ISteamUserStats", "GetGlobalAchievementPercentagesForApp", 1)
@@ -2414,7 +3060,7 @@ func (i *ISteamUserStats) GetGlobalAchievementPercentagesForAppV1(
 
 	return response, nil
 }
-func (i *ISteamUserStats) GetGlobalAchievementPercentagesForAppV2(
+func (i *iSteamUserStats) GetGlobalAchievementPercentagesForAppV2(
 	gameid uint64,
 ) (Response, error) {
 	p := getPath("ISteamUserStats", "GetGlobalAchievementPercentagesForApp", 2)
@@ -2430,7 +3076,7 @@ func (i *ISteamUserStats) GetGlobalAchievementPercentagesForAppV2(
 
 	return response, nil
 }
-func (i *ISteamUserStats) GetGlobalStatsForGameV1(
+func (i *iSteamUserStats) GetGlobalStatsForGameV1(
 	appid uint32,
 	count uint32,
 	name string,
@@ -2454,7 +3100,7 @@ func (i *ISteamUserStats) GetGlobalStatsForGameV1(
 
 	return response, nil
 }
-func (i *ISteamUserStats) GetNumberOfCurrentPlayersV1(
+func (i *iSteamUserStats) GetNumberOfCurrentPlayersV1(
 	appid uint32,
 ) (Response, error) {
 	p := getPath("ISteamUserStats", "GetNumberOfCurrentPlayers", 1)
@@ -2470,7 +3116,7 @@ func (i *ISteamUserStats) GetNumberOfCurrentPlayersV1(
 
 	return response, nil
 }
-func (i *ISteamUserStats) GetPlayerAchievementsV1(
+func (i *iSteamUserStats) GetPlayerAchievementsV1(
 	key string,
 	steamid uint64,
 	appid uint32,
@@ -2492,7 +3138,7 @@ func (i *ISteamUserStats) GetPlayerAchievementsV1(
 
 	return response, nil
 }
-func (i *ISteamUserStats) GetSchemaForGameV1(
+func (i *iSteamUserStats) GetSchemaForGameV1(
 	key string,
 	appid uint32,
 	l string,
@@ -2512,7 +3158,7 @@ func (i *ISteamUserStats) GetSchemaForGameV1(
 
 	return response, nil
 }
-func (i *ISteamUserStats) GetSchemaForGameV2(
+func (i *iSteamUserStats) GetSchemaForGameV2(
 	key string,
 	appid uint32,
 	l string,
@@ -2532,7 +3178,7 @@ func (i *ISteamUserStats) GetSchemaForGameV2(
 
 	return response, nil
 }
-func (i *ISteamUserStats) GetUserStatsForGameV1(
+func (i *iSteamUserStats) GetUserStatsForGameV1(
 	key string,
 	steamid uint64,
 	appid uint32,
@@ -2552,7 +3198,7 @@ func (i *ISteamUserStats) GetUserStatsForGameV1(
 
 	return response, nil
 }
-func (i *ISteamUserStats) GetUserStatsForGameV2(
+func (i *iSteamUserStats) GetUserStatsForGameV2(
 	key string,
 	steamid uint64,
 	appid uint32,
@@ -2573,14 +3219,21 @@ func (i *ISteamUserStats) GetUserStatsForGameV2(
 	return response, nil
 }
 
-type ISteamWebAPIUtil struct {
+type iSteamWebApiUtil struct {
 }
 
-func NewISteamWebAPIUtil() *ISteamWebAPIUtil {
-	return &ISteamWebAPIUtil{}
+type ISteamWebAPIUtil interface {
+	GetServerInfoV1() (Response, error)
+	GetSupportedAPIListV1(
+		key string,
+	) (Response, error)
 }
 
-func (i *ISteamWebAPIUtil) GetServerInfoV1() (Response, error) {
+func NewISteamWebAPIUtil() ISteamWebAPIUtil {
+	return &iSteamWebApiUtil{}
+}
+
+func (i *iSteamWebApiUtil) GetServerInfoV1() (Response, error) {
 	p := getPath("ISteamWebAPIUtil", "GetServerInfo", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2592,7 +3245,7 @@ func (i *ISteamWebAPIUtil) GetServerInfoV1() (Response, error) {
 
 	return response, nil
 }
-func (i *ISteamWebAPIUtil) GetSupportedAPIListV1(
+func (i *iSteamWebApiUtil) GetSupportedAPIListV1(
 	key string,
 ) (Response, error) {
 	p := getPath("ISteamWebAPIUtil", "GetSupportedAPIList", 1)
@@ -2609,14 +3262,19 @@ func (i *ISteamWebAPIUtil) GetSupportedAPIListV1(
 	return response, nil
 }
 
-type ITFItems_440 struct {
+type itfItems440 struct {
 }
 
-func NewITFItems_440() *ITFItems_440 {
-	return &ITFItems_440{}
+type ITFItems_440 interface {
+	GetGoldenWrenchesV1() (Response, error)
+	GetGoldenWrenchesV2() (Response, error)
 }
 
-func (i *ITFItems_440) GetGoldenWrenchesV1() (Response, error) {
+func NewITFItems_440() ITFItems_440 {
+	return &itfItems440{}
+}
+
+func (i *itfItems440) GetGoldenWrenchesV1() (Response, error) {
 	p := getPath("ITFItems_440", "GetGoldenWrenches", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2628,7 +3286,7 @@ func (i *ITFItems_440) GetGoldenWrenchesV1() (Response, error) {
 
 	return response, nil
 }
-func (i *ITFItems_440) GetGoldenWrenchesV2() (Response, error) {
+func (i *itfItems440) GetGoldenWrenchesV2() (Response, error) {
 	p := getPath("ITFItems_440", "GetGoldenWrenches", 2)
 	request := map[string]string{}
 	response := Response{}
@@ -2641,14 +3299,25 @@ func (i *ITFItems_440) GetGoldenWrenchesV2() (Response, error) {
 	return response, nil
 }
 
-type ITFPromos_440 struct {
+type itfPromos440 struct {
 }
 
-func NewITFPromos_440() *ITFPromos_440 {
-	return &ITFPromos_440{}
+type ITFPromos_440 interface {
+	GetItemIDV1(
+		steamid uint64,
+		promoid uint32,
+	) (Response, error)
+	GrantItemV1(
+		steamid uint64,
+		promoid uint32,
+	) (Response, error)
 }
 
-func (i *ITFPromos_440) GetItemIDV1(
+func NewITFPromos_440() ITFPromos_440 {
+	return &itfPromos440{}
+}
+
+func (i *itfPromos440) GetItemIDV1(
 	steamid uint64,
 	promoid uint32,
 ) (Response, error) {
@@ -2666,7 +3335,7 @@ func (i *ITFPromos_440) GetItemIDV1(
 
 	return response, nil
 }
-func (i *ITFPromos_440) GrantItemV1(
+func (i *itfPromos440) GrantItemV1(
 	steamid uint64,
 	promoid uint32,
 ) (Response, error) {
@@ -2685,14 +3354,25 @@ func (i *ITFPromos_440) GrantItemV1(
 	return response, nil
 }
 
-type ITFPromos_620 struct {
+type itfPromos620 struct {
 }
 
-func NewITFPromos_620() *ITFPromos_620 {
-	return &ITFPromos_620{}
+type ITFPromos_620 interface {
+	GetItemIDV1(
+		steamid uint64,
+		promoId uint32,
+	) (Response, error)
+	GrantItemV1(
+		steamid uint64,
+		promoId uint32,
+	) (Response, error)
 }
 
-func (i *ITFPromos_620) GetItemIDV1(
+func NewITFPromos_620() ITFPromos_620 {
+	return &itfPromos620{}
+}
+
+func (i *itfPromos620) GetItemIDV1(
 	steamid uint64,
 	promoId uint32,
 ) (Response, error) {
@@ -2710,7 +3390,7 @@ func (i *ITFPromos_620) GetItemIDV1(
 
 	return response, nil
 }
-func (i *ITFPromos_620) GrantItemV1(
+func (i *itfPromos620) GrantItemV1(
 	steamid uint64,
 	promoId uint32,
 ) (Response, error) {
@@ -2729,14 +3409,18 @@ func (i *ITFPromos_620) GrantItemV1(
 	return response, nil
 }
 
-type ITFSystem_440 struct {
+type itfSystem440 struct {
 }
 
-func NewITFSystem_440() *ITFSystem_440 {
-	return &ITFSystem_440{}
+type ITFSystem_440 interface {
+	GetWorldStatusV1() (Response, error)
 }
 
-func (i *ITFSystem_440) GetWorldStatusV1() (Response, error) {
+func NewITFSystem_440() ITFSystem_440 {
+	return &itfSystem440{}
+}
+
+func (i *itfSystem440) GetWorldStatusV1() (Response, error) {
 	p := getPath("ITFSystem_440", "GetWorldStatus", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2749,14 +3433,60 @@ func (i *ITFSystem_440) GetWorldStatusV1() (Response, error) {
 	return response, nil
 }
 
-type IGameServersService struct {
+type iGameServersService struct {
 }
 
-func NewIGameServersService() *IGameServersService {
-	return &IGameServersService{}
+type IGameServersService interface {
+	GetAccountListV1(
+		key string,
+	) (Response, error)
+	CreateAccountV1(
+		key string,
+		appid uint32,
+		memo string,
+	) (Response, error)
+	SetMemoV1(
+		key string,
+		steamid uint64,
+		memo string,
+	) (Response, error)
+	ResetLoginTokenV1(
+		key string,
+		steamid uint64,
+	) (Response, error)
+	DeleteAccountV1(
+		key string,
+		steamid uint64,
+	) (Response, error)
+	GetAccountPublicInfoV1(
+		key string,
+		steamid uint64,
+	) (Response, error)
+	QueryLoginTokenV1(
+		key string,
+		loginToken string,
+	) (Response, error)
+	GetServerSteamIDsByIPV1(
+		key string,
+		serverIps string,
+	) (Response, error)
+	GetServerIPsBySteamIDV1(
+		key string,
+		serverSteamids uint64,
+	) (Response, error)
+	QueryByFakeIPV1(
+		key string,
+		fakeIp uint32,
+		fakePort uint32,
+		appId uint32,
+	) (Response, error)
 }
 
-func (i *IGameServersService) GetAccountListV1(
+func NewIGameServersService() IGameServersService {
+	return &iGameServersService{}
+}
+
+func (i *iGameServersService) GetAccountListV1(
 	key string,
 ) (Response, error) {
 	p := getPath("IGameServersService", "GetAccountList", 1)
@@ -2772,7 +3502,7 @@ func (i *IGameServersService) GetAccountListV1(
 
 	return response, nil
 }
-func (i *IGameServersService) CreateAccountV1(
+func (i *iGameServersService) CreateAccountV1(
 	key string,
 	appid uint32,
 	memo string,
@@ -2792,7 +3522,7 @@ func (i *IGameServersService) CreateAccountV1(
 
 	return response, nil
 }
-func (i *IGameServersService) SetMemoV1(
+func (i *iGameServersService) SetMemoV1(
 	key string,
 	steamid uint64,
 	memo string,
@@ -2812,7 +3542,7 @@ func (i *IGameServersService) SetMemoV1(
 
 	return response, nil
 }
-func (i *IGameServersService) ResetLoginTokenV1(
+func (i *iGameServersService) ResetLoginTokenV1(
 	key string,
 	steamid uint64,
 ) (Response, error) {
@@ -2830,7 +3560,7 @@ func (i *IGameServersService) ResetLoginTokenV1(
 
 	return response, nil
 }
-func (i *IGameServersService) DeleteAccountV1(
+func (i *iGameServersService) DeleteAccountV1(
 	key string,
 	steamid uint64,
 ) (Response, error) {
@@ -2848,7 +3578,7 @@ func (i *IGameServersService) DeleteAccountV1(
 
 	return response, nil
 }
-func (i *IGameServersService) GetAccountPublicInfoV1(
+func (i *iGameServersService) GetAccountPublicInfoV1(
 	key string,
 	steamid uint64,
 ) (Response, error) {
@@ -2866,7 +3596,7 @@ func (i *IGameServersService) GetAccountPublicInfoV1(
 
 	return response, nil
 }
-func (i *IGameServersService) QueryLoginTokenV1(
+func (i *iGameServersService) QueryLoginTokenV1(
 	key string,
 	loginToken string,
 ) (Response, error) {
@@ -2884,7 +3614,7 @@ func (i *IGameServersService) QueryLoginTokenV1(
 
 	return response, nil
 }
-func (i *IGameServersService) GetServerSteamIDsByIPV1(
+func (i *iGameServersService) GetServerSteamIDsByIPV1(
 	key string,
 	serverIps string,
 ) (Response, error) {
@@ -2902,7 +3632,7 @@ func (i *IGameServersService) GetServerSteamIDsByIPV1(
 
 	return response, nil
 }
-func (i *IGameServersService) GetServerIPsBySteamIDV1(
+func (i *iGameServersService) GetServerIPsBySteamIDV1(
 	key string,
 	serverSteamids uint64,
 ) (Response, error) {
@@ -2920,7 +3650,7 @@ func (i *IGameServersService) GetServerIPsBySteamIDV1(
 
 	return response, nil
 }
-func (i *IGameServersService) QueryByFakeIPV1(
+func (i *iGameServersService) QueryByFakeIPV1(
 	key string,
 	fakeIp uint32,
 	fakePort uint32,
@@ -2943,14 +3673,55 @@ func (i *IGameServersService) QueryByFakeIPV1(
 	return response, nil
 }
 
-type IPlayerService struct {
+type iPlayerService struct {
 }
 
-func NewIPlayerService() *IPlayerService {
-	return &IPlayerService{}
+type IPlayerService interface {
+	IsPlayingSharedGameV1(
+		key string,
+		steamid uint64,
+		appidPlaying uint32,
+	) (Response, error)
+	RecordOfflinePlaytimeV1(
+		steamid uint64,
+		ticket string,
+	) (Response, error)
+	GetRecentlyPlayedGamesV1(
+		key string,
+		steamid uint64,
+		count uint32,
+	) (Response, error)
+	GetOwnedGamesV1(
+		key string,
+		steamid uint64,
+		includeAppinfo bool,
+		includePlayedFreeGames bool,
+		appidsFilter uint32,
+		includeFreeSub bool,
+		skipUnvettedApps bool,
+		language string,
+		includeExtendedAppinfo bool,
+	) (Response, error)
+	GetSteamLevelV1(
+		key string,
+		steamid uint64,
+	) (Response, error)
+	GetBadgesV1(
+		key string,
+		steamid uint64,
+	) (Response, error)
+	GetCommunityBadgeProgressV1(
+		key string,
+		steamid uint64,
+		badgeid int32,
+	) (Response, error)
 }
 
-func (i *IPlayerService) IsPlayingSharedGameV1(
+func NewIPlayerService() IPlayerService {
+	return &iPlayerService{}
+}
+
+func (i *iPlayerService) IsPlayingSharedGameV1(
 	key string,
 	steamid uint64,
 	appidPlaying uint32,
@@ -2970,7 +3741,7 @@ func (i *IPlayerService) IsPlayingSharedGameV1(
 
 	return response, nil
 }
-func (i *IPlayerService) RecordOfflinePlaytimeV1(
+func (i *iPlayerService) RecordOfflinePlaytimeV1(
 	steamid uint64,
 	ticket string,
 ) (Response, error) {
@@ -2988,7 +3759,7 @@ func (i *IPlayerService) RecordOfflinePlaytimeV1(
 
 	return response, nil
 }
-func (i *IPlayerService) GetRecentlyPlayedGamesV1(
+func (i *iPlayerService) GetRecentlyPlayedGamesV1(
 	key string,
 	steamid uint64,
 	count uint32,
@@ -3008,7 +3779,7 @@ func (i *IPlayerService) GetRecentlyPlayedGamesV1(
 
 	return response, nil
 }
-func (i *IPlayerService) GetOwnedGamesV1(
+func (i *iPlayerService) GetOwnedGamesV1(
 	key string,
 	steamid uint64,
 	includeAppinfo bool,
@@ -3040,7 +3811,7 @@ func (i *IPlayerService) GetOwnedGamesV1(
 
 	return response, nil
 }
-func (i *IPlayerService) GetSteamLevelV1(
+func (i *iPlayerService) GetSteamLevelV1(
 	key string,
 	steamid uint64,
 ) (Response, error) {
@@ -3058,7 +3829,7 @@ func (i *IPlayerService) GetSteamLevelV1(
 
 	return response, nil
 }
-func (i *IPlayerService) GetBadgesV1(
+func (i *iPlayerService) GetBadgesV1(
 	key string,
 	steamid uint64,
 ) (Response, error) {
@@ -3076,7 +3847,7 @@ func (i *IPlayerService) GetBadgesV1(
 
 	return response, nil
 }
-func (i *IPlayerService) GetCommunityBadgeProgressV1(
+func (i *iPlayerService) GetCommunityBadgeProgressV1(
 	key string,
 	steamid uint64,
 	badgeid int32,
@@ -3097,14 +3868,55 @@ func (i *IPlayerService) GetCommunityBadgeProgressV1(
 	return response, nil
 }
 
-type IAuthenticationService struct {
+type iAuthenticationService struct {
 }
 
-func NewIAuthenticationService() *IAuthenticationService {
-	return &IAuthenticationService{}
+type IAuthenticationService interface {
+	PollAuthSessionStatusV1(
+		clientId uint64,
+		requestId string,
+		tokenToRevoke uint64,
+	) (Response, error)
+	GetAuthSessionInfoV1(
+		clientId uint64,
+	) (Response, error)
+	GetPasswordRSAPublicKeyV1(
+		accountName string,
+	) (Response, error)
+	BeginAuthSessionViaCredentialsV1(
+		deviceFriendlyName string,
+		accountName string,
+		encryptedPassword string,
+		encryptionTimestamp uint64,
+		rememberLogin bool,
+		websiteId string,
+		guardData string,
+		language uint32,
+		qosLevel int32,
+	) (Response, error)
+	UpdateAuthSessionWithSteamGuardCodeV1(
+		clientId uint64,
+		steamid uint64,
+		code string,
+	) (Response, error)
+	BeginAuthSessionViaQRV1(
+		deviceFriendlyName string,
+		websiteId string,
+	) (Response, error)
+	UpdateAuthSessionWithMobileConfirmationV1(
+		version int32,
+		clientId uint64,
+		steamid uint64,
+		signature string,
+		confirm bool,
+	) (Response, error)
 }
 
-func (i *IAuthenticationService) PollAuthSessionStatusV1(
+func NewIAuthenticationService() IAuthenticationService {
+	return &iAuthenticationService{}
+}
+
+func (i *iAuthenticationService) PollAuthSessionStatusV1(
 	clientId uint64,
 	requestId string,
 	tokenToRevoke uint64,
@@ -3124,7 +3936,7 @@ func (i *IAuthenticationService) PollAuthSessionStatusV1(
 
 	return response, nil
 }
-func (i *IAuthenticationService) GetAuthSessionInfoV1(
+func (i *iAuthenticationService) GetAuthSessionInfoV1(
 	clientId uint64,
 ) (Response, error) {
 	p := getPath("IAuthenticationService", "GetAuthSessionInfo", 1)
@@ -3140,7 +3952,7 @@ func (i *IAuthenticationService) GetAuthSessionInfoV1(
 
 	return response, nil
 }
-func (i *IAuthenticationService) GetPasswordRSAPublicKeyV1(
+func (i *iAuthenticationService) GetPasswordRSAPublicKeyV1(
 	accountName string,
 ) (Response, error) {
 	p := getPath("IAuthenticationService", "GetPasswordRSAPublicKey", 1)
@@ -3156,7 +3968,7 @@ func (i *IAuthenticationService) GetPasswordRSAPublicKeyV1(
 
 	return response, nil
 }
-func (i *IAuthenticationService) BeginAuthSessionViaCredentialsV1(
+func (i *iAuthenticationService) BeginAuthSessionViaCredentialsV1(
 	deviceFriendlyName string,
 	accountName string,
 	encryptedPassword string,
@@ -3188,7 +4000,7 @@ func (i *IAuthenticationService) BeginAuthSessionViaCredentialsV1(
 
 	return response, nil
 }
-func (i *IAuthenticationService) UpdateAuthSessionWithSteamGuardCodeV1(
+func (i *iAuthenticationService) UpdateAuthSessionWithSteamGuardCodeV1(
 	clientId uint64,
 	steamid uint64,
 	code string,
@@ -3208,7 +4020,7 @@ func (i *IAuthenticationService) UpdateAuthSessionWithSteamGuardCodeV1(
 
 	return response, nil
 }
-func (i *IAuthenticationService) BeginAuthSessionViaQRV1(
+func (i *iAuthenticationService) BeginAuthSessionViaQRV1(
 	deviceFriendlyName string,
 	websiteId string,
 ) (Response, error) {
@@ -3226,7 +4038,7 @@ func (i *IAuthenticationService) BeginAuthSessionViaQRV1(
 
 	return response, nil
 }
-func (i *IAuthenticationService) UpdateAuthSessionWithMobileConfirmationV1(
+func (i *iAuthenticationService) UpdateAuthSessionWithMobileConfirmationV1(
 	version int32,
 	clientId uint64,
 	steamid uint64,
@@ -3251,14 +4063,23 @@ func (i *IAuthenticationService) UpdateAuthSessionWithMobileConfirmationV1(
 	return response, nil
 }
 
-type IBroadcastService struct {
+type iBroadcastService struct {
 }
 
-func NewIBroadcastService() *IBroadcastService {
-	return &IBroadcastService{}
+type IBroadcastService interface {
+	PostGameDataFrameRTMPV1(
+		appid uint32,
+		steamid uint64,
+		rtmpToken string,
+		frameData string,
+	) (Response, error)
 }
 
-func (i *IBroadcastService) PostGameDataFrameRTMPV1(
+func NewIBroadcastService() IBroadcastService {
+	return &iBroadcastService{}
+}
+
+func (i *iBroadcastService) PostGameDataFrameRTMPV1(
 	appid uint32,
 	steamid uint64,
 	rtmpToken string,
@@ -3281,14 +4102,40 @@ func (i *IBroadcastService) PostGameDataFrameRTMPV1(
 	return response, nil
 }
 
-type IContentServerConfigService struct {
+type iContentServerConfigService struct {
 }
 
-func NewIContentServerConfigService() *IContentServerConfigService {
-	return &IContentServerConfigService{}
+type IContentServerConfigService interface {
+	SetSteamCacheClientFiltersV1(
+		key string,
+		cacheId uint32,
+		cacheKey string,
+		changeNotes string,
+		allowedIpBlocks string,
+	) (Response, error)
+	GetSteamCacheNodeParamsV1(
+		key string,
+		cacheId uint32,
+		cacheKey string,
+	) (Response, error)
+	SetSteamCachePerformanceStatsV1(
+		key string,
+		cacheId uint32,
+		cacheKey string,
+		mbpsSent uint32,
+		mbpsRecv uint32,
+		cpuPercent uint32,
+		cacheHitPercent uint32,
+		numConnectedIps uint32,
+		upstreamEgressUtilization uint32,
+	) (Response, error)
 }
 
-func (i *IContentServerConfigService) SetSteamCacheClientFiltersV1(
+func NewIContentServerConfigService() IContentServerConfigService {
+	return &iContentServerConfigService{}
+}
+
+func (i *iContentServerConfigService) SetSteamCacheClientFiltersV1(
 	key string,
 	cacheId uint32,
 	cacheKey string,
@@ -3312,7 +4159,7 @@ func (i *IContentServerConfigService) SetSteamCacheClientFiltersV1(
 
 	return response, nil
 }
-func (i *IContentServerConfigService) GetSteamCacheNodeParamsV1(
+func (i *iContentServerConfigService) GetSteamCacheNodeParamsV1(
 	key string,
 	cacheId uint32,
 	cacheKey string,
@@ -3332,7 +4179,7 @@ func (i *IContentServerConfigService) GetSteamCacheNodeParamsV1(
 
 	return response, nil
 }
-func (i *IContentServerConfigService) SetSteamCachePerformanceStatsV1(
+func (i *iContentServerConfigService) SetSteamCachePerformanceStatsV1(
 	key string,
 	cacheId uint32,
 	cacheKey string,
@@ -3365,14 +4212,33 @@ func (i *IContentServerConfigService) SetSteamCachePerformanceStatsV1(
 	return response, nil
 }
 
-type IContentServerDirectoryService struct {
+type iContentServerDirectoryService struct {
 }
 
-func NewIContentServerDirectoryService() *IContentServerDirectoryService {
-	return &IContentServerDirectoryService{}
+type IContentServerDirectoryService interface {
+	GetServersForSteamPipeV1(
+		cellId uint32,
+		maxServers uint32,
+		ipOverride string,
+		launcherType int32,
+		ipv6Public string,
+	) (Response, error)
+	GetClientUpdateHostsV1(
+		cachedSignature string,
+	) (Response, error)
+	GetDepotPatchInfoV1(
+		appid uint32,
+		depotid uint32,
+		sourceManifestid uint64,
+		targetManifestid uint64,
+	) (Response, error)
 }
 
-func (i *IContentServerDirectoryService) GetServersForSteamPipeV1(
+func NewIContentServerDirectoryService() IContentServerDirectoryService {
+	return &iContentServerDirectoryService{}
+}
+
+func (i *iContentServerDirectoryService) GetServersForSteamPipeV1(
 	cellId uint32,
 	maxServers uint32,
 	ipOverride string,
@@ -3396,7 +4262,7 @@ func (i *IContentServerDirectoryService) GetServersForSteamPipeV1(
 
 	return response, nil
 }
-func (i *IContentServerDirectoryService) GetClientUpdateHostsV1(
+func (i *iContentServerDirectoryService) GetClientUpdateHostsV1(
 	cachedSignature string,
 ) (Response, error) {
 	p := getPath("IContentServerDirectoryService", "GetClientUpdateHosts", 1)
@@ -3412,7 +4278,7 @@ func (i *IContentServerDirectoryService) GetClientUpdateHostsV1(
 
 	return response, nil
 }
-func (i *IContentServerDirectoryService) GetDepotPatchInfoV1(
+func (i *iContentServerDirectoryService) GetDepotPatchInfoV1(
 	appid uint32,
 	depotid uint32,
 	sourceManifestid uint64,
@@ -3435,14 +4301,144 @@ func (i *IContentServerDirectoryService) GetDepotPatchInfoV1(
 	return response, nil
 }
 
-type IPublishedFileService struct {
+type iPublishedFileService struct {
 }
 
-func NewIPublishedFileService() *IPublishedFileService {
-	return &IPublishedFileService{}
+type IPublishedFileService interface {
+	GetUserVoteSummaryV1(
+		publishedfileids uint64,
+	) (Response, error)
+	QueryFilesV1(
+		key string,
+		queryType uint32,
+		page uint32,
+		cursor string,
+		numperpage uint32,
+		creatorAppid uint32,
+		appid uint32,
+		requiredtags string,
+		excludedtags string,
+		matchAllTags bool,
+		requiredFlags string,
+		omittedFlags string,
+		searchText string,
+		filetype uint32,
+		childPublishedfileid uint64,
+		days uint32,
+		includeRecentVotesOnly bool,
+		cacheMaxAgeSeconds uint32,
+		language int32,
+		totalonly bool,
+		idsOnly bool,
+		returnVoteData bool,
+		returnTags bool,
+		returnKvTags bool,
+		returnPreviews bool,
+		returnChildren bool,
+		returnShortDescription bool,
+		returnForSaleData bool,
+		returnMetadata bool,
+		returnPlaytimeStats uint32,
+		returnDetails bool,
+		stripDescriptionBbcode bool,
+		returnReactions bool,
+	) (Response, error)
+	GetSubSectionDataV1(
+		key string,
+		publishedfileid uint64,
+		forTableOfContents bool,
+		specificSectionid uint64,
+	) (Response, error)
+	GetDetailsV1(
+		key string,
+		publishedfileids uint64,
+		includetags bool,
+		includeadditionalpreviews bool,
+		includechildren bool,
+		includekvtags bool,
+		includevotes bool,
+		shortDescription bool,
+		includeforsaledata bool,
+		includemetadata bool,
+		language int32,
+		returnPlaytimeStats uint32,
+		appid uint32,
+		stripDescriptionBbcode bool,
+		includereactions bool,
+	) (Response, error)
+	GetUserFilesV1(
+		key string,
+		steamid uint64,
+		appid uint32,
+		shortcutid uint32,
+		page uint32,
+		numperpage uint32,
+		t string,
+		sortmethod string,
+		privacy uint32,
+		requiredtags string,
+		excludedtags string,
+		filetype uint32,
+		creatorAppid uint32,
+		matchCloudFilename string,
+		cacheMaxAgeSeconds uint32,
+		language int32,
+		totalonly bool,
+		idsOnly bool,
+		returnVoteData bool,
+		returnTags bool,
+		returnKvTags bool,
+		returnPreviews bool,
+		returnChildren bool,
+		returnShortDescription bool,
+		returnForSaleData bool,
+		returnMetadata bool,
+		returnPlaytimeStats uint32,
+		stripDescriptionBbcode bool,
+		returnReactions bool,
+		startindexOverride uint32,
+		returnApps bool,
+	) (Response, error)
+	GetUserFileCountV1(
+		key string,
+		steamid uint64,
+		appid uint32,
+		shortcutid uint32,
+		page uint32,
+		numperpage uint32,
+		t string,
+		sortmethod string,
+		privacy uint32,
+		requiredtags string,
+		excludedtags string,
+		filetype uint32,
+		creatorAppid uint32,
+		matchCloudFilename string,
+		cacheMaxAgeSeconds uint32,
+		language int32,
+		totalonly bool,
+		idsOnly bool,
+		returnVoteData bool,
+		returnTags bool,
+		returnKvTags bool,
+		returnPreviews bool,
+		returnChildren bool,
+		returnShortDescription bool,
+		returnForSaleData bool,
+		returnMetadata bool,
+		returnPlaytimeStats uint32,
+		stripDescriptionBbcode bool,
+		returnReactions bool,
+		startindexOverride uint32,
+		returnApps bool,
+	) (Response, error)
 }
 
-func (i *IPublishedFileService) GetUserVoteSummaryV1(
+func NewIPublishedFileService() IPublishedFileService {
+	return &iPublishedFileService{}
+}
+
+func (i *iPublishedFileService) GetUserVoteSummaryV1(
 	publishedfileids uint64,
 ) (Response, error) {
 	p := getPath("IPublishedFileService", "GetUserVoteSummary", 1)
@@ -3458,7 +4454,7 @@ func (i *IPublishedFileService) GetUserVoteSummaryV1(
 
 	return response, nil
 }
-func (i *IPublishedFileService) QueryFilesV1(
+func (i *iPublishedFileService) QueryFilesV1(
 	key string,
 	queryType uint32,
 	page uint32,
@@ -3538,7 +4534,7 @@ func (i *IPublishedFileService) QueryFilesV1(
 
 	return response, nil
 }
-func (i *IPublishedFileService) GetSubSectionDataV1(
+func (i *iPublishedFileService) GetSubSectionDataV1(
 	key string,
 	publishedfileid uint64,
 	forTableOfContents bool,
@@ -3560,7 +4556,7 @@ func (i *IPublishedFileService) GetSubSectionDataV1(
 
 	return response, nil
 }
-func (i *IPublishedFileService) GetDetailsV1(
+func (i *iPublishedFileService) GetDetailsV1(
 	key string,
 	publishedfileids uint64,
 	includetags bool,
@@ -3604,7 +4600,7 @@ func (i *IPublishedFileService) GetDetailsV1(
 
 	return response, nil
 }
-func (i *IPublishedFileService) GetUserFilesV1(
+func (i *iPublishedFileService) GetUserFilesV1(
 	key string,
 	steamid uint64,
 	appid uint32,
@@ -3680,7 +4676,7 @@ func (i *IPublishedFileService) GetUserFilesV1(
 
 	return response, nil
 }
-func (i *IPublishedFileService) GetUserFileCountV1(
+func (i *iPublishedFileService) GetUserFileCountV1(
 	key string,
 	steamid uint64,
 	appid uint32,
@@ -3757,14 +4753,60 @@ func (i *IPublishedFileService) GetUserFileCountV1(
 	return response, nil
 }
 
-type IEconService struct {
+type iEconService struct {
 }
 
-func NewIEconService() *IEconService {
-	return &IEconService{}
+type IEconService interface {
+	GetTradeHistoryV1(
+		key string,
+		maxTrades uint32,
+		startAfterTime uint32,
+		startAfterTradeid uint64,
+		navigatingBack bool,
+		getDescriptions bool,
+		language string,
+		includeFailed bool,
+		includeTotal bool,
+	) (Response, error)
+	GetTradeStatusV1(
+		key string,
+		tradeid uint64,
+		getDescriptions bool,
+		language string,
+	) (Response, error)
+	GetTradeOffersV1(
+		key string,
+		getSentOffers bool,
+		getReceivedOffers bool,
+		getDescriptions bool,
+		language string,
+		activeOnly bool,
+		historicalOnly bool,
+		timeHistoricalCutoff uint32,
+		cursor uint32,
+	) (Response, error)
+	GetTradeOfferV1(
+		key string,
+		tradeofferid uint64,
+		language string,
+		getDescriptions bool,
+	) (Response, error)
+	GetTradeOffersSummaryV1(
+		key string,
+		timeLastVisit uint32,
+	) (Response, error)
+	GetTradeHoldDurationsV1(
+		key string,
+		steamidTarget uint64,
+		tradeOfferAccessToken string,
+	) (Response, error)
 }
 
-func (i *IEconService) GetTradeHistoryV1(
+func NewIEconService() IEconService {
+	return &iEconService{}
+}
+
+func (i *iEconService) GetTradeHistoryV1(
 	key string,
 	maxTrades uint32,
 	startAfterTime uint32,
@@ -3796,7 +4838,7 @@ func (i *IEconService) GetTradeHistoryV1(
 
 	return response, nil
 }
-func (i *IEconService) GetTradeStatusV1(
+func (i *iEconService) GetTradeStatusV1(
 	key string,
 	tradeid uint64,
 	getDescriptions bool,
@@ -3818,7 +4860,7 @@ func (i *IEconService) GetTradeStatusV1(
 
 	return response, nil
 }
-func (i *IEconService) GetTradeOffersV1(
+func (i *iEconService) GetTradeOffersV1(
 	key string,
 	getSentOffers bool,
 	getReceivedOffers bool,
@@ -3850,7 +4892,7 @@ func (i *IEconService) GetTradeOffersV1(
 
 	return response, nil
 }
-func (i *IEconService) GetTradeOfferV1(
+func (i *iEconService) GetTradeOfferV1(
 	key string,
 	tradeofferid uint64,
 	language string,
@@ -3872,7 +4914,7 @@ func (i *IEconService) GetTradeOfferV1(
 
 	return response, nil
 }
-func (i *IEconService) GetTradeOffersSummaryV1(
+func (i *iEconService) GetTradeOffersSummaryV1(
 	key string,
 	timeLastVisit uint32,
 ) (Response, error) {
@@ -3890,7 +4932,7 @@ func (i *IEconService) GetTradeOffersSummaryV1(
 
 	return response, nil
 }
-func (i *IEconService) GetTradeHoldDurationsV1(
+func (i *iEconService) GetTradeHoldDurationsV1(
 	key string,
 	steamidTarget uint64,
 	tradeOfferAccessToken string,
@@ -3911,14 +4953,32 @@ func (i *IEconService) GetTradeHoldDurationsV1(
 	return response, nil
 }
 
-type IGameNotificationsService struct {
+type iGameNotificationsService struct {
 }
 
-func NewIGameNotificationsService() *IGameNotificationsService {
-	return &IGameNotificationsService{}
+type IGameNotificationsService interface {
+	UserCreateSessionV1(
+		appid uint32,
+		context uint64,
+		steamid uint64,
+	) (Response, error)
+	UserUpdateSessionV1(
+		sessionid uint64,
+		appid uint32,
+		steamid uint64,
+	) (Response, error)
+	UserDeleteSessionV1(
+		sessionid uint64,
+		appid uint32,
+		steamid uint64,
+	) (Response, error)
 }
 
-func (i *IGameNotificationsService) UserCreateSessionV1(
+func NewIGameNotificationsService() IGameNotificationsService {
+	return &iGameNotificationsService{}
+}
+
+func (i *iGameNotificationsService) UserCreateSessionV1(
 	appid uint32,
 	context uint64,
 	steamid uint64,
@@ -3938,7 +4998,7 @@ func (i *IGameNotificationsService) UserCreateSessionV1(
 
 	return response, nil
 }
-func (i *IGameNotificationsService) UserUpdateSessionV1(
+func (i *iGameNotificationsService) UserUpdateSessionV1(
 	sessionid uint64,
 	appid uint32,
 	steamid uint64,
@@ -3958,7 +5018,7 @@ func (i *IGameNotificationsService) UserUpdateSessionV1(
 
 	return response, nil
 }
-func (i *IGameNotificationsService) UserDeleteSessionV1(
+func (i *iGameNotificationsService) UserDeleteSessionV1(
 	sessionid uint64,
 	appid uint32,
 	steamid uint64,
@@ -3979,14 +5039,37 @@ func (i *IGameNotificationsService) UserDeleteSessionV1(
 	return response, nil
 }
 
-type IInventoryService struct {
+type iInventoryService struct {
 }
 
-func NewIInventoryService() *IInventoryService {
-	return &IInventoryService{}
+type IInventoryService interface {
+	SplitItemStackV1(
+		key string,
+		appid uint32,
+		itemid uint64,
+		quantity uint32,
+		steamid uint64,
+	) (Response, error)
+	CombineItemStacksV1(
+		key string,
+		appid uint32,
+		fromitemid uint64,
+		destitemid uint64,
+		quantity uint32,
+		steamid uint64,
+	) (Response, error)
+	GetPriceSheetV1(
+		key string,
+		ecurrency int32,
+		currencyCode string,
+	) (Response, error)
 }
 
-func (i *IInventoryService) SplitItemStackV1(
+func NewIInventoryService() IInventoryService {
+	return &iInventoryService{}
+}
+
+func (i *iInventoryService) SplitItemStackV1(
 	key string,
 	appid uint32,
 	itemid uint64,
@@ -4010,7 +5093,7 @@ func (i *IInventoryService) SplitItemStackV1(
 
 	return response, nil
 }
-func (i *IInventoryService) CombineItemStacksV1(
+func (i *iInventoryService) CombineItemStacksV1(
 	key string,
 	appid uint32,
 	fromitemid uint64,
@@ -4036,7 +5119,7 @@ func (i *IInventoryService) CombineItemStacksV1(
 
 	return response, nil
 }
-func (i *IInventoryService) GetPriceSheetV1(
+func (i *iInventoryService) GetPriceSheetV1(
 	key string,
 	ecurrency int32,
 	currencyCode string,
@@ -4057,14 +5140,29 @@ func (i *IInventoryService) GetPriceSheetV1(
 	return response, nil
 }
 
-type IStoreService struct {
+type iStoreService struct {
 }
 
-func NewIStoreService() *IStoreService {
-	return &IStoreService{}
+type IStoreService interface {
+	GetAppListV1(
+		key string,
+		ifModifiedSince uint32,
+		haveDescriptionLanguage string,
+		includeGames bool,
+		includeDlc bool,
+		includeSoftware bool,
+		includeVideos bool,
+		includeHardware bool,
+		lastAppid uint32,
+		maxResults uint32,
+	) (Response, error)
 }
 
-func (i *IStoreService) GetAppListV1(
+func NewIStoreService() IStoreService {
+	return &iStoreService{}
+}
+
+func (i *iStoreService) GetAppListV1(
 	key string,
 	ifModifiedSince uint32,
 	haveDescriptionLanguage string,
@@ -4099,14 +5197,27 @@ func (i *IStoreService) GetAppListV1(
 	return response, nil
 }
 
-type IHelpRequestLogsService struct {
+type iHelpRequestLogsService struct {
 }
 
-func NewIHelpRequestLogsService() *IHelpRequestLogsService {
-	return &IHelpRequestLogsService{}
+type IHelpRequestLogsService interface {
+	UploadUserApplicationLogV1(
+		appid uint32,
+		logType string,
+		versionString string,
+		logContents string,
+		requestId uint64,
+	) (Response, error)
+	GetApplicationLogDemandV1(
+		appid uint32,
+	) (Response, error)
 }
 
-func (i *IHelpRequestLogsService) UploadUserApplicationLogV1(
+func NewIHelpRequestLogsService() IHelpRequestLogsService {
+	return &iHelpRequestLogsService{}
+}
+
+func (i *iHelpRequestLogsService) UploadUserApplicationLogV1(
 	appid uint32,
 	logType string,
 	versionString string,
@@ -4130,7 +5241,7 @@ func (i *IHelpRequestLogsService) UploadUserApplicationLogV1(
 
 	return response, nil
 }
-func (i *IHelpRequestLogsService) GetApplicationLogDemandV1(
+func (i *iHelpRequestLogsService) GetApplicationLogDemandV1(
 	appid uint32,
 ) (Response, error) {
 	p := getPath("IHelpRequestLogsService", "GetApplicationLogDemand", 1)
@@ -4147,14 +5258,33 @@ func (i *IHelpRequestLogsService) GetApplicationLogDemandV1(
 	return response, nil
 }
 
-type ICheatReportingService struct {
+type iCheatReportingService struct {
 }
 
-func NewICheatReportingService() *ICheatReportingService {
-	return &ICheatReportingService{}
+type ICheatReportingService interface {
+	ReportCheatDataV1(
+		key string,
+		steamid uint64,
+		appid uint32,
+		pathandfilename string,
+		webcheaturl string,
+		timeNow uint64,
+		timeStarted uint64,
+		timeStopped uint64,
+		cheatname string,
+		gameProcessId uint32,
+		cheatProcessId uint32,
+		cheatParam1 uint64,
+		cheatParam2 uint64,
+		cheatDataDump string,
+	) (Response, error)
 }
 
-func (i *ICheatReportingService) ReportCheatDataV1(
+func NewICheatReportingService() ICheatReportingService {
+	return &iCheatReportingService{}
+}
+
+func (i *iCheatReportingService) ReportCheatDataV1(
 	key string,
 	steamid uint64,
 	appid uint32,

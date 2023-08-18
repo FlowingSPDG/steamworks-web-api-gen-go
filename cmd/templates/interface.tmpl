@@ -9,15 +9,27 @@ import (
 
 {{ range $_, $interface := .Interfaces -}}
 
-type {{ $interface.Name }} struct {
+type {{ camelCase $interface.Name }} struct {
 }
 
-func New{{ $interface.Name }}() *{{ $interface.Name }} {
-    return &{{ $interface.Name }}{}
+type {{ $interface.Name }} interface {
+{{ range $_, $method := $interface.Methods -}}
+    {{ $method.Name }}V{{ $method.Version }} (
+        {{- range $_, $parameter := $method.Parameters -}}
+            {{ if isValidType $parameter.Type }}
+            {{ convertArg $parameter.Name }} {{ $parameter.Type }},
+            {{- end }}
+        {{- end }}
+    ) (Response, error)
+{{ end }}
+}
+
+func New{{ $interface.Name }}() {{ $interface.Name }} {
+    return &{{ camelCase $interface.Name }}{}
 }
 
 {{ range $_, $method := $interface.Methods -}}
-func (i *{{ $interface.Name }}) {{ $method.Name }}V{{ $method.Version }} (
+func (i *{{ camelCase $interface.Name }}) {{ $method.Name }}V{{ $method.Version }} (
 {{- range $_, $parameter := $method.Parameters -}}
     {{ if isValidType $parameter.Type }}
     {{ convertArg $parameter.Name }} {{ $parameter.Type }},
