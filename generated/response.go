@@ -3,4 +3,3 @@
 package steamworks
 
 type Response map[string]any
-

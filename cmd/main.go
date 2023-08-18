@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bytes"
+	"go/format"
 	"html/template"
 	"os"
 
@@ -65,14 +67,21 @@ func main() {
 		{templateRequest, "./generated/request.go"},
 	}
 	for _, tmpl := range templates {
-		// create file
-		f, err := os.Create(tmpl.targetFile)
+		// create buffer
+		buf := &bytes.Buffer{}
+
+		t := template.Must(template.New("get_api_list").Funcs(steamworkswebapigen.FuncMap).Parse(tmpl.template))
+		if err := t.Execute(buf, injection); err != nil {
+			panic(err)
+		}
+
+		b, err := format.Source(buf.Bytes())
 		if err != nil {
 			panic(err)
 		}
 
-		t := template.Must(template.New("get_api_list").Funcs(steamworkswebapigen.FuncMap).Parse(tmpl.template))
-		if err := t.Execute(f, injection); err != nil {
+		// create file
+		if err := os.WriteFile(tmpl.targetFile, b, 0777); err != nil {
 			panic(err)
 		}
 	}

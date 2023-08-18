@@ -3,4520 +3,4196 @@
 package steamworks
 
 import (
-    "fmt"
-    "strconv"
+	"fmt"
+	"strconv"
 )
 
 type IClientStats_1046930 struct {
 }
 
 func NewIClientStats_1046930() *IClientStats_1046930 {
-    return &IClientStats_1046930{}
+	return &IClientStats_1046930{}
 }
 
-func (i *IClientStats_1046930) ReportEventV1 (
-) (Response, error) {
-    p := getPath("IClientStats_1046930", "ReportEvent", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *IClientStats_1046930) ReportEventV1() (Response, error) {
+	p := getPath("IClientStats_1046930", "ReportEvent", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ICSGOPlayers_730 struct {
 }
 
 func NewICSGOPlayers_730() *ICSGOPlayers_730 {
-    return &ICSGOPlayers_730{}
+	return &ICSGOPlayers_730{}
 }
 
-func (i *ICSGOPlayers_730) GetNextMatchSharingCodeV1 (
-    steamid uint64,
-    steamidkey string,
-    knowncode string,
+func (i *ICSGOPlayers_730) GetNextMatchSharingCodeV1(
+	steamid uint64,
+	steamidkey string,
+	knowncode string,
 ) (Response, error) {
-    p := getPath("ICSGOPlayers_730", "GetNextMatchSharingCode", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "steamidkey" : steamidkey,
-        "knowncode" : knowncode,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ICSGOPlayers_730", "GetNextMatchSharingCode", 1)
+	request := map[string]string{
+		"steamid":    fmt.Sprintf(`%v`, steamid),
+		"steamidkey": steamidkey,
+		"knowncode":  knowncode,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ICSGOServers_730 struct {
 }
 
 func NewICSGOServers_730() *ICSGOServers_730 {
-    return &ICSGOServers_730{}
+	return &ICSGOServers_730{}
 }
 
-func (i *ICSGOServers_730) GetGameMapsPlaytimeV1 (
-    interval string,
-    gamemode string,
-    mapgroup string,
+func (i *ICSGOServers_730) GetGameMapsPlaytimeV1(
+	interval string,
+	gamemode string,
+	mapgroup string,
 ) (Response, error) {
-    p := getPath("ICSGOServers_730", "GetGameMapsPlaytime", 1)
-    request := map[string]string{
-        "interval" : interval,
-        "gamemode" : gamemode,
-        "mapgroup" : mapgroup,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ICSGOServers_730", "GetGameMapsPlaytime", 1)
+	request := map[string]string{
+		"interval": interval,
+		"gamemode": gamemode,
+		"mapgroup": mapgroup,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ICSGOServers_730) GetGameServersStatusV1 (
-) (Response, error) {
-    p := getPath("ICSGOServers_730", "GetGameServersStatus", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *ICSGOServers_730) GetGameServersStatusV1() (Response, error) {
+	p := getPath("ICSGOServers_730", "GetGameServersStatus", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ICSGOTournaments_730 struct {
 }
 
 func NewICSGOTournaments_730() *ICSGOTournaments_730 {
-    return &ICSGOTournaments_730{}
+	return &ICSGOTournaments_730{}
 }
 
-func (i *ICSGOTournaments_730) GetTournamentFantasyLineupV1 (
-    event uint32,
-    steamid uint64,
-    steamidkey string,
+func (i *ICSGOTournaments_730) GetTournamentFantasyLineupV1(
+	event uint32,
+	steamid uint64,
+	steamidkey string,
 ) (Response, error) {
-    p := getPath("ICSGOTournaments_730", "GetTournamentFantasyLineup", 1)
-    request := map[string]string{
-        "event" : fmt.Sprintf(`%v`, event),
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "steamidkey" : steamidkey,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ICSGOTournaments_730", "GetTournamentFantasyLineup", 1)
+	request := map[string]string{
+		"event":      fmt.Sprintf(`%v`, event),
+		"steamid":    fmt.Sprintf(`%v`, steamid),
+		"steamidkey": steamidkey,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ICSGOTournaments_730) GetTournamentItemsV1 (
-    event uint32,
-    steamid uint64,
-    steamidkey string,
+func (i *ICSGOTournaments_730) GetTournamentItemsV1(
+	event uint32,
+	steamid uint64,
+	steamidkey string,
 ) (Response, error) {
-    p := getPath("ICSGOTournaments_730", "GetTournamentItems", 1)
-    request := map[string]string{
-        "event" : fmt.Sprintf(`%v`, event),
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "steamidkey" : steamidkey,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ICSGOTournaments_730", "GetTournamentItems", 1)
+	request := map[string]string{
+		"event":      fmt.Sprintf(`%v`, event),
+		"steamid":    fmt.Sprintf(`%v`, steamid),
+		"steamidkey": steamidkey,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ICSGOTournaments_730) GetTournamentLayoutV1 (
-    event uint32,
+func (i *ICSGOTournaments_730) GetTournamentLayoutV1(
+	event uint32,
 ) (Response, error) {
-    p := getPath("ICSGOTournaments_730", "GetTournamentLayout", 1)
-    request := map[string]string{
-        "event" : fmt.Sprintf(`%v`, event),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ICSGOTournaments_730", "GetTournamentLayout", 1)
+	request := map[string]string{
+		"event": fmt.Sprintf(`%v`, event),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ICSGOTournaments_730) GetTournamentPredictionsV1 (
-    event uint32,
-    steamid uint64,
-    steamidkey string,
+func (i *ICSGOTournaments_730) GetTournamentPredictionsV1(
+	event uint32,
+	steamid uint64,
+	steamidkey string,
 ) (Response, error) {
-    p := getPath("ICSGOTournaments_730", "GetTournamentPredictions", 1)
-    request := map[string]string{
-        "event" : fmt.Sprintf(`%v`, event),
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "steamidkey" : steamidkey,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ICSGOTournaments_730", "GetTournamentPredictions", 1)
+	request := map[string]string{
+		"event":      fmt.Sprintf(`%v`, event),
+		"steamid":    fmt.Sprintf(`%v`, steamid),
+		"steamidkey": steamidkey,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ICSGOTournaments_730) UploadTournamentFantasyLineupV1 (
-    event uint32,
-    steamid uint64,
-    steamidkey string,
-    sectionid uint32,
-    pickid0 uint32,
-    itemid0 uint64,
-    pickid1 uint32,
-    itemid1 uint64,
-    pickid2 uint32,
-    itemid2 uint64,
-    pickid3 uint32,
-    itemid3 uint64,
-    pickid4 uint32,
-    itemid4 uint64,
+func (i *ICSGOTournaments_730) UploadTournamentFantasyLineupV1(
+	event uint32,
+	steamid uint64,
+	steamidkey string,
+	sectionid uint32,
+	pickid0 uint32,
+	itemid0 uint64,
+	pickid1 uint32,
+	itemid1 uint64,
+	pickid2 uint32,
+	itemid2 uint64,
+	pickid3 uint32,
+	itemid3 uint64,
+	pickid4 uint32,
+	itemid4 uint64,
 ) (Response, error) {
-    p := getPath("ICSGOTournaments_730", "UploadTournamentFantasyLineup", 1)
-    request := map[string]string{
-        "event" : fmt.Sprintf(`%v`, event),
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "steamidkey" : steamidkey,
-        "sectionid" : fmt.Sprintf(`%v`, sectionid),
-        "pickid0" : fmt.Sprintf(`%v`, pickid0),
-        "itemid0" : fmt.Sprintf(`%v`, itemid0),
-        "pickid1" : fmt.Sprintf(`%v`, pickid1),
-        "itemid1" : fmt.Sprintf(`%v`, itemid1),
-        "pickid2" : fmt.Sprintf(`%v`, pickid2),
-        "itemid2" : fmt.Sprintf(`%v`, itemid2),
-        "pickid3" : fmt.Sprintf(`%v`, pickid3),
-        "itemid3" : fmt.Sprintf(`%v`, itemid3),
-        "pickid4" : fmt.Sprintf(`%v`, pickid4),
-        "itemid4" : fmt.Sprintf(`%v`, itemid4),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ICSGOTournaments_730", "UploadTournamentFantasyLineup", 1)
+	request := map[string]string{
+		"event":      fmt.Sprintf(`%v`, event),
+		"steamid":    fmt.Sprintf(`%v`, steamid),
+		"steamidkey": steamidkey,
+		"sectionid":  fmt.Sprintf(`%v`, sectionid),
+		"pickid0":    fmt.Sprintf(`%v`, pickid0),
+		"itemid0":    fmt.Sprintf(`%v`, itemid0),
+		"pickid1":    fmt.Sprintf(`%v`, pickid1),
+		"itemid1":    fmt.Sprintf(`%v`, itemid1),
+		"pickid2":    fmt.Sprintf(`%v`, pickid2),
+		"itemid2":    fmt.Sprintf(`%v`, itemid2),
+		"pickid3":    fmt.Sprintf(`%v`, pickid3),
+		"itemid3":    fmt.Sprintf(`%v`, itemid3),
+		"pickid4":    fmt.Sprintf(`%v`, pickid4),
+		"itemid4":    fmt.Sprintf(`%v`, itemid4),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ICSGOTournaments_730) UploadTournamentPredictionsV1 (
-    event uint32,
-    steamid uint64,
-    steamidkey string,
-    sectionid uint32,
-    groupid uint32,
-    index uint32,
-    pickid uint32,
-    itemid uint64,
+func (i *ICSGOTournaments_730) UploadTournamentPredictionsV1(
+	event uint32,
+	steamid uint64,
+	steamidkey string,
+	sectionid uint32,
+	groupid uint32,
+	index uint32,
+	pickid uint32,
+	itemid uint64,
 ) (Response, error) {
-    p := getPath("ICSGOTournaments_730", "UploadTournamentPredictions", 1)
-    request := map[string]string{
-        "event" : fmt.Sprintf(`%v`, event),
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "steamidkey" : steamidkey,
-        "sectionid" : fmt.Sprintf(`%v`, sectionid),
-        "groupid" : fmt.Sprintf(`%v`, groupid),
-        "index" : fmt.Sprintf(`%v`, index),
-        "pickid" : fmt.Sprintf(`%v`, pickid),
-        "itemid" : fmt.Sprintf(`%v`, itemid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ICSGOTournaments_730", "UploadTournamentPredictions", 1)
+	request := map[string]string{
+		"event":      fmt.Sprintf(`%v`, event),
+		"steamid":    fmt.Sprintf(`%v`, steamid),
+		"steamidkey": steamidkey,
+		"sectionid":  fmt.Sprintf(`%v`, sectionid),
+		"groupid":    fmt.Sprintf(`%v`, groupid),
+		"index":      fmt.Sprintf(`%v`, index),
+		"pickid":     fmt.Sprintf(`%v`, pickid),
+		"itemid":     fmt.Sprintf(`%v`, itemid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IDOTA2MatchStats_205790 struct {
 }
 
 func NewIDOTA2MatchStats_205790() *IDOTA2MatchStats_205790 {
-    return &IDOTA2MatchStats_205790{}
+	return &IDOTA2MatchStats_205790{}
 }
 
-func (i *IDOTA2MatchStats_205790) GetRealtimeStatsV1 (
-    serverSteamId uint64,
+func (i *IDOTA2MatchStats_205790) GetRealtimeStatsV1(
+	serverSteamId uint64,
 ) (Response, error) {
-    p := getPath("IDOTA2MatchStats_205790", "GetRealtimeStats", 1)
-    request := map[string]string{
-        "serverSteamId" : fmt.Sprintf(`%v`, serverSteamId),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2MatchStats_205790", "GetRealtimeStats", 1)
+	request := map[string]string{
+		"serverSteamId": fmt.Sprintf(`%v`, serverSteamId),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IDOTA2MatchStats_570 struct {
 }
 
 func NewIDOTA2MatchStats_570() *IDOTA2MatchStats_570 {
-    return &IDOTA2MatchStats_570{}
+	return &IDOTA2MatchStats_570{}
 }
 
-func (i *IDOTA2MatchStats_570) GetRealtimeStatsV1 (
-    serverSteamId uint64,
+func (i *IDOTA2MatchStats_570) GetRealtimeStatsV1(
+	serverSteamId uint64,
 ) (Response, error) {
-    p := getPath("IDOTA2MatchStats_570", "GetRealtimeStats", 1)
-    request := map[string]string{
-        "serverSteamId" : fmt.Sprintf(`%v`, serverSteamId),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2MatchStats_570", "GetRealtimeStats", 1)
+	request := map[string]string{
+		"serverSteamId": fmt.Sprintf(`%v`, serverSteamId),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IDOTA2Match_205790 struct {
 }
 
 func NewIDOTA2Match_205790() *IDOTA2Match_205790 {
-    return &IDOTA2Match_205790{}
+	return &IDOTA2Match_205790{}
 }
 
-func (i *IDOTA2Match_205790) GetLiveLeagueGamesV1 (
-    leagueId uint32,
-    matchId uint64,
-    dpc bool,
+func (i *IDOTA2Match_205790) GetLiveLeagueGamesV1(
+	leagueId uint32,
+	matchId uint64,
+	dpc bool,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_205790", "GetLiveLeagueGames", 1)
-    request := map[string]string{
-        "leagueId" : fmt.Sprintf(`%v`, leagueId),
-        "matchId" : fmt.Sprintf(`%v`, matchId),
-        "dpc" : strconv.FormatBool(dpc),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_205790", "GetLiveLeagueGames", 1)
+	request := map[string]string{
+		"leagueId": fmt.Sprintf(`%v`, leagueId),
+		"matchId":  fmt.Sprintf(`%v`, matchId),
+		"dpc":      strconv.FormatBool(dpc),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_205790) GetMatchDetailsV1 (
-    matchId uint64,
-    includePersonaNames bool,
+func (i *IDOTA2Match_205790) GetMatchDetailsV1(
+	matchId uint64,
+	includePersonaNames bool,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_205790", "GetMatchDetails", 1)
-    request := map[string]string{
-        "matchId" : fmt.Sprintf(`%v`, matchId),
-        "includePersonaNames" : strconv.FormatBool(includePersonaNames),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_205790", "GetMatchDetails", 1)
+	request := map[string]string{
+		"matchId":             fmt.Sprintf(`%v`, matchId),
+		"includePersonaNames": strconv.FormatBool(includePersonaNames),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_205790) GetMatchHistoryV1 (
-    heroId uint32,
-    gameMode uint32,
-    skill uint32,
-    minPlayers string,
-    accountId string,
-    leagueId string,
-    startAtMatchId uint64,
-    matchesRequested string,
+func (i *IDOTA2Match_205790) GetMatchHistoryV1(
+	heroId uint32,
+	gameMode uint32,
+	skill uint32,
+	minPlayers string,
+	accountId string,
+	leagueId string,
+	startAtMatchId uint64,
+	matchesRequested string,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_205790", "GetMatchHistory", 1)
-    request := map[string]string{
-        "heroId" : fmt.Sprintf(`%v`, heroId),
-        "gameMode" : fmt.Sprintf(`%v`, gameMode),
-        "skill" : fmt.Sprintf(`%v`, skill),
-        "minPlayers" : minPlayers,
-        "accountId" : accountId,
-        "leagueId" : leagueId,
-        "startAtMatchId" : fmt.Sprintf(`%v`, startAtMatchId),
-        "matchesRequested" : matchesRequested,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_205790", "GetMatchHistory", 1)
+	request := map[string]string{
+		"heroId":           fmt.Sprintf(`%v`, heroId),
+		"gameMode":         fmt.Sprintf(`%v`, gameMode),
+		"skill":            fmt.Sprintf(`%v`, skill),
+		"minPlayers":       minPlayers,
+		"accountId":        accountId,
+		"leagueId":         leagueId,
+		"startAtMatchId":   fmt.Sprintf(`%v`, startAtMatchId),
+		"matchesRequested": matchesRequested,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_205790) GetMatchHistoryBySequenceNumV1 (
-    startAtMatchSeqNum uint64,
-    matchesRequested uint32,
+func (i *IDOTA2Match_205790) GetMatchHistoryBySequenceNumV1(
+	startAtMatchSeqNum uint64,
+	matchesRequested uint32,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_205790", "GetMatchHistoryBySequenceNum", 1)
-    request := map[string]string{
-        "startAtMatchSeqNum" : fmt.Sprintf(`%v`, startAtMatchSeqNum),
-        "matchesRequested" : fmt.Sprintf(`%v`, matchesRequested),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_205790", "GetMatchHistoryBySequenceNum", 1)
+	request := map[string]string{
+		"startAtMatchSeqNum": fmt.Sprintf(`%v`, startAtMatchSeqNum),
+		"matchesRequested":   fmt.Sprintf(`%v`, matchesRequested),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_205790) GetTeamInfoByTeamIDV1 (
-    startAtTeamId uint64,
-    teamsRequested uint32,
+func (i *IDOTA2Match_205790) GetTeamInfoByTeamIDV1(
+	startAtTeamId uint64,
+	teamsRequested uint32,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_205790", "GetTeamInfoByTeamID", 1)
-    request := map[string]string{
-        "startAtTeamId" : fmt.Sprintf(`%v`, startAtTeamId),
-        "teamsRequested" : fmt.Sprintf(`%v`, teamsRequested),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_205790", "GetTeamInfoByTeamID", 1)
+	request := map[string]string{
+		"startAtTeamId":  fmt.Sprintf(`%v`, startAtTeamId),
+		"teamsRequested": fmt.Sprintf(`%v`, teamsRequested),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_205790) GetTopLiveEventGameV1 (
-    partner int32,
+func (i *IDOTA2Match_205790) GetTopLiveEventGameV1(
+	partner int32,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_205790", "GetTopLiveEventGame", 1)
-    request := map[string]string{
-        "partner" : fmt.Sprintf(`%v`, partner),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_205790", "GetTopLiveEventGame", 1)
+	request := map[string]string{
+		"partner": fmt.Sprintf(`%v`, partner),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_205790) GetTopLiveGameV1 (
-    partner int32,
+func (i *IDOTA2Match_205790) GetTopLiveGameV1(
+	partner int32,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_205790", "GetTopLiveGame", 1)
-    request := map[string]string{
-        "partner" : fmt.Sprintf(`%v`, partner),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_205790", "GetTopLiveGame", 1)
+	request := map[string]string{
+		"partner": fmt.Sprintf(`%v`, partner),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_205790) GetTopWeekendTourneyGamesV1 (
-    partner int32,
-    homeDivision int32,
+func (i *IDOTA2Match_205790) GetTopWeekendTourneyGamesV1(
+	partner int32,
+	homeDivision int32,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_205790", "GetTopWeekendTourneyGames", 1)
-    request := map[string]string{
-        "partner" : fmt.Sprintf(`%v`, partner),
-        "homeDivision" : fmt.Sprintf(`%v`, homeDivision),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_205790", "GetTopWeekendTourneyGames", 1)
+	request := map[string]string{
+		"partner":      fmt.Sprintf(`%v`, partner),
+		"homeDivision": fmt.Sprintf(`%v`, homeDivision),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_205790) GetTournamentPlayerStatsV1 (
-    accountId string,
-    leagueId string,
-    heroId string,
-    timeFrame string,
-    matchId uint64,
+func (i *IDOTA2Match_205790) GetTournamentPlayerStatsV1(
+	accountId string,
+	leagueId string,
+	heroId string,
+	timeFrame string,
+	matchId uint64,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_205790", "GetTournamentPlayerStats", 1)
-    request := map[string]string{
-        "accountId" : accountId,
-        "leagueId" : leagueId,
-        "heroId" : heroId,
-        "timeFrame" : timeFrame,
-        "matchId" : fmt.Sprintf(`%v`, matchId),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_205790", "GetTournamentPlayerStats", 1)
+	request := map[string]string{
+		"accountId": accountId,
+		"leagueId":  leagueId,
+		"heroId":    heroId,
+		"timeFrame": timeFrame,
+		"matchId":   fmt.Sprintf(`%v`, matchId),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_205790) GetTournamentPlayerStatsV2 (
-    accountId string,
-    leagueId string,
-    heroId string,
-    timeFrame string,
-    matchId uint64,
-    phaseId uint32,
+func (i *IDOTA2Match_205790) GetTournamentPlayerStatsV2(
+	accountId string,
+	leagueId string,
+	heroId string,
+	timeFrame string,
+	matchId uint64,
+	phaseId uint32,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_205790", "GetTournamentPlayerStats", 2)
-    request := map[string]string{
-        "accountId" : accountId,
-        "leagueId" : leagueId,
-        "heroId" : heroId,
-        "timeFrame" : timeFrame,
-        "matchId" : fmt.Sprintf(`%v`, matchId),
-        "phaseId" : fmt.Sprintf(`%v`, phaseId),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_205790", "GetTournamentPlayerStats", 2)
+	request := map[string]string{
+		"accountId": accountId,
+		"leagueId":  leagueId,
+		"heroId":    heroId,
+		"timeFrame": timeFrame,
+		"matchId":   fmt.Sprintf(`%v`, matchId),
+		"phaseId":   fmt.Sprintf(`%v`, phaseId),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IDOTA2Match_570 struct {
 }
 
 func NewIDOTA2Match_570() *IDOTA2Match_570 {
-    return &IDOTA2Match_570{}
+	return &IDOTA2Match_570{}
 }
 
-func (i *IDOTA2Match_570) GetLiveLeagueGamesV1 (
-    leagueId uint32,
-    matchId uint64,
-    dpc bool,
+func (i *IDOTA2Match_570) GetLiveLeagueGamesV1(
+	leagueId uint32,
+	matchId uint64,
+	dpc bool,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_570", "GetLiveLeagueGames", 1)
-    request := map[string]string{
-        "leagueId" : fmt.Sprintf(`%v`, leagueId),
-        "matchId" : fmt.Sprintf(`%v`, matchId),
-        "dpc" : strconv.FormatBool(dpc),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_570", "GetLiveLeagueGames", 1)
+	request := map[string]string{
+		"leagueId": fmt.Sprintf(`%v`, leagueId),
+		"matchId":  fmt.Sprintf(`%v`, matchId),
+		"dpc":      strconv.FormatBool(dpc),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_570) GetMatchDetailsV1 (
-    matchId uint64,
-    includePersonaNames bool,
+func (i *IDOTA2Match_570) GetMatchDetailsV1(
+	matchId uint64,
+	includePersonaNames bool,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_570", "GetMatchDetails", 1)
-    request := map[string]string{
-        "matchId" : fmt.Sprintf(`%v`, matchId),
-        "includePersonaNames" : strconv.FormatBool(includePersonaNames),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_570", "GetMatchDetails", 1)
+	request := map[string]string{
+		"matchId":             fmt.Sprintf(`%v`, matchId),
+		"includePersonaNames": strconv.FormatBool(includePersonaNames),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_570) GetMatchHistoryV1 (
-    heroId uint32,
-    gameMode uint32,
-    skill uint32,
-    minPlayers string,
-    accountId string,
-    leagueId string,
-    startAtMatchId uint64,
-    matchesRequested string,
+func (i *IDOTA2Match_570) GetMatchHistoryV1(
+	heroId uint32,
+	gameMode uint32,
+	skill uint32,
+	minPlayers string,
+	accountId string,
+	leagueId string,
+	startAtMatchId uint64,
+	matchesRequested string,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_570", "GetMatchHistory", 1)
-    request := map[string]string{
-        "heroId" : fmt.Sprintf(`%v`, heroId),
-        "gameMode" : fmt.Sprintf(`%v`, gameMode),
-        "skill" : fmt.Sprintf(`%v`, skill),
-        "minPlayers" : minPlayers,
-        "accountId" : accountId,
-        "leagueId" : leagueId,
-        "startAtMatchId" : fmt.Sprintf(`%v`, startAtMatchId),
-        "matchesRequested" : matchesRequested,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_570", "GetMatchHistory", 1)
+	request := map[string]string{
+		"heroId":           fmt.Sprintf(`%v`, heroId),
+		"gameMode":         fmt.Sprintf(`%v`, gameMode),
+		"skill":            fmt.Sprintf(`%v`, skill),
+		"minPlayers":       minPlayers,
+		"accountId":        accountId,
+		"leagueId":         leagueId,
+		"startAtMatchId":   fmt.Sprintf(`%v`, startAtMatchId),
+		"matchesRequested": matchesRequested,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_570) GetMatchHistoryBySequenceNumV1 (
-    startAtMatchSeqNum uint64,
-    matchesRequested uint32,
+func (i *IDOTA2Match_570) GetMatchHistoryBySequenceNumV1(
+	startAtMatchSeqNum uint64,
+	matchesRequested uint32,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_570", "GetMatchHistoryBySequenceNum", 1)
-    request := map[string]string{
-        "startAtMatchSeqNum" : fmt.Sprintf(`%v`, startAtMatchSeqNum),
-        "matchesRequested" : fmt.Sprintf(`%v`, matchesRequested),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_570", "GetMatchHistoryBySequenceNum", 1)
+	request := map[string]string{
+		"startAtMatchSeqNum": fmt.Sprintf(`%v`, startAtMatchSeqNum),
+		"matchesRequested":   fmt.Sprintf(`%v`, matchesRequested),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_570) GetTeamInfoByTeamIDV1 (
-    startAtTeamId uint64,
-    teamsRequested uint32,
+func (i *IDOTA2Match_570) GetTeamInfoByTeamIDV1(
+	startAtTeamId uint64,
+	teamsRequested uint32,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_570", "GetTeamInfoByTeamID", 1)
-    request := map[string]string{
-        "startAtTeamId" : fmt.Sprintf(`%v`, startAtTeamId),
-        "teamsRequested" : fmt.Sprintf(`%v`, teamsRequested),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_570", "GetTeamInfoByTeamID", 1)
+	request := map[string]string{
+		"startAtTeamId":  fmt.Sprintf(`%v`, startAtTeamId),
+		"teamsRequested": fmt.Sprintf(`%v`, teamsRequested),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_570) GetTopLiveEventGameV1 (
-    partner int32,
+func (i *IDOTA2Match_570) GetTopLiveEventGameV1(
+	partner int32,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_570", "GetTopLiveEventGame", 1)
-    request := map[string]string{
-        "partner" : fmt.Sprintf(`%v`, partner),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_570", "GetTopLiveEventGame", 1)
+	request := map[string]string{
+		"partner": fmt.Sprintf(`%v`, partner),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_570) GetTopLiveGameV1 (
-    partner int32,
+func (i *IDOTA2Match_570) GetTopLiveGameV1(
+	partner int32,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_570", "GetTopLiveGame", 1)
-    request := map[string]string{
-        "partner" : fmt.Sprintf(`%v`, partner),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_570", "GetTopLiveGame", 1)
+	request := map[string]string{
+		"partner": fmt.Sprintf(`%v`, partner),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_570) GetTopWeekendTourneyGamesV1 (
-    partner int32,
-    homeDivision int32,
+func (i *IDOTA2Match_570) GetTopWeekendTourneyGamesV1(
+	partner int32,
+	homeDivision int32,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_570", "GetTopWeekendTourneyGames", 1)
-    request := map[string]string{
-        "partner" : fmt.Sprintf(`%v`, partner),
-        "homeDivision" : fmt.Sprintf(`%v`, homeDivision),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_570", "GetTopWeekendTourneyGames", 1)
+	request := map[string]string{
+		"partner":      fmt.Sprintf(`%v`, partner),
+		"homeDivision": fmt.Sprintf(`%v`, homeDivision),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_570) GetTournamentPlayerStatsV1 (
-    accountId string,
-    leagueId string,
-    heroId string,
-    timeFrame string,
-    matchId uint64,
+func (i *IDOTA2Match_570) GetTournamentPlayerStatsV1(
+	accountId string,
+	leagueId string,
+	heroId string,
+	timeFrame string,
+	matchId uint64,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_570", "GetTournamentPlayerStats", 1)
-    request := map[string]string{
-        "accountId" : accountId,
-        "leagueId" : leagueId,
-        "heroId" : heroId,
-        "timeFrame" : timeFrame,
-        "matchId" : fmt.Sprintf(`%v`, matchId),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_570", "GetTournamentPlayerStats", 1)
+	request := map[string]string{
+		"accountId": accountId,
+		"leagueId":  leagueId,
+		"heroId":    heroId,
+		"timeFrame": timeFrame,
+		"matchId":   fmt.Sprintf(`%v`, matchId),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Match_570) GetTournamentPlayerStatsV2 (
-    accountId string,
-    leagueId string,
-    heroId string,
-    timeFrame string,
-    matchId uint64,
-    phaseId uint32,
+func (i *IDOTA2Match_570) GetTournamentPlayerStatsV2(
+	accountId string,
+	leagueId string,
+	heroId string,
+	timeFrame string,
+	matchId uint64,
+	phaseId uint32,
 ) (Response, error) {
-    p := getPath("IDOTA2Match_570", "GetTournamentPlayerStats", 2)
-    request := map[string]string{
-        "accountId" : accountId,
-        "leagueId" : leagueId,
-        "heroId" : heroId,
-        "timeFrame" : timeFrame,
-        "matchId" : fmt.Sprintf(`%v`, matchId),
-        "phaseId" : fmt.Sprintf(`%v`, phaseId),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Match_570", "GetTournamentPlayerStats", 2)
+	request := map[string]string{
+		"accountId": accountId,
+		"leagueId":  leagueId,
+		"heroId":    heroId,
+		"timeFrame": timeFrame,
+		"matchId":   fmt.Sprintf(`%v`, matchId),
+		"phaseId":   fmt.Sprintf(`%v`, phaseId),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IDOTA2StreamSystem_205790 struct {
 }
 
 func NewIDOTA2StreamSystem_205790() *IDOTA2StreamSystem_205790 {
-    return &IDOTA2StreamSystem_205790{}
+	return &IDOTA2StreamSystem_205790{}
 }
 
-func (i *IDOTA2StreamSystem_205790) GetBroadcasterInfoV1 (
-    broadcasterSteamId uint64,
-    leagueId uint32,
+func (i *IDOTA2StreamSystem_205790) GetBroadcasterInfoV1(
+	broadcasterSteamId uint64,
+	leagueId uint32,
 ) (Response, error) {
-    p := getPath("IDOTA2StreamSystem_205790", "GetBroadcasterInfo", 1)
-    request := map[string]string{
-        "broadcasterSteamId" : fmt.Sprintf(`%v`, broadcasterSteamId),
-        "leagueId" : fmt.Sprintf(`%v`, leagueId),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2StreamSystem_205790", "GetBroadcasterInfo", 1)
+	request := map[string]string{
+		"broadcasterSteamId": fmt.Sprintf(`%v`, broadcasterSteamId),
+		"leagueId":           fmt.Sprintf(`%v`, leagueId),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IDOTA2StreamSystem_570 struct {
 }
 
 func NewIDOTA2StreamSystem_570() *IDOTA2StreamSystem_570 {
-    return &IDOTA2StreamSystem_570{}
+	return &IDOTA2StreamSystem_570{}
 }
 
-func (i *IDOTA2StreamSystem_570) GetBroadcasterInfoV1 (
-    broadcasterSteamId uint64,
-    leagueId uint32,
+func (i *IDOTA2StreamSystem_570) GetBroadcasterInfoV1(
+	broadcasterSteamId uint64,
+	leagueId uint32,
 ) (Response, error) {
-    p := getPath("IDOTA2StreamSystem_570", "GetBroadcasterInfo", 1)
-    request := map[string]string{
-        "broadcasterSteamId" : fmt.Sprintf(`%v`, broadcasterSteamId),
-        "leagueId" : fmt.Sprintf(`%v`, leagueId),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2StreamSystem_570", "GetBroadcasterInfo", 1)
+	request := map[string]string{
+		"broadcasterSteamId": fmt.Sprintf(`%v`, broadcasterSteamId),
+		"leagueId":           fmt.Sprintf(`%v`, leagueId),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IDOTA2Ticket_205790 struct {
 }
 
 func NewIDOTA2Ticket_205790() *IDOTA2Ticket_205790 {
-    return &IDOTA2Ticket_205790{}
+	return &IDOTA2Ticket_205790{}
 }
 
-func (i *IDOTA2Ticket_205790) GetSteamIDForBadgeIDV1 (
-    badgeId string,
+func (i *IDOTA2Ticket_205790) GetSteamIDForBadgeIDV1(
+	badgeId string,
 ) (Response, error) {
-    p := getPath("IDOTA2Ticket_205790", "GetSteamIDForBadgeID", 1)
-    request := map[string]string{
-        "badgeId" : badgeId,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Ticket_205790", "GetSteamIDForBadgeID", 1)
+	request := map[string]string{
+		"badgeId": badgeId,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Ticket_205790) SetSteamAccountPurchasedV1 (
-    steamid uint64,
-    badgeType uint32,
+func (i *IDOTA2Ticket_205790) SetSteamAccountPurchasedV1(
+	steamid uint64,
+	badgeType uint32,
 ) (Response, error) {
-    p := getPath("IDOTA2Ticket_205790", "SetSteamAccountPurchased", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "badgeType" : fmt.Sprintf(`%v`, badgeType),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Ticket_205790", "SetSteamAccountPurchased", 1)
+	request := map[string]string{
+		"steamid":   fmt.Sprintf(`%v`, steamid),
+		"badgeType": fmt.Sprintf(`%v`, badgeType),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Ticket_205790) SteamAccountValidForBadgeTypeV1 (
-    steamid uint64,
-    validBadgeType1 uint32,
-    validBadgeType2 uint32,
-    validBadgeType3 uint32,
-    validBadgeType4 uint32,
+func (i *IDOTA2Ticket_205790) SteamAccountValidForBadgeTypeV1(
+	steamid uint64,
+	validBadgeType1 uint32,
+	validBadgeType2 uint32,
+	validBadgeType3 uint32,
+	validBadgeType4 uint32,
 ) (Response, error) {
-    p := getPath("IDOTA2Ticket_205790", "SteamAccountValidForBadgeType", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "validBadgeType1" : fmt.Sprintf(`%v`, validBadgeType1),
-        "validBadgeType2" : fmt.Sprintf(`%v`, validBadgeType2),
-        "validBadgeType3" : fmt.Sprintf(`%v`, validBadgeType3),
-        "validBadgeType4" : fmt.Sprintf(`%v`, validBadgeType4),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Ticket_205790", "SteamAccountValidForBadgeType", 1)
+	request := map[string]string{
+		"steamid":         fmt.Sprintf(`%v`, steamid),
+		"validBadgeType1": fmt.Sprintf(`%v`, validBadgeType1),
+		"validBadgeType2": fmt.Sprintf(`%v`, validBadgeType2),
+		"validBadgeType3": fmt.Sprintf(`%v`, validBadgeType3),
+		"validBadgeType4": fmt.Sprintf(`%v`, validBadgeType4),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IDOTA2Ticket_570 struct {
 }
 
 func NewIDOTA2Ticket_570() *IDOTA2Ticket_570 {
-    return &IDOTA2Ticket_570{}
+	return &IDOTA2Ticket_570{}
 }
 
-func (i *IDOTA2Ticket_570) GetSteamIDForBadgeIDV1 (
-    badgeId string,
+func (i *IDOTA2Ticket_570) GetSteamIDForBadgeIDV1(
+	badgeId string,
 ) (Response, error) {
-    p := getPath("IDOTA2Ticket_570", "GetSteamIDForBadgeID", 1)
-    request := map[string]string{
-        "badgeId" : badgeId,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Ticket_570", "GetSteamIDForBadgeID", 1)
+	request := map[string]string{
+		"badgeId": badgeId,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Ticket_570) SetSteamAccountPurchasedV1 (
-    steamid uint64,
-    badgeType uint32,
+func (i *IDOTA2Ticket_570) SetSteamAccountPurchasedV1(
+	steamid uint64,
+	badgeType uint32,
 ) (Response, error) {
-    p := getPath("IDOTA2Ticket_570", "SetSteamAccountPurchased", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "badgeType" : fmt.Sprintf(`%v`, badgeType),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Ticket_570", "SetSteamAccountPurchased", 1)
+	request := map[string]string{
+		"steamid":   fmt.Sprintf(`%v`, steamid),
+		"badgeType": fmt.Sprintf(`%v`, badgeType),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IDOTA2Ticket_570) SteamAccountValidForBadgeTypeV1 (
-    steamid uint64,
-    validBadgeType1 uint32,
-    validBadgeType2 uint32,
-    validBadgeType3 uint32,
-    validBadgeType4 uint32,
+func (i *IDOTA2Ticket_570) SteamAccountValidForBadgeTypeV1(
+	steamid uint64,
+	validBadgeType1 uint32,
+	validBadgeType2 uint32,
+	validBadgeType3 uint32,
+	validBadgeType4 uint32,
 ) (Response, error) {
-    p := getPath("IDOTA2Ticket_570", "SteamAccountValidForBadgeType", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "validBadgeType1" : fmt.Sprintf(`%v`, validBadgeType1),
-        "validBadgeType2" : fmt.Sprintf(`%v`, validBadgeType2),
-        "validBadgeType3" : fmt.Sprintf(`%v`, validBadgeType3),
-        "validBadgeType4" : fmt.Sprintf(`%v`, validBadgeType4),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IDOTA2Ticket_570", "SteamAccountValidForBadgeType", 1)
+	request := map[string]string{
+		"steamid":         fmt.Sprintf(`%v`, steamid),
+		"validBadgeType1": fmt.Sprintf(`%v`, validBadgeType1),
+		"validBadgeType2": fmt.Sprintf(`%v`, validBadgeType2),
+		"validBadgeType3": fmt.Sprintf(`%v`, validBadgeType3),
+		"validBadgeType4": fmt.Sprintf(`%v`, validBadgeType4),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IEconDOTA2_205790 struct {
 }
 
 func NewIEconDOTA2_205790() *IEconDOTA2_205790 {
-    return &IEconDOTA2_205790{}
+	return &IEconDOTA2_205790{}
 }
 
-func (i *IEconDOTA2_205790) GetEventStatsForAccountV1 (
-    eventid uint32,
-    accountid uint32,
-    language string,
+func (i *IEconDOTA2_205790) GetEventStatsForAccountV1(
+	eventid uint32,
+	accountid uint32,
+	language string,
 ) (Response, error) {
-    p := getPath("IEconDOTA2_205790", "GetEventStatsForAccount", 1)
-    request := map[string]string{
-        "eventid" : fmt.Sprintf(`%v`, eventid),
-        "accountid" : fmt.Sprintf(`%v`, accountid),
-        "language" : language,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconDOTA2_205790", "GetEventStatsForAccount", 1)
+	request := map[string]string{
+		"eventid":   fmt.Sprintf(`%v`, eventid),
+		"accountid": fmt.Sprintf(`%v`, accountid),
+		"language":  language,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconDOTA2_205790) GetGameItemsV1 (
-    language string,
+func (i *IEconDOTA2_205790) GetGameItemsV1(
+	language string,
 ) (Response, error) {
-    p := getPath("IEconDOTA2_205790", "GetGameItems", 1)
-    request := map[string]string{
-        "language" : language,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconDOTA2_205790", "GetGameItems", 1)
+	request := map[string]string{
+		"language": language,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconDOTA2_205790) GetHeroesV1 (
-    language string,
-    itemizedonly bool,
+func (i *IEconDOTA2_205790) GetHeroesV1(
+	language string,
+	itemizedonly bool,
 ) (Response, error) {
-    p := getPath("IEconDOTA2_205790", "GetHeroes", 1)
-    request := map[string]string{
-        "language" : language,
-        "itemizedonly" : strconv.FormatBool(itemizedonly),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconDOTA2_205790", "GetHeroes", 1)
+	request := map[string]string{
+		"language":     language,
+		"itemizedonly": strconv.FormatBool(itemizedonly),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconDOTA2_205790) GetItemCreatorsV1 (
-    itemdef uint32,
+func (i *IEconDOTA2_205790) GetItemCreatorsV1(
+	itemdef uint32,
 ) (Response, error) {
-    p := getPath("IEconDOTA2_205790", "GetItemCreators", 1)
-    request := map[string]string{
-        "itemdef" : fmt.Sprintf(`%v`, itemdef),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconDOTA2_205790", "GetItemCreators", 1)
+	request := map[string]string{
+		"itemdef": fmt.Sprintf(`%v`, itemdef),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconDOTA2_205790) GetItemWorkshopPublishedFileIDsV1 (
-    itemdef uint32,
+func (i *IEconDOTA2_205790) GetItemWorkshopPublishedFileIDsV1(
+	itemdef uint32,
 ) (Response, error) {
-    p := getPath("IEconDOTA2_205790", "GetItemWorkshopPublishedFileIDs", 1)
-    request := map[string]string{
-        "itemdef" : fmt.Sprintf(`%v`, itemdef),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconDOTA2_205790", "GetItemWorkshopPublishedFileIDs", 1)
+	request := map[string]string{
+		"itemdef": fmt.Sprintf(`%v`, itemdef),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconDOTA2_205790) GetRaritiesV1 (
-    language string,
+func (i *IEconDOTA2_205790) GetRaritiesV1(
+	language string,
 ) (Response, error) {
-    p := getPath("IEconDOTA2_205790", "GetRarities", 1)
-    request := map[string]string{
-        "language" : language,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconDOTA2_205790", "GetRarities", 1)
+	request := map[string]string{
+		"language": language,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconDOTA2_205790) GetTournamentPrizePoolV1 (
-    leagueid uint32,
+func (i *IEconDOTA2_205790) GetTournamentPrizePoolV1(
+	leagueid uint32,
 ) (Response, error) {
-    p := getPath("IEconDOTA2_205790", "GetTournamentPrizePool", 1)
-    request := map[string]string{
-        "leagueid" : fmt.Sprintf(`%v`, leagueid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconDOTA2_205790", "GetTournamentPrizePool", 1)
+	request := map[string]string{
+		"leagueid": fmt.Sprintf(`%v`, leagueid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IEconDOTA2_570 struct {
 }
 
 func NewIEconDOTA2_570() *IEconDOTA2_570 {
-    return &IEconDOTA2_570{}
+	return &IEconDOTA2_570{}
 }
 
-func (i *IEconDOTA2_570) GetEventStatsForAccountV1 (
-    eventid uint32,
-    accountid uint32,
-    language string,
+func (i *IEconDOTA2_570) GetEventStatsForAccountV1(
+	eventid uint32,
+	accountid uint32,
+	language string,
 ) (Response, error) {
-    p := getPath("IEconDOTA2_570", "GetEventStatsForAccount", 1)
-    request := map[string]string{
-        "eventid" : fmt.Sprintf(`%v`, eventid),
-        "accountid" : fmt.Sprintf(`%v`, accountid),
-        "language" : language,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconDOTA2_570", "GetEventStatsForAccount", 1)
+	request := map[string]string{
+		"eventid":   fmt.Sprintf(`%v`, eventid),
+		"accountid": fmt.Sprintf(`%v`, accountid),
+		"language":  language,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconDOTA2_570) GetHeroesV1 (
-    language string,
-    itemizedonly bool,
+func (i *IEconDOTA2_570) GetHeroesV1(
+	language string,
+	itemizedonly bool,
 ) (Response, error) {
-    p := getPath("IEconDOTA2_570", "GetHeroes", 1)
-    request := map[string]string{
-        "language" : language,
-        "itemizedonly" : strconv.FormatBool(itemizedonly),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconDOTA2_570", "GetHeroes", 1)
+	request := map[string]string{
+		"language":     language,
+		"itemizedonly": strconv.FormatBool(itemizedonly),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconDOTA2_570) GetItemCreatorsV1 (
-    itemdef uint32,
+func (i *IEconDOTA2_570) GetItemCreatorsV1(
+	itemdef uint32,
 ) (Response, error) {
-    p := getPath("IEconDOTA2_570", "GetItemCreators", 1)
-    request := map[string]string{
-        "itemdef" : fmt.Sprintf(`%v`, itemdef),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconDOTA2_570", "GetItemCreators", 1)
+	request := map[string]string{
+		"itemdef": fmt.Sprintf(`%v`, itemdef),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconDOTA2_570) GetItemWorkshopPublishedFileIDsV1 (
-    itemdef uint32,
+func (i *IEconDOTA2_570) GetItemWorkshopPublishedFileIDsV1(
+	itemdef uint32,
 ) (Response, error) {
-    p := getPath("IEconDOTA2_570", "GetItemWorkshopPublishedFileIDs", 1)
-    request := map[string]string{
-        "itemdef" : fmt.Sprintf(`%v`, itemdef),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconDOTA2_570", "GetItemWorkshopPublishedFileIDs", 1)
+	request := map[string]string{
+		"itemdef": fmt.Sprintf(`%v`, itemdef),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconDOTA2_570) GetRaritiesV1 (
-    language string,
+func (i *IEconDOTA2_570) GetRaritiesV1(
+	language string,
 ) (Response, error) {
-    p := getPath("IEconDOTA2_570", "GetRarities", 1)
-    request := map[string]string{
-        "language" : language,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconDOTA2_570", "GetRarities", 1)
+	request := map[string]string{
+		"language": language,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconDOTA2_570) GetTournamentPrizePoolV1 (
-    leagueid uint32,
+func (i *IEconDOTA2_570) GetTournamentPrizePoolV1(
+	leagueid uint32,
 ) (Response, error) {
-    p := getPath("IEconDOTA2_570", "GetTournamentPrizePool", 1)
-    request := map[string]string{
-        "leagueid" : fmt.Sprintf(`%v`, leagueid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconDOTA2_570", "GetTournamentPrizePool", 1)
+	request := map[string]string{
+		"leagueid": fmt.Sprintf(`%v`, leagueid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IEconItems_1046930 struct {
 }
 
 func NewIEconItems_1046930() *IEconItems_1046930 {
-    return &IEconItems_1046930{}
+	return &IEconItems_1046930{}
 }
 
-func (i *IEconItems_1046930) GetPlayerItemsV1 (
-    steamid uint64,
+func (i *IEconItems_1046930) GetPlayerItemsV1(
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("IEconItems_1046930", "GetPlayerItems", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_1046930", "GetPlayerItems", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IEconItems_1269260 struct {
 }
 
 func NewIEconItems_1269260() *IEconItems_1269260 {
-    return &IEconItems_1269260{}
+	return &IEconItems_1269260{}
 }
 
-func (i *IEconItems_1269260) GetEquippedPlayerItemsV1 (
-    steamid uint64,
-    classId uint32,
+func (i *IEconItems_1269260) GetEquippedPlayerItemsV1(
+	steamid uint64,
+	classId uint32,
 ) (Response, error) {
-    p := getPath("IEconItems_1269260", "GetEquippedPlayerItems", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "classId" : fmt.Sprintf(`%v`, classId),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_1269260", "GetEquippedPlayerItems", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+		"classId": fmt.Sprintf(`%v`, classId),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IEconItems_205790 struct {
 }
 
 func NewIEconItems_205790() *IEconItems_205790 {
-    return &IEconItems_205790{}
+	return &IEconItems_205790{}
 }
 
-func (i *IEconItems_205790) GetEquippedPlayerItemsV1 (
-    steamid uint64,
-    classId uint32,
+func (i *IEconItems_205790) GetEquippedPlayerItemsV1(
+	steamid uint64,
+	classId uint32,
 ) (Response, error) {
-    p := getPath("IEconItems_205790", "GetEquippedPlayerItems", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "classId" : fmt.Sprintf(`%v`, classId),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_205790", "GetEquippedPlayerItems", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+		"classId": fmt.Sprintf(`%v`, classId),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconItems_205790) GetPlayerItemsV1 (
-    steamid uint64,
+func (i *IEconItems_205790) GetPlayerItemsV1(
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("IEconItems_205790", "GetPlayerItems", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_205790", "GetPlayerItems", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconItems_205790) GetStoreMetaDataV1 (
-    language string,
+func (i *IEconItems_205790) GetStoreMetaDataV1(
+	language string,
 ) (Response, error) {
-    p := getPath("IEconItems_205790", "GetStoreMetaData", 1)
-    request := map[string]string{
-        "language" : language,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_205790", "GetStoreMetaData", 1)
+	request := map[string]string{
+		"language": language,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
-
-type IEconItems_221540 struct {
-}
-
-func NewIEconItems_221540() *IEconItems_221540 {
-    return &IEconItems_221540{}
-}
-
-func (i *IEconItems_221540) GetPlayerItemsV1 (
-    steamid uint64,
-) (Response, error) {
-    p := getPath("IEconItems_221540", "GetPlayerItems", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
-
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
-}
-
 
 type IEconItems_238460 struct {
 }
 
 func NewIEconItems_238460() *IEconItems_238460 {
-    return &IEconItems_238460{}
+	return &IEconItems_238460{}
 }
 
-func (i *IEconItems_238460) GetPlayerItemsV1 (
-    steamid uint64,
+func (i *IEconItems_238460) GetPlayerItemsV1(
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("IEconItems_238460", "GetPlayerItems", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_238460", "GetPlayerItems", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IEconItems_440 struct {
 }
 
 func NewIEconItems_440() *IEconItems_440 {
-    return &IEconItems_440{}
+	return &IEconItems_440{}
 }
 
-func (i *IEconItems_440) GetPlayerItemsV1 (
-    steamid uint64,
+func (i *IEconItems_440) GetPlayerItemsV1(
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("IEconItems_440", "GetPlayerItems", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_440", "GetPlayerItems", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconItems_440) GetSchemaV1 (
-    language string,
+func (i *IEconItems_440) GetSchemaV1(
+	language string,
 ) (Response, error) {
-    p := getPath("IEconItems_440", "GetSchema", 1)
-    request := map[string]string{
-        "language" : language,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_440", "GetSchema", 1)
+	request := map[string]string{
+		"language": language,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconItems_440) GetSchemaItemsV1 (
-    language string,
-    start int32,
+func (i *IEconItems_440) GetSchemaItemsV1(
+	language string,
+	start int32,
 ) (Response, error) {
-    p := getPath("IEconItems_440", "GetSchemaItems", 1)
-    request := map[string]string{
-        "language" : language,
-        "start" : fmt.Sprintf(`%v`, start),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_440", "GetSchemaItems", 1)
+	request := map[string]string{
+		"language": language,
+		"start":    fmt.Sprintf(`%v`, start),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconItems_440) GetSchemaOverviewV1 (
-    language string,
+func (i *IEconItems_440) GetSchemaOverviewV1(
+	language string,
 ) (Response, error) {
-    p := getPath("IEconItems_440", "GetSchemaOverview", 1)
-    request := map[string]string{
-        "language" : language,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_440", "GetSchemaOverview", 1)
+	request := map[string]string{
+		"language": language,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconItems_440) GetSchemaURLV1 (
+func (i *IEconItems_440) GetSchemaURLV1() (Response, error) {
+	p := getPath("IEconItems_440", "GetSchemaURL", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
+
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}
+func (i *IEconItems_440) GetStoreMetaDataV1(
+	language string,
 ) (Response, error) {
-    p := getPath("IEconItems_440", "GetSchemaURL", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_440", "GetStoreMetaData", 1)
+	request := map[string]string{
+		"language": language,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconItems_440) GetStoreMetaDataV1 (
-    language string,
-) (Response, error) {
-    p := getPath("IEconItems_440", "GetStoreMetaData", 1)
-    request := map[string]string{
-        "language" : language,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *IEconItems_440) GetStoreStatusV1() (Response, error) {
+	p := getPath("IEconItems_440", "GetStoreStatus", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconItems_440) GetStoreStatusV1 (
-) (Response, error) {
-    p := getPath("IEconItems_440", "GetStoreStatus", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
-
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
-}
-
 
 type IEconItems_570 struct {
 }
 
 func NewIEconItems_570() *IEconItems_570 {
-    return &IEconItems_570{}
+	return &IEconItems_570{}
 }
 
-func (i *IEconItems_570) GetPlayerItemsV1 (
-    steamid uint64,
+func (i *IEconItems_570) GetPlayerItemsV1(
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("IEconItems_570", "GetPlayerItems", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_570", "GetPlayerItems", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconItems_570) GetStoreMetaDataV1 (
-    language string,
+func (i *IEconItems_570) GetStoreMetaDataV1(
+	language string,
 ) (Response, error) {
-    p := getPath("IEconItems_570", "GetStoreMetaData", 1)
-    request := map[string]string{
-        "language" : language,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_570", "GetStoreMetaData", 1)
+	request := map[string]string{
+		"language": language,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IEconItems_583950 struct {
 }
 
 func NewIEconItems_583950() *IEconItems_583950 {
-    return &IEconItems_583950{}
+	return &IEconItems_583950{}
 }
 
-func (i *IEconItems_583950) GetEquippedPlayerItemsV1 (
-    steamid uint64,
-    classId uint32,
+func (i *IEconItems_583950) GetEquippedPlayerItemsV1(
+	steamid uint64,
+	classId uint32,
 ) (Response, error) {
-    p := getPath("IEconItems_583950", "GetEquippedPlayerItems", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "classId" : fmt.Sprintf(`%v`, classId),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_583950", "GetEquippedPlayerItems", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+		"classId": fmt.Sprintf(`%v`, classId),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IEconItems_620 struct {
 }
 
 func NewIEconItems_620() *IEconItems_620 {
-    return &IEconItems_620{}
+	return &IEconItems_620{}
 }
 
-func (i *IEconItems_620) GetPlayerItemsV1 (
-    steamid uint64,
+func (i *IEconItems_620) GetPlayerItemsV1(
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("IEconItems_620", "GetPlayerItems", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_620", "GetPlayerItems", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconItems_620) GetSchemaV1 (
-    language string,
+func (i *IEconItems_620) GetSchemaV1(
+	language string,
 ) (Response, error) {
-    p := getPath("IEconItems_620", "GetSchema", 1)
-    request := map[string]string{
-        "language" : language,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_620", "GetSchema", 1)
+	request := map[string]string{
+		"language": language,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IEconItems_730 struct {
 }
 
 func NewIEconItems_730() *IEconItems_730 {
-    return &IEconItems_730{}
+	return &IEconItems_730{}
 }
 
-func (i *IEconItems_730) GetPlayerItemsV1 (
-    steamid uint64,
+func (i *IEconItems_730) GetPlayerItemsV1(
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("IEconItems_730", "GetPlayerItems", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_730", "GetPlayerItems", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconItems_730) GetSchemaV2 (
-    language string,
+func (i *IEconItems_730) GetSchemaV2(
+	language string,
 ) (Response, error) {
-    p := getPath("IEconItems_730", "GetSchema", 2)
-    request := map[string]string{
-        "language" : language,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_730", "GetSchema", 2)
+	request := map[string]string{
+		"language": language,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconItems_730) GetSchemaURLV2 (
+func (i *IEconItems_730) GetSchemaURLV2() (Response, error) {
+	p := getPath("IEconItems_730", "GetSchemaURL", 2)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
+
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}
+func (i *IEconItems_730) GetStoreMetaDataV1(
+	language string,
 ) (Response, error) {
-    p := getPath("IEconItems_730", "GetSchemaURL", 2)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconItems_730", "GetStoreMetaData", 1)
+	request := map[string]string{
+		"language": language,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconItems_730) GetStoreMetaDataV1 (
-    language string,
-) (Response, error) {
-    p := getPath("IEconItems_730", "GetStoreMetaData", 1)
-    request := map[string]string{
-        "language" : language,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
-
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
-}
-
 
 type IGCVersion_1046930 struct {
 }
 
 func NewIGCVersion_1046930() *IGCVersion_1046930 {
-    return &IGCVersion_1046930{}
+	return &IGCVersion_1046930{}
 }
 
-func (i *IGCVersion_1046930) GetClientVersionV1 (
-) (Response, error) {
-    p := getPath("IGCVersion_1046930", "GetClientVersion", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *IGCVersion_1046930) GetClientVersionV1() (Response, error) {
+	p := getPath("IGCVersion_1046930", "GetClientVersion", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IGCVersion_1046930) GetServerVersionV1 (
-) (Response, error) {
-    p := getPath("IGCVersion_1046930", "GetServerVersion", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *IGCVersion_1046930) GetServerVersionV1() (Response, error) {
+	p := getPath("IGCVersion_1046930", "GetServerVersion", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IGCVersion_1269260 struct {
 }
 
 func NewIGCVersion_1269260() *IGCVersion_1269260 {
-    return &IGCVersion_1269260{}
+	return &IGCVersion_1269260{}
 }
 
-func (i *IGCVersion_1269260) GetClientVersionV1 (
-) (Response, error) {
-    p := getPath("IGCVersion_1269260", "GetClientVersion", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *IGCVersion_1269260) GetClientVersionV1() (Response, error) {
+	p := getPath("IGCVersion_1269260", "GetClientVersion", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IGCVersion_1269260) GetServerVersionV1 (
-) (Response, error) {
-    p := getPath("IGCVersion_1269260", "GetServerVersion", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *IGCVersion_1269260) GetServerVersionV1() (Response, error) {
+	p := getPath("IGCVersion_1269260", "GetServerVersion", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IGCVersion_205790 struct {
 }
 
 func NewIGCVersion_205790() *IGCVersion_205790 {
-    return &IGCVersion_205790{}
+	return &IGCVersion_205790{}
 }
 
-func (i *IGCVersion_205790) GetClientVersionV1 (
-) (Response, error) {
-    p := getPath("IGCVersion_205790", "GetClientVersion", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *IGCVersion_205790) GetClientVersionV1() (Response, error) {
+	p := getPath("IGCVersion_205790", "GetClientVersion", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IGCVersion_205790) GetServerVersionV1 (
-) (Response, error) {
-    p := getPath("IGCVersion_205790", "GetServerVersion", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *IGCVersion_205790) GetServerVersionV1() (Response, error) {
+	p := getPath("IGCVersion_205790", "GetServerVersion", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IGCVersion_440 struct {
 }
 
 func NewIGCVersion_440() *IGCVersion_440 {
-    return &IGCVersion_440{}
+	return &IGCVersion_440{}
 }
 
-func (i *IGCVersion_440) GetClientVersionV1 (
-) (Response, error) {
-    p := getPath("IGCVersion_440", "GetClientVersion", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *IGCVersion_440) GetClientVersionV1() (Response, error) {
+	p := getPath("IGCVersion_440", "GetClientVersion", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IGCVersion_440) GetServerVersionV1 (
-) (Response, error) {
-    p := getPath("IGCVersion_440", "GetServerVersion", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *IGCVersion_440) GetServerVersionV1() (Response, error) {
+	p := getPath("IGCVersion_440", "GetServerVersion", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IGCVersion_570 struct {
 }
 
 func NewIGCVersion_570() *IGCVersion_570 {
-    return &IGCVersion_570{}
+	return &IGCVersion_570{}
 }
 
-func (i *IGCVersion_570) GetClientVersionV1 (
-) (Response, error) {
-    p := getPath("IGCVersion_570", "GetClientVersion", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *IGCVersion_570) GetClientVersionV1() (Response, error) {
+	p := getPath("IGCVersion_570", "GetClientVersion", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IGCVersion_570) GetServerVersionV1 (
-) (Response, error) {
-    p := getPath("IGCVersion_570", "GetServerVersion", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *IGCVersion_570) GetServerVersionV1() (Response, error) {
+	p := getPath("IGCVersion_570", "GetServerVersion", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IGCVersion_583950 struct {
 }
 
 func NewIGCVersion_583950() *IGCVersion_583950 {
-    return &IGCVersion_583950{}
+	return &IGCVersion_583950{}
 }
 
-func (i *IGCVersion_583950) GetClientVersionV1 (
-) (Response, error) {
-    p := getPath("IGCVersion_583950", "GetClientVersion", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *IGCVersion_583950) GetClientVersionV1() (Response, error) {
+	p := getPath("IGCVersion_583950", "GetClientVersion", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IGCVersion_583950) GetServerVersionV1 (
-) (Response, error) {
-    p := getPath("IGCVersion_583950", "GetServerVersion", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *IGCVersion_583950) GetServerVersionV1() (Response, error) {
+	p := getPath("IGCVersion_583950", "GetServerVersion", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IGCVersion_730 struct {
 }
 
 func NewIGCVersion_730() *IGCVersion_730 {
-    return &IGCVersion_730{}
+	return &IGCVersion_730{}
 }
 
-func (i *IGCVersion_730) GetServerVersionV1 (
-) (Response, error) {
-    p := getPath("IGCVersion_730", "GetServerVersion", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *IGCVersion_730) GetServerVersionV1() (Response, error) {
+	p := getPath("IGCVersion_730", "GetServerVersion", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IPortal2Leaderboards_620 struct {
 }
 
 func NewIPortal2Leaderboards_620() *IPortal2Leaderboards_620 {
-    return &IPortal2Leaderboards_620{}
+	return &IPortal2Leaderboards_620{}
 }
 
-func (i *IPortal2Leaderboards_620) GetBucketizedDataV1 (
-    leaderboardName string,
+func (i *IPortal2Leaderboards_620) GetBucketizedDataV1(
+	leaderboardName string,
 ) (Response, error) {
-    p := getPath("IPortal2Leaderboards_620", "GetBucketizedData", 1)
-    request := map[string]string{
-        "leaderboardName" : leaderboardName,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IPortal2Leaderboards_620", "GetBucketizedData", 1)
+	request := map[string]string{
+		"leaderboardName": leaderboardName,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ISteamApps struct {
 }
 
 func NewISteamApps() *ISteamApps {
-    return &ISteamApps{}
+	return &ISteamApps{}
 }
 
-func (i *ISteamApps) GetAppListV1 (
+func (i *ISteamApps) GetAppListV1() (Response, error) {
+	p := getPath("ISteamApps", "GetAppList", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
+
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}
+func (i *ISteamApps) GetAppListV2() (Response, error) {
+	p := getPath("ISteamApps", "GetAppList", 2)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
+
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}
+func (i *ISteamApps) GetSDRConfigV1(
+	appid uint32,
 ) (Response, error) {
-    p := getPath("ISteamApps", "GetAppList", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamApps", "GetSDRConfig", 1)
+	request := map[string]string{
+		"appid": fmt.Sprintf(`%v`, appid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamApps) GetAppListV2 (
+func (i *ISteamApps) GetServersAtAddressV1(
+	addr string,
 ) (Response, error) {
-    p := getPath("ISteamApps", "GetAppList", 2)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamApps", "GetServersAtAddress", 1)
+	request := map[string]string{
+		"addr": addr,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamApps) GetSDRConfigV1 (
-    appid uint32,
+func (i *ISteamApps) UpToDateCheckV1(
+	appid uint32,
+	version uint32,
 ) (Response, error) {
-    p := getPath("ISteamApps", "GetSDRConfig", 1)
-    request := map[string]string{
-        "appid" : fmt.Sprintf(`%v`, appid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamApps", "UpToDateCheck", 1)
+	request := map[string]string{
+		"appid":   fmt.Sprintf(`%v`, appid),
+		"version": fmt.Sprintf(`%v`, version),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamApps) GetServersAtAddressV1 (
-    addr string,
-) (Response, error) {
-    p := getPath("ISteamApps", "GetServersAtAddress", 1)
-    request := map[string]string{
-        "addr" : addr,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
-
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
-}
-func (i *ISteamApps) UpToDateCheckV1 (
-    appid uint32,
-    version uint32,
-) (Response, error) {
-    p := getPath("ISteamApps", "UpToDateCheck", 1)
-    request := map[string]string{
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "version" : fmt.Sprintf(`%v`, version),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
-
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
-}
-
 
 type ISteamBroadcast struct {
 }
 
 func NewISteamBroadcast() *ISteamBroadcast {
-    return &ISteamBroadcast{}
+	return &ISteamBroadcast{}
 }
 
-func (i *ISteamBroadcast) ViewerHeartbeatV1 (
-    steamid uint64,
-    sessionid uint64,
-    token uint64,
-    stream int32,
+func (i *ISteamBroadcast) ViewerHeartbeatV1(
+	steamid uint64,
+	sessionid uint64,
+	token uint64,
+	stream int32,
 ) (Response, error) {
-    p := getPath("ISteamBroadcast", "ViewerHeartbeat", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "sessionid" : fmt.Sprintf(`%v`, sessionid),
-        "token" : fmt.Sprintf(`%v`, token),
-        "stream" : fmt.Sprintf(`%v`, stream),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamBroadcast", "ViewerHeartbeat", 1)
+	request := map[string]string{
+		"steamid":   fmt.Sprintf(`%v`, steamid),
+		"sessionid": fmt.Sprintf(`%v`, sessionid),
+		"token":     fmt.Sprintf(`%v`, token),
+		"stream":    fmt.Sprintf(`%v`, stream),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ISteamCDN struct {
 }
 
 func NewISteamCDN() *ISteamCDN {
-    return &ISteamCDN{}
+	return &ISteamCDN{}
 }
 
-func (i *ISteamCDN) SetClientFiltersV1 (
-    key string,
-    cdnname string,
-    allowedipblocks string,
-    allowedasns string,
-    allowedipcountries string,
+func (i *ISteamCDN) SetClientFiltersV1(
+	key string,
+	cdnname string,
+	allowedipblocks string,
+	allowedasns string,
+	allowedipcountries string,
 ) (Response, error) {
-    p := getPath("ISteamCDN", "SetClientFilters", 1)
-    request := map[string]string{
-        "key" : key,
-        "cdnname" : cdnname,
-        "allowedipblocks" : allowedipblocks,
-        "allowedasns" : allowedasns,
-        "allowedipcountries" : allowedipcountries,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamCDN", "SetClientFilters", 1)
+	request := map[string]string{
+		"key":                key,
+		"cdnname":            cdnname,
+		"allowedipblocks":    allowedipblocks,
+		"allowedasns":        allowedasns,
+		"allowedipcountries": allowedipcountries,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamCDN) SetPerformanceStatsV1 (
-    key string,
-    cdnname string,
-    mbpsSent uint32,
-    mbpsRecv uint32,
-    cpuPercent uint32,
-    cacheHitPercent uint32,
+func (i *ISteamCDN) SetPerformanceStatsV1(
+	key string,
+	cdnname string,
+	mbpsSent uint32,
+	mbpsRecv uint32,
+	cpuPercent uint32,
+	cacheHitPercent uint32,
 ) (Response, error) {
-    p := getPath("ISteamCDN", "SetPerformanceStats", 1)
-    request := map[string]string{
-        "key" : key,
-        "cdnname" : cdnname,
-        "mbpsSent" : fmt.Sprintf(`%v`, mbpsSent),
-        "mbpsRecv" : fmt.Sprintf(`%v`, mbpsRecv),
-        "cpuPercent" : fmt.Sprintf(`%v`, cpuPercent),
-        "cacheHitPercent" : fmt.Sprintf(`%v`, cacheHitPercent),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamCDN", "SetPerformanceStats", 1)
+	request := map[string]string{
+		"key":             key,
+		"cdnname":         cdnname,
+		"mbpsSent":        fmt.Sprintf(`%v`, mbpsSent),
+		"mbpsRecv":        fmt.Sprintf(`%v`, mbpsRecv),
+		"cpuPercent":      fmt.Sprintf(`%v`, cpuPercent),
+		"cacheHitPercent": fmt.Sprintf(`%v`, cacheHitPercent),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ISteamDirectory struct {
 }
 
 func NewISteamDirectory() *ISteamDirectory {
-    return &ISteamDirectory{}
+	return &ISteamDirectory{}
 }
 
-func (i *ISteamDirectory) GetCMListV1 (
-    cellid uint32,
-    maxcount uint32,
+func (i *ISteamDirectory) GetCMListV1(
+	cellid uint32,
+	maxcount uint32,
 ) (Response, error) {
-    p := getPath("ISteamDirectory", "GetCMList", 1)
-    request := map[string]string{
-        "cellid" : fmt.Sprintf(`%v`, cellid),
-        "maxcount" : fmt.Sprintf(`%v`, maxcount),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamDirectory", "GetCMList", 1)
+	request := map[string]string{
+		"cellid":   fmt.Sprintf(`%v`, cellid),
+		"maxcount": fmt.Sprintf(`%v`, maxcount),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamDirectory) GetCMListForConnectV1 (
-    cellid uint32,
-    cmtype string,
-    realm string,
-    maxcount uint32,
+func (i *ISteamDirectory) GetCMListForConnectV1(
+	cellid uint32,
+	cmtype string,
+	realm string,
+	maxcount uint32,
 ) (Response, error) {
-    p := getPath("ISteamDirectory", "GetCMListForConnect", 1)
-    request := map[string]string{
-        "cellid" : fmt.Sprintf(`%v`, cellid),
-        "cmtype" : cmtype,
-        "realm" : realm,
-        "maxcount" : fmt.Sprintf(`%v`, maxcount),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamDirectory", "GetCMListForConnect", 1)
+	request := map[string]string{
+		"cellid":   fmt.Sprintf(`%v`, cellid),
+		"cmtype":   cmtype,
+		"realm":    realm,
+		"maxcount": fmt.Sprintf(`%v`, maxcount),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamDirectory) GetSteamPipeDomainsV1 (
-) (Response, error) {
-    p := getPath("ISteamDirectory", "GetSteamPipeDomains", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *ISteamDirectory) GetSteamPipeDomainsV1() (Response, error) {
+	p := getPath("ISteamDirectory", "GetSteamPipeDomains", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ISteamEconomy struct {
 }
 
 func NewISteamEconomy() *ISteamEconomy {
-    return &ISteamEconomy{}
+	return &ISteamEconomy{}
 }
 
-func (i *ISteamEconomy) GetAssetClassInfoV1 (
-    appid uint32,
-    language string,
-    classCount uint32,
-    classid0 uint64,
-    instanceid0 uint64,
+func (i *ISteamEconomy) GetAssetClassInfoV1(
+	appid uint32,
+	language string,
+	classCount uint32,
+	classid0 uint64,
+	instanceid0 uint64,
 ) (Response, error) {
-    p := getPath("ISteamEconomy", "GetAssetClassInfo", 1)
-    request := map[string]string{
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "language" : language,
-        "classCount" : fmt.Sprintf(`%v`, classCount),
-        "classid0" : fmt.Sprintf(`%v`, classid0),
-        "instanceid0" : fmt.Sprintf(`%v`, instanceid0),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamEconomy", "GetAssetClassInfo", 1)
+	request := map[string]string{
+		"appid":       fmt.Sprintf(`%v`, appid),
+		"language":    language,
+		"classCount":  fmt.Sprintf(`%v`, classCount),
+		"classid0":    fmt.Sprintf(`%v`, classid0),
+		"instanceid0": fmt.Sprintf(`%v`, instanceid0),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamEconomy) GetAssetPricesV1 (
-    appid uint32,
-    currency string,
-    language string,
+func (i *ISteamEconomy) GetAssetPricesV1(
+	appid uint32,
+	currency string,
+	language string,
 ) (Response, error) {
-    p := getPath("ISteamEconomy", "GetAssetPrices", 1)
-    request := map[string]string{
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "currency" : currency,
-        "language" : language,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamEconomy", "GetAssetPrices", 1)
+	request := map[string]string{
+		"appid":    fmt.Sprintf(`%v`, appid),
+		"currency": currency,
+		"language": language,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ISteamNews struct {
 }
 
 func NewISteamNews() *ISteamNews {
-    return &ISteamNews{}
+	return &ISteamNews{}
 }
 
-func (i *ISteamNews) GetNewsForAppV1 (
-    appid uint32,
-    maxlength uint32,
-    enddate uint32,
-    count uint32,
-    tags string,
+func (i *ISteamNews) GetNewsForAppV1(
+	appid uint32,
+	maxlength uint32,
+	enddate uint32,
+	count uint32,
+	tags string,
 ) (Response, error) {
-    p := getPath("ISteamNews", "GetNewsForApp", 1)
-    request := map[string]string{
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "maxlength" : fmt.Sprintf(`%v`, maxlength),
-        "enddate" : fmt.Sprintf(`%v`, enddate),
-        "count" : fmt.Sprintf(`%v`, count),
-        "tags" : tags,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamNews", "GetNewsForApp", 1)
+	request := map[string]string{
+		"appid":     fmt.Sprintf(`%v`, appid),
+		"maxlength": fmt.Sprintf(`%v`, maxlength),
+		"enddate":   fmt.Sprintf(`%v`, enddate),
+		"count":     fmt.Sprintf(`%v`, count),
+		"tags":      tags,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamNews) GetNewsForAppV2 (
-    appid uint32,
-    maxlength uint32,
-    enddate uint32,
-    count uint32,
-    feeds string,
-    tags string,
+func (i *ISteamNews) GetNewsForAppV2(
+	appid uint32,
+	maxlength uint32,
+	enddate uint32,
+	count uint32,
+	feeds string,
+	tags string,
 ) (Response, error) {
-    p := getPath("ISteamNews", "GetNewsForApp", 2)
-    request := map[string]string{
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "maxlength" : fmt.Sprintf(`%v`, maxlength),
-        "enddate" : fmt.Sprintf(`%v`, enddate),
-        "count" : fmt.Sprintf(`%v`, count),
-        "feeds" : feeds,
-        "tags" : tags,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamNews", "GetNewsForApp", 2)
+	request := map[string]string{
+		"appid":     fmt.Sprintf(`%v`, appid),
+		"maxlength": fmt.Sprintf(`%v`, maxlength),
+		"enddate":   fmt.Sprintf(`%v`, enddate),
+		"count":     fmt.Sprintf(`%v`, count),
+		"feeds":     feeds,
+		"tags":      tags,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ISteamRemoteStorage struct {
 }
 
 func NewISteamRemoteStorage() *ISteamRemoteStorage {
-    return &ISteamRemoteStorage{}
+	return &ISteamRemoteStorage{}
 }
 
-func (i *ISteamRemoteStorage) GetCollectionDetailsV1 (
-    collectioncount uint32,
-    publishedfileids uint64,
+func (i *ISteamRemoteStorage) GetCollectionDetailsV1(
+	collectioncount uint32,
+	publishedfileids uint64,
 ) (Response, error) {
-    p := getPath("ISteamRemoteStorage", "GetCollectionDetails", 1)
-    request := map[string]string{
-        "collectioncount" : fmt.Sprintf(`%v`, collectioncount),
-        "publishedfileids" : fmt.Sprintf(`%v`, publishedfileids),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamRemoteStorage", "GetCollectionDetails", 1)
+	request := map[string]string{
+		"collectioncount":  fmt.Sprintf(`%v`, collectioncount),
+		"publishedfileids": fmt.Sprintf(`%v`, publishedfileids),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamRemoteStorage) GetPublishedFileDetailsV1 (
-    itemcount uint32,
-    publishedfileids uint64,
+func (i *ISteamRemoteStorage) GetPublishedFileDetailsV1(
+	itemcount uint32,
+	publishedfileids uint64,
 ) (Response, error) {
-    p := getPath("ISteamRemoteStorage", "GetPublishedFileDetails", 1)
-    request := map[string]string{
-        "itemcount" : fmt.Sprintf(`%v`, itemcount),
-        "publishedfileids" : fmt.Sprintf(`%v`, publishedfileids),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamRemoteStorage", "GetPublishedFileDetails", 1)
+	request := map[string]string{
+		"itemcount":        fmt.Sprintf(`%v`, itemcount),
+		"publishedfileids": fmt.Sprintf(`%v`, publishedfileids),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamRemoteStorage) GetUGCFileDetailsV1 (
-    steamid uint64,
-    ugcid uint64,
-    appid uint32,
+func (i *ISteamRemoteStorage) GetUGCFileDetailsV1(
+	steamid uint64,
+	ugcid uint64,
+	appid uint32,
 ) (Response, error) {
-    p := getPath("ISteamRemoteStorage", "GetUGCFileDetails", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "ugcid" : fmt.Sprintf(`%v`, ugcid),
-        "appid" : fmt.Sprintf(`%v`, appid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamRemoteStorage", "GetUGCFileDetails", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+		"ugcid":   fmt.Sprintf(`%v`, ugcid),
+		"appid":   fmt.Sprintf(`%v`, appid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ISteamUser struct {
 }
 
 func NewISteamUser() *ISteamUser {
-    return &ISteamUser{}
+	return &ISteamUser{}
 }
 
-func (i *ISteamUser) GetFriendListV1 (
-    key string,
-    steamid uint64,
-    relationship string,
+func (i *ISteamUser) GetFriendListV1(
+	key string,
+	steamid uint64,
+	relationship string,
 ) (Response, error) {
-    p := getPath("ISteamUser", "GetFriendList", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "relationship" : relationship,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUser", "GetFriendList", 1)
+	request := map[string]string{
+		"key":          key,
+		"steamid":      fmt.Sprintf(`%v`, steamid),
+		"relationship": relationship,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamUser) GetPlayerBansV1 (
-    key string,
-    steamids string,
+func (i *ISteamUser) GetPlayerBansV1(
+	key string,
+	steamids string,
 ) (Response, error) {
-    p := getPath("ISteamUser", "GetPlayerBans", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamids" : steamids,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUser", "GetPlayerBans", 1)
+	request := map[string]string{
+		"key":      key,
+		"steamids": steamids,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamUser) GetPlayerSummariesV1 (
-    key string,
-    steamids string,
+func (i *ISteamUser) GetPlayerSummariesV1(
+	key string,
+	steamids string,
 ) (Response, error) {
-    p := getPath("ISteamUser", "GetPlayerSummaries", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamids" : steamids,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUser", "GetPlayerSummaries", 1)
+	request := map[string]string{
+		"key":      key,
+		"steamids": steamids,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamUser) GetPlayerSummariesV2 (
-    key string,
-    steamids string,
+func (i *ISteamUser) GetPlayerSummariesV2(
+	key string,
+	steamids string,
 ) (Response, error) {
-    p := getPath("ISteamUser", "GetPlayerSummaries", 2)
-    request := map[string]string{
-        "key" : key,
-        "steamids" : steamids,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUser", "GetPlayerSummaries", 2)
+	request := map[string]string{
+		"key":      key,
+		"steamids": steamids,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamUser) GetUserGroupListV1 (
-    key string,
-    steamid uint64,
+func (i *ISteamUser) GetUserGroupListV1(
+	key string,
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("ISteamUser", "GetUserGroupList", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUser", "GetUserGroupList", 1)
+	request := map[string]string{
+		"key":     key,
+		"steamid": fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamUser) ResolveVanityURLV1 (
-    key string,
-    vanityurl string,
-    urlType int32,
+func (i *ISteamUser) ResolveVanityURLV1(
+	key string,
+	vanityurl string,
+	urlType int32,
 ) (Response, error) {
-    p := getPath("ISteamUser", "ResolveVanityURL", 1)
-    request := map[string]string{
-        "key" : key,
-        "vanityurl" : vanityurl,
-        "urlType" : fmt.Sprintf(`%v`, urlType),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUser", "ResolveVanityURL", 1)
+	request := map[string]string{
+		"key":       key,
+		"vanityurl": vanityurl,
+		"urlType":   fmt.Sprintf(`%v`, urlType),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ISteamUserAuth struct {
 }
 
 func NewISteamUserAuth() *ISteamUserAuth {
-    return &ISteamUserAuth{}
+	return &ISteamUserAuth{}
 }
 
-func (i *ISteamUserAuth) AuthenticateUserV1 (
-    steamid uint64,
+func (i *ISteamUserAuth) AuthenticateUserV1(
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("ISteamUserAuth", "AuthenticateUser", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUserAuth", "AuthenticateUser", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamUserAuth) AuthenticateUserTicketV1 (
-    key string,
-    appid uint32,
-    ticket string,
+func (i *ISteamUserAuth) AuthenticateUserTicketV1(
+	key string,
+	appid uint32,
+	ticket string,
 ) (Response, error) {
-    p := getPath("ISteamUserAuth", "AuthenticateUserTicket", 1)
-    request := map[string]string{
-        "key" : key,
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "ticket" : ticket,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUserAuth", "AuthenticateUserTicket", 1)
+	request := map[string]string{
+		"key":    key,
+		"appid":  fmt.Sprintf(`%v`, appid),
+		"ticket": ticket,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ISteamUserOAuth struct {
 }
 
 func NewISteamUserOAuth() *ISteamUserOAuth {
-    return &ISteamUserOAuth{}
+	return &ISteamUserOAuth{}
 }
 
-func (i *ISteamUserOAuth) GetTokenDetailsV1 (
-    accessToken string,
+func (i *ISteamUserOAuth) GetTokenDetailsV1(
+	accessToken string,
 ) (Response, error) {
-    p := getPath("ISteamUserOAuth", "GetTokenDetails", 1)
-    request := map[string]string{
-        "accessToken" : accessToken,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUserOAuth", "GetTokenDetails", 1)
+	request := map[string]string{
+		"accessToken": accessToken,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ISteamUserStats struct {
 }
 
 func NewISteamUserStats() *ISteamUserStats {
-    return &ISteamUserStats{}
+	return &ISteamUserStats{}
 }
 
-func (i *ISteamUserStats) GetGlobalAchievementPercentagesForAppV1 (
-    gameid uint64,
+func (i *ISteamUserStats) GetGlobalAchievementPercentagesForAppV1(
+	gameid uint64,
 ) (Response, error) {
-    p := getPath("ISteamUserStats", "GetGlobalAchievementPercentagesForApp", 1)
-    request := map[string]string{
-        "gameid" : fmt.Sprintf(`%v`, gameid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUserStats", "GetGlobalAchievementPercentagesForApp", 1)
+	request := map[string]string{
+		"gameid": fmt.Sprintf(`%v`, gameid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamUserStats) GetGlobalAchievementPercentagesForAppV2 (
-    gameid uint64,
+func (i *ISteamUserStats) GetGlobalAchievementPercentagesForAppV2(
+	gameid uint64,
 ) (Response, error) {
-    p := getPath("ISteamUserStats", "GetGlobalAchievementPercentagesForApp", 2)
-    request := map[string]string{
-        "gameid" : fmt.Sprintf(`%v`, gameid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUserStats", "GetGlobalAchievementPercentagesForApp", 2)
+	request := map[string]string{
+		"gameid": fmt.Sprintf(`%v`, gameid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamUserStats) GetGlobalStatsForGameV1 (
-    appid uint32,
-    count uint32,
-    name string,
-    startdate uint32,
-    enddate uint32,
+func (i *ISteamUserStats) GetGlobalStatsForGameV1(
+	appid uint32,
+	count uint32,
+	name string,
+	startdate uint32,
+	enddate uint32,
 ) (Response, error) {
-    p := getPath("ISteamUserStats", "GetGlobalStatsForGame", 1)
-    request := map[string]string{
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "count" : fmt.Sprintf(`%v`, count),
-        "name" : name,
-        "startdate" : fmt.Sprintf(`%v`, startdate),
-        "enddate" : fmt.Sprintf(`%v`, enddate),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUserStats", "GetGlobalStatsForGame", 1)
+	request := map[string]string{
+		"appid":     fmt.Sprintf(`%v`, appid),
+		"count":     fmt.Sprintf(`%v`, count),
+		"name":      name,
+		"startdate": fmt.Sprintf(`%v`, startdate),
+		"enddate":   fmt.Sprintf(`%v`, enddate),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamUserStats) GetNumberOfCurrentPlayersV1 (
-    appid uint32,
+func (i *ISteamUserStats) GetNumberOfCurrentPlayersV1(
+	appid uint32,
 ) (Response, error) {
-    p := getPath("ISteamUserStats", "GetNumberOfCurrentPlayers", 1)
-    request := map[string]string{
-        "appid" : fmt.Sprintf(`%v`, appid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUserStats", "GetNumberOfCurrentPlayers", 1)
+	request := map[string]string{
+		"appid": fmt.Sprintf(`%v`, appid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamUserStats) GetPlayerAchievementsV1 (
-    key string,
-    steamid uint64,
-    appid uint32,
-    l string,
+func (i *ISteamUserStats) GetPlayerAchievementsV1(
+	key string,
+	steamid uint64,
+	appid uint32,
+	l string,
 ) (Response, error) {
-    p := getPath("ISteamUserStats", "GetPlayerAchievements", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "l" : l,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUserStats", "GetPlayerAchievements", 1)
+	request := map[string]string{
+		"key":     key,
+		"steamid": fmt.Sprintf(`%v`, steamid),
+		"appid":   fmt.Sprintf(`%v`, appid),
+		"l":       l,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamUserStats) GetSchemaForGameV1 (
-    key string,
-    appid uint32,
-    l string,
+func (i *ISteamUserStats) GetSchemaForGameV1(
+	key string,
+	appid uint32,
+	l string,
 ) (Response, error) {
-    p := getPath("ISteamUserStats", "GetSchemaForGame", 1)
-    request := map[string]string{
-        "key" : key,
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "l" : l,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUserStats", "GetSchemaForGame", 1)
+	request := map[string]string{
+		"key":   key,
+		"appid": fmt.Sprintf(`%v`, appid),
+		"l":     l,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamUserStats) GetSchemaForGameV2 (
-    key string,
-    appid uint32,
-    l string,
+func (i *ISteamUserStats) GetSchemaForGameV2(
+	key string,
+	appid uint32,
+	l string,
 ) (Response, error) {
-    p := getPath("ISteamUserStats", "GetSchemaForGame", 2)
-    request := map[string]string{
-        "key" : key,
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "l" : l,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUserStats", "GetSchemaForGame", 2)
+	request := map[string]string{
+		"key":   key,
+		"appid": fmt.Sprintf(`%v`, appid),
+		"l":     l,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamUserStats) GetUserStatsForGameV1 (
-    key string,
-    steamid uint64,
-    appid uint32,
+func (i *ISteamUserStats) GetUserStatsForGameV1(
+	key string,
+	steamid uint64,
+	appid uint32,
 ) (Response, error) {
-    p := getPath("ISteamUserStats", "GetUserStatsForGame", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "appid" : fmt.Sprintf(`%v`, appid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUserStats", "GetUserStatsForGame", 1)
+	request := map[string]string{
+		"key":     key,
+		"steamid": fmt.Sprintf(`%v`, steamid),
+		"appid":   fmt.Sprintf(`%v`, appid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamUserStats) GetUserStatsForGameV2 (
-    key string,
-    steamid uint64,
-    appid uint32,
+func (i *ISteamUserStats) GetUserStatsForGameV2(
+	key string,
+	steamid uint64,
+	appid uint32,
 ) (Response, error) {
-    p := getPath("ISteamUserStats", "GetUserStatsForGame", 2)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "appid" : fmt.Sprintf(`%v`, appid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamUserStats", "GetUserStatsForGame", 2)
+	request := map[string]string{
+		"key":     key,
+		"steamid": fmt.Sprintf(`%v`, steamid),
+		"appid":   fmt.Sprintf(`%v`, appid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ISteamWebAPIUtil struct {
 }
 
 func NewISteamWebAPIUtil() *ISteamWebAPIUtil {
-    return &ISteamWebAPIUtil{}
+	return &ISteamWebAPIUtil{}
 }
 
-func (i *ISteamWebAPIUtil) GetServerInfoV1 (
+func (i *ISteamWebAPIUtil) GetServerInfoV1() (Response, error) {
+	p := getPath("ISteamWebAPIUtil", "GetServerInfo", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
+
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}
+func (i *ISteamWebAPIUtil) GetSupportedAPIListV1(
+	key string,
 ) (Response, error) {
-    p := getPath("ISteamWebAPIUtil", "GetServerInfo", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ISteamWebAPIUtil", "GetSupportedAPIList", 1)
+	request := map[string]string{
+		"key": key,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ISteamWebAPIUtil) GetSupportedAPIListV1 (
-    key string,
-) (Response, error) {
-    p := getPath("ISteamWebAPIUtil", "GetSupportedAPIList", 1)
-    request := map[string]string{
-        "key" : key,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
-
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
-}
-
 
 type ITFItems_440 struct {
 }
 
 func NewITFItems_440() *ITFItems_440 {
-    return &ITFItems_440{}
+	return &ITFItems_440{}
 }
 
-func (i *ITFItems_440) GetGoldenWrenchesV1 (
-) (Response, error) {
-    p := getPath("ITFItems_440", "GetGoldenWrenches", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *ITFItems_440) GetGoldenWrenchesV1() (Response, error) {
+	p := getPath("ITFItems_440", "GetGoldenWrenches", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ITFItems_440) GetGoldenWrenchesV2 (
-) (Response, error) {
-    p := getPath("ITFItems_440", "GetGoldenWrenches", 2)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *ITFItems_440) GetGoldenWrenchesV2() (Response, error) {
+	p := getPath("ITFItems_440", "GetGoldenWrenches", 2)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ITFPromos_440 struct {
 }
 
 func NewITFPromos_440() *ITFPromos_440 {
-    return &ITFPromos_440{}
+	return &ITFPromos_440{}
 }
 
-func (i *ITFPromos_440) GetItemIDV1 (
-    steamid uint64,
-    promoid uint32,
+func (i *ITFPromos_440) GetItemIDV1(
+	steamid uint64,
+	promoid uint32,
 ) (Response, error) {
-    p := getPath("ITFPromos_440", "GetItemID", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "promoid" : fmt.Sprintf(`%v`, promoid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ITFPromos_440", "GetItemID", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+		"promoid": fmt.Sprintf(`%v`, promoid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ITFPromos_440) GrantItemV1 (
-    steamid uint64,
-    promoid uint32,
+func (i *ITFPromos_440) GrantItemV1(
+	steamid uint64,
+	promoid uint32,
 ) (Response, error) {
-    p := getPath("ITFPromos_440", "GrantItem", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "promoid" : fmt.Sprintf(`%v`, promoid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ITFPromos_440", "GrantItem", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+		"promoid": fmt.Sprintf(`%v`, promoid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ITFPromos_620 struct {
 }
 
 func NewITFPromos_620() *ITFPromos_620 {
-    return &ITFPromos_620{}
+	return &ITFPromos_620{}
 }
 
-func (i *ITFPromos_620) GetItemIDV1 (
-    steamid uint64,
-    promoId uint32,
+func (i *ITFPromos_620) GetItemIDV1(
+	steamid uint64,
+	promoId uint32,
 ) (Response, error) {
-    p := getPath("ITFPromos_620", "GetItemID", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "promoId" : fmt.Sprintf(`%v`, promoId),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ITFPromos_620", "GetItemID", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+		"promoId": fmt.Sprintf(`%v`, promoId),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *ITFPromos_620) GrantItemV1 (
-    steamid uint64,
-    promoId uint32,
+func (i *ITFPromos_620) GrantItemV1(
+	steamid uint64,
+	promoId uint32,
 ) (Response, error) {
-    p := getPath("ITFPromos_620", "GrantItem", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "promoId" : fmt.Sprintf(`%v`, promoId),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ITFPromos_620", "GrantItem", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+		"promoId": fmt.Sprintf(`%v`, promoId),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ITFSystem_440 struct {
 }
 
 func NewITFSystem_440() *ITFSystem_440 {
-    return &ITFSystem_440{}
+	return &ITFSystem_440{}
 }
 
-func (i *ITFSystem_440) GetWorldStatusV1 (
-) (Response, error) {
-    p := getPath("ITFSystem_440", "GetWorldStatus", 1)
-    request := map[string]string{
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+func (i *ITFSystem_440) GetWorldStatusV1() (Response, error) {
+	p := getPath("ITFSystem_440", "GetWorldStatus", 1)
+	request := map[string]string{}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IGameServersService struct {
 }
 
 func NewIGameServersService() *IGameServersService {
-    return &IGameServersService{}
+	return &IGameServersService{}
 }
 
-func (i *IGameServersService) GetAccountListV1 (
-    key string,
+func (i *IGameServersService) GetAccountListV1(
+	key string,
 ) (Response, error) {
-    p := getPath("IGameServersService", "GetAccountList", 1)
-    request := map[string]string{
-        "key" : key,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IGameServersService", "GetAccountList", 1)
+	request := map[string]string{
+		"key": key,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IGameServersService) CreateAccountV1 (
-    key string,
-    appid uint32,
-    memo string,
+func (i *IGameServersService) CreateAccountV1(
+	key string,
+	appid uint32,
+	memo string,
 ) (Response, error) {
-    p := getPath("IGameServersService", "CreateAccount", 1)
-    request := map[string]string{
-        "key" : key,
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "memo" : memo,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IGameServersService", "CreateAccount", 1)
+	request := map[string]string{
+		"key":   key,
+		"appid": fmt.Sprintf(`%v`, appid),
+		"memo":  memo,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IGameServersService) SetMemoV1 (
-    key string,
-    steamid uint64,
-    memo string,
+func (i *IGameServersService) SetMemoV1(
+	key string,
+	steamid uint64,
+	memo string,
 ) (Response, error) {
-    p := getPath("IGameServersService", "SetMemo", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "memo" : memo,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IGameServersService", "SetMemo", 1)
+	request := map[string]string{
+		"key":     key,
+		"steamid": fmt.Sprintf(`%v`, steamid),
+		"memo":    memo,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IGameServersService) ResetLoginTokenV1 (
-    key string,
-    steamid uint64,
+func (i *IGameServersService) ResetLoginTokenV1(
+	key string,
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("IGameServersService", "ResetLoginToken", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IGameServersService", "ResetLoginToken", 1)
+	request := map[string]string{
+		"key":     key,
+		"steamid": fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IGameServersService) DeleteAccountV1 (
-    key string,
-    steamid uint64,
+func (i *IGameServersService) DeleteAccountV1(
+	key string,
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("IGameServersService", "DeleteAccount", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IGameServersService", "DeleteAccount", 1)
+	request := map[string]string{
+		"key":     key,
+		"steamid": fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IGameServersService) GetAccountPublicInfoV1 (
-    key string,
-    steamid uint64,
+func (i *IGameServersService) GetAccountPublicInfoV1(
+	key string,
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("IGameServersService", "GetAccountPublicInfo", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IGameServersService", "GetAccountPublicInfo", 1)
+	request := map[string]string{
+		"key":     key,
+		"steamid": fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IGameServersService) QueryLoginTokenV1 (
-    key string,
-    loginToken string,
+func (i *IGameServersService) QueryLoginTokenV1(
+	key string,
+	loginToken string,
 ) (Response, error) {
-    p := getPath("IGameServersService", "QueryLoginToken", 1)
-    request := map[string]string{
-        "key" : key,
-        "loginToken" : loginToken,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IGameServersService", "QueryLoginToken", 1)
+	request := map[string]string{
+		"key":        key,
+		"loginToken": loginToken,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IGameServersService) GetServerSteamIDsByIPV1 (
-    key string,
-    serverIps string,
+func (i *IGameServersService) GetServerSteamIDsByIPV1(
+	key string,
+	serverIps string,
 ) (Response, error) {
-    p := getPath("IGameServersService", "GetServerSteamIDsByIP", 1)
-    request := map[string]string{
-        "key" : key,
-        "serverIps" : serverIps,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IGameServersService", "GetServerSteamIDsByIP", 1)
+	request := map[string]string{
+		"key":       key,
+		"serverIps": serverIps,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IGameServersService) GetServerIPsBySteamIDV1 (
-    key string,
-    serverSteamids uint64,
+func (i *IGameServersService) GetServerIPsBySteamIDV1(
+	key string,
+	serverSteamids uint64,
 ) (Response, error) {
-    p := getPath("IGameServersService", "GetServerIPsBySteamID", 1)
-    request := map[string]string{
-        "key" : key,
-        "serverSteamids" : fmt.Sprintf(`%v`, serverSteamids),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IGameServersService", "GetServerIPsBySteamID", 1)
+	request := map[string]string{
+		"key":            key,
+		"serverSteamids": fmt.Sprintf(`%v`, serverSteamids),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IGameServersService) QueryByFakeIPV1 (
-    key string,
-    fakeIp uint32,
-    fakePort uint32,
-    appId uint32,
+func (i *IGameServersService) QueryByFakeIPV1(
+	key string,
+	fakeIp uint32,
+	fakePort uint32,
+	appId uint32,
 ) (Response, error) {
-    p := getPath("IGameServersService", "QueryByFakeIP", 1)
-    request := map[string]string{
-        "key" : key,
-        "fakeIp" : fmt.Sprintf(`%v`, fakeIp),
-        "fakePort" : fmt.Sprintf(`%v`, fakePort),
-        "appId" : fmt.Sprintf(`%v`, appId),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IGameServersService", "QueryByFakeIP", 1)
+	request := map[string]string{
+		"key":      key,
+		"fakeIp":   fmt.Sprintf(`%v`, fakeIp),
+		"fakePort": fmt.Sprintf(`%v`, fakePort),
+		"appId":    fmt.Sprintf(`%v`, appId),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IPlayerService struct {
 }
 
 func NewIPlayerService() *IPlayerService {
-    return &IPlayerService{}
+	return &IPlayerService{}
 }
 
-func (i *IPlayerService) IsPlayingSharedGameV1 (
-    key string,
-    steamid uint64,
-    appidPlaying uint32,
+func (i *IPlayerService) IsPlayingSharedGameV1(
+	key string,
+	steamid uint64,
+	appidPlaying uint32,
 ) (Response, error) {
-    p := getPath("IPlayerService", "IsPlayingSharedGame", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "appidPlaying" : fmt.Sprintf(`%v`, appidPlaying),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IPlayerService", "IsPlayingSharedGame", 1)
+	request := map[string]string{
+		"key":          key,
+		"steamid":      fmt.Sprintf(`%v`, steamid),
+		"appidPlaying": fmt.Sprintf(`%v`, appidPlaying),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IPlayerService) RecordOfflinePlaytimeV1 (
-    steamid uint64,
-    ticket string,
+func (i *IPlayerService) RecordOfflinePlaytimeV1(
+	steamid uint64,
+	ticket string,
 ) (Response, error) {
-    p := getPath("IPlayerService", "RecordOfflinePlaytime", 1)
-    request := map[string]string{
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "ticket" : ticket,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IPlayerService", "RecordOfflinePlaytime", 1)
+	request := map[string]string{
+		"steamid": fmt.Sprintf(`%v`, steamid),
+		"ticket":  ticket,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IPlayerService) GetRecentlyPlayedGamesV1 (
-    key string,
-    steamid uint64,
-    count uint32,
+func (i *IPlayerService) GetRecentlyPlayedGamesV1(
+	key string,
+	steamid uint64,
+	count uint32,
 ) (Response, error) {
-    p := getPath("IPlayerService", "GetRecentlyPlayedGames", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "count" : fmt.Sprintf(`%v`, count),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IPlayerService", "GetRecentlyPlayedGames", 1)
+	request := map[string]string{
+		"key":     key,
+		"steamid": fmt.Sprintf(`%v`, steamid),
+		"count":   fmt.Sprintf(`%v`, count),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IPlayerService) GetOwnedGamesV1 (
-    key string,
-    steamid uint64,
-    includeAppinfo bool,
-    includePlayedFreeGames bool,
-    appidsFilter uint32,
-    includeFreeSub bool,
-    skipUnvettedApps bool,
-    language string,
-    includeExtendedAppinfo bool,
+func (i *IPlayerService) GetOwnedGamesV1(
+	key string,
+	steamid uint64,
+	includeAppinfo bool,
+	includePlayedFreeGames bool,
+	appidsFilter uint32,
+	includeFreeSub bool,
+	skipUnvettedApps bool,
+	language string,
+	includeExtendedAppinfo bool,
 ) (Response, error) {
-    p := getPath("IPlayerService", "GetOwnedGames", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "includeAppinfo" : strconv.FormatBool(includeAppinfo),
-        "includePlayedFreeGames" : strconv.FormatBool(includePlayedFreeGames),
-        "appidsFilter" : fmt.Sprintf(`%v`, appidsFilter),
-        "includeFreeSub" : strconv.FormatBool(includeFreeSub),
-        "skipUnvettedApps" : strconv.FormatBool(skipUnvettedApps),
-        "language" : language,
-        "includeExtendedAppinfo" : strconv.FormatBool(includeExtendedAppinfo),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IPlayerService", "GetOwnedGames", 1)
+	request := map[string]string{
+		"key":                    key,
+		"steamid":                fmt.Sprintf(`%v`, steamid),
+		"includeAppinfo":         strconv.FormatBool(includeAppinfo),
+		"includePlayedFreeGames": strconv.FormatBool(includePlayedFreeGames),
+		"appidsFilter":           fmt.Sprintf(`%v`, appidsFilter),
+		"includeFreeSub":         strconv.FormatBool(includeFreeSub),
+		"skipUnvettedApps":       strconv.FormatBool(skipUnvettedApps),
+		"language":               language,
+		"includeExtendedAppinfo": strconv.FormatBool(includeExtendedAppinfo),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IPlayerService) GetSteamLevelV1 (
-    key string,
-    steamid uint64,
+func (i *IPlayerService) GetSteamLevelV1(
+	key string,
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("IPlayerService", "GetSteamLevel", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IPlayerService", "GetSteamLevel", 1)
+	request := map[string]string{
+		"key":     key,
+		"steamid": fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IPlayerService) GetBadgesV1 (
-    key string,
-    steamid uint64,
+func (i *IPlayerService) GetBadgesV1(
+	key string,
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("IPlayerService", "GetBadges", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IPlayerService", "GetBadges", 1)
+	request := map[string]string{
+		"key":     key,
+		"steamid": fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IPlayerService) GetCommunityBadgeProgressV1 (
-    key string,
-    steamid uint64,
-    badgeid int32,
+func (i *IPlayerService) GetCommunityBadgeProgressV1(
+	key string,
+	steamid uint64,
+	badgeid int32,
 ) (Response, error) {
-    p := getPath("IPlayerService", "GetCommunityBadgeProgress", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "badgeid" : fmt.Sprintf(`%v`, badgeid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IPlayerService", "GetCommunityBadgeProgress", 1)
+	request := map[string]string{
+		"key":     key,
+		"steamid": fmt.Sprintf(`%v`, steamid),
+		"badgeid": fmt.Sprintf(`%v`, badgeid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IAuthenticationService struct {
 }
 
 func NewIAuthenticationService() *IAuthenticationService {
-    return &IAuthenticationService{}
+	return &IAuthenticationService{}
 }
 
-func (i *IAuthenticationService) PollAuthSessionStatusV1 (
-    clientId uint64,
-    requestId string,
-    tokenToRevoke uint64,
+func (i *IAuthenticationService) PollAuthSessionStatusV1(
+	clientId uint64,
+	requestId string,
+	tokenToRevoke uint64,
 ) (Response, error) {
-    p := getPath("IAuthenticationService", "PollAuthSessionStatus", 1)
-    request := map[string]string{
-        "clientId" : fmt.Sprintf(`%v`, clientId),
-        "requestId" : requestId,
-        "tokenToRevoke" : fmt.Sprintf(`%v`, tokenToRevoke),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IAuthenticationService", "PollAuthSessionStatus", 1)
+	request := map[string]string{
+		"clientId":      fmt.Sprintf(`%v`, clientId),
+		"requestId":     requestId,
+		"tokenToRevoke": fmt.Sprintf(`%v`, tokenToRevoke),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IAuthenticationService) GetAuthSessionInfoV1 (
-    clientId uint64,
+func (i *IAuthenticationService) GetAuthSessionInfoV1(
+	clientId uint64,
 ) (Response, error) {
-    p := getPath("IAuthenticationService", "GetAuthSessionInfo", 1)
-    request := map[string]string{
-        "clientId" : fmt.Sprintf(`%v`, clientId),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IAuthenticationService", "GetAuthSessionInfo", 1)
+	request := map[string]string{
+		"clientId": fmt.Sprintf(`%v`, clientId),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IAuthenticationService) GetPasswordRSAPublicKeyV1 (
-    accountName string,
+func (i *IAuthenticationService) GetPasswordRSAPublicKeyV1(
+	accountName string,
 ) (Response, error) {
-    p := getPath("IAuthenticationService", "GetPasswordRSAPublicKey", 1)
-    request := map[string]string{
-        "accountName" : accountName,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IAuthenticationService", "GetPasswordRSAPublicKey", 1)
+	request := map[string]string{
+		"accountName": accountName,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IAuthenticationService) BeginAuthSessionViaCredentialsV1 (
-    deviceFriendlyName string,
-    accountName string,
-    encryptedPassword string,
-    encryptionTimestamp uint64,
-    rememberLogin bool,
-    websiteId string,
-    guardData string,
-    language uint32,
-    qosLevel int32,
+func (i *IAuthenticationService) BeginAuthSessionViaCredentialsV1(
+	deviceFriendlyName string,
+	accountName string,
+	encryptedPassword string,
+	encryptionTimestamp uint64,
+	rememberLogin bool,
+	websiteId string,
+	guardData string,
+	language uint32,
+	qosLevel int32,
 ) (Response, error) {
-    p := getPath("IAuthenticationService", "BeginAuthSessionViaCredentials", 1)
-    request := map[string]string{
-        "deviceFriendlyName" : deviceFriendlyName,
-        "accountName" : accountName,
-        "encryptedPassword" : encryptedPassword,
-        "encryptionTimestamp" : fmt.Sprintf(`%v`, encryptionTimestamp),
-        "rememberLogin" : strconv.FormatBool(rememberLogin),
-        "websiteId" : websiteId,
-        "guardData" : guardData,
-        "language" : fmt.Sprintf(`%v`, language),
-        "qosLevel" : fmt.Sprintf(`%v`, qosLevel),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IAuthenticationService", "BeginAuthSessionViaCredentials", 1)
+	request := map[string]string{
+		"deviceFriendlyName":  deviceFriendlyName,
+		"accountName":         accountName,
+		"encryptedPassword":   encryptedPassword,
+		"encryptionTimestamp": fmt.Sprintf(`%v`, encryptionTimestamp),
+		"rememberLogin":       strconv.FormatBool(rememberLogin),
+		"websiteId":           websiteId,
+		"guardData":           guardData,
+		"language":            fmt.Sprintf(`%v`, language),
+		"qosLevel":            fmt.Sprintf(`%v`, qosLevel),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IAuthenticationService) UpdateAuthSessionWithSteamGuardCodeV1 (
-    clientId uint64,
-    steamid uint64,
-    code string,
+func (i *IAuthenticationService) UpdateAuthSessionWithSteamGuardCodeV1(
+	clientId uint64,
+	steamid uint64,
+	code string,
 ) (Response, error) {
-    p := getPath("IAuthenticationService", "UpdateAuthSessionWithSteamGuardCode", 1)
-    request := map[string]string{
-        "clientId" : fmt.Sprintf(`%v`, clientId),
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "code" : code,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IAuthenticationService", "UpdateAuthSessionWithSteamGuardCode", 1)
+	request := map[string]string{
+		"clientId": fmt.Sprintf(`%v`, clientId),
+		"steamid":  fmt.Sprintf(`%v`, steamid),
+		"code":     code,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IAuthenticationService) BeginAuthSessionViaQRV1 (
-    deviceFriendlyName string,
-    websiteId string,
+func (i *IAuthenticationService) BeginAuthSessionViaQRV1(
+	deviceFriendlyName string,
+	websiteId string,
 ) (Response, error) {
-    p := getPath("IAuthenticationService", "BeginAuthSessionViaQR", 1)
-    request := map[string]string{
-        "deviceFriendlyName" : deviceFriendlyName,
-        "websiteId" : websiteId,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IAuthenticationService", "BeginAuthSessionViaQR", 1)
+	request := map[string]string{
+		"deviceFriendlyName": deviceFriendlyName,
+		"websiteId":          websiteId,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IAuthenticationService) UpdateAuthSessionWithMobileConfirmationV1 (
-    version int32,
-    clientId uint64,
-    steamid uint64,
-    signature string,
-    confirm bool,
+func (i *IAuthenticationService) UpdateAuthSessionWithMobileConfirmationV1(
+	version int32,
+	clientId uint64,
+	steamid uint64,
+	signature string,
+	confirm bool,
 ) (Response, error) {
-    p := getPath("IAuthenticationService", "UpdateAuthSessionWithMobileConfirmation", 1)
-    request := map[string]string{
-        "version" : fmt.Sprintf(`%v`, version),
-        "clientId" : fmt.Sprintf(`%v`, clientId),
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "signature" : signature,
-        "confirm" : strconv.FormatBool(confirm),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IAuthenticationService", "UpdateAuthSessionWithMobileConfirmation", 1)
+	request := map[string]string{
+		"version":   fmt.Sprintf(`%v`, version),
+		"clientId":  fmt.Sprintf(`%v`, clientId),
+		"steamid":   fmt.Sprintf(`%v`, steamid),
+		"signature": signature,
+		"confirm":   strconv.FormatBool(confirm),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IBroadcastService struct {
 }
 
 func NewIBroadcastService() *IBroadcastService {
-    return &IBroadcastService{}
+	return &IBroadcastService{}
 }
 
-func (i *IBroadcastService) PostGameDataFrameRTMPV1 (
-    appid uint32,
-    steamid uint64,
-    rtmpToken string,
-    frameData string,
+func (i *IBroadcastService) PostGameDataFrameRTMPV1(
+	appid uint32,
+	steamid uint64,
+	rtmpToken string,
+	frameData string,
 ) (Response, error) {
-    p := getPath("IBroadcastService", "PostGameDataFrameRTMP", 1)
-    request := map[string]string{
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "rtmpToken" : rtmpToken,
-        "frameData" : frameData,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IBroadcastService", "PostGameDataFrameRTMP", 1)
+	request := map[string]string{
+		"appid":     fmt.Sprintf(`%v`, appid),
+		"steamid":   fmt.Sprintf(`%v`, steamid),
+		"rtmpToken": rtmpToken,
+		"frameData": frameData,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IContentServerConfigService struct {
 }
 
 func NewIContentServerConfigService() *IContentServerConfigService {
-    return &IContentServerConfigService{}
+	return &IContentServerConfigService{}
 }
 
-func (i *IContentServerConfigService) SetSteamCacheClientFiltersV1 (
-    key string,
-    cacheId uint32,
-    cacheKey string,
-    changeNotes string,
-    allowedIpBlocks string,
+func (i *IContentServerConfigService) SetSteamCacheClientFiltersV1(
+	key string,
+	cacheId uint32,
+	cacheKey string,
+	changeNotes string,
+	allowedIpBlocks string,
 ) (Response, error) {
-    p := getPath("IContentServerConfigService", "SetSteamCacheClientFilters", 1)
-    request := map[string]string{
-        "key" : key,
-        "cacheId" : fmt.Sprintf(`%v`, cacheId),
-        "cacheKey" : cacheKey,
-        "changeNotes" : changeNotes,
-        "allowedIpBlocks" : allowedIpBlocks,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IContentServerConfigService", "SetSteamCacheClientFilters", 1)
+	request := map[string]string{
+		"key":             key,
+		"cacheId":         fmt.Sprintf(`%v`, cacheId),
+		"cacheKey":        cacheKey,
+		"changeNotes":     changeNotes,
+		"allowedIpBlocks": allowedIpBlocks,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IContentServerConfigService) GetSteamCacheNodeParamsV1 (
-    key string,
-    cacheId uint32,
-    cacheKey string,
+func (i *IContentServerConfigService) GetSteamCacheNodeParamsV1(
+	key string,
+	cacheId uint32,
+	cacheKey string,
 ) (Response, error) {
-    p := getPath("IContentServerConfigService", "GetSteamCacheNodeParams", 1)
-    request := map[string]string{
-        "key" : key,
-        "cacheId" : fmt.Sprintf(`%v`, cacheId),
-        "cacheKey" : cacheKey,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IContentServerConfigService", "GetSteamCacheNodeParams", 1)
+	request := map[string]string{
+		"key":      key,
+		"cacheId":  fmt.Sprintf(`%v`, cacheId),
+		"cacheKey": cacheKey,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IContentServerConfigService) SetSteamCachePerformanceStatsV1 (
-    key string,
-    cacheId uint32,
-    cacheKey string,
-    mbpsSent uint32,
-    mbpsRecv uint32,
-    cpuPercent uint32,
-    cacheHitPercent uint32,
-    numConnectedIps uint32,
-    upstreamEgressUtilization uint32,
+func (i *IContentServerConfigService) SetSteamCachePerformanceStatsV1(
+	key string,
+	cacheId uint32,
+	cacheKey string,
+	mbpsSent uint32,
+	mbpsRecv uint32,
+	cpuPercent uint32,
+	cacheHitPercent uint32,
+	numConnectedIps uint32,
+	upstreamEgressUtilization uint32,
 ) (Response, error) {
-    p := getPath("IContentServerConfigService", "SetSteamCachePerformanceStats", 1)
-    request := map[string]string{
-        "key" : key,
-        "cacheId" : fmt.Sprintf(`%v`, cacheId),
-        "cacheKey" : cacheKey,
-        "mbpsSent" : fmt.Sprintf(`%v`, mbpsSent),
-        "mbpsRecv" : fmt.Sprintf(`%v`, mbpsRecv),
-        "cpuPercent" : fmt.Sprintf(`%v`, cpuPercent),
-        "cacheHitPercent" : fmt.Sprintf(`%v`, cacheHitPercent),
-        "numConnectedIps" : fmt.Sprintf(`%v`, numConnectedIps),
-        "upstreamEgressUtilization" : fmt.Sprintf(`%v`, upstreamEgressUtilization),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IContentServerConfigService", "SetSteamCachePerformanceStats", 1)
+	request := map[string]string{
+		"key":                       key,
+		"cacheId":                   fmt.Sprintf(`%v`, cacheId),
+		"cacheKey":                  cacheKey,
+		"mbpsSent":                  fmt.Sprintf(`%v`, mbpsSent),
+		"mbpsRecv":                  fmt.Sprintf(`%v`, mbpsRecv),
+		"cpuPercent":                fmt.Sprintf(`%v`, cpuPercent),
+		"cacheHitPercent":           fmt.Sprintf(`%v`, cacheHitPercent),
+		"numConnectedIps":           fmt.Sprintf(`%v`, numConnectedIps),
+		"upstreamEgressUtilization": fmt.Sprintf(`%v`, upstreamEgressUtilization),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IContentServerDirectoryService struct {
 }
 
 func NewIContentServerDirectoryService() *IContentServerDirectoryService {
-    return &IContentServerDirectoryService{}
+	return &IContentServerDirectoryService{}
 }
 
-func (i *IContentServerDirectoryService) GetServersForSteamPipeV1 (
-    cellId uint32,
-    maxServers uint32,
-    ipOverride string,
-    launcherType int32,
-    ipv6Public string,
+func (i *IContentServerDirectoryService) GetServersForSteamPipeV1(
+	cellId uint32,
+	maxServers uint32,
+	ipOverride string,
+	launcherType int32,
+	ipv6Public string,
 ) (Response, error) {
-    p := getPath("IContentServerDirectoryService", "GetServersForSteamPipe", 1)
-    request := map[string]string{
-        "cellId" : fmt.Sprintf(`%v`, cellId),
-        "maxServers" : fmt.Sprintf(`%v`, maxServers),
-        "ipOverride" : ipOverride,
-        "launcherType" : fmt.Sprintf(`%v`, launcherType),
-        "ipv6Public" : ipv6Public,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IContentServerDirectoryService", "GetServersForSteamPipe", 1)
+	request := map[string]string{
+		"cellId":       fmt.Sprintf(`%v`, cellId),
+		"maxServers":   fmt.Sprintf(`%v`, maxServers),
+		"ipOverride":   ipOverride,
+		"launcherType": fmt.Sprintf(`%v`, launcherType),
+		"ipv6Public":   ipv6Public,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IContentServerDirectoryService) GetClientUpdateHostsV1 (
-    cachedSignature string,
+func (i *IContentServerDirectoryService) GetClientUpdateHostsV1(
+	cachedSignature string,
 ) (Response, error) {
-    p := getPath("IContentServerDirectoryService", "GetClientUpdateHosts", 1)
-    request := map[string]string{
-        "cachedSignature" : cachedSignature,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IContentServerDirectoryService", "GetClientUpdateHosts", 1)
+	request := map[string]string{
+		"cachedSignature": cachedSignature,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IContentServerDirectoryService) GetDepotPatchInfoV1 (
-    appid uint32,
-    depotid uint32,
-    sourceManifestid uint64,
-    targetManifestid uint64,
+func (i *IContentServerDirectoryService) GetDepotPatchInfoV1(
+	appid uint32,
+	depotid uint32,
+	sourceManifestid uint64,
+	targetManifestid uint64,
 ) (Response, error) {
-    p := getPath("IContentServerDirectoryService", "GetDepotPatchInfo", 1)
-    request := map[string]string{
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "depotid" : fmt.Sprintf(`%v`, depotid),
-        "sourceManifestid" : fmt.Sprintf(`%v`, sourceManifestid),
-        "targetManifestid" : fmt.Sprintf(`%v`, targetManifestid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IContentServerDirectoryService", "GetDepotPatchInfo", 1)
+	request := map[string]string{
+		"appid":            fmt.Sprintf(`%v`, appid),
+		"depotid":          fmt.Sprintf(`%v`, depotid),
+		"sourceManifestid": fmt.Sprintf(`%v`, sourceManifestid),
+		"targetManifestid": fmt.Sprintf(`%v`, targetManifestid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IPublishedFileService struct {
 }
 
 func NewIPublishedFileService() *IPublishedFileService {
-    return &IPublishedFileService{}
+	return &IPublishedFileService{}
 }
 
-func (i *IPublishedFileService) GetUserVoteSummaryV1 (
-    publishedfileids uint64,
+func (i *IPublishedFileService) GetUserVoteSummaryV1(
+	publishedfileids uint64,
 ) (Response, error) {
-    p := getPath("IPublishedFileService", "GetUserVoteSummary", 1)
-    request := map[string]string{
-        "publishedfileids" : fmt.Sprintf(`%v`, publishedfileids),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IPublishedFileService", "GetUserVoteSummary", 1)
+	request := map[string]string{
+		"publishedfileids": fmt.Sprintf(`%v`, publishedfileids),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IPublishedFileService) QueryFilesV1 (
-    key string,
-    queryType uint32,
-    page uint32,
-    cursor string,
-    numperpage uint32,
-    creatorAppid uint32,
-    appid uint32,
-    requiredtags string,
-    excludedtags string,
-    matchAllTags bool,
-    requiredFlags string,
-    omittedFlags string,
-    searchText string,
-    filetype uint32,
-    childPublishedfileid uint64,
-    days uint32,
-    includeRecentVotesOnly bool,
-    cacheMaxAgeSeconds uint32,
-    language int32,
-    totalonly bool,
-    idsOnly bool,
-    returnVoteData bool,
-    returnTags bool,
-    returnKvTags bool,
-    returnPreviews bool,
-    returnChildren bool,
-    returnShortDescription bool,
-    returnForSaleData bool,
-    returnMetadata bool,
-    returnPlaytimeStats uint32,
-    returnDetails bool,
-    stripDescriptionBbcode bool,
-    returnReactions bool,
+func (i *IPublishedFileService) QueryFilesV1(
+	key string,
+	queryType uint32,
+	page uint32,
+	cursor string,
+	numperpage uint32,
+	creatorAppid uint32,
+	appid uint32,
+	requiredtags string,
+	excludedtags string,
+	matchAllTags bool,
+	requiredFlags string,
+	omittedFlags string,
+	searchText string,
+	filetype uint32,
+	childPublishedfileid uint64,
+	days uint32,
+	includeRecentVotesOnly bool,
+	cacheMaxAgeSeconds uint32,
+	language int32,
+	totalonly bool,
+	idsOnly bool,
+	returnVoteData bool,
+	returnTags bool,
+	returnKvTags bool,
+	returnPreviews bool,
+	returnChildren bool,
+	returnShortDescription bool,
+	returnForSaleData bool,
+	returnMetadata bool,
+	returnPlaytimeStats uint32,
+	returnDetails bool,
+	stripDescriptionBbcode bool,
+	returnReactions bool,
 ) (Response, error) {
-    p := getPath("IPublishedFileService", "QueryFiles", 1)
-    request := map[string]string{
-        "key" : key,
-        "queryType" : fmt.Sprintf(`%v`, queryType),
-        "page" : fmt.Sprintf(`%v`, page),
-        "cursor" : cursor,
-        "numperpage" : fmt.Sprintf(`%v`, numperpage),
-        "creatorAppid" : fmt.Sprintf(`%v`, creatorAppid),
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "requiredtags" : requiredtags,
-        "excludedtags" : excludedtags,
-        "matchAllTags" : strconv.FormatBool(matchAllTags),
-        "requiredFlags" : requiredFlags,
-        "omittedFlags" : omittedFlags,
-        "searchText" : searchText,
-        "filetype" : fmt.Sprintf(`%v`, filetype),
-        "childPublishedfileid" : fmt.Sprintf(`%v`, childPublishedfileid),
-        "days" : fmt.Sprintf(`%v`, days),
-        "includeRecentVotesOnly" : strconv.FormatBool(includeRecentVotesOnly),
-        "cacheMaxAgeSeconds" : fmt.Sprintf(`%v`, cacheMaxAgeSeconds),
-        "language" : fmt.Sprintf(`%v`, language),
-        "totalonly" : strconv.FormatBool(totalonly),
-        "idsOnly" : strconv.FormatBool(idsOnly),
-        "returnVoteData" : strconv.FormatBool(returnVoteData),
-        "returnTags" : strconv.FormatBool(returnTags),
-        "returnKvTags" : strconv.FormatBool(returnKvTags),
-        "returnPreviews" : strconv.FormatBool(returnPreviews),
-        "returnChildren" : strconv.FormatBool(returnChildren),
-        "returnShortDescription" : strconv.FormatBool(returnShortDescription),
-        "returnForSaleData" : strconv.FormatBool(returnForSaleData),
-        "returnMetadata" : strconv.FormatBool(returnMetadata),
-        "returnPlaytimeStats" : fmt.Sprintf(`%v`, returnPlaytimeStats),
-        "returnDetails" : strconv.FormatBool(returnDetails),
-        "stripDescriptionBbcode" : strconv.FormatBool(stripDescriptionBbcode),
-        "returnReactions" : strconv.FormatBool(returnReactions),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IPublishedFileService", "QueryFiles", 1)
+	request := map[string]string{
+		"key":                    key,
+		"queryType":              fmt.Sprintf(`%v`, queryType),
+		"page":                   fmt.Sprintf(`%v`, page),
+		"cursor":                 cursor,
+		"numperpage":             fmt.Sprintf(`%v`, numperpage),
+		"creatorAppid":           fmt.Sprintf(`%v`, creatorAppid),
+		"appid":                  fmt.Sprintf(`%v`, appid),
+		"requiredtags":           requiredtags,
+		"excludedtags":           excludedtags,
+		"matchAllTags":           strconv.FormatBool(matchAllTags),
+		"requiredFlags":          requiredFlags,
+		"omittedFlags":           omittedFlags,
+		"searchText":             searchText,
+		"filetype":               fmt.Sprintf(`%v`, filetype),
+		"childPublishedfileid":   fmt.Sprintf(`%v`, childPublishedfileid),
+		"days":                   fmt.Sprintf(`%v`, days),
+		"includeRecentVotesOnly": strconv.FormatBool(includeRecentVotesOnly),
+		"cacheMaxAgeSeconds":     fmt.Sprintf(`%v`, cacheMaxAgeSeconds),
+		"language":               fmt.Sprintf(`%v`, language),
+		"totalonly":              strconv.FormatBool(totalonly),
+		"idsOnly":                strconv.FormatBool(idsOnly),
+		"returnVoteData":         strconv.FormatBool(returnVoteData),
+		"returnTags":             strconv.FormatBool(returnTags),
+		"returnKvTags":           strconv.FormatBool(returnKvTags),
+		"returnPreviews":         strconv.FormatBool(returnPreviews),
+		"returnChildren":         strconv.FormatBool(returnChildren),
+		"returnShortDescription": strconv.FormatBool(returnShortDescription),
+		"returnForSaleData":      strconv.FormatBool(returnForSaleData),
+		"returnMetadata":         strconv.FormatBool(returnMetadata),
+		"returnPlaytimeStats":    fmt.Sprintf(`%v`, returnPlaytimeStats),
+		"returnDetails":          strconv.FormatBool(returnDetails),
+		"stripDescriptionBbcode": strconv.FormatBool(stripDescriptionBbcode),
+		"returnReactions":        strconv.FormatBool(returnReactions),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IPublishedFileService) GetSubSectionDataV1 (
-    key string,
-    publishedfileid uint64,
-    forTableOfContents bool,
-    specificSectionid uint64,
+func (i *IPublishedFileService) GetSubSectionDataV1(
+	key string,
+	publishedfileid uint64,
+	forTableOfContents bool,
+	specificSectionid uint64,
 ) (Response, error) {
-    p := getPath("IPublishedFileService", "GetSubSectionData", 1)
-    request := map[string]string{
-        "key" : key,
-        "publishedfileid" : fmt.Sprintf(`%v`, publishedfileid),
-        "forTableOfContents" : strconv.FormatBool(forTableOfContents),
-        "specificSectionid" : fmt.Sprintf(`%v`, specificSectionid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IPublishedFileService", "GetSubSectionData", 1)
+	request := map[string]string{
+		"key":                key,
+		"publishedfileid":    fmt.Sprintf(`%v`, publishedfileid),
+		"forTableOfContents": strconv.FormatBool(forTableOfContents),
+		"specificSectionid":  fmt.Sprintf(`%v`, specificSectionid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IPublishedFileService) GetDetailsV1 (
-    key string,
-    publishedfileids uint64,
-    includetags bool,
-    includeadditionalpreviews bool,
-    includechildren bool,
-    includekvtags bool,
-    includevotes bool,
-    shortDescription bool,
-    includeforsaledata bool,
-    includemetadata bool,
-    language int32,
-    returnPlaytimeStats uint32,
-    appid uint32,
-    stripDescriptionBbcode bool,
-    includereactions bool,
+func (i *IPublishedFileService) GetDetailsV1(
+	key string,
+	publishedfileids uint64,
+	includetags bool,
+	includeadditionalpreviews bool,
+	includechildren bool,
+	includekvtags bool,
+	includevotes bool,
+	shortDescription bool,
+	includeforsaledata bool,
+	includemetadata bool,
+	language int32,
+	returnPlaytimeStats uint32,
+	appid uint32,
+	stripDescriptionBbcode bool,
+	includereactions bool,
 ) (Response, error) {
-    p := getPath("IPublishedFileService", "GetDetails", 1)
-    request := map[string]string{
-        "key" : key,
-        "publishedfileids" : fmt.Sprintf(`%v`, publishedfileids),
-        "includetags" : strconv.FormatBool(includetags),
-        "includeadditionalpreviews" : strconv.FormatBool(includeadditionalpreviews),
-        "includechildren" : strconv.FormatBool(includechildren),
-        "includekvtags" : strconv.FormatBool(includekvtags),
-        "includevotes" : strconv.FormatBool(includevotes),
-        "shortDescription" : strconv.FormatBool(shortDescription),
-        "includeforsaledata" : strconv.FormatBool(includeforsaledata),
-        "includemetadata" : strconv.FormatBool(includemetadata),
-        "language" : fmt.Sprintf(`%v`, language),
-        "returnPlaytimeStats" : fmt.Sprintf(`%v`, returnPlaytimeStats),
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "stripDescriptionBbcode" : strconv.FormatBool(stripDescriptionBbcode),
-        "includereactions" : strconv.FormatBool(includereactions),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IPublishedFileService", "GetDetails", 1)
+	request := map[string]string{
+		"key":                       key,
+		"publishedfileids":          fmt.Sprintf(`%v`, publishedfileids),
+		"includetags":               strconv.FormatBool(includetags),
+		"includeadditionalpreviews": strconv.FormatBool(includeadditionalpreviews),
+		"includechildren":           strconv.FormatBool(includechildren),
+		"includekvtags":             strconv.FormatBool(includekvtags),
+		"includevotes":              strconv.FormatBool(includevotes),
+		"shortDescription":          strconv.FormatBool(shortDescription),
+		"includeforsaledata":        strconv.FormatBool(includeforsaledata),
+		"includemetadata":           strconv.FormatBool(includemetadata),
+		"language":                  fmt.Sprintf(`%v`, language),
+		"returnPlaytimeStats":       fmt.Sprintf(`%v`, returnPlaytimeStats),
+		"appid":                     fmt.Sprintf(`%v`, appid),
+		"stripDescriptionBbcode":    strconv.FormatBool(stripDescriptionBbcode),
+		"includereactions":          strconv.FormatBool(includereactions),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IPublishedFileService) GetUserFilesV1 (
-    key string,
-    steamid uint64,
-    appid uint32,
-    shortcutid uint32,
-    page uint32,
-    numperpage uint32,
-    t string,
-    sortmethod string,
-    privacy uint32,
-    requiredtags string,
-    excludedtags string,
-    filetype uint32,
-    creatorAppid uint32,
-    matchCloudFilename string,
-    cacheMaxAgeSeconds uint32,
-    language int32,
-    totalonly bool,
-    idsOnly bool,
-    returnVoteData bool,
-    returnTags bool,
-    returnKvTags bool,
-    returnPreviews bool,
-    returnChildren bool,
-    returnShortDescription bool,
-    returnForSaleData bool,
-    returnMetadata bool,
-    returnPlaytimeStats uint32,
-    stripDescriptionBbcode bool,
-    returnReactions bool,
-    startindexOverride uint32,
-    returnApps bool,
+func (i *IPublishedFileService) GetUserFilesV1(
+	key string,
+	steamid uint64,
+	appid uint32,
+	shortcutid uint32,
+	page uint32,
+	numperpage uint32,
+	t string,
+	sortmethod string,
+	privacy uint32,
+	requiredtags string,
+	excludedtags string,
+	filetype uint32,
+	creatorAppid uint32,
+	matchCloudFilename string,
+	cacheMaxAgeSeconds uint32,
+	language int32,
+	totalonly bool,
+	idsOnly bool,
+	returnVoteData bool,
+	returnTags bool,
+	returnKvTags bool,
+	returnPreviews bool,
+	returnChildren bool,
+	returnShortDescription bool,
+	returnForSaleData bool,
+	returnMetadata bool,
+	returnPlaytimeStats uint32,
+	stripDescriptionBbcode bool,
+	returnReactions bool,
+	startindexOverride uint32,
+	returnApps bool,
 ) (Response, error) {
-    p := getPath("IPublishedFileService", "GetUserFiles", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "shortcutid" : fmt.Sprintf(`%v`, shortcutid),
-        "page" : fmt.Sprintf(`%v`, page),
-        "numperpage" : fmt.Sprintf(`%v`, numperpage),
-        "t" : t,
-        "sortmethod" : sortmethod,
-        "privacy" : fmt.Sprintf(`%v`, privacy),
-        "requiredtags" : requiredtags,
-        "excludedtags" : excludedtags,
-        "filetype" : fmt.Sprintf(`%v`, filetype),
-        "creatorAppid" : fmt.Sprintf(`%v`, creatorAppid),
-        "matchCloudFilename" : matchCloudFilename,
-        "cacheMaxAgeSeconds" : fmt.Sprintf(`%v`, cacheMaxAgeSeconds),
-        "language" : fmt.Sprintf(`%v`, language),
-        "totalonly" : strconv.FormatBool(totalonly),
-        "idsOnly" : strconv.FormatBool(idsOnly),
-        "returnVoteData" : strconv.FormatBool(returnVoteData),
-        "returnTags" : strconv.FormatBool(returnTags),
-        "returnKvTags" : strconv.FormatBool(returnKvTags),
-        "returnPreviews" : strconv.FormatBool(returnPreviews),
-        "returnChildren" : strconv.FormatBool(returnChildren),
-        "returnShortDescription" : strconv.FormatBool(returnShortDescription),
-        "returnForSaleData" : strconv.FormatBool(returnForSaleData),
-        "returnMetadata" : strconv.FormatBool(returnMetadata),
-        "returnPlaytimeStats" : fmt.Sprintf(`%v`, returnPlaytimeStats),
-        "stripDescriptionBbcode" : strconv.FormatBool(stripDescriptionBbcode),
-        "returnReactions" : strconv.FormatBool(returnReactions),
-        "startindexOverride" : fmt.Sprintf(`%v`, startindexOverride),
-        "returnApps" : strconv.FormatBool(returnApps),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IPublishedFileService", "GetUserFiles", 1)
+	request := map[string]string{
+		"key":                    key,
+		"steamid":                fmt.Sprintf(`%v`, steamid),
+		"appid":                  fmt.Sprintf(`%v`, appid),
+		"shortcutid":             fmt.Sprintf(`%v`, shortcutid),
+		"page":                   fmt.Sprintf(`%v`, page),
+		"numperpage":             fmt.Sprintf(`%v`, numperpage),
+		"t":                      t,
+		"sortmethod":             sortmethod,
+		"privacy":                fmt.Sprintf(`%v`, privacy),
+		"requiredtags":           requiredtags,
+		"excludedtags":           excludedtags,
+		"filetype":               fmt.Sprintf(`%v`, filetype),
+		"creatorAppid":           fmt.Sprintf(`%v`, creatorAppid),
+		"matchCloudFilename":     matchCloudFilename,
+		"cacheMaxAgeSeconds":     fmt.Sprintf(`%v`, cacheMaxAgeSeconds),
+		"language":               fmt.Sprintf(`%v`, language),
+		"totalonly":              strconv.FormatBool(totalonly),
+		"idsOnly":                strconv.FormatBool(idsOnly),
+		"returnVoteData":         strconv.FormatBool(returnVoteData),
+		"returnTags":             strconv.FormatBool(returnTags),
+		"returnKvTags":           strconv.FormatBool(returnKvTags),
+		"returnPreviews":         strconv.FormatBool(returnPreviews),
+		"returnChildren":         strconv.FormatBool(returnChildren),
+		"returnShortDescription": strconv.FormatBool(returnShortDescription),
+		"returnForSaleData":      strconv.FormatBool(returnForSaleData),
+		"returnMetadata":         strconv.FormatBool(returnMetadata),
+		"returnPlaytimeStats":    fmt.Sprintf(`%v`, returnPlaytimeStats),
+		"stripDescriptionBbcode": strconv.FormatBool(stripDescriptionBbcode),
+		"returnReactions":        strconv.FormatBool(returnReactions),
+		"startindexOverride":     fmt.Sprintf(`%v`, startindexOverride),
+		"returnApps":             strconv.FormatBool(returnApps),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IPublishedFileService) GetUserFileCountV1 (
-    key string,
-    steamid uint64,
-    appid uint32,
-    shortcutid uint32,
-    page uint32,
-    numperpage uint32,
-    t string,
-    sortmethod string,
-    privacy uint32,
-    requiredtags string,
-    excludedtags string,
-    filetype uint32,
-    creatorAppid uint32,
-    matchCloudFilename string,
-    cacheMaxAgeSeconds uint32,
-    language int32,
-    totalonly bool,
-    idsOnly bool,
-    returnVoteData bool,
-    returnTags bool,
-    returnKvTags bool,
-    returnPreviews bool,
-    returnChildren bool,
-    returnShortDescription bool,
-    returnForSaleData bool,
-    returnMetadata bool,
-    returnPlaytimeStats uint32,
-    stripDescriptionBbcode bool,
-    returnReactions bool,
-    startindexOverride uint32,
-    returnApps bool,
+func (i *IPublishedFileService) GetUserFileCountV1(
+	key string,
+	steamid uint64,
+	appid uint32,
+	shortcutid uint32,
+	page uint32,
+	numperpage uint32,
+	t string,
+	sortmethod string,
+	privacy uint32,
+	requiredtags string,
+	excludedtags string,
+	filetype uint32,
+	creatorAppid uint32,
+	matchCloudFilename string,
+	cacheMaxAgeSeconds uint32,
+	language int32,
+	totalonly bool,
+	idsOnly bool,
+	returnVoteData bool,
+	returnTags bool,
+	returnKvTags bool,
+	returnPreviews bool,
+	returnChildren bool,
+	returnShortDescription bool,
+	returnForSaleData bool,
+	returnMetadata bool,
+	returnPlaytimeStats uint32,
+	stripDescriptionBbcode bool,
+	returnReactions bool,
+	startindexOverride uint32,
+	returnApps bool,
 ) (Response, error) {
-    p := getPath("IPublishedFileService", "GetUserFileCount", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "shortcutid" : fmt.Sprintf(`%v`, shortcutid),
-        "page" : fmt.Sprintf(`%v`, page),
-        "numperpage" : fmt.Sprintf(`%v`, numperpage),
-        "t" : t,
-        "sortmethod" : sortmethod,
-        "privacy" : fmt.Sprintf(`%v`, privacy),
-        "requiredtags" : requiredtags,
-        "excludedtags" : excludedtags,
-        "filetype" : fmt.Sprintf(`%v`, filetype),
-        "creatorAppid" : fmt.Sprintf(`%v`, creatorAppid),
-        "matchCloudFilename" : matchCloudFilename,
-        "cacheMaxAgeSeconds" : fmt.Sprintf(`%v`, cacheMaxAgeSeconds),
-        "language" : fmt.Sprintf(`%v`, language),
-        "totalonly" : strconv.FormatBool(totalonly),
-        "idsOnly" : strconv.FormatBool(idsOnly),
-        "returnVoteData" : strconv.FormatBool(returnVoteData),
-        "returnTags" : strconv.FormatBool(returnTags),
-        "returnKvTags" : strconv.FormatBool(returnKvTags),
-        "returnPreviews" : strconv.FormatBool(returnPreviews),
-        "returnChildren" : strconv.FormatBool(returnChildren),
-        "returnShortDescription" : strconv.FormatBool(returnShortDescription),
-        "returnForSaleData" : strconv.FormatBool(returnForSaleData),
-        "returnMetadata" : strconv.FormatBool(returnMetadata),
-        "returnPlaytimeStats" : fmt.Sprintf(`%v`, returnPlaytimeStats),
-        "stripDescriptionBbcode" : strconv.FormatBool(stripDescriptionBbcode),
-        "returnReactions" : strconv.FormatBool(returnReactions),
-        "startindexOverride" : fmt.Sprintf(`%v`, startindexOverride),
-        "returnApps" : strconv.FormatBool(returnApps),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IPublishedFileService", "GetUserFileCount", 1)
+	request := map[string]string{
+		"key":                    key,
+		"steamid":                fmt.Sprintf(`%v`, steamid),
+		"appid":                  fmt.Sprintf(`%v`, appid),
+		"shortcutid":             fmt.Sprintf(`%v`, shortcutid),
+		"page":                   fmt.Sprintf(`%v`, page),
+		"numperpage":             fmt.Sprintf(`%v`, numperpage),
+		"t":                      t,
+		"sortmethod":             sortmethod,
+		"privacy":                fmt.Sprintf(`%v`, privacy),
+		"requiredtags":           requiredtags,
+		"excludedtags":           excludedtags,
+		"filetype":               fmt.Sprintf(`%v`, filetype),
+		"creatorAppid":           fmt.Sprintf(`%v`, creatorAppid),
+		"matchCloudFilename":     matchCloudFilename,
+		"cacheMaxAgeSeconds":     fmt.Sprintf(`%v`, cacheMaxAgeSeconds),
+		"language":               fmt.Sprintf(`%v`, language),
+		"totalonly":              strconv.FormatBool(totalonly),
+		"idsOnly":                strconv.FormatBool(idsOnly),
+		"returnVoteData":         strconv.FormatBool(returnVoteData),
+		"returnTags":             strconv.FormatBool(returnTags),
+		"returnKvTags":           strconv.FormatBool(returnKvTags),
+		"returnPreviews":         strconv.FormatBool(returnPreviews),
+		"returnChildren":         strconv.FormatBool(returnChildren),
+		"returnShortDescription": strconv.FormatBool(returnShortDescription),
+		"returnForSaleData":      strconv.FormatBool(returnForSaleData),
+		"returnMetadata":         strconv.FormatBool(returnMetadata),
+		"returnPlaytimeStats":    fmt.Sprintf(`%v`, returnPlaytimeStats),
+		"stripDescriptionBbcode": strconv.FormatBool(stripDescriptionBbcode),
+		"returnReactions":        strconv.FormatBool(returnReactions),
+		"startindexOverride":     fmt.Sprintf(`%v`, startindexOverride),
+		"returnApps":             strconv.FormatBool(returnApps),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IEconService struct {
 }
 
 func NewIEconService() *IEconService {
-    return &IEconService{}
+	return &IEconService{}
 }
 
-func (i *IEconService) GetTradeHistoryV1 (
-    key string,
-    maxTrades uint32,
-    startAfterTime uint32,
-    startAfterTradeid uint64,
-    navigatingBack bool,
-    getDescriptions bool,
-    language string,
-    includeFailed bool,
-    includeTotal bool,
+func (i *IEconService) GetTradeHistoryV1(
+	key string,
+	maxTrades uint32,
+	startAfterTime uint32,
+	startAfterTradeid uint64,
+	navigatingBack bool,
+	getDescriptions bool,
+	language string,
+	includeFailed bool,
+	includeTotal bool,
 ) (Response, error) {
-    p := getPath("IEconService", "GetTradeHistory", 1)
-    request := map[string]string{
-        "key" : key,
-        "maxTrades" : fmt.Sprintf(`%v`, maxTrades),
-        "startAfterTime" : fmt.Sprintf(`%v`, startAfterTime),
-        "startAfterTradeid" : fmt.Sprintf(`%v`, startAfterTradeid),
-        "navigatingBack" : strconv.FormatBool(navigatingBack),
-        "getDescriptions" : strconv.FormatBool(getDescriptions),
-        "language" : language,
-        "includeFailed" : strconv.FormatBool(includeFailed),
-        "includeTotal" : strconv.FormatBool(includeTotal),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconService", "GetTradeHistory", 1)
+	request := map[string]string{
+		"key":               key,
+		"maxTrades":         fmt.Sprintf(`%v`, maxTrades),
+		"startAfterTime":    fmt.Sprintf(`%v`, startAfterTime),
+		"startAfterTradeid": fmt.Sprintf(`%v`, startAfterTradeid),
+		"navigatingBack":    strconv.FormatBool(navigatingBack),
+		"getDescriptions":   strconv.FormatBool(getDescriptions),
+		"language":          language,
+		"includeFailed":     strconv.FormatBool(includeFailed),
+		"includeTotal":      strconv.FormatBool(includeTotal),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconService) GetTradeStatusV1 (
-    key string,
-    tradeid uint64,
-    getDescriptions bool,
-    language string,
+func (i *IEconService) GetTradeStatusV1(
+	key string,
+	tradeid uint64,
+	getDescriptions bool,
+	language string,
 ) (Response, error) {
-    p := getPath("IEconService", "GetTradeStatus", 1)
-    request := map[string]string{
-        "key" : key,
-        "tradeid" : fmt.Sprintf(`%v`, tradeid),
-        "getDescriptions" : strconv.FormatBool(getDescriptions),
-        "language" : language,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconService", "GetTradeStatus", 1)
+	request := map[string]string{
+		"key":             key,
+		"tradeid":         fmt.Sprintf(`%v`, tradeid),
+		"getDescriptions": strconv.FormatBool(getDescriptions),
+		"language":        language,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconService) GetTradeOffersV1 (
-    key string,
-    getSentOffers bool,
-    getReceivedOffers bool,
-    getDescriptions bool,
-    language string,
-    activeOnly bool,
-    historicalOnly bool,
-    timeHistoricalCutoff uint32,
-    cursor uint32,
+func (i *IEconService) GetTradeOffersV1(
+	key string,
+	getSentOffers bool,
+	getReceivedOffers bool,
+	getDescriptions bool,
+	language string,
+	activeOnly bool,
+	historicalOnly bool,
+	timeHistoricalCutoff uint32,
+	cursor uint32,
 ) (Response, error) {
-    p := getPath("IEconService", "GetTradeOffers", 1)
-    request := map[string]string{
-        "key" : key,
-        "getSentOffers" : strconv.FormatBool(getSentOffers),
-        "getReceivedOffers" : strconv.FormatBool(getReceivedOffers),
-        "getDescriptions" : strconv.FormatBool(getDescriptions),
-        "language" : language,
-        "activeOnly" : strconv.FormatBool(activeOnly),
-        "historicalOnly" : strconv.FormatBool(historicalOnly),
-        "timeHistoricalCutoff" : fmt.Sprintf(`%v`, timeHistoricalCutoff),
-        "cursor" : fmt.Sprintf(`%v`, cursor),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconService", "GetTradeOffers", 1)
+	request := map[string]string{
+		"key":                  key,
+		"getSentOffers":        strconv.FormatBool(getSentOffers),
+		"getReceivedOffers":    strconv.FormatBool(getReceivedOffers),
+		"getDescriptions":      strconv.FormatBool(getDescriptions),
+		"language":             language,
+		"activeOnly":           strconv.FormatBool(activeOnly),
+		"historicalOnly":       strconv.FormatBool(historicalOnly),
+		"timeHistoricalCutoff": fmt.Sprintf(`%v`, timeHistoricalCutoff),
+		"cursor":               fmt.Sprintf(`%v`, cursor),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconService) GetTradeOfferV1 (
-    key string,
-    tradeofferid uint64,
-    language string,
-    getDescriptions bool,
+func (i *IEconService) GetTradeOfferV1(
+	key string,
+	tradeofferid uint64,
+	language string,
+	getDescriptions bool,
 ) (Response, error) {
-    p := getPath("IEconService", "GetTradeOffer", 1)
-    request := map[string]string{
-        "key" : key,
-        "tradeofferid" : fmt.Sprintf(`%v`, tradeofferid),
-        "language" : language,
-        "getDescriptions" : strconv.FormatBool(getDescriptions),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconService", "GetTradeOffer", 1)
+	request := map[string]string{
+		"key":             key,
+		"tradeofferid":    fmt.Sprintf(`%v`, tradeofferid),
+		"language":        language,
+		"getDescriptions": strconv.FormatBool(getDescriptions),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconService) GetTradeOffersSummaryV1 (
-    key string,
-    timeLastVisit uint32,
+func (i *IEconService) GetTradeOffersSummaryV1(
+	key string,
+	timeLastVisit uint32,
 ) (Response, error) {
-    p := getPath("IEconService", "GetTradeOffersSummary", 1)
-    request := map[string]string{
-        "key" : key,
-        "timeLastVisit" : fmt.Sprintf(`%v`, timeLastVisit),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconService", "GetTradeOffersSummary", 1)
+	request := map[string]string{
+		"key":           key,
+		"timeLastVisit": fmt.Sprintf(`%v`, timeLastVisit),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IEconService) GetTradeHoldDurationsV1 (
-    key string,
-    steamidTarget uint64,
-    tradeOfferAccessToken string,
+func (i *IEconService) GetTradeHoldDurationsV1(
+	key string,
+	steamidTarget uint64,
+	tradeOfferAccessToken string,
 ) (Response, error) {
-    p := getPath("IEconService", "GetTradeHoldDurations", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamidTarget" : fmt.Sprintf(`%v`, steamidTarget),
-        "tradeOfferAccessToken" : tradeOfferAccessToken,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IEconService", "GetTradeHoldDurations", 1)
+	request := map[string]string{
+		"key":                   key,
+		"steamidTarget":         fmt.Sprintf(`%v`, steamidTarget),
+		"tradeOfferAccessToken": tradeOfferAccessToken,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IGameNotificationsService struct {
 }
 
 func NewIGameNotificationsService() *IGameNotificationsService {
-    return &IGameNotificationsService{}
+	return &IGameNotificationsService{}
 }
 
-func (i *IGameNotificationsService) UserCreateSessionV1 (
-    appid uint32,
-    context uint64,
-    steamid uint64,
+func (i *IGameNotificationsService) UserCreateSessionV1(
+	appid uint32,
+	context uint64,
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("IGameNotificationsService", "UserCreateSession", 1)
-    request := map[string]string{
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "context" : fmt.Sprintf(`%v`, context),
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IGameNotificationsService", "UserCreateSession", 1)
+	request := map[string]string{
+		"appid":   fmt.Sprintf(`%v`, appid),
+		"context": fmt.Sprintf(`%v`, context),
+		"steamid": fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IGameNotificationsService) UserUpdateSessionV1 (
-    sessionid uint64,
-    appid uint32,
-    steamid uint64,
+func (i *IGameNotificationsService) UserUpdateSessionV1(
+	sessionid uint64,
+	appid uint32,
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("IGameNotificationsService", "UserUpdateSession", 1)
-    request := map[string]string{
-        "sessionid" : fmt.Sprintf(`%v`, sessionid),
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IGameNotificationsService", "UserUpdateSession", 1)
+	request := map[string]string{
+		"sessionid": fmt.Sprintf(`%v`, sessionid),
+		"appid":     fmt.Sprintf(`%v`, appid),
+		"steamid":   fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IGameNotificationsService) UserDeleteSessionV1 (
-    sessionid uint64,
-    appid uint32,
-    steamid uint64,
+func (i *IGameNotificationsService) UserDeleteSessionV1(
+	sessionid uint64,
+	appid uint32,
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("IGameNotificationsService", "UserDeleteSession", 1)
-    request := map[string]string{
-        "sessionid" : fmt.Sprintf(`%v`, sessionid),
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IGameNotificationsService", "UserDeleteSession", 1)
+	request := map[string]string{
+		"sessionid": fmt.Sprintf(`%v`, sessionid),
+		"appid":     fmt.Sprintf(`%v`, appid),
+		"steamid":   fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IInventoryService struct {
 }
 
 func NewIInventoryService() *IInventoryService {
-    return &IInventoryService{}
+	return &IInventoryService{}
 }
 
-func (i *IInventoryService) SplitItemStackV1 (
-    key string,
-    appid uint32,
-    itemid uint64,
-    quantity uint32,
-    steamid uint64,
+func (i *IInventoryService) SplitItemStackV1(
+	key string,
+	appid uint32,
+	itemid uint64,
+	quantity uint32,
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("IInventoryService", "SplitItemStack", 1)
-    request := map[string]string{
-        "key" : key,
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "itemid" : fmt.Sprintf(`%v`, itemid),
-        "quantity" : fmt.Sprintf(`%v`, quantity),
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IInventoryService", "SplitItemStack", 1)
+	request := map[string]string{
+		"key":      key,
+		"appid":    fmt.Sprintf(`%v`, appid),
+		"itemid":   fmt.Sprintf(`%v`, itemid),
+		"quantity": fmt.Sprintf(`%v`, quantity),
+		"steamid":  fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IInventoryService) CombineItemStacksV1 (
-    key string,
-    appid uint32,
-    fromitemid uint64,
-    destitemid uint64,
-    quantity uint32,
-    steamid uint64,
+func (i *IInventoryService) CombineItemStacksV1(
+	key string,
+	appid uint32,
+	fromitemid uint64,
+	destitemid uint64,
+	quantity uint32,
+	steamid uint64,
 ) (Response, error) {
-    p := getPath("IInventoryService", "CombineItemStacks", 1)
-    request := map[string]string{
-        "key" : key,
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "fromitemid" : fmt.Sprintf(`%v`, fromitemid),
-        "destitemid" : fmt.Sprintf(`%v`, destitemid),
-        "quantity" : fmt.Sprintf(`%v`, quantity),
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IInventoryService", "CombineItemStacks", 1)
+	request := map[string]string{
+		"key":        key,
+		"appid":      fmt.Sprintf(`%v`, appid),
+		"fromitemid": fmt.Sprintf(`%v`, fromitemid),
+		"destitemid": fmt.Sprintf(`%v`, destitemid),
+		"quantity":   fmt.Sprintf(`%v`, quantity),
+		"steamid":    fmt.Sprintf(`%v`, steamid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IInventoryService) GetPriceSheetV1 (
-    key string,
-    ecurrency int32,
-    currencyCode string,
+func (i *IInventoryService) GetPriceSheetV1(
+	key string,
+	ecurrency int32,
+	currencyCode string,
 ) (Response, error) {
-    p := getPath("IInventoryService", "GetPriceSheet", 1)
-    request := map[string]string{
-        "key" : key,
-        "ecurrency" : fmt.Sprintf(`%v`, ecurrency),
-        "currencyCode" : currencyCode,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IInventoryService", "GetPriceSheet", 1)
+	request := map[string]string{
+		"key":          key,
+		"ecurrency":    fmt.Sprintf(`%v`, ecurrency),
+		"currencyCode": currencyCode,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IStoreService struct {
 }
 
 func NewIStoreService() *IStoreService {
-    return &IStoreService{}
+	return &IStoreService{}
 }
 
-func (i *IStoreService) GetAppListV1 (
-    key string,
-    ifModifiedSince uint32,
-    haveDescriptionLanguage string,
-    includeGames bool,
-    includeDlc bool,
-    includeSoftware bool,
-    includeVideos bool,
-    includeHardware bool,
-    lastAppid uint32,
-    maxResults uint32,
+func (i *IStoreService) GetAppListV1(
+	key string,
+	ifModifiedSince uint32,
+	haveDescriptionLanguage string,
+	includeGames bool,
+	includeDlc bool,
+	includeSoftware bool,
+	includeVideos bool,
+	includeHardware bool,
+	lastAppid uint32,
+	maxResults uint32,
 ) (Response, error) {
-    p := getPath("IStoreService", "GetAppList", 1)
-    request := map[string]string{
-        "key" : key,
-        "ifModifiedSince" : fmt.Sprintf(`%v`, ifModifiedSince),
-        "haveDescriptionLanguage" : haveDescriptionLanguage,
-        "includeGames" : strconv.FormatBool(includeGames),
-        "includeDlc" : strconv.FormatBool(includeDlc),
-        "includeSoftware" : strconv.FormatBool(includeSoftware),
-        "includeVideos" : strconv.FormatBool(includeVideos),
-        "includeHardware" : strconv.FormatBool(includeHardware),
-        "lastAppid" : fmt.Sprintf(`%v`, lastAppid),
-        "maxResults" : fmt.Sprintf(`%v`, maxResults),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IStoreService", "GetAppList", 1)
+	request := map[string]string{
+		"key":                     key,
+		"ifModifiedSince":         fmt.Sprintf(`%v`, ifModifiedSince),
+		"haveDescriptionLanguage": haveDescriptionLanguage,
+		"includeGames":            strconv.FormatBool(includeGames),
+		"includeDlc":              strconv.FormatBool(includeDlc),
+		"includeSoftware":         strconv.FormatBool(includeSoftware),
+		"includeVideos":           strconv.FormatBool(includeVideos),
+		"includeHardware":         strconv.FormatBool(includeHardware),
+		"lastAppid":               fmt.Sprintf(`%v`, lastAppid),
+		"maxResults":              fmt.Sprintf(`%v`, maxResults),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := get(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := get(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type IHelpRequestLogsService struct {
 }
 
 func NewIHelpRequestLogsService() *IHelpRequestLogsService {
-    return &IHelpRequestLogsService{}
+	return &IHelpRequestLogsService{}
 }
 
-func (i *IHelpRequestLogsService) UploadUserApplicationLogV1 (
-    appid uint32,
-    logType string,
-    versionString string,
-    logContents string,
-    requestId uint64,
+func (i *IHelpRequestLogsService) UploadUserApplicationLogV1(
+	appid uint32,
+	logType string,
+	versionString string,
+	logContents string,
+	requestId uint64,
 ) (Response, error) {
-    p := getPath("IHelpRequestLogsService", "UploadUserApplicationLog", 1)
-    request := map[string]string{
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "logType" : logType,
-        "versionString" : versionString,
-        "logContents" : logContents,
-        "requestId" : fmt.Sprintf(`%v`, requestId),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IHelpRequestLogsService", "UploadUserApplicationLog", 1)
+	request := map[string]string{
+		"appid":         fmt.Sprintf(`%v`, appid),
+		"logType":       logType,
+		"versionString": versionString,
+		"logContents":   logContents,
+		"requestId":     fmt.Sprintf(`%v`, requestId),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-func (i *IHelpRequestLogsService) GetApplicationLogDemandV1 (
-    appid uint32,
+func (i *IHelpRequestLogsService) GetApplicationLogDemandV1(
+	appid uint32,
 ) (Response, error) {
-    p := getPath("IHelpRequestLogsService", "GetApplicationLogDemand", 1)
-    request := map[string]string{
-        "appid" : fmt.Sprintf(`%v`, appid),
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("IHelpRequestLogsService", "GetApplicationLogDemand", 1)
+	request := map[string]string{
+		"appid": fmt.Sprintf(`%v`, appid),
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
 
 type ICheatReportingService struct {
 }
 
 func NewICheatReportingService() *ICheatReportingService {
-    return &ICheatReportingService{}
+	return &ICheatReportingService{}
 }
 
-func (i *ICheatReportingService) ReportCheatDataV1 (
-    key string,
-    steamid uint64,
-    appid uint32,
-    pathandfilename string,
-    webcheaturl string,
-    timeNow uint64,
-    timeStarted uint64,
-    timeStopped uint64,
-    cheatname string,
-    gameProcessId uint32,
-    cheatProcessId uint32,
-    cheatParam1 uint64,
-    cheatParam2 uint64,
-    cheatDataDump string,
+func (i *ICheatReportingService) ReportCheatDataV1(
+	key string,
+	steamid uint64,
+	appid uint32,
+	pathandfilename string,
+	webcheaturl string,
+	timeNow uint64,
+	timeStarted uint64,
+	timeStopped uint64,
+	cheatname string,
+	gameProcessId uint32,
+	cheatProcessId uint32,
+	cheatParam1 uint64,
+	cheatParam2 uint64,
+	cheatDataDump string,
 ) (Response, error) {
-    p := getPath("ICheatReportingService", "ReportCheatData", 1)
-    request := map[string]string{
-        "key" : key,
-        "steamid" : fmt.Sprintf(`%v`, steamid),
-        "appid" : fmt.Sprintf(`%v`, appid),
-        "pathandfilename" : pathandfilename,
-        "webcheaturl" : webcheaturl,
-        "timeNow" : fmt.Sprintf(`%v`, timeNow),
-        "timeStarted" : fmt.Sprintf(`%v`, timeStarted),
-        "timeStopped" : fmt.Sprintf(`%v`, timeStopped),
-        "cheatname" : cheatname,
-        "gameProcessId" : fmt.Sprintf(`%v`, gameProcessId),
-        "cheatProcessId" : fmt.Sprintf(`%v`, cheatProcessId),
-        "cheatParam1" : fmt.Sprintf(`%v`, cheatParam1),
-        "cheatParam2" : fmt.Sprintf(`%v`, cheatParam2),
-        "cheatDataDump" : cheatDataDump,
-    }
-    response := Response{}
-    uri := buildURL(p, request)
+	p := getPath("ICheatReportingService", "ReportCheatData", 1)
+	request := map[string]string{
+		"key":             key,
+		"steamid":         fmt.Sprintf(`%v`, steamid),
+		"appid":           fmt.Sprintf(`%v`, appid),
+		"pathandfilename": pathandfilename,
+		"webcheaturl":     webcheaturl,
+		"timeNow":         fmt.Sprintf(`%v`, timeNow),
+		"timeStarted":     fmt.Sprintf(`%v`, timeStarted),
+		"timeStopped":     fmt.Sprintf(`%v`, timeStopped),
+		"cheatname":       cheatname,
+		"gameProcessId":   fmt.Sprintf(`%v`, gameProcessId),
+		"cheatProcessId":  fmt.Sprintf(`%v`, cheatProcessId),
+		"cheatParam1":     fmt.Sprintf(`%v`, cheatParam1),
+		"cheatParam2":     fmt.Sprintf(`%v`, cheatParam2),
+		"cheatDataDump":   cheatDataDump,
+	}
+	response := Response{}
+	uri := buildURL(p, request)
 
-    
-    if err := post(uri, &response); err != nil {
-        return nil, err
-    }
-    
-    return response, nil
+	if err := post(uri, &response); err != nil {
+		return nil, err
+	}
+
+	return response, nil
 }
-
-

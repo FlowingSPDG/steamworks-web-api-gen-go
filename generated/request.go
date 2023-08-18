@@ -3,15 +3,15 @@
 package steamworks
 
 import (
-    "fmt"
-    "net/http"
-    "net/url"
-    "encoding/json"
-    "io"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
 )
 
 func getPath(serviceInterface string, method string, version int) string {
-    return fmt.Sprintf("https://api.steampowered.com/%s/%s/v%d/", serviceInterface, method, version)
+	return fmt.Sprintf("https://api.steampowered.com/%s/%s/v%d/", serviceInterface, method, version)
 }
 
 func buildURL(path string, queries map[string]string) string {
