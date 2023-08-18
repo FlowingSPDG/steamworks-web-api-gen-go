@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"go/format"
 	"html/template"
+	"log"
 	"os"
 
 	_ "embed"
@@ -72,17 +73,18 @@ func main() {
 
 		t := template.Must(template.New("get_api_list").Funcs(steamworkswebapigen.FuncMap).Parse(tmpl.template))
 		if err := t.Execute(buf, injection); err != nil {
-			panic(err)
+			log.Fatalf("Failed to execute template %s", err)
 		}
 
-		b, err := format.Source(buf.Bytes())
+		by := buf.Bytes()
+		b, err := format.Source(by)
 		if err != nil {
-			panic(err)
+			log.Fatalf("Failed to source %v %s", err, by)
 		}
 
 		// create file
 		if err := os.WriteFile(tmpl.targetFile, b, 0777); err != nil {
-			panic(err)
+			log.Fatalf("Failed to write file %s", err)
 		}
 	}
 

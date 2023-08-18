@@ -15,13 +15,12 @@ type TemplateInjection struct {
 	Interfaces []Interface
 }
 
-func isValidType(t string) bool {
+func convertType(t string) string {
 	switch t {
 	case "int", "int32", "int64", "uint", "uint32", "uint64", "float32", "float64", "bool", "string":
-		return true
+		return t
 	}
-	// TODO: Support enum
-	return false
+	return "any"
 }
 
 func camelCase(s string) string {
@@ -41,23 +40,21 @@ func convertArg(t string) string {
 	return t
 }
 
-func convertToString(baseType, value string) string {
+func convertToString(value string) string {
 	value = convertArg(value)
-	switch baseType {
-	case "int", "int32", "int64", "uint", "uint32", "uint64", "float32", "float64":
-		return fmt.Sprintf("fmt.Sprintf(`%%v`, %s)", value)
-	case "bool":
-		return "strconv.FormatBool(" + value + ")"
-	default:
-		return value
-	}
+	return fmt.Sprintf("fmt.Sprintf(`%%v`, input.%s)", value)
+}
+
+func getInputName(interfaceName string, method Method) string {
+	return fmt.Sprintf("%s%s%dInput", interfaceName, method.Name, method.Version)
 }
 
 var (
 	FuncMap = template.FuncMap{
-		"isValidType":     isValidType,
+		"convertType":     convertType,
 		"convertArg":      convertArg,
 		"convertToString": convertToString,
 		"camelCase":       camelCase,
+		"getInputName":    getInputName,
 	}
 )

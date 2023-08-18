@@ -4,21 +4,25 @@ package steamworks
 
 import (
 	"fmt"
-	"strconv"
 )
 
 type iClientStats1046930 struct {
 }
 
 type IClientStats_1046930 interface {
-	ReportEventV1() (Response, error)
+	ReportEventV1(input IClientStats_1046930ReportEvent1Input) (Response, error)
 }
 
 func NewIClientStats_1046930() IClientStats_1046930 {
 	return &iClientStats1046930{}
 }
 
-func (i *iClientStats1046930) ReportEventV1() (Response, error) {
+type IClientStats_1046930ReportEvent1Input struct {
+}
+
+func (i *iClientStats1046930) ReportEventV1(
+	input IClientStats_1046930ReportEvent1Input,
+) (Response, error) {
 	p := getPath("IClientStats_1046930", "ReportEvent", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -35,27 +39,27 @@ type icsgoPlayers730 struct {
 }
 
 type ICSGOPlayers_730 interface {
-	GetNextMatchSharingCodeV1(
-		steamid uint64,
-		steamidkey string,
-		knowncode string,
-	) (Response, error)
+	GetNextMatchSharingCodeV1(input ICSGOPlayers_730GetNextMatchSharingCode1Input) (Response, error)
 }
 
 func NewICSGOPlayers_730() ICSGOPlayers_730 {
 	return &icsgoPlayers730{}
 }
 
+type ICSGOPlayers_730GetNextMatchSharingCode1Input struct {
+	steamid    uint64
+	steamidkey string
+	knowncode  string
+}
+
 func (i *icsgoPlayers730) GetNextMatchSharingCodeV1(
-	steamid uint64,
-	steamidkey string,
-	knowncode string,
+	input ICSGOPlayers_730GetNextMatchSharingCode1Input,
 ) (Response, error) {
 	p := getPath("ICSGOPlayers_730", "GetNextMatchSharingCode", 1)
 	request := map[string]string{
-		"steamid":    fmt.Sprintf(`%v`, steamid),
-		"steamidkey": steamidkey,
-		"knowncode":  knowncode,
+		"steamid":    fmt.Sprintf(`%v`, input.steamid),
+		"steamidkey": fmt.Sprintf(`%v`, input.steamidkey),
+		"knowncode":  fmt.Sprintf(`%v`, input.knowncode),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -71,28 +75,28 @@ type icsgoServers730 struct {
 }
 
 type ICSGOServers_730 interface {
-	GetGameMapsPlaytimeV1(
-		interval string,
-		gamemode string,
-		mapgroup string,
-	) (Response, error)
-	GetGameServersStatusV1() (Response, error)
+	GetGameMapsPlaytimeV1(input ICSGOServers_730GetGameMapsPlaytime1Input) (Response, error)
+	GetGameServersStatusV1(input ICSGOServers_730GetGameServersStatus1Input) (Response, error)
 }
 
 func NewICSGOServers_730() ICSGOServers_730 {
 	return &icsgoServers730{}
 }
 
+type ICSGOServers_730GetGameMapsPlaytime1Input struct {
+	interval string
+	gamemode string
+	mapgroup string
+}
+
 func (i *icsgoServers730) GetGameMapsPlaytimeV1(
-	interval string,
-	gamemode string,
-	mapgroup string,
+	input ICSGOServers_730GetGameMapsPlaytime1Input,
 ) (Response, error) {
 	p := getPath("ICSGOServers_730", "GetGameMapsPlaytime", 1)
 	request := map[string]string{
-		"interval": interval,
-		"gamemode": gamemode,
-		"mapgroup": mapgroup,
+		"interval": fmt.Sprintf(`%v`, input.interval),
+		"gamemode": fmt.Sprintf(`%v`, input.gamemode),
+		"mapgroup": fmt.Sprintf(`%v`, input.mapgroup),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -103,7 +107,13 @@ func (i *icsgoServers730) GetGameMapsPlaytimeV1(
 
 	return response, nil
 }
-func (i *icsgoServers730) GetGameServersStatusV1() (Response, error) {
+
+type ICSGOServers_730GetGameServersStatus1Input struct {
+}
+
+func (i *icsgoServers730) GetGameServersStatusV1(
+	input ICSGOServers_730GetGameServersStatus1Input,
+) (Response, error) {
 	p := getPath("ICSGOServers_730", "GetGameServersStatus", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -120,66 +130,32 @@ type icsgoTournaments730 struct {
 }
 
 type ICSGOTournaments_730 interface {
-	GetTournamentFantasyLineupV1(
-		event uint32,
-		steamid uint64,
-		steamidkey string,
-	) (Response, error)
-	GetTournamentItemsV1(
-		event uint32,
-		steamid uint64,
-		steamidkey string,
-	) (Response, error)
-	GetTournamentLayoutV1(
-		event uint32,
-	) (Response, error)
-	GetTournamentPredictionsV1(
-		event uint32,
-		steamid uint64,
-		steamidkey string,
-	) (Response, error)
-	UploadTournamentFantasyLineupV1(
-		event uint32,
-		steamid uint64,
-		steamidkey string,
-		sectionid uint32,
-		pickid0 uint32,
-		itemid0 uint64,
-		pickid1 uint32,
-		itemid1 uint64,
-		pickid2 uint32,
-		itemid2 uint64,
-		pickid3 uint32,
-		itemid3 uint64,
-		pickid4 uint32,
-		itemid4 uint64,
-	) (Response, error)
-	UploadTournamentPredictionsV1(
-		event uint32,
-		steamid uint64,
-		steamidkey string,
-		sectionid uint32,
-		groupid uint32,
-		index uint32,
-		pickid uint32,
-		itemid uint64,
-	) (Response, error)
+	GetTournamentFantasyLineupV1(input ICSGOTournaments_730GetTournamentFantasyLineup1Input) (Response, error)
+	GetTournamentItemsV1(input ICSGOTournaments_730GetTournamentItems1Input) (Response, error)
+	GetTournamentLayoutV1(input ICSGOTournaments_730GetTournamentLayout1Input) (Response, error)
+	GetTournamentPredictionsV1(input ICSGOTournaments_730GetTournamentPredictions1Input) (Response, error)
+	UploadTournamentFantasyLineupV1(input ICSGOTournaments_730UploadTournamentFantasyLineup1Input) (Response, error)
+	UploadTournamentPredictionsV1(input ICSGOTournaments_730UploadTournamentPredictions1Input) (Response, error)
 }
 
 func NewICSGOTournaments_730() ICSGOTournaments_730 {
 	return &icsgoTournaments730{}
 }
 
+type ICSGOTournaments_730GetTournamentFantasyLineup1Input struct {
+	event      uint32
+	steamid    uint64
+	steamidkey string
+}
+
 func (i *icsgoTournaments730) GetTournamentFantasyLineupV1(
-	event uint32,
-	steamid uint64,
-	steamidkey string,
+	input ICSGOTournaments_730GetTournamentFantasyLineup1Input,
 ) (Response, error) {
 	p := getPath("ICSGOTournaments_730", "GetTournamentFantasyLineup", 1)
 	request := map[string]string{
-		"event":      fmt.Sprintf(`%v`, event),
-		"steamid":    fmt.Sprintf(`%v`, steamid),
-		"steamidkey": steamidkey,
+		"event":      fmt.Sprintf(`%v`, input.event),
+		"steamid":    fmt.Sprintf(`%v`, input.steamid),
+		"steamidkey": fmt.Sprintf(`%v`, input.steamidkey),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -190,16 +166,21 @@ func (i *icsgoTournaments730) GetTournamentFantasyLineupV1(
 
 	return response, nil
 }
+
+type ICSGOTournaments_730GetTournamentItems1Input struct {
+	event      uint32
+	steamid    uint64
+	steamidkey string
+}
+
 func (i *icsgoTournaments730) GetTournamentItemsV1(
-	event uint32,
-	steamid uint64,
-	steamidkey string,
+	input ICSGOTournaments_730GetTournamentItems1Input,
 ) (Response, error) {
 	p := getPath("ICSGOTournaments_730", "GetTournamentItems", 1)
 	request := map[string]string{
-		"event":      fmt.Sprintf(`%v`, event),
-		"steamid":    fmt.Sprintf(`%v`, steamid),
-		"steamidkey": steamidkey,
+		"event":      fmt.Sprintf(`%v`, input.event),
+		"steamid":    fmt.Sprintf(`%v`, input.steamid),
+		"steamidkey": fmt.Sprintf(`%v`, input.steamidkey),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -210,12 +191,17 @@ func (i *icsgoTournaments730) GetTournamentItemsV1(
 
 	return response, nil
 }
+
+type ICSGOTournaments_730GetTournamentLayout1Input struct {
+	event uint32
+}
+
 func (i *icsgoTournaments730) GetTournamentLayoutV1(
-	event uint32,
+	input ICSGOTournaments_730GetTournamentLayout1Input,
 ) (Response, error) {
 	p := getPath("ICSGOTournaments_730", "GetTournamentLayout", 1)
 	request := map[string]string{
-		"event": fmt.Sprintf(`%v`, event),
+		"event": fmt.Sprintf(`%v`, input.event),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -226,16 +212,21 @@ func (i *icsgoTournaments730) GetTournamentLayoutV1(
 
 	return response, nil
 }
+
+type ICSGOTournaments_730GetTournamentPredictions1Input struct {
+	event      uint32
+	steamid    uint64
+	steamidkey string
+}
+
 func (i *icsgoTournaments730) GetTournamentPredictionsV1(
-	event uint32,
-	steamid uint64,
-	steamidkey string,
+	input ICSGOTournaments_730GetTournamentPredictions1Input,
 ) (Response, error) {
 	p := getPath("ICSGOTournaments_730", "GetTournamentPredictions", 1)
 	request := map[string]string{
-		"event":      fmt.Sprintf(`%v`, event),
-		"steamid":    fmt.Sprintf(`%v`, steamid),
-		"steamidkey": steamidkey,
+		"event":      fmt.Sprintf(`%v`, input.event),
+		"steamid":    fmt.Sprintf(`%v`, input.steamid),
+		"steamidkey": fmt.Sprintf(`%v`, input.steamidkey),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -246,38 +237,43 @@ func (i *icsgoTournaments730) GetTournamentPredictionsV1(
 
 	return response, nil
 }
+
+type ICSGOTournaments_730UploadTournamentFantasyLineup1Input struct {
+	event      uint32
+	steamid    uint64
+	steamidkey string
+	sectionid  uint32
+	pickid0    uint32
+	itemid0    uint64
+	pickid1    uint32
+	itemid1    uint64
+	pickid2    uint32
+	itemid2    uint64
+	pickid3    uint32
+	itemid3    uint64
+	pickid4    uint32
+	itemid4    uint64
+}
+
 func (i *icsgoTournaments730) UploadTournamentFantasyLineupV1(
-	event uint32,
-	steamid uint64,
-	steamidkey string,
-	sectionid uint32,
-	pickid0 uint32,
-	itemid0 uint64,
-	pickid1 uint32,
-	itemid1 uint64,
-	pickid2 uint32,
-	itemid2 uint64,
-	pickid3 uint32,
-	itemid3 uint64,
-	pickid4 uint32,
-	itemid4 uint64,
+	input ICSGOTournaments_730UploadTournamentFantasyLineup1Input,
 ) (Response, error) {
 	p := getPath("ICSGOTournaments_730", "UploadTournamentFantasyLineup", 1)
 	request := map[string]string{
-		"event":      fmt.Sprintf(`%v`, event),
-		"steamid":    fmt.Sprintf(`%v`, steamid),
-		"steamidkey": steamidkey,
-		"sectionid":  fmt.Sprintf(`%v`, sectionid),
-		"pickid0":    fmt.Sprintf(`%v`, pickid0),
-		"itemid0":    fmt.Sprintf(`%v`, itemid0),
-		"pickid1":    fmt.Sprintf(`%v`, pickid1),
-		"itemid1":    fmt.Sprintf(`%v`, itemid1),
-		"pickid2":    fmt.Sprintf(`%v`, pickid2),
-		"itemid2":    fmt.Sprintf(`%v`, itemid2),
-		"pickid3":    fmt.Sprintf(`%v`, pickid3),
-		"itemid3":    fmt.Sprintf(`%v`, itemid3),
-		"pickid4":    fmt.Sprintf(`%v`, pickid4),
-		"itemid4":    fmt.Sprintf(`%v`, itemid4),
+		"event":      fmt.Sprintf(`%v`, input.event),
+		"steamid":    fmt.Sprintf(`%v`, input.steamid),
+		"steamidkey": fmt.Sprintf(`%v`, input.steamidkey),
+		"sectionid":  fmt.Sprintf(`%v`, input.sectionid),
+		"pickid0":    fmt.Sprintf(`%v`, input.pickid0),
+		"itemid0":    fmt.Sprintf(`%v`, input.itemid0),
+		"pickid1":    fmt.Sprintf(`%v`, input.pickid1),
+		"itemid1":    fmt.Sprintf(`%v`, input.itemid1),
+		"pickid2":    fmt.Sprintf(`%v`, input.pickid2),
+		"itemid2":    fmt.Sprintf(`%v`, input.itemid2),
+		"pickid3":    fmt.Sprintf(`%v`, input.pickid3),
+		"itemid3":    fmt.Sprintf(`%v`, input.itemid3),
+		"pickid4":    fmt.Sprintf(`%v`, input.pickid4),
+		"itemid4":    fmt.Sprintf(`%v`, input.itemid4),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -288,26 +284,31 @@ func (i *icsgoTournaments730) UploadTournamentFantasyLineupV1(
 
 	return response, nil
 }
+
+type ICSGOTournaments_730UploadTournamentPredictions1Input struct {
+	event      uint32
+	steamid    uint64
+	steamidkey string
+	sectionid  uint32
+	groupid    uint32
+	index      uint32
+	pickid     uint32
+	itemid     uint64
+}
+
 func (i *icsgoTournaments730) UploadTournamentPredictionsV1(
-	event uint32,
-	steamid uint64,
-	steamidkey string,
-	sectionid uint32,
-	groupid uint32,
-	index uint32,
-	pickid uint32,
-	itemid uint64,
+	input ICSGOTournaments_730UploadTournamentPredictions1Input,
 ) (Response, error) {
 	p := getPath("ICSGOTournaments_730", "UploadTournamentPredictions", 1)
 	request := map[string]string{
-		"event":      fmt.Sprintf(`%v`, event),
-		"steamid":    fmt.Sprintf(`%v`, steamid),
-		"steamidkey": steamidkey,
-		"sectionid":  fmt.Sprintf(`%v`, sectionid),
-		"groupid":    fmt.Sprintf(`%v`, groupid),
-		"index":      fmt.Sprintf(`%v`, index),
-		"pickid":     fmt.Sprintf(`%v`, pickid),
-		"itemid":     fmt.Sprintf(`%v`, itemid),
+		"event":      fmt.Sprintf(`%v`, input.event),
+		"steamid":    fmt.Sprintf(`%v`, input.steamid),
+		"steamidkey": fmt.Sprintf(`%v`, input.steamidkey),
+		"sectionid":  fmt.Sprintf(`%v`, input.sectionid),
+		"groupid":    fmt.Sprintf(`%v`, input.groupid),
+		"index":      fmt.Sprintf(`%v`, input.index),
+		"pickid":     fmt.Sprintf(`%v`, input.pickid),
+		"itemid":     fmt.Sprintf(`%v`, input.itemid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -323,21 +324,23 @@ type idota2matchStats205790 struct {
 }
 
 type IDOTA2MatchStats_205790 interface {
-	GetRealtimeStatsV1(
-		serverSteamId uint64,
-	) (Response, error)
+	GetRealtimeStatsV1(input IDOTA2MatchStats_205790GetRealtimeStats1Input) (Response, error)
 }
 
 func NewIDOTA2MatchStats_205790() IDOTA2MatchStats_205790 {
 	return &idota2matchStats205790{}
 }
 
+type IDOTA2MatchStats_205790GetRealtimeStats1Input struct {
+	serverSteamId uint64
+}
+
 func (i *idota2matchStats205790) GetRealtimeStatsV1(
-	serverSteamId uint64,
+	input IDOTA2MatchStats_205790GetRealtimeStats1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2MatchStats_205790", "GetRealtimeStats", 1)
 	request := map[string]string{
-		"serverSteamId": fmt.Sprintf(`%v`, serverSteamId),
+		"serverSteamId": fmt.Sprintf(`%v`, input.serverSteamId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -353,21 +356,23 @@ type idota2matchStats570 struct {
 }
 
 type IDOTA2MatchStats_570 interface {
-	GetRealtimeStatsV1(
-		serverSteamId uint64,
-	) (Response, error)
+	GetRealtimeStatsV1(input IDOTA2MatchStats_570GetRealtimeStats1Input) (Response, error)
 }
 
 func NewIDOTA2MatchStats_570() IDOTA2MatchStats_570 {
 	return &idota2matchStats570{}
 }
 
+type IDOTA2MatchStats_570GetRealtimeStats1Input struct {
+	serverSteamId uint64
+}
+
 func (i *idota2matchStats570) GetRealtimeStatsV1(
-	serverSteamId uint64,
+	input IDOTA2MatchStats_570GetRealtimeStats1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2MatchStats_570", "GetRealtimeStats", 1)
 	request := map[string]string{
-		"serverSteamId": fmt.Sprintf(`%v`, serverSteamId),
+		"serverSteamId": fmt.Sprintf(`%v`, input.serverSteamId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -383,74 +388,36 @@ type idota2match205790 struct {
 }
 
 type IDOTA2Match_205790 interface {
-	GetLiveLeagueGamesV1(
-		leagueId uint32,
-		matchId uint64,
-		dpc bool,
-	) (Response, error)
-	GetMatchDetailsV1(
-		matchId uint64,
-		includePersonaNames bool,
-	) (Response, error)
-	GetMatchHistoryV1(
-		heroId uint32,
-		gameMode uint32,
-		skill uint32,
-		minPlayers string,
-		accountId string,
-		leagueId string,
-		startAtMatchId uint64,
-		matchesRequested string,
-	) (Response, error)
-	GetMatchHistoryBySequenceNumV1(
-		startAtMatchSeqNum uint64,
-		matchesRequested uint32,
-	) (Response, error)
-	GetTeamInfoByTeamIDV1(
-		startAtTeamId uint64,
-		teamsRequested uint32,
-	) (Response, error)
-	GetTopLiveEventGameV1(
-		partner int32,
-	) (Response, error)
-	GetTopLiveGameV1(
-		partner int32,
-	) (Response, error)
-	GetTopWeekendTourneyGamesV1(
-		partner int32,
-		homeDivision int32,
-	) (Response, error)
-	GetTournamentPlayerStatsV1(
-		accountId string,
-		leagueId string,
-		heroId string,
-		timeFrame string,
-		matchId uint64,
-	) (Response, error)
-	GetTournamentPlayerStatsV2(
-		accountId string,
-		leagueId string,
-		heroId string,
-		timeFrame string,
-		matchId uint64,
-		phaseId uint32,
-	) (Response, error)
+	GetLiveLeagueGamesV1(input IDOTA2Match_205790GetLiveLeagueGames1Input) (Response, error)
+	GetMatchDetailsV1(input IDOTA2Match_205790GetMatchDetails1Input) (Response, error)
+	GetMatchHistoryV1(input IDOTA2Match_205790GetMatchHistory1Input) (Response, error)
+	GetMatchHistoryBySequenceNumV1(input IDOTA2Match_205790GetMatchHistoryBySequenceNum1Input) (Response, error)
+	GetTeamInfoByTeamIDV1(input IDOTA2Match_205790GetTeamInfoByTeamID1Input) (Response, error)
+	GetTopLiveEventGameV1(input IDOTA2Match_205790GetTopLiveEventGame1Input) (Response, error)
+	GetTopLiveGameV1(input IDOTA2Match_205790GetTopLiveGame1Input) (Response, error)
+	GetTopWeekendTourneyGamesV1(input IDOTA2Match_205790GetTopWeekendTourneyGames1Input) (Response, error)
+	GetTournamentPlayerStatsV1(input IDOTA2Match_205790GetTournamentPlayerStats1Input) (Response, error)
+	GetTournamentPlayerStatsV2(input IDOTA2Match_205790GetTournamentPlayerStats2Input) (Response, error)
 }
 
 func NewIDOTA2Match_205790() IDOTA2Match_205790 {
 	return &idota2match205790{}
 }
 
+type IDOTA2Match_205790GetLiveLeagueGames1Input struct {
+	leagueId uint32
+	matchId  uint64
+	dpc      bool
+}
+
 func (i *idota2match205790) GetLiveLeagueGamesV1(
-	leagueId uint32,
-	matchId uint64,
-	dpc bool,
+	input IDOTA2Match_205790GetLiveLeagueGames1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_205790", "GetLiveLeagueGames", 1)
 	request := map[string]string{
-		"leagueId": fmt.Sprintf(`%v`, leagueId),
-		"matchId":  fmt.Sprintf(`%v`, matchId),
-		"dpc":      strconv.FormatBool(dpc),
+		"leagueId": fmt.Sprintf(`%v`, input.leagueId),
+		"matchId":  fmt.Sprintf(`%v`, input.matchId),
+		"dpc":      fmt.Sprintf(`%v`, input.dpc),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -461,14 +428,19 @@ func (i *idota2match205790) GetLiveLeagueGamesV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_205790GetMatchDetails1Input struct {
+	matchId             uint64
+	includePersonaNames bool
+}
+
 func (i *idota2match205790) GetMatchDetailsV1(
-	matchId uint64,
-	includePersonaNames bool,
+	input IDOTA2Match_205790GetMatchDetails1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_205790", "GetMatchDetails", 1)
 	request := map[string]string{
-		"matchId":             fmt.Sprintf(`%v`, matchId),
-		"includePersonaNames": strconv.FormatBool(includePersonaNames),
+		"matchId":             fmt.Sprintf(`%v`, input.matchId),
+		"includePersonaNames": fmt.Sprintf(`%v`, input.includePersonaNames),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -479,26 +451,31 @@ func (i *idota2match205790) GetMatchDetailsV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_205790GetMatchHistory1Input struct {
+	heroId           uint32
+	gameMode         uint32
+	skill            uint32
+	minPlayers       string
+	accountId        string
+	leagueId         string
+	startAtMatchId   uint64
+	matchesRequested string
+}
+
 func (i *idota2match205790) GetMatchHistoryV1(
-	heroId uint32,
-	gameMode uint32,
-	skill uint32,
-	minPlayers string,
-	accountId string,
-	leagueId string,
-	startAtMatchId uint64,
-	matchesRequested string,
+	input IDOTA2Match_205790GetMatchHistory1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_205790", "GetMatchHistory", 1)
 	request := map[string]string{
-		"heroId":           fmt.Sprintf(`%v`, heroId),
-		"gameMode":         fmt.Sprintf(`%v`, gameMode),
-		"skill":            fmt.Sprintf(`%v`, skill),
-		"minPlayers":       minPlayers,
-		"accountId":        accountId,
-		"leagueId":         leagueId,
-		"startAtMatchId":   fmt.Sprintf(`%v`, startAtMatchId),
-		"matchesRequested": matchesRequested,
+		"heroId":           fmt.Sprintf(`%v`, input.heroId),
+		"gameMode":         fmt.Sprintf(`%v`, input.gameMode),
+		"skill":            fmt.Sprintf(`%v`, input.skill),
+		"minPlayers":       fmt.Sprintf(`%v`, input.minPlayers),
+		"accountId":        fmt.Sprintf(`%v`, input.accountId),
+		"leagueId":         fmt.Sprintf(`%v`, input.leagueId),
+		"startAtMatchId":   fmt.Sprintf(`%v`, input.startAtMatchId),
+		"matchesRequested": fmt.Sprintf(`%v`, input.matchesRequested),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -509,14 +486,19 @@ func (i *idota2match205790) GetMatchHistoryV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_205790GetMatchHistoryBySequenceNum1Input struct {
+	startAtMatchSeqNum uint64
+	matchesRequested   uint32
+}
+
 func (i *idota2match205790) GetMatchHistoryBySequenceNumV1(
-	startAtMatchSeqNum uint64,
-	matchesRequested uint32,
+	input IDOTA2Match_205790GetMatchHistoryBySequenceNum1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_205790", "GetMatchHistoryBySequenceNum", 1)
 	request := map[string]string{
-		"startAtMatchSeqNum": fmt.Sprintf(`%v`, startAtMatchSeqNum),
-		"matchesRequested":   fmt.Sprintf(`%v`, matchesRequested),
+		"startAtMatchSeqNum": fmt.Sprintf(`%v`, input.startAtMatchSeqNum),
+		"matchesRequested":   fmt.Sprintf(`%v`, input.matchesRequested),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -527,14 +509,19 @@ func (i *idota2match205790) GetMatchHistoryBySequenceNumV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_205790GetTeamInfoByTeamID1Input struct {
+	startAtTeamId  uint64
+	teamsRequested uint32
+}
+
 func (i *idota2match205790) GetTeamInfoByTeamIDV1(
-	startAtTeamId uint64,
-	teamsRequested uint32,
+	input IDOTA2Match_205790GetTeamInfoByTeamID1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_205790", "GetTeamInfoByTeamID", 1)
 	request := map[string]string{
-		"startAtTeamId":  fmt.Sprintf(`%v`, startAtTeamId),
-		"teamsRequested": fmt.Sprintf(`%v`, teamsRequested),
+		"startAtTeamId":  fmt.Sprintf(`%v`, input.startAtTeamId),
+		"teamsRequested": fmt.Sprintf(`%v`, input.teamsRequested),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -545,12 +532,17 @@ func (i *idota2match205790) GetTeamInfoByTeamIDV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_205790GetTopLiveEventGame1Input struct {
+	partner int32
+}
+
 func (i *idota2match205790) GetTopLiveEventGameV1(
-	partner int32,
+	input IDOTA2Match_205790GetTopLiveEventGame1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_205790", "GetTopLiveEventGame", 1)
 	request := map[string]string{
-		"partner": fmt.Sprintf(`%v`, partner),
+		"partner": fmt.Sprintf(`%v`, input.partner),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -561,12 +553,17 @@ func (i *idota2match205790) GetTopLiveEventGameV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_205790GetTopLiveGame1Input struct {
+	partner int32
+}
+
 func (i *idota2match205790) GetTopLiveGameV1(
-	partner int32,
+	input IDOTA2Match_205790GetTopLiveGame1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_205790", "GetTopLiveGame", 1)
 	request := map[string]string{
-		"partner": fmt.Sprintf(`%v`, partner),
+		"partner": fmt.Sprintf(`%v`, input.partner),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -577,14 +574,19 @@ func (i *idota2match205790) GetTopLiveGameV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_205790GetTopWeekendTourneyGames1Input struct {
+	partner      int32
+	homeDivision int32
+}
+
 func (i *idota2match205790) GetTopWeekendTourneyGamesV1(
-	partner int32,
-	homeDivision int32,
+	input IDOTA2Match_205790GetTopWeekendTourneyGames1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_205790", "GetTopWeekendTourneyGames", 1)
 	request := map[string]string{
-		"partner":      fmt.Sprintf(`%v`, partner),
-		"homeDivision": fmt.Sprintf(`%v`, homeDivision),
+		"partner":      fmt.Sprintf(`%v`, input.partner),
+		"homeDivision": fmt.Sprintf(`%v`, input.homeDivision),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -595,20 +597,25 @@ func (i *idota2match205790) GetTopWeekendTourneyGamesV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_205790GetTournamentPlayerStats1Input struct {
+	accountId string
+	leagueId  string
+	heroId    string
+	timeFrame string
+	matchId   uint64
+}
+
 func (i *idota2match205790) GetTournamentPlayerStatsV1(
-	accountId string,
-	leagueId string,
-	heroId string,
-	timeFrame string,
-	matchId uint64,
+	input IDOTA2Match_205790GetTournamentPlayerStats1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_205790", "GetTournamentPlayerStats", 1)
 	request := map[string]string{
-		"accountId": accountId,
-		"leagueId":  leagueId,
-		"heroId":    heroId,
-		"timeFrame": timeFrame,
-		"matchId":   fmt.Sprintf(`%v`, matchId),
+		"accountId": fmt.Sprintf(`%v`, input.accountId),
+		"leagueId":  fmt.Sprintf(`%v`, input.leagueId),
+		"heroId":    fmt.Sprintf(`%v`, input.heroId),
+		"timeFrame": fmt.Sprintf(`%v`, input.timeFrame),
+		"matchId":   fmt.Sprintf(`%v`, input.matchId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -619,22 +626,27 @@ func (i *idota2match205790) GetTournamentPlayerStatsV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_205790GetTournamentPlayerStats2Input struct {
+	accountId string
+	leagueId  string
+	heroId    string
+	timeFrame string
+	matchId   uint64
+	phaseId   uint32
+}
+
 func (i *idota2match205790) GetTournamentPlayerStatsV2(
-	accountId string,
-	leagueId string,
-	heroId string,
-	timeFrame string,
-	matchId uint64,
-	phaseId uint32,
+	input IDOTA2Match_205790GetTournamentPlayerStats2Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_205790", "GetTournamentPlayerStats", 2)
 	request := map[string]string{
-		"accountId": accountId,
-		"leagueId":  leagueId,
-		"heroId":    heroId,
-		"timeFrame": timeFrame,
-		"matchId":   fmt.Sprintf(`%v`, matchId),
-		"phaseId":   fmt.Sprintf(`%v`, phaseId),
+		"accountId": fmt.Sprintf(`%v`, input.accountId),
+		"leagueId":  fmt.Sprintf(`%v`, input.leagueId),
+		"heroId":    fmt.Sprintf(`%v`, input.heroId),
+		"timeFrame": fmt.Sprintf(`%v`, input.timeFrame),
+		"matchId":   fmt.Sprintf(`%v`, input.matchId),
+		"phaseId":   fmt.Sprintf(`%v`, input.phaseId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -650,74 +662,36 @@ type idota2match570 struct {
 }
 
 type IDOTA2Match_570 interface {
-	GetLiveLeagueGamesV1(
-		leagueId uint32,
-		matchId uint64,
-		dpc bool,
-	) (Response, error)
-	GetMatchDetailsV1(
-		matchId uint64,
-		includePersonaNames bool,
-	) (Response, error)
-	GetMatchHistoryV1(
-		heroId uint32,
-		gameMode uint32,
-		skill uint32,
-		minPlayers string,
-		accountId string,
-		leagueId string,
-		startAtMatchId uint64,
-		matchesRequested string,
-	) (Response, error)
-	GetMatchHistoryBySequenceNumV1(
-		startAtMatchSeqNum uint64,
-		matchesRequested uint32,
-	) (Response, error)
-	GetTeamInfoByTeamIDV1(
-		startAtTeamId uint64,
-		teamsRequested uint32,
-	) (Response, error)
-	GetTopLiveEventGameV1(
-		partner int32,
-	) (Response, error)
-	GetTopLiveGameV1(
-		partner int32,
-	) (Response, error)
-	GetTopWeekendTourneyGamesV1(
-		partner int32,
-		homeDivision int32,
-	) (Response, error)
-	GetTournamentPlayerStatsV1(
-		accountId string,
-		leagueId string,
-		heroId string,
-		timeFrame string,
-		matchId uint64,
-	) (Response, error)
-	GetTournamentPlayerStatsV2(
-		accountId string,
-		leagueId string,
-		heroId string,
-		timeFrame string,
-		matchId uint64,
-		phaseId uint32,
-	) (Response, error)
+	GetLiveLeagueGamesV1(input IDOTA2Match_570GetLiveLeagueGames1Input) (Response, error)
+	GetMatchDetailsV1(input IDOTA2Match_570GetMatchDetails1Input) (Response, error)
+	GetMatchHistoryV1(input IDOTA2Match_570GetMatchHistory1Input) (Response, error)
+	GetMatchHistoryBySequenceNumV1(input IDOTA2Match_570GetMatchHistoryBySequenceNum1Input) (Response, error)
+	GetTeamInfoByTeamIDV1(input IDOTA2Match_570GetTeamInfoByTeamID1Input) (Response, error)
+	GetTopLiveEventGameV1(input IDOTA2Match_570GetTopLiveEventGame1Input) (Response, error)
+	GetTopLiveGameV1(input IDOTA2Match_570GetTopLiveGame1Input) (Response, error)
+	GetTopWeekendTourneyGamesV1(input IDOTA2Match_570GetTopWeekendTourneyGames1Input) (Response, error)
+	GetTournamentPlayerStatsV1(input IDOTA2Match_570GetTournamentPlayerStats1Input) (Response, error)
+	GetTournamentPlayerStatsV2(input IDOTA2Match_570GetTournamentPlayerStats2Input) (Response, error)
 }
 
 func NewIDOTA2Match_570() IDOTA2Match_570 {
 	return &idota2match570{}
 }
 
+type IDOTA2Match_570GetLiveLeagueGames1Input struct {
+	leagueId uint32
+	matchId  uint64
+	dpc      bool
+}
+
 func (i *idota2match570) GetLiveLeagueGamesV1(
-	leagueId uint32,
-	matchId uint64,
-	dpc bool,
+	input IDOTA2Match_570GetLiveLeagueGames1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_570", "GetLiveLeagueGames", 1)
 	request := map[string]string{
-		"leagueId": fmt.Sprintf(`%v`, leagueId),
-		"matchId":  fmt.Sprintf(`%v`, matchId),
-		"dpc":      strconv.FormatBool(dpc),
+		"leagueId": fmt.Sprintf(`%v`, input.leagueId),
+		"matchId":  fmt.Sprintf(`%v`, input.matchId),
+		"dpc":      fmt.Sprintf(`%v`, input.dpc),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -728,14 +702,19 @@ func (i *idota2match570) GetLiveLeagueGamesV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_570GetMatchDetails1Input struct {
+	matchId             uint64
+	includePersonaNames bool
+}
+
 func (i *idota2match570) GetMatchDetailsV1(
-	matchId uint64,
-	includePersonaNames bool,
+	input IDOTA2Match_570GetMatchDetails1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_570", "GetMatchDetails", 1)
 	request := map[string]string{
-		"matchId":             fmt.Sprintf(`%v`, matchId),
-		"includePersonaNames": strconv.FormatBool(includePersonaNames),
+		"matchId":             fmt.Sprintf(`%v`, input.matchId),
+		"includePersonaNames": fmt.Sprintf(`%v`, input.includePersonaNames),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -746,26 +725,31 @@ func (i *idota2match570) GetMatchDetailsV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_570GetMatchHistory1Input struct {
+	heroId           uint32
+	gameMode         uint32
+	skill            uint32
+	minPlayers       string
+	accountId        string
+	leagueId         string
+	startAtMatchId   uint64
+	matchesRequested string
+}
+
 func (i *idota2match570) GetMatchHistoryV1(
-	heroId uint32,
-	gameMode uint32,
-	skill uint32,
-	minPlayers string,
-	accountId string,
-	leagueId string,
-	startAtMatchId uint64,
-	matchesRequested string,
+	input IDOTA2Match_570GetMatchHistory1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_570", "GetMatchHistory", 1)
 	request := map[string]string{
-		"heroId":           fmt.Sprintf(`%v`, heroId),
-		"gameMode":         fmt.Sprintf(`%v`, gameMode),
-		"skill":            fmt.Sprintf(`%v`, skill),
-		"minPlayers":       minPlayers,
-		"accountId":        accountId,
-		"leagueId":         leagueId,
-		"startAtMatchId":   fmt.Sprintf(`%v`, startAtMatchId),
-		"matchesRequested": matchesRequested,
+		"heroId":           fmt.Sprintf(`%v`, input.heroId),
+		"gameMode":         fmt.Sprintf(`%v`, input.gameMode),
+		"skill":            fmt.Sprintf(`%v`, input.skill),
+		"minPlayers":       fmt.Sprintf(`%v`, input.minPlayers),
+		"accountId":        fmt.Sprintf(`%v`, input.accountId),
+		"leagueId":         fmt.Sprintf(`%v`, input.leagueId),
+		"startAtMatchId":   fmt.Sprintf(`%v`, input.startAtMatchId),
+		"matchesRequested": fmt.Sprintf(`%v`, input.matchesRequested),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -776,14 +760,19 @@ func (i *idota2match570) GetMatchHistoryV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_570GetMatchHistoryBySequenceNum1Input struct {
+	startAtMatchSeqNum uint64
+	matchesRequested   uint32
+}
+
 func (i *idota2match570) GetMatchHistoryBySequenceNumV1(
-	startAtMatchSeqNum uint64,
-	matchesRequested uint32,
+	input IDOTA2Match_570GetMatchHistoryBySequenceNum1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_570", "GetMatchHistoryBySequenceNum", 1)
 	request := map[string]string{
-		"startAtMatchSeqNum": fmt.Sprintf(`%v`, startAtMatchSeqNum),
-		"matchesRequested":   fmt.Sprintf(`%v`, matchesRequested),
+		"startAtMatchSeqNum": fmt.Sprintf(`%v`, input.startAtMatchSeqNum),
+		"matchesRequested":   fmt.Sprintf(`%v`, input.matchesRequested),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -794,14 +783,19 @@ func (i *idota2match570) GetMatchHistoryBySequenceNumV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_570GetTeamInfoByTeamID1Input struct {
+	startAtTeamId  uint64
+	teamsRequested uint32
+}
+
 func (i *idota2match570) GetTeamInfoByTeamIDV1(
-	startAtTeamId uint64,
-	teamsRequested uint32,
+	input IDOTA2Match_570GetTeamInfoByTeamID1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_570", "GetTeamInfoByTeamID", 1)
 	request := map[string]string{
-		"startAtTeamId":  fmt.Sprintf(`%v`, startAtTeamId),
-		"teamsRequested": fmt.Sprintf(`%v`, teamsRequested),
+		"startAtTeamId":  fmt.Sprintf(`%v`, input.startAtTeamId),
+		"teamsRequested": fmt.Sprintf(`%v`, input.teamsRequested),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -812,12 +806,17 @@ func (i *idota2match570) GetTeamInfoByTeamIDV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_570GetTopLiveEventGame1Input struct {
+	partner int32
+}
+
 func (i *idota2match570) GetTopLiveEventGameV1(
-	partner int32,
+	input IDOTA2Match_570GetTopLiveEventGame1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_570", "GetTopLiveEventGame", 1)
 	request := map[string]string{
-		"partner": fmt.Sprintf(`%v`, partner),
+		"partner": fmt.Sprintf(`%v`, input.partner),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -828,12 +827,17 @@ func (i *idota2match570) GetTopLiveEventGameV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_570GetTopLiveGame1Input struct {
+	partner int32
+}
+
 func (i *idota2match570) GetTopLiveGameV1(
-	partner int32,
+	input IDOTA2Match_570GetTopLiveGame1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_570", "GetTopLiveGame", 1)
 	request := map[string]string{
-		"partner": fmt.Sprintf(`%v`, partner),
+		"partner": fmt.Sprintf(`%v`, input.partner),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -844,14 +848,19 @@ func (i *idota2match570) GetTopLiveGameV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_570GetTopWeekendTourneyGames1Input struct {
+	partner      int32
+	homeDivision int32
+}
+
 func (i *idota2match570) GetTopWeekendTourneyGamesV1(
-	partner int32,
-	homeDivision int32,
+	input IDOTA2Match_570GetTopWeekendTourneyGames1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_570", "GetTopWeekendTourneyGames", 1)
 	request := map[string]string{
-		"partner":      fmt.Sprintf(`%v`, partner),
-		"homeDivision": fmt.Sprintf(`%v`, homeDivision),
+		"partner":      fmt.Sprintf(`%v`, input.partner),
+		"homeDivision": fmt.Sprintf(`%v`, input.homeDivision),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -862,20 +871,25 @@ func (i *idota2match570) GetTopWeekendTourneyGamesV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_570GetTournamentPlayerStats1Input struct {
+	accountId string
+	leagueId  string
+	heroId    string
+	timeFrame string
+	matchId   uint64
+}
+
 func (i *idota2match570) GetTournamentPlayerStatsV1(
-	accountId string,
-	leagueId string,
-	heroId string,
-	timeFrame string,
-	matchId uint64,
+	input IDOTA2Match_570GetTournamentPlayerStats1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_570", "GetTournamentPlayerStats", 1)
 	request := map[string]string{
-		"accountId": accountId,
-		"leagueId":  leagueId,
-		"heroId":    heroId,
-		"timeFrame": timeFrame,
-		"matchId":   fmt.Sprintf(`%v`, matchId),
+		"accountId": fmt.Sprintf(`%v`, input.accountId),
+		"leagueId":  fmt.Sprintf(`%v`, input.leagueId),
+		"heroId":    fmt.Sprintf(`%v`, input.heroId),
+		"timeFrame": fmt.Sprintf(`%v`, input.timeFrame),
+		"matchId":   fmt.Sprintf(`%v`, input.matchId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -886,22 +900,27 @@ func (i *idota2match570) GetTournamentPlayerStatsV1(
 
 	return response, nil
 }
+
+type IDOTA2Match_570GetTournamentPlayerStats2Input struct {
+	accountId string
+	leagueId  string
+	heroId    string
+	timeFrame string
+	matchId   uint64
+	phaseId   uint32
+}
+
 func (i *idota2match570) GetTournamentPlayerStatsV2(
-	accountId string,
-	leagueId string,
-	heroId string,
-	timeFrame string,
-	matchId uint64,
-	phaseId uint32,
+	input IDOTA2Match_570GetTournamentPlayerStats2Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Match_570", "GetTournamentPlayerStats", 2)
 	request := map[string]string{
-		"accountId": accountId,
-		"leagueId":  leagueId,
-		"heroId":    heroId,
-		"timeFrame": timeFrame,
-		"matchId":   fmt.Sprintf(`%v`, matchId),
-		"phaseId":   fmt.Sprintf(`%v`, phaseId),
+		"accountId": fmt.Sprintf(`%v`, input.accountId),
+		"leagueId":  fmt.Sprintf(`%v`, input.leagueId),
+		"heroId":    fmt.Sprintf(`%v`, input.heroId),
+		"timeFrame": fmt.Sprintf(`%v`, input.timeFrame),
+		"matchId":   fmt.Sprintf(`%v`, input.matchId),
+		"phaseId":   fmt.Sprintf(`%v`, input.phaseId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -917,24 +936,25 @@ type idota2streamSystem205790 struct {
 }
 
 type IDOTA2StreamSystem_205790 interface {
-	GetBroadcasterInfoV1(
-		broadcasterSteamId uint64,
-		leagueId uint32,
-	) (Response, error)
+	GetBroadcasterInfoV1(input IDOTA2StreamSystem_205790GetBroadcasterInfo1Input) (Response, error)
 }
 
 func NewIDOTA2StreamSystem_205790() IDOTA2StreamSystem_205790 {
 	return &idota2streamSystem205790{}
 }
 
+type IDOTA2StreamSystem_205790GetBroadcasterInfo1Input struct {
+	broadcasterSteamId uint64
+	leagueId           uint32
+}
+
 func (i *idota2streamSystem205790) GetBroadcasterInfoV1(
-	broadcasterSteamId uint64,
-	leagueId uint32,
+	input IDOTA2StreamSystem_205790GetBroadcasterInfo1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2StreamSystem_205790", "GetBroadcasterInfo", 1)
 	request := map[string]string{
-		"broadcasterSteamId": fmt.Sprintf(`%v`, broadcasterSteamId),
-		"leagueId":           fmt.Sprintf(`%v`, leagueId),
+		"broadcasterSteamId": fmt.Sprintf(`%v`, input.broadcasterSteamId),
+		"leagueId":           fmt.Sprintf(`%v`, input.leagueId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -950,24 +970,25 @@ type idota2streamSystem570 struct {
 }
 
 type IDOTA2StreamSystem_570 interface {
-	GetBroadcasterInfoV1(
-		broadcasterSteamId uint64,
-		leagueId uint32,
-	) (Response, error)
+	GetBroadcasterInfoV1(input IDOTA2StreamSystem_570GetBroadcasterInfo1Input) (Response, error)
 }
 
 func NewIDOTA2StreamSystem_570() IDOTA2StreamSystem_570 {
 	return &idota2streamSystem570{}
 }
 
+type IDOTA2StreamSystem_570GetBroadcasterInfo1Input struct {
+	broadcasterSteamId uint64
+	leagueId           uint32
+}
+
 func (i *idota2streamSystem570) GetBroadcasterInfoV1(
-	broadcasterSteamId uint64,
-	leagueId uint32,
+	input IDOTA2StreamSystem_570GetBroadcasterInfo1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2StreamSystem_570", "GetBroadcasterInfo", 1)
 	request := map[string]string{
-		"broadcasterSteamId": fmt.Sprintf(`%v`, broadcasterSteamId),
-		"leagueId":           fmt.Sprintf(`%v`, leagueId),
+		"broadcasterSteamId": fmt.Sprintf(`%v`, input.broadcasterSteamId),
+		"leagueId":           fmt.Sprintf(`%v`, input.leagueId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -983,32 +1004,25 @@ type idota2ticket205790 struct {
 }
 
 type IDOTA2Ticket_205790 interface {
-	GetSteamIDForBadgeIDV1(
-		badgeId string,
-	) (Response, error)
-	SetSteamAccountPurchasedV1(
-		steamid uint64,
-		badgeType uint32,
-	) (Response, error)
-	SteamAccountValidForBadgeTypeV1(
-		steamid uint64,
-		validBadgeType1 uint32,
-		validBadgeType2 uint32,
-		validBadgeType3 uint32,
-		validBadgeType4 uint32,
-	) (Response, error)
+	GetSteamIDForBadgeIDV1(input IDOTA2Ticket_205790GetSteamIDForBadgeID1Input) (Response, error)
+	SetSteamAccountPurchasedV1(input IDOTA2Ticket_205790SetSteamAccountPurchased1Input) (Response, error)
+	SteamAccountValidForBadgeTypeV1(input IDOTA2Ticket_205790SteamAccountValidForBadgeType1Input) (Response, error)
 }
 
 func NewIDOTA2Ticket_205790() IDOTA2Ticket_205790 {
 	return &idota2ticket205790{}
 }
 
+type IDOTA2Ticket_205790GetSteamIDForBadgeID1Input struct {
+	badgeId string
+}
+
 func (i *idota2ticket205790) GetSteamIDForBadgeIDV1(
-	badgeId string,
+	input IDOTA2Ticket_205790GetSteamIDForBadgeID1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Ticket_205790", "GetSteamIDForBadgeID", 1)
 	request := map[string]string{
-		"badgeId": badgeId,
+		"badgeId": fmt.Sprintf(`%v`, input.badgeId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1019,14 +1033,19 @@ func (i *idota2ticket205790) GetSteamIDForBadgeIDV1(
 
 	return response, nil
 }
+
+type IDOTA2Ticket_205790SetSteamAccountPurchased1Input struct {
+	steamid   uint64
+	badgeType uint32
+}
+
 func (i *idota2ticket205790) SetSteamAccountPurchasedV1(
-	steamid uint64,
-	badgeType uint32,
+	input IDOTA2Ticket_205790SetSteamAccountPurchased1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Ticket_205790", "SetSteamAccountPurchased", 1)
 	request := map[string]string{
-		"steamid":   fmt.Sprintf(`%v`, steamid),
-		"badgeType": fmt.Sprintf(`%v`, badgeType),
+		"steamid":   fmt.Sprintf(`%v`, input.steamid),
+		"badgeType": fmt.Sprintf(`%v`, input.badgeType),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1037,20 +1056,25 @@ func (i *idota2ticket205790) SetSteamAccountPurchasedV1(
 
 	return response, nil
 }
+
+type IDOTA2Ticket_205790SteamAccountValidForBadgeType1Input struct {
+	steamid         uint64
+	validBadgeType1 uint32
+	validBadgeType2 uint32
+	validBadgeType3 uint32
+	validBadgeType4 uint32
+}
+
 func (i *idota2ticket205790) SteamAccountValidForBadgeTypeV1(
-	steamid uint64,
-	validBadgeType1 uint32,
-	validBadgeType2 uint32,
-	validBadgeType3 uint32,
-	validBadgeType4 uint32,
+	input IDOTA2Ticket_205790SteamAccountValidForBadgeType1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Ticket_205790", "SteamAccountValidForBadgeType", 1)
 	request := map[string]string{
-		"steamid":         fmt.Sprintf(`%v`, steamid),
-		"validBadgeType1": fmt.Sprintf(`%v`, validBadgeType1),
-		"validBadgeType2": fmt.Sprintf(`%v`, validBadgeType2),
-		"validBadgeType3": fmt.Sprintf(`%v`, validBadgeType3),
-		"validBadgeType4": fmt.Sprintf(`%v`, validBadgeType4),
+		"steamid":         fmt.Sprintf(`%v`, input.steamid),
+		"validBadgeType1": fmt.Sprintf(`%v`, input.validBadgeType1),
+		"validBadgeType2": fmt.Sprintf(`%v`, input.validBadgeType2),
+		"validBadgeType3": fmt.Sprintf(`%v`, input.validBadgeType3),
+		"validBadgeType4": fmt.Sprintf(`%v`, input.validBadgeType4),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1066,32 +1090,25 @@ type idota2ticket570 struct {
 }
 
 type IDOTA2Ticket_570 interface {
-	GetSteamIDForBadgeIDV1(
-		badgeId string,
-	) (Response, error)
-	SetSteamAccountPurchasedV1(
-		steamid uint64,
-		badgeType uint32,
-	) (Response, error)
-	SteamAccountValidForBadgeTypeV1(
-		steamid uint64,
-		validBadgeType1 uint32,
-		validBadgeType2 uint32,
-		validBadgeType3 uint32,
-		validBadgeType4 uint32,
-	) (Response, error)
+	GetSteamIDForBadgeIDV1(input IDOTA2Ticket_570GetSteamIDForBadgeID1Input) (Response, error)
+	SetSteamAccountPurchasedV1(input IDOTA2Ticket_570SetSteamAccountPurchased1Input) (Response, error)
+	SteamAccountValidForBadgeTypeV1(input IDOTA2Ticket_570SteamAccountValidForBadgeType1Input) (Response, error)
 }
 
 func NewIDOTA2Ticket_570() IDOTA2Ticket_570 {
 	return &idota2ticket570{}
 }
 
+type IDOTA2Ticket_570GetSteamIDForBadgeID1Input struct {
+	badgeId string
+}
+
 func (i *idota2ticket570) GetSteamIDForBadgeIDV1(
-	badgeId string,
+	input IDOTA2Ticket_570GetSteamIDForBadgeID1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Ticket_570", "GetSteamIDForBadgeID", 1)
 	request := map[string]string{
-		"badgeId": badgeId,
+		"badgeId": fmt.Sprintf(`%v`, input.badgeId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1102,14 +1119,19 @@ func (i *idota2ticket570) GetSteamIDForBadgeIDV1(
 
 	return response, nil
 }
+
+type IDOTA2Ticket_570SetSteamAccountPurchased1Input struct {
+	steamid   uint64
+	badgeType uint32
+}
+
 func (i *idota2ticket570) SetSteamAccountPurchasedV1(
-	steamid uint64,
-	badgeType uint32,
+	input IDOTA2Ticket_570SetSteamAccountPurchased1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Ticket_570", "SetSteamAccountPurchased", 1)
 	request := map[string]string{
-		"steamid":   fmt.Sprintf(`%v`, steamid),
-		"badgeType": fmt.Sprintf(`%v`, badgeType),
+		"steamid":   fmt.Sprintf(`%v`, input.steamid),
+		"badgeType": fmt.Sprintf(`%v`, input.badgeType),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1120,20 +1142,25 @@ func (i *idota2ticket570) SetSteamAccountPurchasedV1(
 
 	return response, nil
 }
+
+type IDOTA2Ticket_570SteamAccountValidForBadgeType1Input struct {
+	steamid         uint64
+	validBadgeType1 uint32
+	validBadgeType2 uint32
+	validBadgeType3 uint32
+	validBadgeType4 uint32
+}
+
 func (i *idota2ticket570) SteamAccountValidForBadgeTypeV1(
-	steamid uint64,
-	validBadgeType1 uint32,
-	validBadgeType2 uint32,
-	validBadgeType3 uint32,
-	validBadgeType4 uint32,
+	input IDOTA2Ticket_570SteamAccountValidForBadgeType1Input,
 ) (Response, error) {
 	p := getPath("IDOTA2Ticket_570", "SteamAccountValidForBadgeType", 1)
 	request := map[string]string{
-		"steamid":         fmt.Sprintf(`%v`, steamid),
-		"validBadgeType1": fmt.Sprintf(`%v`, validBadgeType1),
-		"validBadgeType2": fmt.Sprintf(`%v`, validBadgeType2),
-		"validBadgeType3": fmt.Sprintf(`%v`, validBadgeType3),
-		"validBadgeType4": fmt.Sprintf(`%v`, validBadgeType4),
+		"steamid":         fmt.Sprintf(`%v`, input.steamid),
+		"validBadgeType1": fmt.Sprintf(`%v`, input.validBadgeType1),
+		"validBadgeType2": fmt.Sprintf(`%v`, input.validBadgeType2),
+		"validBadgeType3": fmt.Sprintf(`%v`, input.validBadgeType3),
+		"validBadgeType4": fmt.Sprintf(`%v`, input.validBadgeType4),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1149,46 +1176,33 @@ type iEconDota2205790 struct {
 }
 
 type IEconDOTA2_205790 interface {
-	GetEventStatsForAccountV1(
-		eventid uint32,
-		accountid uint32,
-		language string,
-	) (Response, error)
-	GetGameItemsV1(
-		language string,
-	) (Response, error)
-	GetHeroesV1(
-		language string,
-		itemizedonly bool,
-	) (Response, error)
-	GetItemCreatorsV1(
-		itemdef uint32,
-	) (Response, error)
-	GetItemWorkshopPublishedFileIDsV1(
-		itemdef uint32,
-	) (Response, error)
-	GetRaritiesV1(
-		language string,
-	) (Response, error)
-	GetTournamentPrizePoolV1(
-		leagueid uint32,
-	) (Response, error)
+	GetEventStatsForAccountV1(input IEconDOTA2_205790GetEventStatsForAccount1Input) (Response, error)
+	GetGameItemsV1(input IEconDOTA2_205790GetGameItems1Input) (Response, error)
+	GetHeroesV1(input IEconDOTA2_205790GetHeroes1Input) (Response, error)
+	GetItemCreatorsV1(input IEconDOTA2_205790GetItemCreators1Input) (Response, error)
+	GetItemWorkshopPublishedFileIDsV1(input IEconDOTA2_205790GetItemWorkshopPublishedFileIDs1Input) (Response, error)
+	GetRaritiesV1(input IEconDOTA2_205790GetRarities1Input) (Response, error)
+	GetTournamentPrizePoolV1(input IEconDOTA2_205790GetTournamentPrizePool1Input) (Response, error)
 }
 
 func NewIEconDOTA2_205790() IEconDOTA2_205790 {
 	return &iEconDota2205790{}
 }
 
+type IEconDOTA2_205790GetEventStatsForAccount1Input struct {
+	eventid   uint32
+	accountid uint32
+	language  string
+}
+
 func (i *iEconDota2205790) GetEventStatsForAccountV1(
-	eventid uint32,
-	accountid uint32,
-	language string,
+	input IEconDOTA2_205790GetEventStatsForAccount1Input,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_205790", "GetEventStatsForAccount", 1)
 	request := map[string]string{
-		"eventid":   fmt.Sprintf(`%v`, eventid),
-		"accountid": fmt.Sprintf(`%v`, accountid),
-		"language":  language,
+		"eventid":   fmt.Sprintf(`%v`, input.eventid),
+		"accountid": fmt.Sprintf(`%v`, input.accountid),
+		"language":  fmt.Sprintf(`%v`, input.language),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1199,12 +1213,17 @@ func (i *iEconDota2205790) GetEventStatsForAccountV1(
 
 	return response, nil
 }
+
+type IEconDOTA2_205790GetGameItems1Input struct {
+	language string
+}
+
 func (i *iEconDota2205790) GetGameItemsV1(
-	language string,
+	input IEconDOTA2_205790GetGameItems1Input,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_205790", "GetGameItems", 1)
 	request := map[string]string{
-		"language": language,
+		"language": fmt.Sprintf(`%v`, input.language),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1215,14 +1234,19 @@ func (i *iEconDota2205790) GetGameItemsV1(
 
 	return response, nil
 }
+
+type IEconDOTA2_205790GetHeroes1Input struct {
+	language     string
+	itemizedonly bool
+}
+
 func (i *iEconDota2205790) GetHeroesV1(
-	language string,
-	itemizedonly bool,
+	input IEconDOTA2_205790GetHeroes1Input,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_205790", "GetHeroes", 1)
 	request := map[string]string{
-		"language":     language,
-		"itemizedonly": strconv.FormatBool(itemizedonly),
+		"language":     fmt.Sprintf(`%v`, input.language),
+		"itemizedonly": fmt.Sprintf(`%v`, input.itemizedonly),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1233,12 +1257,17 @@ func (i *iEconDota2205790) GetHeroesV1(
 
 	return response, nil
 }
+
+type IEconDOTA2_205790GetItemCreators1Input struct {
+	itemdef uint32
+}
+
 func (i *iEconDota2205790) GetItemCreatorsV1(
-	itemdef uint32,
+	input IEconDOTA2_205790GetItemCreators1Input,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_205790", "GetItemCreators", 1)
 	request := map[string]string{
-		"itemdef": fmt.Sprintf(`%v`, itemdef),
+		"itemdef": fmt.Sprintf(`%v`, input.itemdef),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1249,12 +1278,17 @@ func (i *iEconDota2205790) GetItemCreatorsV1(
 
 	return response, nil
 }
+
+type IEconDOTA2_205790GetItemWorkshopPublishedFileIDs1Input struct {
+	itemdef uint32
+}
+
 func (i *iEconDota2205790) GetItemWorkshopPublishedFileIDsV1(
-	itemdef uint32,
+	input IEconDOTA2_205790GetItemWorkshopPublishedFileIDs1Input,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_205790", "GetItemWorkshopPublishedFileIDs", 1)
 	request := map[string]string{
-		"itemdef": fmt.Sprintf(`%v`, itemdef),
+		"itemdef": fmt.Sprintf(`%v`, input.itemdef),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1265,12 +1299,17 @@ func (i *iEconDota2205790) GetItemWorkshopPublishedFileIDsV1(
 
 	return response, nil
 }
+
+type IEconDOTA2_205790GetRarities1Input struct {
+	language string
+}
+
 func (i *iEconDota2205790) GetRaritiesV1(
-	language string,
+	input IEconDOTA2_205790GetRarities1Input,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_205790", "GetRarities", 1)
 	request := map[string]string{
-		"language": language,
+		"language": fmt.Sprintf(`%v`, input.language),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1281,12 +1320,17 @@ func (i *iEconDota2205790) GetRaritiesV1(
 
 	return response, nil
 }
+
+type IEconDOTA2_205790GetTournamentPrizePool1Input struct {
+	leagueid uint32
+}
+
 func (i *iEconDota2205790) GetTournamentPrizePoolV1(
-	leagueid uint32,
+	input IEconDOTA2_205790GetTournamentPrizePool1Input,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_205790", "GetTournamentPrizePool", 1)
 	request := map[string]string{
-		"leagueid": fmt.Sprintf(`%v`, leagueid),
+		"leagueid": fmt.Sprintf(`%v`, input.leagueid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1302,43 +1346,32 @@ type iEconDota2570 struct {
 }
 
 type IEconDOTA2_570 interface {
-	GetEventStatsForAccountV1(
-		eventid uint32,
-		accountid uint32,
-		language string,
-	) (Response, error)
-	GetHeroesV1(
-		language string,
-		itemizedonly bool,
-	) (Response, error)
-	GetItemCreatorsV1(
-		itemdef uint32,
-	) (Response, error)
-	GetItemWorkshopPublishedFileIDsV1(
-		itemdef uint32,
-	) (Response, error)
-	GetRaritiesV1(
-		language string,
-	) (Response, error)
-	GetTournamentPrizePoolV1(
-		leagueid uint32,
-	) (Response, error)
+	GetEventStatsForAccountV1(input IEconDOTA2_570GetEventStatsForAccount1Input) (Response, error)
+	GetHeroesV1(input IEconDOTA2_570GetHeroes1Input) (Response, error)
+	GetItemCreatorsV1(input IEconDOTA2_570GetItemCreators1Input) (Response, error)
+	GetItemWorkshopPublishedFileIDsV1(input IEconDOTA2_570GetItemWorkshopPublishedFileIDs1Input) (Response, error)
+	GetRaritiesV1(input IEconDOTA2_570GetRarities1Input) (Response, error)
+	GetTournamentPrizePoolV1(input IEconDOTA2_570GetTournamentPrizePool1Input) (Response, error)
 }
 
 func NewIEconDOTA2_570() IEconDOTA2_570 {
 	return &iEconDota2570{}
 }
 
+type IEconDOTA2_570GetEventStatsForAccount1Input struct {
+	eventid   uint32
+	accountid uint32
+	language  string
+}
+
 func (i *iEconDota2570) GetEventStatsForAccountV1(
-	eventid uint32,
-	accountid uint32,
-	language string,
+	input IEconDOTA2_570GetEventStatsForAccount1Input,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_570", "GetEventStatsForAccount", 1)
 	request := map[string]string{
-		"eventid":   fmt.Sprintf(`%v`, eventid),
-		"accountid": fmt.Sprintf(`%v`, accountid),
-		"language":  language,
+		"eventid":   fmt.Sprintf(`%v`, input.eventid),
+		"accountid": fmt.Sprintf(`%v`, input.accountid),
+		"language":  fmt.Sprintf(`%v`, input.language),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1349,14 +1382,19 @@ func (i *iEconDota2570) GetEventStatsForAccountV1(
 
 	return response, nil
 }
+
+type IEconDOTA2_570GetHeroes1Input struct {
+	language     string
+	itemizedonly bool
+}
+
 func (i *iEconDota2570) GetHeroesV1(
-	language string,
-	itemizedonly bool,
+	input IEconDOTA2_570GetHeroes1Input,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_570", "GetHeroes", 1)
 	request := map[string]string{
-		"language":     language,
-		"itemizedonly": strconv.FormatBool(itemizedonly),
+		"language":     fmt.Sprintf(`%v`, input.language),
+		"itemizedonly": fmt.Sprintf(`%v`, input.itemizedonly),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1367,12 +1405,17 @@ func (i *iEconDota2570) GetHeroesV1(
 
 	return response, nil
 }
+
+type IEconDOTA2_570GetItemCreators1Input struct {
+	itemdef uint32
+}
+
 func (i *iEconDota2570) GetItemCreatorsV1(
-	itemdef uint32,
+	input IEconDOTA2_570GetItemCreators1Input,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_570", "GetItemCreators", 1)
 	request := map[string]string{
-		"itemdef": fmt.Sprintf(`%v`, itemdef),
+		"itemdef": fmt.Sprintf(`%v`, input.itemdef),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1383,12 +1426,17 @@ func (i *iEconDota2570) GetItemCreatorsV1(
 
 	return response, nil
 }
+
+type IEconDOTA2_570GetItemWorkshopPublishedFileIDs1Input struct {
+	itemdef uint32
+}
+
 func (i *iEconDota2570) GetItemWorkshopPublishedFileIDsV1(
-	itemdef uint32,
+	input IEconDOTA2_570GetItemWorkshopPublishedFileIDs1Input,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_570", "GetItemWorkshopPublishedFileIDs", 1)
 	request := map[string]string{
-		"itemdef": fmt.Sprintf(`%v`, itemdef),
+		"itemdef": fmt.Sprintf(`%v`, input.itemdef),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1399,12 +1447,17 @@ func (i *iEconDota2570) GetItemWorkshopPublishedFileIDsV1(
 
 	return response, nil
 }
+
+type IEconDOTA2_570GetRarities1Input struct {
+	language string
+}
+
 func (i *iEconDota2570) GetRaritiesV1(
-	language string,
+	input IEconDOTA2_570GetRarities1Input,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_570", "GetRarities", 1)
 	request := map[string]string{
-		"language": language,
+		"language": fmt.Sprintf(`%v`, input.language),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1415,12 +1468,17 @@ func (i *iEconDota2570) GetRaritiesV1(
 
 	return response, nil
 }
+
+type IEconDOTA2_570GetTournamentPrizePool1Input struct {
+	leagueid uint32
+}
+
 func (i *iEconDota2570) GetTournamentPrizePoolV1(
-	leagueid uint32,
+	input IEconDOTA2_570GetTournamentPrizePool1Input,
 ) (Response, error) {
 	p := getPath("IEconDOTA2_570", "GetTournamentPrizePool", 1)
 	request := map[string]string{
-		"leagueid": fmt.Sprintf(`%v`, leagueid),
+		"leagueid": fmt.Sprintf(`%v`, input.leagueid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1436,21 +1494,23 @@ type iEconItems1046930 struct {
 }
 
 type IEconItems_1046930 interface {
-	GetPlayerItemsV1(
-		steamid uint64,
-	) (Response, error)
+	GetPlayerItemsV1(input IEconItems_1046930GetPlayerItems1Input) (Response, error)
 }
 
 func NewIEconItems_1046930() IEconItems_1046930 {
 	return &iEconItems1046930{}
 }
 
+type IEconItems_1046930GetPlayerItems1Input struct {
+	steamid uint64
+}
+
 func (i *iEconItems1046930) GetPlayerItemsV1(
-	steamid uint64,
+	input IEconItems_1046930GetPlayerItems1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_1046930", "GetPlayerItems", 1)
 	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1466,24 +1526,25 @@ type iEconItems1269260 struct {
 }
 
 type IEconItems_1269260 interface {
-	GetEquippedPlayerItemsV1(
-		steamid uint64,
-		classId uint32,
-	) (Response, error)
+	GetEquippedPlayerItemsV1(input IEconItems_1269260GetEquippedPlayerItems1Input) (Response, error)
 }
 
 func NewIEconItems_1269260() IEconItems_1269260 {
 	return &iEconItems1269260{}
 }
 
+type IEconItems_1269260GetEquippedPlayerItems1Input struct {
+	steamid uint64
+	classId uint32
+}
+
 func (i *iEconItems1269260) GetEquippedPlayerItemsV1(
-	steamid uint64,
-	classId uint32,
+	input IEconItems_1269260GetEquippedPlayerItems1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_1269260", "GetEquippedPlayerItems", 1)
 	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
-		"classId": fmt.Sprintf(`%v`, classId),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
+		"classId": fmt.Sprintf(`%v`, input.classId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1499,30 +1560,27 @@ type iEconItems205790 struct {
 }
 
 type IEconItems_205790 interface {
-	GetEquippedPlayerItemsV1(
-		steamid uint64,
-		classId uint32,
-	) (Response, error)
-	GetPlayerItemsV1(
-		steamid uint64,
-	) (Response, error)
-	GetStoreMetaDataV1(
-		language string,
-	) (Response, error)
+	GetEquippedPlayerItemsV1(input IEconItems_205790GetEquippedPlayerItems1Input) (Response, error)
+	GetPlayerItemsV1(input IEconItems_205790GetPlayerItems1Input) (Response, error)
+	GetStoreMetaDataV1(input IEconItems_205790GetStoreMetaData1Input) (Response, error)
 }
 
 func NewIEconItems_205790() IEconItems_205790 {
 	return &iEconItems205790{}
 }
 
+type IEconItems_205790GetEquippedPlayerItems1Input struct {
+	steamid uint64
+	classId uint32
+}
+
 func (i *iEconItems205790) GetEquippedPlayerItemsV1(
-	steamid uint64,
-	classId uint32,
+	input IEconItems_205790GetEquippedPlayerItems1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_205790", "GetEquippedPlayerItems", 1)
 	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
-		"classId": fmt.Sprintf(`%v`, classId),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
+		"classId": fmt.Sprintf(`%v`, input.classId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1533,12 +1591,17 @@ func (i *iEconItems205790) GetEquippedPlayerItemsV1(
 
 	return response, nil
 }
+
+type IEconItems_205790GetPlayerItems1Input struct {
+	steamid uint64
+}
+
 func (i *iEconItems205790) GetPlayerItemsV1(
-	steamid uint64,
+	input IEconItems_205790GetPlayerItems1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_205790", "GetPlayerItems", 1)
 	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1549,42 +1612,17 @@ func (i *iEconItems205790) GetPlayerItemsV1(
 
 	return response, nil
 }
+
+type IEconItems_205790GetStoreMetaData1Input struct {
+	language string
+}
+
 func (i *iEconItems205790) GetStoreMetaDataV1(
-	language string,
+	input IEconItems_205790GetStoreMetaData1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_205790", "GetStoreMetaData", 1)
 	request := map[string]string{
-		"language": language,
-	}
-	response := Response{}
-	uri := buildURL(p, request)
-
-	if err := get(uri, &response); err != nil {
-		return nil, err
-	}
-
-	return response, nil
-}
-
-type iEconItems221540 struct {
-}
-
-type IEconItems_221540 interface {
-	GetPlayerItemsV1(
-		steamid uint64,
-	) (Response, error)
-}
-
-func NewIEconItems_221540() IEconItems_221540 {
-	return &iEconItems221540{}
-}
-
-func (i *iEconItems221540) GetPlayerItemsV1(
-	steamid uint64,
-) (Response, error) {
-	p := getPath("IEconItems_221540", "GetPlayerItems", 1)
-	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
+		"language": fmt.Sprintf(`%v`, input.language),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1600,21 +1638,23 @@ type iEconItems238460 struct {
 }
 
 type IEconItems_238460 interface {
-	GetPlayerItemsV1(
-		steamid uint64,
-	) (Response, error)
+	GetPlayerItemsV1(input IEconItems_238460GetPlayerItems1Input) (Response, error)
 }
 
 func NewIEconItems_238460() IEconItems_238460 {
 	return &iEconItems238460{}
 }
 
+type IEconItems_238460GetPlayerItems1Input struct {
+	steamid uint64
+}
+
 func (i *iEconItems238460) GetPlayerItemsV1(
-	steamid uint64,
+	input IEconItems_238460GetPlayerItems1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_238460", "GetPlayerItems", 1)
 	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1630,36 +1670,29 @@ type iEconItems440 struct {
 }
 
 type IEconItems_440 interface {
-	GetPlayerItemsV1(
-		steamid uint64,
-	) (Response, error)
-	GetSchemaV1(
-		language string,
-	) (Response, error)
-	GetSchemaItemsV1(
-		language string,
-		start int32,
-	) (Response, error)
-	GetSchemaOverviewV1(
-		language string,
-	) (Response, error)
-	GetSchemaURLV1() (Response, error)
-	GetStoreMetaDataV1(
-		language string,
-	) (Response, error)
-	GetStoreStatusV1() (Response, error)
+	GetPlayerItemsV1(input IEconItems_440GetPlayerItems1Input) (Response, error)
+	GetSchemaV1(input IEconItems_440GetSchema1Input) (Response, error)
+	GetSchemaItemsV1(input IEconItems_440GetSchemaItems1Input) (Response, error)
+	GetSchemaOverviewV1(input IEconItems_440GetSchemaOverview1Input) (Response, error)
+	GetSchemaURLV1(input IEconItems_440GetSchemaURL1Input) (Response, error)
+	GetStoreMetaDataV1(input IEconItems_440GetStoreMetaData1Input) (Response, error)
+	GetStoreStatusV1(input IEconItems_440GetStoreStatus1Input) (Response, error)
 }
 
 func NewIEconItems_440() IEconItems_440 {
 	return &iEconItems440{}
 }
 
+type IEconItems_440GetPlayerItems1Input struct {
+	steamid uint64
+}
+
 func (i *iEconItems440) GetPlayerItemsV1(
-	steamid uint64,
+	input IEconItems_440GetPlayerItems1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_440", "GetPlayerItems", 1)
 	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1670,12 +1703,17 @@ func (i *iEconItems440) GetPlayerItemsV1(
 
 	return response, nil
 }
+
+type IEconItems_440GetSchema1Input struct {
+	language string
+}
+
 func (i *iEconItems440) GetSchemaV1(
-	language string,
+	input IEconItems_440GetSchema1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_440", "GetSchema", 1)
 	request := map[string]string{
-		"language": language,
+		"language": fmt.Sprintf(`%v`, input.language),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1686,14 +1724,19 @@ func (i *iEconItems440) GetSchemaV1(
 
 	return response, nil
 }
+
+type IEconItems_440GetSchemaItems1Input struct {
+	language string
+	start    int32
+}
+
 func (i *iEconItems440) GetSchemaItemsV1(
-	language string,
-	start int32,
+	input IEconItems_440GetSchemaItems1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_440", "GetSchemaItems", 1)
 	request := map[string]string{
-		"language": language,
-		"start":    fmt.Sprintf(`%v`, start),
+		"language": fmt.Sprintf(`%v`, input.language),
+		"start":    fmt.Sprintf(`%v`, input.start),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1704,12 +1747,17 @@ func (i *iEconItems440) GetSchemaItemsV1(
 
 	return response, nil
 }
+
+type IEconItems_440GetSchemaOverview1Input struct {
+	language string
+}
+
 func (i *iEconItems440) GetSchemaOverviewV1(
-	language string,
+	input IEconItems_440GetSchemaOverview1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_440", "GetSchemaOverview", 1)
 	request := map[string]string{
-		"language": language,
+		"language": fmt.Sprintf(`%v`, input.language),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1720,7 +1768,13 @@ func (i *iEconItems440) GetSchemaOverviewV1(
 
 	return response, nil
 }
-func (i *iEconItems440) GetSchemaURLV1() (Response, error) {
+
+type IEconItems_440GetSchemaURL1Input struct {
+}
+
+func (i *iEconItems440) GetSchemaURLV1(
+	input IEconItems_440GetSchemaURL1Input,
+) (Response, error) {
 	p := getPath("IEconItems_440", "GetSchemaURL", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1732,12 +1786,17 @@ func (i *iEconItems440) GetSchemaURLV1() (Response, error) {
 
 	return response, nil
 }
+
+type IEconItems_440GetStoreMetaData1Input struct {
+	language string
+}
+
 func (i *iEconItems440) GetStoreMetaDataV1(
-	language string,
+	input IEconItems_440GetStoreMetaData1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_440", "GetStoreMetaData", 1)
 	request := map[string]string{
-		"language": language,
+		"language": fmt.Sprintf(`%v`, input.language),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1748,7 +1807,13 @@ func (i *iEconItems440) GetStoreMetaDataV1(
 
 	return response, nil
 }
-func (i *iEconItems440) GetStoreStatusV1() (Response, error) {
+
+type IEconItems_440GetStoreStatus1Input struct {
+}
+
+func (i *iEconItems440) GetStoreStatusV1(
+	input IEconItems_440GetStoreStatus1Input,
+) (Response, error) {
 	p := getPath("IEconItems_440", "GetStoreStatus", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1765,24 +1830,24 @@ type iEconItems570 struct {
 }
 
 type IEconItems_570 interface {
-	GetPlayerItemsV1(
-		steamid uint64,
-	) (Response, error)
-	GetStoreMetaDataV1(
-		language string,
-	) (Response, error)
+	GetPlayerItemsV1(input IEconItems_570GetPlayerItems1Input) (Response, error)
+	GetStoreMetaDataV1(input IEconItems_570GetStoreMetaData1Input) (Response, error)
 }
 
 func NewIEconItems_570() IEconItems_570 {
 	return &iEconItems570{}
 }
 
+type IEconItems_570GetPlayerItems1Input struct {
+	steamid uint64
+}
+
 func (i *iEconItems570) GetPlayerItemsV1(
-	steamid uint64,
+	input IEconItems_570GetPlayerItems1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_570", "GetPlayerItems", 1)
 	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1793,12 +1858,17 @@ func (i *iEconItems570) GetPlayerItemsV1(
 
 	return response, nil
 }
+
+type IEconItems_570GetStoreMetaData1Input struct {
+	language string
+}
+
 func (i *iEconItems570) GetStoreMetaDataV1(
-	language string,
+	input IEconItems_570GetStoreMetaData1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_570", "GetStoreMetaData", 1)
 	request := map[string]string{
-		"language": language,
+		"language": fmt.Sprintf(`%v`, input.language),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1814,24 +1884,25 @@ type iEconItems583950 struct {
 }
 
 type IEconItems_583950 interface {
-	GetEquippedPlayerItemsV1(
-		steamid uint64,
-		classId uint32,
-	) (Response, error)
+	GetEquippedPlayerItemsV1(input IEconItems_583950GetEquippedPlayerItems1Input) (Response, error)
 }
 
 func NewIEconItems_583950() IEconItems_583950 {
 	return &iEconItems583950{}
 }
 
+type IEconItems_583950GetEquippedPlayerItems1Input struct {
+	steamid uint64
+	classId uint32
+}
+
 func (i *iEconItems583950) GetEquippedPlayerItemsV1(
-	steamid uint64,
-	classId uint32,
+	input IEconItems_583950GetEquippedPlayerItems1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_583950", "GetEquippedPlayerItems", 1)
 	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
-		"classId": fmt.Sprintf(`%v`, classId),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
+		"classId": fmt.Sprintf(`%v`, input.classId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1847,24 +1918,24 @@ type iEconItems620 struct {
 }
 
 type IEconItems_620 interface {
-	GetPlayerItemsV1(
-		steamid uint64,
-	) (Response, error)
-	GetSchemaV1(
-		language string,
-	) (Response, error)
+	GetPlayerItemsV1(input IEconItems_620GetPlayerItems1Input) (Response, error)
+	GetSchemaV1(input IEconItems_620GetSchema1Input) (Response, error)
 }
 
 func NewIEconItems_620() IEconItems_620 {
 	return &iEconItems620{}
 }
 
+type IEconItems_620GetPlayerItems1Input struct {
+	steamid uint64
+}
+
 func (i *iEconItems620) GetPlayerItemsV1(
-	steamid uint64,
+	input IEconItems_620GetPlayerItems1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_620", "GetPlayerItems", 1)
 	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1875,12 +1946,17 @@ func (i *iEconItems620) GetPlayerItemsV1(
 
 	return response, nil
 }
+
+type IEconItems_620GetSchema1Input struct {
+	language string
+}
+
 func (i *iEconItems620) GetSchemaV1(
-	language string,
+	input IEconItems_620GetSchema1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_620", "GetSchema", 1)
 	request := map[string]string{
-		"language": language,
+		"language": fmt.Sprintf(`%v`, input.language),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1896,28 +1972,26 @@ type iEconItems730 struct {
 }
 
 type IEconItems_730 interface {
-	GetPlayerItemsV1(
-		steamid uint64,
-	) (Response, error)
-	GetSchemaV2(
-		language string,
-	) (Response, error)
-	GetSchemaURLV2() (Response, error)
-	GetStoreMetaDataV1(
-		language string,
-	) (Response, error)
+	GetPlayerItemsV1(input IEconItems_730GetPlayerItems1Input) (Response, error)
+	GetSchemaV2(input IEconItems_730GetSchema2Input) (Response, error)
+	GetSchemaURLV2(input IEconItems_730GetSchemaURL2Input) (Response, error)
+	GetStoreMetaDataV1(input IEconItems_730GetStoreMetaData1Input) (Response, error)
 }
 
 func NewIEconItems_730() IEconItems_730 {
 	return &iEconItems730{}
 }
 
+type IEconItems_730GetPlayerItems1Input struct {
+	steamid uint64
+}
+
 func (i *iEconItems730) GetPlayerItemsV1(
-	steamid uint64,
+	input IEconItems_730GetPlayerItems1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_730", "GetPlayerItems", 1)
 	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1928,12 +2002,17 @@ func (i *iEconItems730) GetPlayerItemsV1(
 
 	return response, nil
 }
+
+type IEconItems_730GetSchema2Input struct {
+	language string
+}
+
 func (i *iEconItems730) GetSchemaV2(
-	language string,
+	input IEconItems_730GetSchema2Input,
 ) (Response, error) {
 	p := getPath("IEconItems_730", "GetSchema", 2)
 	request := map[string]string{
-		"language": language,
+		"language": fmt.Sprintf(`%v`, input.language),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1944,7 +2023,13 @@ func (i *iEconItems730) GetSchemaV2(
 
 	return response, nil
 }
-func (i *iEconItems730) GetSchemaURLV2() (Response, error) {
+
+type IEconItems_730GetSchemaURL2Input struct {
+}
+
+func (i *iEconItems730) GetSchemaURLV2(
+	input IEconItems_730GetSchemaURL2Input,
+) (Response, error) {
 	p := getPath("IEconItems_730", "GetSchemaURL", 2)
 	request := map[string]string{}
 	response := Response{}
@@ -1956,12 +2041,17 @@ func (i *iEconItems730) GetSchemaURLV2() (Response, error) {
 
 	return response, nil
 }
+
+type IEconItems_730GetStoreMetaData1Input struct {
+	language string
+}
+
 func (i *iEconItems730) GetStoreMetaDataV1(
-	language string,
+	input IEconItems_730GetStoreMetaData1Input,
 ) (Response, error) {
 	p := getPath("IEconItems_730", "GetStoreMetaData", 1)
 	request := map[string]string{
-		"language": language,
+		"language": fmt.Sprintf(`%v`, input.language),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -1977,15 +2067,20 @@ type igcVersion1046930 struct {
 }
 
 type IGCVersion_1046930 interface {
-	GetClientVersionV1() (Response, error)
-	GetServerVersionV1() (Response, error)
+	GetClientVersionV1(input IGCVersion_1046930GetClientVersion1Input) (Response, error)
+	GetServerVersionV1(input IGCVersion_1046930GetServerVersion1Input) (Response, error)
 }
 
 func NewIGCVersion_1046930() IGCVersion_1046930 {
 	return &igcVersion1046930{}
 }
 
-func (i *igcVersion1046930) GetClientVersionV1() (Response, error) {
+type IGCVersion_1046930GetClientVersion1Input struct {
+}
+
+func (i *igcVersion1046930) GetClientVersionV1(
+	input IGCVersion_1046930GetClientVersion1Input,
+) (Response, error) {
 	p := getPath("IGCVersion_1046930", "GetClientVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -1997,7 +2092,13 @@ func (i *igcVersion1046930) GetClientVersionV1() (Response, error) {
 
 	return response, nil
 }
-func (i *igcVersion1046930) GetServerVersionV1() (Response, error) {
+
+type IGCVersion_1046930GetServerVersion1Input struct {
+}
+
+func (i *igcVersion1046930) GetServerVersionV1(
+	input IGCVersion_1046930GetServerVersion1Input,
+) (Response, error) {
 	p := getPath("IGCVersion_1046930", "GetServerVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2014,15 +2115,20 @@ type igcVersion1269260 struct {
 }
 
 type IGCVersion_1269260 interface {
-	GetClientVersionV1() (Response, error)
-	GetServerVersionV1() (Response, error)
+	GetClientVersionV1(input IGCVersion_1269260GetClientVersion1Input) (Response, error)
+	GetServerVersionV1(input IGCVersion_1269260GetServerVersion1Input) (Response, error)
 }
 
 func NewIGCVersion_1269260() IGCVersion_1269260 {
 	return &igcVersion1269260{}
 }
 
-func (i *igcVersion1269260) GetClientVersionV1() (Response, error) {
+type IGCVersion_1269260GetClientVersion1Input struct {
+}
+
+func (i *igcVersion1269260) GetClientVersionV1(
+	input IGCVersion_1269260GetClientVersion1Input,
+) (Response, error) {
 	p := getPath("IGCVersion_1269260", "GetClientVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2034,7 +2140,13 @@ func (i *igcVersion1269260) GetClientVersionV1() (Response, error) {
 
 	return response, nil
 }
-func (i *igcVersion1269260) GetServerVersionV1() (Response, error) {
+
+type IGCVersion_1269260GetServerVersion1Input struct {
+}
+
+func (i *igcVersion1269260) GetServerVersionV1(
+	input IGCVersion_1269260GetServerVersion1Input,
+) (Response, error) {
 	p := getPath("IGCVersion_1269260", "GetServerVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2051,15 +2163,20 @@ type igcVersion205790 struct {
 }
 
 type IGCVersion_205790 interface {
-	GetClientVersionV1() (Response, error)
-	GetServerVersionV1() (Response, error)
+	GetClientVersionV1(input IGCVersion_205790GetClientVersion1Input) (Response, error)
+	GetServerVersionV1(input IGCVersion_205790GetServerVersion1Input) (Response, error)
 }
 
 func NewIGCVersion_205790() IGCVersion_205790 {
 	return &igcVersion205790{}
 }
 
-func (i *igcVersion205790) GetClientVersionV1() (Response, error) {
+type IGCVersion_205790GetClientVersion1Input struct {
+}
+
+func (i *igcVersion205790) GetClientVersionV1(
+	input IGCVersion_205790GetClientVersion1Input,
+) (Response, error) {
 	p := getPath("IGCVersion_205790", "GetClientVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2071,7 +2188,13 @@ func (i *igcVersion205790) GetClientVersionV1() (Response, error) {
 
 	return response, nil
 }
-func (i *igcVersion205790) GetServerVersionV1() (Response, error) {
+
+type IGCVersion_205790GetServerVersion1Input struct {
+}
+
+func (i *igcVersion205790) GetServerVersionV1(
+	input IGCVersion_205790GetServerVersion1Input,
+) (Response, error) {
 	p := getPath("IGCVersion_205790", "GetServerVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2088,15 +2211,20 @@ type igcVersion440 struct {
 }
 
 type IGCVersion_440 interface {
-	GetClientVersionV1() (Response, error)
-	GetServerVersionV1() (Response, error)
+	GetClientVersionV1(input IGCVersion_440GetClientVersion1Input) (Response, error)
+	GetServerVersionV1(input IGCVersion_440GetServerVersion1Input) (Response, error)
 }
 
 func NewIGCVersion_440() IGCVersion_440 {
 	return &igcVersion440{}
 }
 
-func (i *igcVersion440) GetClientVersionV1() (Response, error) {
+type IGCVersion_440GetClientVersion1Input struct {
+}
+
+func (i *igcVersion440) GetClientVersionV1(
+	input IGCVersion_440GetClientVersion1Input,
+) (Response, error) {
 	p := getPath("IGCVersion_440", "GetClientVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2108,7 +2236,13 @@ func (i *igcVersion440) GetClientVersionV1() (Response, error) {
 
 	return response, nil
 }
-func (i *igcVersion440) GetServerVersionV1() (Response, error) {
+
+type IGCVersion_440GetServerVersion1Input struct {
+}
+
+func (i *igcVersion440) GetServerVersionV1(
+	input IGCVersion_440GetServerVersion1Input,
+) (Response, error) {
 	p := getPath("IGCVersion_440", "GetServerVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2125,15 +2259,20 @@ type igcVersion570 struct {
 }
 
 type IGCVersion_570 interface {
-	GetClientVersionV1() (Response, error)
-	GetServerVersionV1() (Response, error)
+	GetClientVersionV1(input IGCVersion_570GetClientVersion1Input) (Response, error)
+	GetServerVersionV1(input IGCVersion_570GetServerVersion1Input) (Response, error)
 }
 
 func NewIGCVersion_570() IGCVersion_570 {
 	return &igcVersion570{}
 }
 
-func (i *igcVersion570) GetClientVersionV1() (Response, error) {
+type IGCVersion_570GetClientVersion1Input struct {
+}
+
+func (i *igcVersion570) GetClientVersionV1(
+	input IGCVersion_570GetClientVersion1Input,
+) (Response, error) {
 	p := getPath("IGCVersion_570", "GetClientVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2145,7 +2284,13 @@ func (i *igcVersion570) GetClientVersionV1() (Response, error) {
 
 	return response, nil
 }
-func (i *igcVersion570) GetServerVersionV1() (Response, error) {
+
+type IGCVersion_570GetServerVersion1Input struct {
+}
+
+func (i *igcVersion570) GetServerVersionV1(
+	input IGCVersion_570GetServerVersion1Input,
+) (Response, error) {
 	p := getPath("IGCVersion_570", "GetServerVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2162,15 +2307,20 @@ type igcVersion583950 struct {
 }
 
 type IGCVersion_583950 interface {
-	GetClientVersionV1() (Response, error)
-	GetServerVersionV1() (Response, error)
+	GetClientVersionV1(input IGCVersion_583950GetClientVersion1Input) (Response, error)
+	GetServerVersionV1(input IGCVersion_583950GetServerVersion1Input) (Response, error)
 }
 
 func NewIGCVersion_583950() IGCVersion_583950 {
 	return &igcVersion583950{}
 }
 
-func (i *igcVersion583950) GetClientVersionV1() (Response, error) {
+type IGCVersion_583950GetClientVersion1Input struct {
+}
+
+func (i *igcVersion583950) GetClientVersionV1(
+	input IGCVersion_583950GetClientVersion1Input,
+) (Response, error) {
 	p := getPath("IGCVersion_583950", "GetClientVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2182,7 +2332,13 @@ func (i *igcVersion583950) GetClientVersionV1() (Response, error) {
 
 	return response, nil
 }
-func (i *igcVersion583950) GetServerVersionV1() (Response, error) {
+
+type IGCVersion_583950GetServerVersion1Input struct {
+}
+
+func (i *igcVersion583950) GetServerVersionV1(
+	input IGCVersion_583950GetServerVersion1Input,
+) (Response, error) {
 	p := getPath("IGCVersion_583950", "GetServerVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2199,14 +2355,19 @@ type igcVersion730 struct {
 }
 
 type IGCVersion_730 interface {
-	GetServerVersionV1() (Response, error)
+	GetServerVersionV1(input IGCVersion_730GetServerVersion1Input) (Response, error)
 }
 
 func NewIGCVersion_730() IGCVersion_730 {
 	return &igcVersion730{}
 }
 
-func (i *igcVersion730) GetServerVersionV1() (Response, error) {
+type IGCVersion_730GetServerVersion1Input struct {
+}
+
+func (i *igcVersion730) GetServerVersionV1(
+	input IGCVersion_730GetServerVersion1Input,
+) (Response, error) {
 	p := getPath("IGCVersion_730", "GetServerVersion", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2223,21 +2384,23 @@ type iPortal2leaderboards620 struct {
 }
 
 type IPortal2Leaderboards_620 interface {
-	GetBucketizedDataV1(
-		leaderboardName string,
-	) (Response, error)
+	GetBucketizedDataV1(input IPortal2Leaderboards_620GetBucketizedData1Input) (Response, error)
 }
 
 func NewIPortal2Leaderboards_620() IPortal2Leaderboards_620 {
 	return &iPortal2leaderboards620{}
 }
 
+type IPortal2Leaderboards_620GetBucketizedData1Input struct {
+	leaderboardName string
+}
+
 func (i *iPortal2leaderboards620) GetBucketizedDataV1(
-	leaderboardName string,
+	input IPortal2Leaderboards_620GetBucketizedData1Input,
 ) (Response, error) {
 	p := getPath("IPortal2Leaderboards_620", "GetBucketizedData", 1)
 	request := map[string]string{
-		"leaderboardName": leaderboardName,
+		"leaderboardName": fmt.Sprintf(`%v`, input.leaderboardName),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2253,25 +2416,23 @@ type iSteamApps struct {
 }
 
 type ISteamApps interface {
-	GetAppListV1() (Response, error)
-	GetAppListV2() (Response, error)
-	GetSDRConfigV1(
-		appid uint32,
-	) (Response, error)
-	GetServersAtAddressV1(
-		addr string,
-	) (Response, error)
-	UpToDateCheckV1(
-		appid uint32,
-		version uint32,
-	) (Response, error)
+	GetAppListV1(input ISteamAppsGetAppList1Input) (Response, error)
+	GetAppListV2(input ISteamAppsGetAppList2Input) (Response, error)
+	GetSDRConfigV1(input ISteamAppsGetSDRConfig1Input) (Response, error)
+	GetServersAtAddressV1(input ISteamAppsGetServersAtAddress1Input) (Response, error)
+	UpToDateCheckV1(input ISteamAppsUpToDateCheck1Input) (Response, error)
 }
 
 func NewISteamApps() ISteamApps {
 	return &iSteamApps{}
 }
 
-func (i *iSteamApps) GetAppListV1() (Response, error) {
+type ISteamAppsGetAppList1Input struct {
+}
+
+func (i *iSteamApps) GetAppListV1(
+	input ISteamAppsGetAppList1Input,
+) (Response, error) {
 	p := getPath("ISteamApps", "GetAppList", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2283,7 +2444,13 @@ func (i *iSteamApps) GetAppListV1() (Response, error) {
 
 	return response, nil
 }
-func (i *iSteamApps) GetAppListV2() (Response, error) {
+
+type ISteamAppsGetAppList2Input struct {
+}
+
+func (i *iSteamApps) GetAppListV2(
+	input ISteamAppsGetAppList2Input,
+) (Response, error) {
 	p := getPath("ISteamApps", "GetAppList", 2)
 	request := map[string]string{}
 	response := Response{}
@@ -2295,12 +2462,17 @@ func (i *iSteamApps) GetAppListV2() (Response, error) {
 
 	return response, nil
 }
+
+type ISteamAppsGetSDRConfig1Input struct {
+	appid uint32
+}
+
 func (i *iSteamApps) GetSDRConfigV1(
-	appid uint32,
+	input ISteamAppsGetSDRConfig1Input,
 ) (Response, error) {
 	p := getPath("ISteamApps", "GetSDRConfig", 1)
 	request := map[string]string{
-		"appid": fmt.Sprintf(`%v`, appid),
+		"appid": fmt.Sprintf(`%v`, input.appid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2311,12 +2483,17 @@ func (i *iSteamApps) GetSDRConfigV1(
 
 	return response, nil
 }
+
+type ISteamAppsGetServersAtAddress1Input struct {
+	addr string
+}
+
 func (i *iSteamApps) GetServersAtAddressV1(
-	addr string,
+	input ISteamAppsGetServersAtAddress1Input,
 ) (Response, error) {
 	p := getPath("ISteamApps", "GetServersAtAddress", 1)
 	request := map[string]string{
-		"addr": addr,
+		"addr": fmt.Sprintf(`%v`, input.addr),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2327,14 +2504,19 @@ func (i *iSteamApps) GetServersAtAddressV1(
 
 	return response, nil
 }
+
+type ISteamAppsUpToDateCheck1Input struct {
+	appid   uint32
+	version uint32
+}
+
 func (i *iSteamApps) UpToDateCheckV1(
-	appid uint32,
-	version uint32,
+	input ISteamAppsUpToDateCheck1Input,
 ) (Response, error) {
 	p := getPath("ISteamApps", "UpToDateCheck", 1)
 	request := map[string]string{
-		"appid":   fmt.Sprintf(`%v`, appid),
-		"version": fmt.Sprintf(`%v`, version),
+		"appid":   fmt.Sprintf(`%v`, input.appid),
+		"version": fmt.Sprintf(`%v`, input.version),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2350,30 +2532,29 @@ type iSteamBroadcast struct {
 }
 
 type ISteamBroadcast interface {
-	ViewerHeartbeatV1(
-		steamid uint64,
-		sessionid uint64,
-		token uint64,
-		stream int32,
-	) (Response, error)
+	ViewerHeartbeatV1(input ISteamBroadcastViewerHeartbeat1Input) (Response, error)
 }
 
 func NewISteamBroadcast() ISteamBroadcast {
 	return &iSteamBroadcast{}
 }
 
+type ISteamBroadcastViewerHeartbeat1Input struct {
+	steamid   uint64
+	sessionid uint64
+	token     uint64
+	stream    int32
+}
+
 func (i *iSteamBroadcast) ViewerHeartbeatV1(
-	steamid uint64,
-	sessionid uint64,
-	token uint64,
-	stream int32,
+	input ISteamBroadcastViewerHeartbeat1Input,
 ) (Response, error) {
 	p := getPath("ISteamBroadcast", "ViewerHeartbeat", 1)
 	request := map[string]string{
-		"steamid":   fmt.Sprintf(`%v`, steamid),
-		"sessionid": fmt.Sprintf(`%v`, sessionid),
-		"token":     fmt.Sprintf(`%v`, token),
-		"stream":    fmt.Sprintf(`%v`, stream),
+		"steamid":   fmt.Sprintf(`%v`, input.steamid),
+		"sessionid": fmt.Sprintf(`%v`, input.sessionid),
+		"token":     fmt.Sprintf(`%v`, input.token),
+		"stream":    fmt.Sprintf(`%v`, input.stream),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2389,41 +2570,32 @@ type iSteamCdn struct {
 }
 
 type ISteamCDN interface {
-	SetClientFiltersV1(
-		key string,
-		cdnname string,
-		allowedipblocks string,
-		allowedasns string,
-		allowedipcountries string,
-	) (Response, error)
-	SetPerformanceStatsV1(
-		key string,
-		cdnname string,
-		mbpsSent uint32,
-		mbpsRecv uint32,
-		cpuPercent uint32,
-		cacheHitPercent uint32,
-	) (Response, error)
+	SetClientFiltersV1(input ISteamCDNSetClientFilters1Input) (Response, error)
+	SetPerformanceStatsV1(input ISteamCDNSetPerformanceStats1Input) (Response, error)
 }
 
 func NewISteamCDN() ISteamCDN {
 	return &iSteamCdn{}
 }
 
+type ISteamCDNSetClientFilters1Input struct {
+	key                string
+	cdnname            string
+	allowedipblocks    string
+	allowedasns        string
+	allowedipcountries string
+}
+
 func (i *iSteamCdn) SetClientFiltersV1(
-	key string,
-	cdnname string,
-	allowedipblocks string,
-	allowedasns string,
-	allowedipcountries string,
+	input ISteamCDNSetClientFilters1Input,
 ) (Response, error) {
 	p := getPath("ISteamCDN", "SetClientFilters", 1)
 	request := map[string]string{
-		"key":                key,
-		"cdnname":            cdnname,
-		"allowedipblocks":    allowedipblocks,
-		"allowedasns":        allowedasns,
-		"allowedipcountries": allowedipcountries,
+		"key":                fmt.Sprintf(`%v`, input.key),
+		"cdnname":            fmt.Sprintf(`%v`, input.cdnname),
+		"allowedipblocks":    fmt.Sprintf(`%v`, input.allowedipblocks),
+		"allowedasns":        fmt.Sprintf(`%v`, input.allowedasns),
+		"allowedipcountries": fmt.Sprintf(`%v`, input.allowedipcountries),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2434,22 +2606,27 @@ func (i *iSteamCdn) SetClientFiltersV1(
 
 	return response, nil
 }
+
+type ISteamCDNSetPerformanceStats1Input struct {
+	key             string
+	cdnname         string
+	mbpsSent        uint32
+	mbpsRecv        uint32
+	cpuPercent      uint32
+	cacheHitPercent uint32
+}
+
 func (i *iSteamCdn) SetPerformanceStatsV1(
-	key string,
-	cdnname string,
-	mbpsSent uint32,
-	mbpsRecv uint32,
-	cpuPercent uint32,
-	cacheHitPercent uint32,
+	input ISteamCDNSetPerformanceStats1Input,
 ) (Response, error) {
 	p := getPath("ISteamCDN", "SetPerformanceStats", 1)
 	request := map[string]string{
-		"key":             key,
-		"cdnname":         cdnname,
-		"mbpsSent":        fmt.Sprintf(`%v`, mbpsSent),
-		"mbpsRecv":        fmt.Sprintf(`%v`, mbpsRecv),
-		"cpuPercent":      fmt.Sprintf(`%v`, cpuPercent),
-		"cacheHitPercent": fmt.Sprintf(`%v`, cacheHitPercent),
+		"key":             fmt.Sprintf(`%v`, input.key),
+		"cdnname":         fmt.Sprintf(`%v`, input.cdnname),
+		"mbpsSent":        fmt.Sprintf(`%v`, input.mbpsSent),
+		"mbpsRecv":        fmt.Sprintf(`%v`, input.mbpsRecv),
+		"cpuPercent":      fmt.Sprintf(`%v`, input.cpuPercent),
+		"cacheHitPercent": fmt.Sprintf(`%v`, input.cacheHitPercent),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2465,31 +2642,27 @@ type iSteamDirectory struct {
 }
 
 type ISteamDirectory interface {
-	GetCMListV1(
-		cellid uint32,
-		maxcount uint32,
-	) (Response, error)
-	GetCMListForConnectV1(
-		cellid uint32,
-		cmtype string,
-		realm string,
-		maxcount uint32,
-	) (Response, error)
-	GetSteamPipeDomainsV1() (Response, error)
+	GetCMListV1(input ISteamDirectoryGetCMList1Input) (Response, error)
+	GetCMListForConnectV1(input ISteamDirectoryGetCMListForConnect1Input) (Response, error)
+	GetSteamPipeDomainsV1(input ISteamDirectoryGetSteamPipeDomains1Input) (Response, error)
 }
 
 func NewISteamDirectory() ISteamDirectory {
 	return &iSteamDirectory{}
 }
 
+type ISteamDirectoryGetCMList1Input struct {
+	cellid   uint32
+	maxcount uint32
+}
+
 func (i *iSteamDirectory) GetCMListV1(
-	cellid uint32,
-	maxcount uint32,
+	input ISteamDirectoryGetCMList1Input,
 ) (Response, error) {
 	p := getPath("ISteamDirectory", "GetCMList", 1)
 	request := map[string]string{
-		"cellid":   fmt.Sprintf(`%v`, cellid),
-		"maxcount": fmt.Sprintf(`%v`, maxcount),
+		"cellid":   fmt.Sprintf(`%v`, input.cellid),
+		"maxcount": fmt.Sprintf(`%v`, input.maxcount),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2500,18 +2673,23 @@ func (i *iSteamDirectory) GetCMListV1(
 
 	return response, nil
 }
+
+type ISteamDirectoryGetCMListForConnect1Input struct {
+	cellid   uint32
+	cmtype   string
+	realm    string
+	maxcount uint32
+}
+
 func (i *iSteamDirectory) GetCMListForConnectV1(
-	cellid uint32,
-	cmtype string,
-	realm string,
-	maxcount uint32,
+	input ISteamDirectoryGetCMListForConnect1Input,
 ) (Response, error) {
 	p := getPath("ISteamDirectory", "GetCMListForConnect", 1)
 	request := map[string]string{
-		"cellid":   fmt.Sprintf(`%v`, cellid),
-		"cmtype":   cmtype,
-		"realm":    realm,
-		"maxcount": fmt.Sprintf(`%v`, maxcount),
+		"cellid":   fmt.Sprintf(`%v`, input.cellid),
+		"cmtype":   fmt.Sprintf(`%v`, input.cmtype),
+		"realm":    fmt.Sprintf(`%v`, input.realm),
+		"maxcount": fmt.Sprintf(`%v`, input.maxcount),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2522,7 +2700,13 @@ func (i *iSteamDirectory) GetCMListForConnectV1(
 
 	return response, nil
 }
-func (i *iSteamDirectory) GetSteamPipeDomainsV1() (Response, error) {
+
+type ISteamDirectoryGetSteamPipeDomains1Input struct {
+}
+
+func (i *iSteamDirectory) GetSteamPipeDomainsV1(
+	input ISteamDirectoryGetSteamPipeDomains1Input,
+) (Response, error) {
 	p := getPath("ISteamDirectory", "GetSteamPipeDomains", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -2539,38 +2723,32 @@ type iSteamEconomy struct {
 }
 
 type ISteamEconomy interface {
-	GetAssetClassInfoV1(
-		appid uint32,
-		language string,
-		classCount uint32,
-		classid0 uint64,
-		instanceid0 uint64,
-	) (Response, error)
-	GetAssetPricesV1(
-		appid uint32,
-		currency string,
-		language string,
-	) (Response, error)
+	GetAssetClassInfoV1(input ISteamEconomyGetAssetClassInfo1Input) (Response, error)
+	GetAssetPricesV1(input ISteamEconomyGetAssetPrices1Input) (Response, error)
 }
 
 func NewISteamEconomy() ISteamEconomy {
 	return &iSteamEconomy{}
 }
 
+type ISteamEconomyGetAssetClassInfo1Input struct {
+	appid       uint32
+	language    string
+	classCount  uint32
+	classid0    uint64
+	instanceid0 uint64
+}
+
 func (i *iSteamEconomy) GetAssetClassInfoV1(
-	appid uint32,
-	language string,
-	classCount uint32,
-	classid0 uint64,
-	instanceid0 uint64,
+	input ISteamEconomyGetAssetClassInfo1Input,
 ) (Response, error) {
 	p := getPath("ISteamEconomy", "GetAssetClassInfo", 1)
 	request := map[string]string{
-		"appid":       fmt.Sprintf(`%v`, appid),
-		"language":    language,
-		"classCount":  fmt.Sprintf(`%v`, classCount),
-		"classid0":    fmt.Sprintf(`%v`, classid0),
-		"instanceid0": fmt.Sprintf(`%v`, instanceid0),
+		"appid":       fmt.Sprintf(`%v`, input.appid),
+		"language":    fmt.Sprintf(`%v`, input.language),
+		"classCount":  fmt.Sprintf(`%v`, input.classCount),
+		"classid0":    fmt.Sprintf(`%v`, input.classid0),
+		"instanceid0": fmt.Sprintf(`%v`, input.instanceid0),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2581,16 +2759,21 @@ func (i *iSteamEconomy) GetAssetClassInfoV1(
 
 	return response, nil
 }
+
+type ISteamEconomyGetAssetPrices1Input struct {
+	appid    uint32
+	currency string
+	language string
+}
+
 func (i *iSteamEconomy) GetAssetPricesV1(
-	appid uint32,
-	currency string,
-	language string,
+	input ISteamEconomyGetAssetPrices1Input,
 ) (Response, error) {
 	p := getPath("ISteamEconomy", "GetAssetPrices", 1)
 	request := map[string]string{
-		"appid":    fmt.Sprintf(`%v`, appid),
-		"currency": currency,
-		"language": language,
+		"appid":    fmt.Sprintf(`%v`, input.appid),
+		"currency": fmt.Sprintf(`%v`, input.currency),
+		"language": fmt.Sprintf(`%v`, input.language),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2606,41 +2789,32 @@ type iSteamNews struct {
 }
 
 type ISteamNews interface {
-	GetNewsForAppV1(
-		appid uint32,
-		maxlength uint32,
-		enddate uint32,
-		count uint32,
-		tags string,
-	) (Response, error)
-	GetNewsForAppV2(
-		appid uint32,
-		maxlength uint32,
-		enddate uint32,
-		count uint32,
-		feeds string,
-		tags string,
-	) (Response, error)
+	GetNewsForAppV1(input ISteamNewsGetNewsForApp1Input) (Response, error)
+	GetNewsForAppV2(input ISteamNewsGetNewsForApp2Input) (Response, error)
 }
 
 func NewISteamNews() ISteamNews {
 	return &iSteamNews{}
 }
 
+type ISteamNewsGetNewsForApp1Input struct {
+	appid     uint32
+	maxlength uint32
+	enddate   uint32
+	count     uint32
+	tags      string
+}
+
 func (i *iSteamNews) GetNewsForAppV1(
-	appid uint32,
-	maxlength uint32,
-	enddate uint32,
-	count uint32,
-	tags string,
+	input ISteamNewsGetNewsForApp1Input,
 ) (Response, error) {
 	p := getPath("ISteamNews", "GetNewsForApp", 1)
 	request := map[string]string{
-		"appid":     fmt.Sprintf(`%v`, appid),
-		"maxlength": fmt.Sprintf(`%v`, maxlength),
-		"enddate":   fmt.Sprintf(`%v`, enddate),
-		"count":     fmt.Sprintf(`%v`, count),
-		"tags":      tags,
+		"appid":     fmt.Sprintf(`%v`, input.appid),
+		"maxlength": fmt.Sprintf(`%v`, input.maxlength),
+		"enddate":   fmt.Sprintf(`%v`, input.enddate),
+		"count":     fmt.Sprintf(`%v`, input.count),
+		"tags":      fmt.Sprintf(`%v`, input.tags),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2651,22 +2825,27 @@ func (i *iSteamNews) GetNewsForAppV1(
 
 	return response, nil
 }
+
+type ISteamNewsGetNewsForApp2Input struct {
+	appid     uint32
+	maxlength uint32
+	enddate   uint32
+	count     uint32
+	feeds     string
+	tags      string
+}
+
 func (i *iSteamNews) GetNewsForAppV2(
-	appid uint32,
-	maxlength uint32,
-	enddate uint32,
-	count uint32,
-	feeds string,
-	tags string,
+	input ISteamNewsGetNewsForApp2Input,
 ) (Response, error) {
 	p := getPath("ISteamNews", "GetNewsForApp", 2)
 	request := map[string]string{
-		"appid":     fmt.Sprintf(`%v`, appid),
-		"maxlength": fmt.Sprintf(`%v`, maxlength),
-		"enddate":   fmt.Sprintf(`%v`, enddate),
-		"count":     fmt.Sprintf(`%v`, count),
-		"feeds":     feeds,
-		"tags":      tags,
+		"appid":     fmt.Sprintf(`%v`, input.appid),
+		"maxlength": fmt.Sprintf(`%v`, input.maxlength),
+		"enddate":   fmt.Sprintf(`%v`, input.enddate),
+		"count":     fmt.Sprintf(`%v`, input.count),
+		"feeds":     fmt.Sprintf(`%v`, input.feeds),
+		"tags":      fmt.Sprintf(`%v`, input.tags),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2682,33 +2861,27 @@ type iSteamRemoteStorage struct {
 }
 
 type ISteamRemoteStorage interface {
-	GetCollectionDetailsV1(
-		collectioncount uint32,
-		publishedfileids uint64,
-	) (Response, error)
-	GetPublishedFileDetailsV1(
-		itemcount uint32,
-		publishedfileids uint64,
-	) (Response, error)
-	GetUGCFileDetailsV1(
-		steamid uint64,
-		ugcid uint64,
-		appid uint32,
-	) (Response, error)
+	GetCollectionDetailsV1(input ISteamRemoteStorageGetCollectionDetails1Input) (Response, error)
+	GetPublishedFileDetailsV1(input ISteamRemoteStorageGetPublishedFileDetails1Input) (Response, error)
+	GetUGCFileDetailsV1(input ISteamRemoteStorageGetUGCFileDetails1Input) (Response, error)
 }
 
 func NewISteamRemoteStorage() ISteamRemoteStorage {
 	return &iSteamRemoteStorage{}
 }
 
+type ISteamRemoteStorageGetCollectionDetails1Input struct {
+	collectioncount  uint32
+	publishedfileids uint64
+}
+
 func (i *iSteamRemoteStorage) GetCollectionDetailsV1(
-	collectioncount uint32,
-	publishedfileids uint64,
+	input ISteamRemoteStorageGetCollectionDetails1Input,
 ) (Response, error) {
 	p := getPath("ISteamRemoteStorage", "GetCollectionDetails", 1)
 	request := map[string]string{
-		"collectioncount":  fmt.Sprintf(`%v`, collectioncount),
-		"publishedfileids": fmt.Sprintf(`%v`, publishedfileids),
+		"collectioncount":  fmt.Sprintf(`%v`, input.collectioncount),
+		"publishedfileids": fmt.Sprintf(`%v`, input.publishedfileids),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2719,14 +2892,19 @@ func (i *iSteamRemoteStorage) GetCollectionDetailsV1(
 
 	return response, nil
 }
+
+type ISteamRemoteStorageGetPublishedFileDetails1Input struct {
+	itemcount        uint32
+	publishedfileids uint64
+}
+
 func (i *iSteamRemoteStorage) GetPublishedFileDetailsV1(
-	itemcount uint32,
-	publishedfileids uint64,
+	input ISteamRemoteStorageGetPublishedFileDetails1Input,
 ) (Response, error) {
 	p := getPath("ISteamRemoteStorage", "GetPublishedFileDetails", 1)
 	request := map[string]string{
-		"itemcount":        fmt.Sprintf(`%v`, itemcount),
-		"publishedfileids": fmt.Sprintf(`%v`, publishedfileids),
+		"itemcount":        fmt.Sprintf(`%v`, input.itemcount),
+		"publishedfileids": fmt.Sprintf(`%v`, input.publishedfileids),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2737,16 +2915,21 @@ func (i *iSteamRemoteStorage) GetPublishedFileDetailsV1(
 
 	return response, nil
 }
+
+type ISteamRemoteStorageGetUGCFileDetails1Input struct {
+	steamid uint64
+	ugcid   uint64
+	appid   uint32
+}
+
 func (i *iSteamRemoteStorage) GetUGCFileDetailsV1(
-	steamid uint64,
-	ugcid uint64,
-	appid uint32,
+	input ISteamRemoteStorageGetUGCFileDetails1Input,
 ) (Response, error) {
 	p := getPath("ISteamRemoteStorage", "GetUGCFileDetails", 1)
 	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
-		"ugcid":   fmt.Sprintf(`%v`, ugcid),
-		"appid":   fmt.Sprintf(`%v`, appid),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
+		"ugcid":   fmt.Sprintf(`%v`, input.ugcid),
+		"appid":   fmt.Sprintf(`%v`, input.appid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2762,48 +2945,32 @@ type iSteamUser struct {
 }
 
 type ISteamUser interface {
-	GetFriendListV1(
-		key string,
-		steamid uint64,
-		relationship string,
-	) (Response, error)
-	GetPlayerBansV1(
-		key string,
-		steamids string,
-	) (Response, error)
-	GetPlayerSummariesV1(
-		key string,
-		steamids string,
-	) (Response, error)
-	GetPlayerSummariesV2(
-		key string,
-		steamids string,
-	) (Response, error)
-	GetUserGroupListV1(
-		key string,
-		steamid uint64,
-	) (Response, error)
-	ResolveVanityURLV1(
-		key string,
-		vanityurl string,
-		urlType int32,
-	) (Response, error)
+	GetFriendListV1(input ISteamUserGetFriendList1Input) (Response, error)
+	GetPlayerBansV1(input ISteamUserGetPlayerBans1Input) (Response, error)
+	GetPlayerSummariesV1(input ISteamUserGetPlayerSummaries1Input) (Response, error)
+	GetPlayerSummariesV2(input ISteamUserGetPlayerSummaries2Input) (Response, error)
+	GetUserGroupListV1(input ISteamUserGetUserGroupList1Input) (Response, error)
+	ResolveVanityURLV1(input ISteamUserResolveVanityURL1Input) (Response, error)
 }
 
 func NewISteamUser() ISteamUser {
 	return &iSteamUser{}
 }
 
+type ISteamUserGetFriendList1Input struct {
+	key          string
+	steamid      uint64
+	relationship string
+}
+
 func (i *iSteamUser) GetFriendListV1(
-	key string,
-	steamid uint64,
-	relationship string,
+	input ISteamUserGetFriendList1Input,
 ) (Response, error) {
 	p := getPath("ISteamUser", "GetFriendList", 1)
 	request := map[string]string{
-		"key":          key,
-		"steamid":      fmt.Sprintf(`%v`, steamid),
-		"relationship": relationship,
+		"key":          fmt.Sprintf(`%v`, input.key),
+		"steamid":      fmt.Sprintf(`%v`, input.steamid),
+		"relationship": fmt.Sprintf(`%v`, input.relationship),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2814,14 +2981,19 @@ func (i *iSteamUser) GetFriendListV1(
 
 	return response, nil
 }
+
+type ISteamUserGetPlayerBans1Input struct {
+	key      string
+	steamids string
+}
+
 func (i *iSteamUser) GetPlayerBansV1(
-	key string,
-	steamids string,
+	input ISteamUserGetPlayerBans1Input,
 ) (Response, error) {
 	p := getPath("ISteamUser", "GetPlayerBans", 1)
 	request := map[string]string{
-		"key":      key,
-		"steamids": steamids,
+		"key":      fmt.Sprintf(`%v`, input.key),
+		"steamids": fmt.Sprintf(`%v`, input.steamids),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2832,14 +3004,19 @@ func (i *iSteamUser) GetPlayerBansV1(
 
 	return response, nil
 }
+
+type ISteamUserGetPlayerSummaries1Input struct {
+	key      string
+	steamids string
+}
+
 func (i *iSteamUser) GetPlayerSummariesV1(
-	key string,
-	steamids string,
+	input ISteamUserGetPlayerSummaries1Input,
 ) (Response, error) {
 	p := getPath("ISteamUser", "GetPlayerSummaries", 1)
 	request := map[string]string{
-		"key":      key,
-		"steamids": steamids,
+		"key":      fmt.Sprintf(`%v`, input.key),
+		"steamids": fmt.Sprintf(`%v`, input.steamids),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2850,14 +3027,19 @@ func (i *iSteamUser) GetPlayerSummariesV1(
 
 	return response, nil
 }
+
+type ISteamUserGetPlayerSummaries2Input struct {
+	key      string
+	steamids string
+}
+
 func (i *iSteamUser) GetPlayerSummariesV2(
-	key string,
-	steamids string,
+	input ISteamUserGetPlayerSummaries2Input,
 ) (Response, error) {
 	p := getPath("ISteamUser", "GetPlayerSummaries", 2)
 	request := map[string]string{
-		"key":      key,
-		"steamids": steamids,
+		"key":      fmt.Sprintf(`%v`, input.key),
+		"steamids": fmt.Sprintf(`%v`, input.steamids),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2868,14 +3050,19 @@ func (i *iSteamUser) GetPlayerSummariesV2(
 
 	return response, nil
 }
+
+type ISteamUserGetUserGroupList1Input struct {
+	key     string
+	steamid uint64
+}
+
 func (i *iSteamUser) GetUserGroupListV1(
-	key string,
-	steamid uint64,
+	input ISteamUserGetUserGroupList1Input,
 ) (Response, error) {
 	p := getPath("ISteamUser", "GetUserGroupList", 1)
 	request := map[string]string{
-		"key":     key,
-		"steamid": fmt.Sprintf(`%v`, steamid),
+		"key":     fmt.Sprintf(`%v`, input.key),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2886,16 +3073,21 @@ func (i *iSteamUser) GetUserGroupListV1(
 
 	return response, nil
 }
+
+type ISteamUserResolveVanityURL1Input struct {
+	key       string
+	vanityurl string
+	urlType   int32
+}
+
 func (i *iSteamUser) ResolveVanityURLV1(
-	key string,
-	vanityurl string,
-	urlType int32,
+	input ISteamUserResolveVanityURL1Input,
 ) (Response, error) {
 	p := getPath("ISteamUser", "ResolveVanityURL", 1)
 	request := map[string]string{
-		"key":       key,
-		"vanityurl": vanityurl,
-		"urlType":   fmt.Sprintf(`%v`, urlType),
+		"key":       fmt.Sprintf(`%v`, input.key),
+		"vanityurl": fmt.Sprintf(`%v`, input.vanityurl),
+		"urlType":   fmt.Sprintf(`%v`, input.urlType),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2911,26 +3103,28 @@ type iSteamUserAuth struct {
 }
 
 type ISteamUserAuth interface {
-	AuthenticateUserV1(
-		steamid uint64,
-	) (Response, error)
-	AuthenticateUserTicketV1(
-		key string,
-		appid uint32,
-		ticket string,
-	) (Response, error)
+	AuthenticateUserV1(input ISteamUserAuthAuthenticateUser1Input) (Response, error)
+	AuthenticateUserTicketV1(input ISteamUserAuthAuthenticateUserTicket1Input) (Response, error)
 }
 
 func NewISteamUserAuth() ISteamUserAuth {
 	return &iSteamUserAuth{}
 }
 
+type ISteamUserAuthAuthenticateUser1Input struct {
+	steamid           uint64
+	sessionkey        any
+	encryptedLoginkey any
+}
+
 func (i *iSteamUserAuth) AuthenticateUserV1(
-	steamid uint64,
+	input ISteamUserAuthAuthenticateUser1Input,
 ) (Response, error) {
 	p := getPath("ISteamUserAuth", "AuthenticateUser", 1)
 	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
+		"steamid":           fmt.Sprintf(`%v`, input.steamid),
+		"sessionkey":        fmt.Sprintf(`%v`, input.sessionkey),
+		"encryptedLoginkey": fmt.Sprintf(`%v`, input.encryptedLoginkey),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2941,16 +3135,21 @@ func (i *iSteamUserAuth) AuthenticateUserV1(
 
 	return response, nil
 }
+
+type ISteamUserAuthAuthenticateUserTicket1Input struct {
+	key    string
+	appid  uint32
+	ticket string
+}
+
 func (i *iSteamUserAuth) AuthenticateUserTicketV1(
-	key string,
-	appid uint32,
-	ticket string,
+	input ISteamUserAuthAuthenticateUserTicket1Input,
 ) (Response, error) {
 	p := getPath("ISteamUserAuth", "AuthenticateUserTicket", 1)
 	request := map[string]string{
-		"key":    key,
-		"appid":  fmt.Sprintf(`%v`, appid),
-		"ticket": ticket,
+		"key":    fmt.Sprintf(`%v`, input.key),
+		"appid":  fmt.Sprintf(`%v`, input.appid),
+		"ticket": fmt.Sprintf(`%v`, input.ticket),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2966,21 +3165,23 @@ type iSteamUserOAuth struct {
 }
 
 type ISteamUserOAuth interface {
-	GetTokenDetailsV1(
-		accessToken string,
-	) (Response, error)
+	GetTokenDetailsV1(input ISteamUserOAuthGetTokenDetails1Input) (Response, error)
 }
 
 func NewISteamUserOAuth() ISteamUserOAuth {
 	return &iSteamUserOAuth{}
 }
 
+type ISteamUserOAuthGetTokenDetails1Input struct {
+	accessToken string
+}
+
 func (i *iSteamUserOAuth) GetTokenDetailsV1(
-	accessToken string,
+	input ISteamUserOAuthGetTokenDetails1Input,
 ) (Response, error) {
 	p := getPath("ISteamUserOAuth", "GetTokenDetails", 1)
 	request := map[string]string{
-		"accessToken": accessToken,
+		"accessToken": fmt.Sprintf(`%v`, input.accessToken),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -2996,60 +3197,31 @@ type iSteamUserStats struct {
 }
 
 type ISteamUserStats interface {
-	GetGlobalAchievementPercentagesForAppV1(
-		gameid uint64,
-	) (Response, error)
-	GetGlobalAchievementPercentagesForAppV2(
-		gameid uint64,
-	) (Response, error)
-	GetGlobalStatsForGameV1(
-		appid uint32,
-		count uint32,
-		name string,
-		startdate uint32,
-		enddate uint32,
-	) (Response, error)
-	GetNumberOfCurrentPlayersV1(
-		appid uint32,
-	) (Response, error)
-	GetPlayerAchievementsV1(
-		key string,
-		steamid uint64,
-		appid uint32,
-		l string,
-	) (Response, error)
-	GetSchemaForGameV1(
-		key string,
-		appid uint32,
-		l string,
-	) (Response, error)
-	GetSchemaForGameV2(
-		key string,
-		appid uint32,
-		l string,
-	) (Response, error)
-	GetUserStatsForGameV1(
-		key string,
-		steamid uint64,
-		appid uint32,
-	) (Response, error)
-	GetUserStatsForGameV2(
-		key string,
-		steamid uint64,
-		appid uint32,
-	) (Response, error)
+	GetGlobalAchievementPercentagesForAppV1(input ISteamUserStatsGetGlobalAchievementPercentagesForApp1Input) (Response, error)
+	GetGlobalAchievementPercentagesForAppV2(input ISteamUserStatsGetGlobalAchievementPercentagesForApp2Input) (Response, error)
+	GetGlobalStatsForGameV1(input ISteamUserStatsGetGlobalStatsForGame1Input) (Response, error)
+	GetNumberOfCurrentPlayersV1(input ISteamUserStatsGetNumberOfCurrentPlayers1Input) (Response, error)
+	GetPlayerAchievementsV1(input ISteamUserStatsGetPlayerAchievements1Input) (Response, error)
+	GetSchemaForGameV1(input ISteamUserStatsGetSchemaForGame1Input) (Response, error)
+	GetSchemaForGameV2(input ISteamUserStatsGetSchemaForGame2Input) (Response, error)
+	GetUserStatsForGameV1(input ISteamUserStatsGetUserStatsForGame1Input) (Response, error)
+	GetUserStatsForGameV2(input ISteamUserStatsGetUserStatsForGame2Input) (Response, error)
 }
 
 func NewISteamUserStats() ISteamUserStats {
 	return &iSteamUserStats{}
 }
 
+type ISteamUserStatsGetGlobalAchievementPercentagesForApp1Input struct {
+	gameid uint64
+}
+
 func (i *iSteamUserStats) GetGlobalAchievementPercentagesForAppV1(
-	gameid uint64,
+	input ISteamUserStatsGetGlobalAchievementPercentagesForApp1Input,
 ) (Response, error) {
 	p := getPath("ISteamUserStats", "GetGlobalAchievementPercentagesForApp", 1)
 	request := map[string]string{
-		"gameid": fmt.Sprintf(`%v`, gameid),
+		"gameid": fmt.Sprintf(`%v`, input.gameid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3060,12 +3232,17 @@ func (i *iSteamUserStats) GetGlobalAchievementPercentagesForAppV1(
 
 	return response, nil
 }
+
+type ISteamUserStatsGetGlobalAchievementPercentagesForApp2Input struct {
+	gameid uint64
+}
+
 func (i *iSteamUserStats) GetGlobalAchievementPercentagesForAppV2(
-	gameid uint64,
+	input ISteamUserStatsGetGlobalAchievementPercentagesForApp2Input,
 ) (Response, error) {
 	p := getPath("ISteamUserStats", "GetGlobalAchievementPercentagesForApp", 2)
 	request := map[string]string{
-		"gameid": fmt.Sprintf(`%v`, gameid),
+		"gameid": fmt.Sprintf(`%v`, input.gameid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3076,20 +3253,25 @@ func (i *iSteamUserStats) GetGlobalAchievementPercentagesForAppV2(
 
 	return response, nil
 }
+
+type ISteamUserStatsGetGlobalStatsForGame1Input struct {
+	appid     uint32
+	count     uint32
+	name      string
+	startdate uint32
+	enddate   uint32
+}
+
 func (i *iSteamUserStats) GetGlobalStatsForGameV1(
-	appid uint32,
-	count uint32,
-	name string,
-	startdate uint32,
-	enddate uint32,
+	input ISteamUserStatsGetGlobalStatsForGame1Input,
 ) (Response, error) {
 	p := getPath("ISteamUserStats", "GetGlobalStatsForGame", 1)
 	request := map[string]string{
-		"appid":     fmt.Sprintf(`%v`, appid),
-		"count":     fmt.Sprintf(`%v`, count),
-		"name":      name,
-		"startdate": fmt.Sprintf(`%v`, startdate),
-		"enddate":   fmt.Sprintf(`%v`, enddate),
+		"appid":     fmt.Sprintf(`%v`, input.appid),
+		"count":     fmt.Sprintf(`%v`, input.count),
+		"name":      fmt.Sprintf(`%v`, input.name),
+		"startdate": fmt.Sprintf(`%v`, input.startdate),
+		"enddate":   fmt.Sprintf(`%v`, input.enddate),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3100,12 +3282,17 @@ func (i *iSteamUserStats) GetGlobalStatsForGameV1(
 
 	return response, nil
 }
+
+type ISteamUserStatsGetNumberOfCurrentPlayers1Input struct {
+	appid uint32
+}
+
 func (i *iSteamUserStats) GetNumberOfCurrentPlayersV1(
-	appid uint32,
+	input ISteamUserStatsGetNumberOfCurrentPlayers1Input,
 ) (Response, error) {
 	p := getPath("ISteamUserStats", "GetNumberOfCurrentPlayers", 1)
 	request := map[string]string{
-		"appid": fmt.Sprintf(`%v`, appid),
+		"appid": fmt.Sprintf(`%v`, input.appid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3116,18 +3303,23 @@ func (i *iSteamUserStats) GetNumberOfCurrentPlayersV1(
 
 	return response, nil
 }
+
+type ISteamUserStatsGetPlayerAchievements1Input struct {
+	key     string
+	steamid uint64
+	appid   uint32
+	l       string
+}
+
 func (i *iSteamUserStats) GetPlayerAchievementsV1(
-	key string,
-	steamid uint64,
-	appid uint32,
-	l string,
+	input ISteamUserStatsGetPlayerAchievements1Input,
 ) (Response, error) {
 	p := getPath("ISteamUserStats", "GetPlayerAchievements", 1)
 	request := map[string]string{
-		"key":     key,
-		"steamid": fmt.Sprintf(`%v`, steamid),
-		"appid":   fmt.Sprintf(`%v`, appid),
-		"l":       l,
+		"key":     fmt.Sprintf(`%v`, input.key),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
+		"appid":   fmt.Sprintf(`%v`, input.appid),
+		"l":       fmt.Sprintf(`%v`, input.l),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3138,16 +3330,21 @@ func (i *iSteamUserStats) GetPlayerAchievementsV1(
 
 	return response, nil
 }
+
+type ISteamUserStatsGetSchemaForGame1Input struct {
+	key   string
+	appid uint32
+	l     string
+}
+
 func (i *iSteamUserStats) GetSchemaForGameV1(
-	key string,
-	appid uint32,
-	l string,
+	input ISteamUserStatsGetSchemaForGame1Input,
 ) (Response, error) {
 	p := getPath("ISteamUserStats", "GetSchemaForGame", 1)
 	request := map[string]string{
-		"key":   key,
-		"appid": fmt.Sprintf(`%v`, appid),
-		"l":     l,
+		"key":   fmt.Sprintf(`%v`, input.key),
+		"appid": fmt.Sprintf(`%v`, input.appid),
+		"l":     fmt.Sprintf(`%v`, input.l),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3158,16 +3355,21 @@ func (i *iSteamUserStats) GetSchemaForGameV1(
 
 	return response, nil
 }
+
+type ISteamUserStatsGetSchemaForGame2Input struct {
+	key   string
+	appid uint32
+	l     string
+}
+
 func (i *iSteamUserStats) GetSchemaForGameV2(
-	key string,
-	appid uint32,
-	l string,
+	input ISteamUserStatsGetSchemaForGame2Input,
 ) (Response, error) {
 	p := getPath("ISteamUserStats", "GetSchemaForGame", 2)
 	request := map[string]string{
-		"key":   key,
-		"appid": fmt.Sprintf(`%v`, appid),
-		"l":     l,
+		"key":   fmt.Sprintf(`%v`, input.key),
+		"appid": fmt.Sprintf(`%v`, input.appid),
+		"l":     fmt.Sprintf(`%v`, input.l),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3178,16 +3380,21 @@ func (i *iSteamUserStats) GetSchemaForGameV2(
 
 	return response, nil
 }
+
+type ISteamUserStatsGetUserStatsForGame1Input struct {
+	key     string
+	steamid uint64
+	appid   uint32
+}
+
 func (i *iSteamUserStats) GetUserStatsForGameV1(
-	key string,
-	steamid uint64,
-	appid uint32,
+	input ISteamUserStatsGetUserStatsForGame1Input,
 ) (Response, error) {
 	p := getPath("ISteamUserStats", "GetUserStatsForGame", 1)
 	request := map[string]string{
-		"key":     key,
-		"steamid": fmt.Sprintf(`%v`, steamid),
-		"appid":   fmt.Sprintf(`%v`, appid),
+		"key":     fmt.Sprintf(`%v`, input.key),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
+		"appid":   fmt.Sprintf(`%v`, input.appid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3198,16 +3405,21 @@ func (i *iSteamUserStats) GetUserStatsForGameV1(
 
 	return response, nil
 }
+
+type ISteamUserStatsGetUserStatsForGame2Input struct {
+	key     string
+	steamid uint64
+	appid   uint32
+}
+
 func (i *iSteamUserStats) GetUserStatsForGameV2(
-	key string,
-	steamid uint64,
-	appid uint32,
+	input ISteamUserStatsGetUserStatsForGame2Input,
 ) (Response, error) {
 	p := getPath("ISteamUserStats", "GetUserStatsForGame", 2)
 	request := map[string]string{
-		"key":     key,
-		"steamid": fmt.Sprintf(`%v`, steamid),
-		"appid":   fmt.Sprintf(`%v`, appid),
+		"key":     fmt.Sprintf(`%v`, input.key),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
+		"appid":   fmt.Sprintf(`%v`, input.appid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3223,17 +3435,20 @@ type iSteamWebApiUtil struct {
 }
 
 type ISteamWebAPIUtil interface {
-	GetServerInfoV1() (Response, error)
-	GetSupportedAPIListV1(
-		key string,
-	) (Response, error)
+	GetServerInfoV1(input ISteamWebAPIUtilGetServerInfo1Input) (Response, error)
+	GetSupportedAPIListV1(input ISteamWebAPIUtilGetSupportedAPIList1Input) (Response, error)
 }
 
 func NewISteamWebAPIUtil() ISteamWebAPIUtil {
 	return &iSteamWebApiUtil{}
 }
 
-func (i *iSteamWebApiUtil) GetServerInfoV1() (Response, error) {
+type ISteamWebAPIUtilGetServerInfo1Input struct {
+}
+
+func (i *iSteamWebApiUtil) GetServerInfoV1(
+	input ISteamWebAPIUtilGetServerInfo1Input,
+) (Response, error) {
 	p := getPath("ISteamWebAPIUtil", "GetServerInfo", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -3245,12 +3460,17 @@ func (i *iSteamWebApiUtil) GetServerInfoV1() (Response, error) {
 
 	return response, nil
 }
+
+type ISteamWebAPIUtilGetSupportedAPIList1Input struct {
+	key string
+}
+
 func (i *iSteamWebApiUtil) GetSupportedAPIListV1(
-	key string,
+	input ISteamWebAPIUtilGetSupportedAPIList1Input,
 ) (Response, error) {
 	p := getPath("ISteamWebAPIUtil", "GetSupportedAPIList", 1)
 	request := map[string]string{
-		"key": key,
+		"key": fmt.Sprintf(`%v`, input.key),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3266,15 +3486,20 @@ type itfItems440 struct {
 }
 
 type ITFItems_440 interface {
-	GetGoldenWrenchesV1() (Response, error)
-	GetGoldenWrenchesV2() (Response, error)
+	GetGoldenWrenchesV1(input ITFItems_440GetGoldenWrenches1Input) (Response, error)
+	GetGoldenWrenchesV2(input ITFItems_440GetGoldenWrenches2Input) (Response, error)
 }
 
 func NewITFItems_440() ITFItems_440 {
 	return &itfItems440{}
 }
 
-func (i *itfItems440) GetGoldenWrenchesV1() (Response, error) {
+type ITFItems_440GetGoldenWrenches1Input struct {
+}
+
+func (i *itfItems440) GetGoldenWrenchesV1(
+	input ITFItems_440GetGoldenWrenches1Input,
+) (Response, error) {
 	p := getPath("ITFItems_440", "GetGoldenWrenches", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -3286,7 +3511,13 @@ func (i *itfItems440) GetGoldenWrenchesV1() (Response, error) {
 
 	return response, nil
 }
-func (i *itfItems440) GetGoldenWrenchesV2() (Response, error) {
+
+type ITFItems_440GetGoldenWrenches2Input struct {
+}
+
+func (i *itfItems440) GetGoldenWrenchesV2(
+	input ITFItems_440GetGoldenWrenches2Input,
+) (Response, error) {
 	p := getPath("ITFItems_440", "GetGoldenWrenches", 2)
 	request := map[string]string{}
 	response := Response{}
@@ -3303,28 +3534,26 @@ type itfPromos440 struct {
 }
 
 type ITFPromos_440 interface {
-	GetItemIDV1(
-		steamid uint64,
-		promoid uint32,
-	) (Response, error)
-	GrantItemV1(
-		steamid uint64,
-		promoid uint32,
-	) (Response, error)
+	GetItemIDV1(input ITFPromos_440GetItemID1Input) (Response, error)
+	GrantItemV1(input ITFPromos_440GrantItem1Input) (Response, error)
 }
 
 func NewITFPromos_440() ITFPromos_440 {
 	return &itfPromos440{}
 }
 
+type ITFPromos_440GetItemID1Input struct {
+	steamid uint64
+	promoid uint32
+}
+
 func (i *itfPromos440) GetItemIDV1(
-	steamid uint64,
-	promoid uint32,
+	input ITFPromos_440GetItemID1Input,
 ) (Response, error) {
 	p := getPath("ITFPromos_440", "GetItemID", 1)
 	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
-		"promoid": fmt.Sprintf(`%v`, promoid),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
+		"promoid": fmt.Sprintf(`%v`, input.promoid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3335,14 +3564,19 @@ func (i *itfPromos440) GetItemIDV1(
 
 	return response, nil
 }
+
+type ITFPromos_440GrantItem1Input struct {
+	steamid uint64
+	promoid uint32
+}
+
 func (i *itfPromos440) GrantItemV1(
-	steamid uint64,
-	promoid uint32,
+	input ITFPromos_440GrantItem1Input,
 ) (Response, error) {
 	p := getPath("ITFPromos_440", "GrantItem", 1)
 	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
-		"promoid": fmt.Sprintf(`%v`, promoid),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
+		"promoid": fmt.Sprintf(`%v`, input.promoid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3358,28 +3592,26 @@ type itfPromos620 struct {
 }
 
 type ITFPromos_620 interface {
-	GetItemIDV1(
-		steamid uint64,
-		promoId uint32,
-	) (Response, error)
-	GrantItemV1(
-		steamid uint64,
-		promoId uint32,
-	) (Response, error)
+	GetItemIDV1(input ITFPromos_620GetItemID1Input) (Response, error)
+	GrantItemV1(input ITFPromos_620GrantItem1Input) (Response, error)
 }
 
 func NewITFPromos_620() ITFPromos_620 {
 	return &itfPromos620{}
 }
 
+type ITFPromos_620GetItemID1Input struct {
+	steamid uint64
+	promoId uint32
+}
+
 func (i *itfPromos620) GetItemIDV1(
-	steamid uint64,
-	promoId uint32,
+	input ITFPromos_620GetItemID1Input,
 ) (Response, error) {
 	p := getPath("ITFPromos_620", "GetItemID", 1)
 	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
-		"promoId": fmt.Sprintf(`%v`, promoId),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
+		"promoId": fmt.Sprintf(`%v`, input.promoId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3390,14 +3622,19 @@ func (i *itfPromos620) GetItemIDV1(
 
 	return response, nil
 }
+
+type ITFPromos_620GrantItem1Input struct {
+	steamid uint64
+	promoId uint32
+}
+
 func (i *itfPromos620) GrantItemV1(
-	steamid uint64,
-	promoId uint32,
+	input ITFPromos_620GrantItem1Input,
 ) (Response, error) {
 	p := getPath("ITFPromos_620", "GrantItem", 1)
 	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
-		"promoId": fmt.Sprintf(`%v`, promoId),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
+		"promoId": fmt.Sprintf(`%v`, input.promoId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3413,14 +3650,19 @@ type itfSystem440 struct {
 }
 
 type ITFSystem_440 interface {
-	GetWorldStatusV1() (Response, error)
+	GetWorldStatusV1(input ITFSystem_440GetWorldStatus1Input) (Response, error)
 }
 
 func NewITFSystem_440() ITFSystem_440 {
 	return &itfSystem440{}
 }
 
-func (i *itfSystem440) GetWorldStatusV1() (Response, error) {
+type ITFSystem_440GetWorldStatus1Input struct {
+}
+
+func (i *itfSystem440) GetWorldStatusV1(
+	input ITFSystem_440GetWorldStatus1Input,
+) (Response, error) {
 	p := getPath("ITFSystem_440", "GetWorldStatus", 1)
 	request := map[string]string{}
 	response := Response{}
@@ -3437,61 +3679,32 @@ type iGameServersService struct {
 }
 
 type IGameServersService interface {
-	GetAccountListV1(
-		key string,
-	) (Response, error)
-	CreateAccountV1(
-		key string,
-		appid uint32,
-		memo string,
-	) (Response, error)
-	SetMemoV1(
-		key string,
-		steamid uint64,
-		memo string,
-	) (Response, error)
-	ResetLoginTokenV1(
-		key string,
-		steamid uint64,
-	) (Response, error)
-	DeleteAccountV1(
-		key string,
-		steamid uint64,
-	) (Response, error)
-	GetAccountPublicInfoV1(
-		key string,
-		steamid uint64,
-	) (Response, error)
-	QueryLoginTokenV1(
-		key string,
-		loginToken string,
-	) (Response, error)
-	GetServerSteamIDsByIPV1(
-		key string,
-		serverIps string,
-	) (Response, error)
-	GetServerIPsBySteamIDV1(
-		key string,
-		serverSteamids uint64,
-	) (Response, error)
-	QueryByFakeIPV1(
-		key string,
-		fakeIp uint32,
-		fakePort uint32,
-		appId uint32,
-	) (Response, error)
+	GetAccountListV1(input IGameServersServiceGetAccountList1Input) (Response, error)
+	CreateAccountV1(input IGameServersServiceCreateAccount1Input) (Response, error)
+	SetMemoV1(input IGameServersServiceSetMemo1Input) (Response, error)
+	ResetLoginTokenV1(input IGameServersServiceResetLoginToken1Input) (Response, error)
+	DeleteAccountV1(input IGameServersServiceDeleteAccount1Input) (Response, error)
+	GetAccountPublicInfoV1(input IGameServersServiceGetAccountPublicInfo1Input) (Response, error)
+	QueryLoginTokenV1(input IGameServersServiceQueryLoginToken1Input) (Response, error)
+	GetServerSteamIDsByIPV1(input IGameServersServiceGetServerSteamIDsByIP1Input) (Response, error)
+	GetServerIPsBySteamIDV1(input IGameServersServiceGetServerIPsBySteamID1Input) (Response, error)
+	QueryByFakeIPV1(input IGameServersServiceQueryByFakeIP1Input) (Response, error)
 }
 
 func NewIGameServersService() IGameServersService {
 	return &iGameServersService{}
 }
 
+type IGameServersServiceGetAccountList1Input struct {
+	key string
+}
+
 func (i *iGameServersService) GetAccountListV1(
-	key string,
+	input IGameServersServiceGetAccountList1Input,
 ) (Response, error) {
 	p := getPath("IGameServersService", "GetAccountList", 1)
 	request := map[string]string{
-		"key": key,
+		"key": fmt.Sprintf(`%v`, input.key),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3502,16 +3715,21 @@ func (i *iGameServersService) GetAccountListV1(
 
 	return response, nil
 }
+
+type IGameServersServiceCreateAccount1Input struct {
+	key   string
+	appid uint32
+	memo  string
+}
+
 func (i *iGameServersService) CreateAccountV1(
-	key string,
-	appid uint32,
-	memo string,
+	input IGameServersServiceCreateAccount1Input,
 ) (Response, error) {
 	p := getPath("IGameServersService", "CreateAccount", 1)
 	request := map[string]string{
-		"key":   key,
-		"appid": fmt.Sprintf(`%v`, appid),
-		"memo":  memo,
+		"key":   fmt.Sprintf(`%v`, input.key),
+		"appid": fmt.Sprintf(`%v`, input.appid),
+		"memo":  fmt.Sprintf(`%v`, input.memo),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3522,16 +3740,21 @@ func (i *iGameServersService) CreateAccountV1(
 
 	return response, nil
 }
+
+type IGameServersServiceSetMemo1Input struct {
+	key     string
+	steamid uint64
+	memo    string
+}
+
 func (i *iGameServersService) SetMemoV1(
-	key string,
-	steamid uint64,
-	memo string,
+	input IGameServersServiceSetMemo1Input,
 ) (Response, error) {
 	p := getPath("IGameServersService", "SetMemo", 1)
 	request := map[string]string{
-		"key":     key,
-		"steamid": fmt.Sprintf(`%v`, steamid),
-		"memo":    memo,
+		"key":     fmt.Sprintf(`%v`, input.key),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
+		"memo":    fmt.Sprintf(`%v`, input.memo),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3542,14 +3765,19 @@ func (i *iGameServersService) SetMemoV1(
 
 	return response, nil
 }
+
+type IGameServersServiceResetLoginToken1Input struct {
+	key     string
+	steamid uint64
+}
+
 func (i *iGameServersService) ResetLoginTokenV1(
-	key string,
-	steamid uint64,
+	input IGameServersServiceResetLoginToken1Input,
 ) (Response, error) {
 	p := getPath("IGameServersService", "ResetLoginToken", 1)
 	request := map[string]string{
-		"key":     key,
-		"steamid": fmt.Sprintf(`%v`, steamid),
+		"key":     fmt.Sprintf(`%v`, input.key),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3560,14 +3788,19 @@ func (i *iGameServersService) ResetLoginTokenV1(
 
 	return response, nil
 }
+
+type IGameServersServiceDeleteAccount1Input struct {
+	key     string
+	steamid uint64
+}
+
 func (i *iGameServersService) DeleteAccountV1(
-	key string,
-	steamid uint64,
+	input IGameServersServiceDeleteAccount1Input,
 ) (Response, error) {
 	p := getPath("IGameServersService", "DeleteAccount", 1)
 	request := map[string]string{
-		"key":     key,
-		"steamid": fmt.Sprintf(`%v`, steamid),
+		"key":     fmt.Sprintf(`%v`, input.key),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3578,14 +3811,19 @@ func (i *iGameServersService) DeleteAccountV1(
 
 	return response, nil
 }
+
+type IGameServersServiceGetAccountPublicInfo1Input struct {
+	key     string
+	steamid uint64
+}
+
 func (i *iGameServersService) GetAccountPublicInfoV1(
-	key string,
-	steamid uint64,
+	input IGameServersServiceGetAccountPublicInfo1Input,
 ) (Response, error) {
 	p := getPath("IGameServersService", "GetAccountPublicInfo", 1)
 	request := map[string]string{
-		"key":     key,
-		"steamid": fmt.Sprintf(`%v`, steamid),
+		"key":     fmt.Sprintf(`%v`, input.key),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3596,14 +3834,19 @@ func (i *iGameServersService) GetAccountPublicInfoV1(
 
 	return response, nil
 }
+
+type IGameServersServiceQueryLoginToken1Input struct {
+	key        string
+	loginToken string
+}
+
 func (i *iGameServersService) QueryLoginTokenV1(
-	key string,
-	loginToken string,
+	input IGameServersServiceQueryLoginToken1Input,
 ) (Response, error) {
 	p := getPath("IGameServersService", "QueryLoginToken", 1)
 	request := map[string]string{
-		"key":        key,
-		"loginToken": loginToken,
+		"key":        fmt.Sprintf(`%v`, input.key),
+		"loginToken": fmt.Sprintf(`%v`, input.loginToken),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3614,14 +3857,19 @@ func (i *iGameServersService) QueryLoginTokenV1(
 
 	return response, nil
 }
+
+type IGameServersServiceGetServerSteamIDsByIP1Input struct {
+	key       string
+	serverIps string
+}
+
 func (i *iGameServersService) GetServerSteamIDsByIPV1(
-	key string,
-	serverIps string,
+	input IGameServersServiceGetServerSteamIDsByIP1Input,
 ) (Response, error) {
 	p := getPath("IGameServersService", "GetServerSteamIDsByIP", 1)
 	request := map[string]string{
-		"key":       key,
-		"serverIps": serverIps,
+		"key":       fmt.Sprintf(`%v`, input.key),
+		"serverIps": fmt.Sprintf(`%v`, input.serverIps),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3632,14 +3880,19 @@ func (i *iGameServersService) GetServerSteamIDsByIPV1(
 
 	return response, nil
 }
+
+type IGameServersServiceGetServerIPsBySteamID1Input struct {
+	key            string
+	serverSteamids uint64
+}
+
 func (i *iGameServersService) GetServerIPsBySteamIDV1(
-	key string,
-	serverSteamids uint64,
+	input IGameServersServiceGetServerIPsBySteamID1Input,
 ) (Response, error) {
 	p := getPath("IGameServersService", "GetServerIPsBySteamID", 1)
 	request := map[string]string{
-		"key":            key,
-		"serverSteamids": fmt.Sprintf(`%v`, serverSteamids),
+		"key":            fmt.Sprintf(`%v`, input.key),
+		"serverSteamids": fmt.Sprintf(`%v`, input.serverSteamids),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3650,18 +3903,25 @@ func (i *iGameServersService) GetServerIPsBySteamIDV1(
 
 	return response, nil
 }
+
+type IGameServersServiceQueryByFakeIP1Input struct {
+	key       string
+	fakeIp    uint32
+	fakePort  uint32
+	appId     uint32
+	queryType any
+}
+
 func (i *iGameServersService) QueryByFakeIPV1(
-	key string,
-	fakeIp uint32,
-	fakePort uint32,
-	appId uint32,
+	input IGameServersServiceQueryByFakeIP1Input,
 ) (Response, error) {
 	p := getPath("IGameServersService", "QueryByFakeIP", 1)
 	request := map[string]string{
-		"key":      key,
-		"fakeIp":   fmt.Sprintf(`%v`, fakeIp),
-		"fakePort": fmt.Sprintf(`%v`, fakePort),
-		"appId":    fmt.Sprintf(`%v`, appId),
+		"key":       fmt.Sprintf(`%v`, input.key),
+		"fakeIp":    fmt.Sprintf(`%v`, input.fakeIp),
+		"fakePort":  fmt.Sprintf(`%v`, input.fakePort),
+		"appId":     fmt.Sprintf(`%v`, input.appId),
+		"queryType": fmt.Sprintf(`%v`, input.queryType),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3677,60 +3937,33 @@ type iPlayerService struct {
 }
 
 type IPlayerService interface {
-	IsPlayingSharedGameV1(
-		key string,
-		steamid uint64,
-		appidPlaying uint32,
-	) (Response, error)
-	RecordOfflinePlaytimeV1(
-		steamid uint64,
-		ticket string,
-	) (Response, error)
-	GetRecentlyPlayedGamesV1(
-		key string,
-		steamid uint64,
-		count uint32,
-	) (Response, error)
-	GetOwnedGamesV1(
-		key string,
-		steamid uint64,
-		includeAppinfo bool,
-		includePlayedFreeGames bool,
-		appidsFilter uint32,
-		includeFreeSub bool,
-		skipUnvettedApps bool,
-		language string,
-		includeExtendedAppinfo bool,
-	) (Response, error)
-	GetSteamLevelV1(
-		key string,
-		steamid uint64,
-	) (Response, error)
-	GetBadgesV1(
-		key string,
-		steamid uint64,
-	) (Response, error)
-	GetCommunityBadgeProgressV1(
-		key string,
-		steamid uint64,
-		badgeid int32,
-	) (Response, error)
+	IsPlayingSharedGameV1(input IPlayerServiceIsPlayingSharedGame1Input) (Response, error)
+	RecordOfflinePlaytimeV1(input IPlayerServiceRecordOfflinePlaytime1Input) (Response, error)
+	GetRecentlyPlayedGamesV1(input IPlayerServiceGetRecentlyPlayedGames1Input) (Response, error)
+	GetOwnedGamesV1(input IPlayerServiceGetOwnedGames1Input) (Response, error)
+	GetSteamLevelV1(input IPlayerServiceGetSteamLevel1Input) (Response, error)
+	GetBadgesV1(input IPlayerServiceGetBadges1Input) (Response, error)
+	GetCommunityBadgeProgressV1(input IPlayerServiceGetCommunityBadgeProgress1Input) (Response, error)
 }
 
 func NewIPlayerService() IPlayerService {
 	return &iPlayerService{}
 }
 
+type IPlayerServiceIsPlayingSharedGame1Input struct {
+	key          string
+	steamid      uint64
+	appidPlaying uint32
+}
+
 func (i *iPlayerService) IsPlayingSharedGameV1(
-	key string,
-	steamid uint64,
-	appidPlaying uint32,
+	input IPlayerServiceIsPlayingSharedGame1Input,
 ) (Response, error) {
 	p := getPath("IPlayerService", "IsPlayingSharedGame", 1)
 	request := map[string]string{
-		"key":          key,
-		"steamid":      fmt.Sprintf(`%v`, steamid),
-		"appidPlaying": fmt.Sprintf(`%v`, appidPlaying),
+		"key":          fmt.Sprintf(`%v`, input.key),
+		"steamid":      fmt.Sprintf(`%v`, input.steamid),
+		"appidPlaying": fmt.Sprintf(`%v`, input.appidPlaying),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3741,14 +3974,21 @@ func (i *iPlayerService) IsPlayingSharedGameV1(
 
 	return response, nil
 }
+
+type IPlayerServiceRecordOfflinePlaytime1Input struct {
+	steamid      uint64
+	ticket       string
+	playSessions any
+}
+
 func (i *iPlayerService) RecordOfflinePlaytimeV1(
-	steamid uint64,
-	ticket string,
+	input IPlayerServiceRecordOfflinePlaytime1Input,
 ) (Response, error) {
 	p := getPath("IPlayerService", "RecordOfflinePlaytime", 1)
 	request := map[string]string{
-		"steamid": fmt.Sprintf(`%v`, steamid),
-		"ticket":  ticket,
+		"steamid":      fmt.Sprintf(`%v`, input.steamid),
+		"ticket":       fmt.Sprintf(`%v`, input.ticket),
+		"playSessions": fmt.Sprintf(`%v`, input.playSessions),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3759,16 +3999,21 @@ func (i *iPlayerService) RecordOfflinePlaytimeV1(
 
 	return response, nil
 }
+
+type IPlayerServiceGetRecentlyPlayedGames1Input struct {
+	key     string
+	steamid uint64
+	count   uint32
+}
+
 func (i *iPlayerService) GetRecentlyPlayedGamesV1(
-	key string,
-	steamid uint64,
-	count uint32,
+	input IPlayerServiceGetRecentlyPlayedGames1Input,
 ) (Response, error) {
 	p := getPath("IPlayerService", "GetRecentlyPlayedGames", 1)
 	request := map[string]string{
-		"key":     key,
-		"steamid": fmt.Sprintf(`%v`, steamid),
-		"count":   fmt.Sprintf(`%v`, count),
+		"key":     fmt.Sprintf(`%v`, input.key),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
+		"count":   fmt.Sprintf(`%v`, input.count),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3779,28 +4024,33 @@ func (i *iPlayerService) GetRecentlyPlayedGamesV1(
 
 	return response, nil
 }
+
+type IPlayerServiceGetOwnedGames1Input struct {
+	key                    string
+	steamid                uint64
+	includeAppinfo         bool
+	includePlayedFreeGames bool
+	appidsFilter           uint32
+	includeFreeSub         bool
+	skipUnvettedApps       bool
+	language               string
+	includeExtendedAppinfo bool
+}
+
 func (i *iPlayerService) GetOwnedGamesV1(
-	key string,
-	steamid uint64,
-	includeAppinfo bool,
-	includePlayedFreeGames bool,
-	appidsFilter uint32,
-	includeFreeSub bool,
-	skipUnvettedApps bool,
-	language string,
-	includeExtendedAppinfo bool,
+	input IPlayerServiceGetOwnedGames1Input,
 ) (Response, error) {
 	p := getPath("IPlayerService", "GetOwnedGames", 1)
 	request := map[string]string{
-		"key":                    key,
-		"steamid":                fmt.Sprintf(`%v`, steamid),
-		"includeAppinfo":         strconv.FormatBool(includeAppinfo),
-		"includePlayedFreeGames": strconv.FormatBool(includePlayedFreeGames),
-		"appidsFilter":           fmt.Sprintf(`%v`, appidsFilter),
-		"includeFreeSub":         strconv.FormatBool(includeFreeSub),
-		"skipUnvettedApps":       strconv.FormatBool(skipUnvettedApps),
-		"language":               language,
-		"includeExtendedAppinfo": strconv.FormatBool(includeExtendedAppinfo),
+		"key":                    fmt.Sprintf(`%v`, input.key),
+		"steamid":                fmt.Sprintf(`%v`, input.steamid),
+		"includeAppinfo":         fmt.Sprintf(`%v`, input.includeAppinfo),
+		"includePlayedFreeGames": fmt.Sprintf(`%v`, input.includePlayedFreeGames),
+		"appidsFilter":           fmt.Sprintf(`%v`, input.appidsFilter),
+		"includeFreeSub":         fmt.Sprintf(`%v`, input.includeFreeSub),
+		"skipUnvettedApps":       fmt.Sprintf(`%v`, input.skipUnvettedApps),
+		"language":               fmt.Sprintf(`%v`, input.language),
+		"includeExtendedAppinfo": fmt.Sprintf(`%v`, input.includeExtendedAppinfo),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3811,14 +4061,19 @@ func (i *iPlayerService) GetOwnedGamesV1(
 
 	return response, nil
 }
+
+type IPlayerServiceGetSteamLevel1Input struct {
+	key     string
+	steamid uint64
+}
+
 func (i *iPlayerService) GetSteamLevelV1(
-	key string,
-	steamid uint64,
+	input IPlayerServiceGetSteamLevel1Input,
 ) (Response, error) {
 	p := getPath("IPlayerService", "GetSteamLevel", 1)
 	request := map[string]string{
-		"key":     key,
-		"steamid": fmt.Sprintf(`%v`, steamid),
+		"key":     fmt.Sprintf(`%v`, input.key),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3829,14 +4084,19 @@ func (i *iPlayerService) GetSteamLevelV1(
 
 	return response, nil
 }
+
+type IPlayerServiceGetBadges1Input struct {
+	key     string
+	steamid uint64
+}
+
 func (i *iPlayerService) GetBadgesV1(
-	key string,
-	steamid uint64,
+	input IPlayerServiceGetBadges1Input,
 ) (Response, error) {
 	p := getPath("IPlayerService", "GetBadges", 1)
 	request := map[string]string{
-		"key":     key,
-		"steamid": fmt.Sprintf(`%v`, steamid),
+		"key":     fmt.Sprintf(`%v`, input.key),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3847,16 +4107,21 @@ func (i *iPlayerService) GetBadgesV1(
 
 	return response, nil
 }
+
+type IPlayerServiceGetCommunityBadgeProgress1Input struct {
+	key     string
+	steamid uint64
+	badgeid int32
+}
+
 func (i *iPlayerService) GetCommunityBadgeProgressV1(
-	key string,
-	steamid uint64,
-	badgeid int32,
+	input IPlayerServiceGetCommunityBadgeProgress1Input,
 ) (Response, error) {
 	p := getPath("IPlayerService", "GetCommunityBadgeProgress", 1)
 	request := map[string]string{
-		"key":     key,
-		"steamid": fmt.Sprintf(`%v`, steamid),
-		"badgeid": fmt.Sprintf(`%v`, badgeid),
+		"key":     fmt.Sprintf(`%v`, input.key),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
+		"badgeid": fmt.Sprintf(`%v`, input.badgeid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3872,60 +4137,33 @@ type iAuthenticationService struct {
 }
 
 type IAuthenticationService interface {
-	PollAuthSessionStatusV1(
-		clientId uint64,
-		requestId string,
-		tokenToRevoke uint64,
-	) (Response, error)
-	GetAuthSessionInfoV1(
-		clientId uint64,
-	) (Response, error)
-	GetPasswordRSAPublicKeyV1(
-		accountName string,
-	) (Response, error)
-	BeginAuthSessionViaCredentialsV1(
-		deviceFriendlyName string,
-		accountName string,
-		encryptedPassword string,
-		encryptionTimestamp uint64,
-		rememberLogin bool,
-		websiteId string,
-		guardData string,
-		language uint32,
-		qosLevel int32,
-	) (Response, error)
-	UpdateAuthSessionWithSteamGuardCodeV1(
-		clientId uint64,
-		steamid uint64,
-		code string,
-	) (Response, error)
-	BeginAuthSessionViaQRV1(
-		deviceFriendlyName string,
-		websiteId string,
-	) (Response, error)
-	UpdateAuthSessionWithMobileConfirmationV1(
-		version int32,
-		clientId uint64,
-		steamid uint64,
-		signature string,
-		confirm bool,
-	) (Response, error)
+	PollAuthSessionStatusV1(input IAuthenticationServicePollAuthSessionStatus1Input) (Response, error)
+	GetAuthSessionInfoV1(input IAuthenticationServiceGetAuthSessionInfo1Input) (Response, error)
+	GetPasswordRSAPublicKeyV1(input IAuthenticationServiceGetPasswordRSAPublicKey1Input) (Response, error)
+	BeginAuthSessionViaCredentialsV1(input IAuthenticationServiceBeginAuthSessionViaCredentials1Input) (Response, error)
+	UpdateAuthSessionWithSteamGuardCodeV1(input IAuthenticationServiceUpdateAuthSessionWithSteamGuardCode1Input) (Response, error)
+	BeginAuthSessionViaQRV1(input IAuthenticationServiceBeginAuthSessionViaQR1Input) (Response, error)
+	UpdateAuthSessionWithMobileConfirmationV1(input IAuthenticationServiceUpdateAuthSessionWithMobileConfirmation1Input) (Response, error)
 }
 
 func NewIAuthenticationService() IAuthenticationService {
 	return &iAuthenticationService{}
 }
 
+type IAuthenticationServicePollAuthSessionStatus1Input struct {
+	clientId      uint64
+	requestId     string
+	tokenToRevoke uint64
+}
+
 func (i *iAuthenticationService) PollAuthSessionStatusV1(
-	clientId uint64,
-	requestId string,
-	tokenToRevoke uint64,
+	input IAuthenticationServicePollAuthSessionStatus1Input,
 ) (Response, error) {
 	p := getPath("IAuthenticationService", "PollAuthSessionStatus", 1)
 	request := map[string]string{
-		"clientId":      fmt.Sprintf(`%v`, clientId),
-		"requestId":     requestId,
-		"tokenToRevoke": fmt.Sprintf(`%v`, tokenToRevoke),
+		"clientId":      fmt.Sprintf(`%v`, input.clientId),
+		"requestId":     fmt.Sprintf(`%v`, input.requestId),
+		"tokenToRevoke": fmt.Sprintf(`%v`, input.tokenToRevoke),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3936,12 +4174,17 @@ func (i *iAuthenticationService) PollAuthSessionStatusV1(
 
 	return response, nil
 }
+
+type IAuthenticationServiceGetAuthSessionInfo1Input struct {
+	clientId uint64
+}
+
 func (i *iAuthenticationService) GetAuthSessionInfoV1(
-	clientId uint64,
+	input IAuthenticationServiceGetAuthSessionInfo1Input,
 ) (Response, error) {
 	p := getPath("IAuthenticationService", "GetAuthSessionInfo", 1)
 	request := map[string]string{
-		"clientId": fmt.Sprintf(`%v`, clientId),
+		"clientId": fmt.Sprintf(`%v`, input.clientId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3952,12 +4195,17 @@ func (i *iAuthenticationService) GetAuthSessionInfoV1(
 
 	return response, nil
 }
+
+type IAuthenticationServiceGetPasswordRSAPublicKey1Input struct {
+	accountName string
+}
+
 func (i *iAuthenticationService) GetPasswordRSAPublicKeyV1(
-	accountName string,
+	input IAuthenticationServiceGetPasswordRSAPublicKey1Input,
 ) (Response, error) {
 	p := getPath("IAuthenticationService", "GetPasswordRSAPublicKey", 1)
 	request := map[string]string{
-		"accountName": accountName,
+		"accountName": fmt.Sprintf(`%v`, input.accountName),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -3968,28 +4216,39 @@ func (i *iAuthenticationService) GetPasswordRSAPublicKeyV1(
 
 	return response, nil
 }
+
+type IAuthenticationServiceBeginAuthSessionViaCredentials1Input struct {
+	deviceFriendlyName  string
+	accountName         string
+	encryptedPassword   string
+	encryptionTimestamp uint64
+	rememberLogin       bool
+	platformType        any
+	persistence         any
+	websiteId           string
+	deviceDetails       any
+	guardData           string
+	language            uint32
+	qosLevel            int32
+}
+
 func (i *iAuthenticationService) BeginAuthSessionViaCredentialsV1(
-	deviceFriendlyName string,
-	accountName string,
-	encryptedPassword string,
-	encryptionTimestamp uint64,
-	rememberLogin bool,
-	websiteId string,
-	guardData string,
-	language uint32,
-	qosLevel int32,
+	input IAuthenticationServiceBeginAuthSessionViaCredentials1Input,
 ) (Response, error) {
 	p := getPath("IAuthenticationService", "BeginAuthSessionViaCredentials", 1)
 	request := map[string]string{
-		"deviceFriendlyName":  deviceFriendlyName,
-		"accountName":         accountName,
-		"encryptedPassword":   encryptedPassword,
-		"encryptionTimestamp": fmt.Sprintf(`%v`, encryptionTimestamp),
-		"rememberLogin":       strconv.FormatBool(rememberLogin),
-		"websiteId":           websiteId,
-		"guardData":           guardData,
-		"language":            fmt.Sprintf(`%v`, language),
-		"qosLevel":            fmt.Sprintf(`%v`, qosLevel),
+		"deviceFriendlyName":  fmt.Sprintf(`%v`, input.deviceFriendlyName),
+		"accountName":         fmt.Sprintf(`%v`, input.accountName),
+		"encryptedPassword":   fmt.Sprintf(`%v`, input.encryptedPassword),
+		"encryptionTimestamp": fmt.Sprintf(`%v`, input.encryptionTimestamp),
+		"rememberLogin":       fmt.Sprintf(`%v`, input.rememberLogin),
+		"platformType":        fmt.Sprintf(`%v`, input.platformType),
+		"persistence":         fmt.Sprintf(`%v`, input.persistence),
+		"websiteId":           fmt.Sprintf(`%v`, input.websiteId),
+		"deviceDetails":       fmt.Sprintf(`%v`, input.deviceDetails),
+		"guardData":           fmt.Sprintf(`%v`, input.guardData),
+		"language":            fmt.Sprintf(`%v`, input.language),
+		"qosLevel":            fmt.Sprintf(`%v`, input.qosLevel),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4000,16 +4259,23 @@ func (i *iAuthenticationService) BeginAuthSessionViaCredentialsV1(
 
 	return response, nil
 }
+
+type IAuthenticationServiceUpdateAuthSessionWithSteamGuardCode1Input struct {
+	clientId uint64
+	steamid  uint64
+	code     string
+	codeType any
+}
+
 func (i *iAuthenticationService) UpdateAuthSessionWithSteamGuardCodeV1(
-	clientId uint64,
-	steamid uint64,
-	code string,
+	input IAuthenticationServiceUpdateAuthSessionWithSteamGuardCode1Input,
 ) (Response, error) {
 	p := getPath("IAuthenticationService", "UpdateAuthSessionWithSteamGuardCode", 1)
 	request := map[string]string{
-		"clientId": fmt.Sprintf(`%v`, clientId),
-		"steamid":  fmt.Sprintf(`%v`, steamid),
-		"code":     code,
+		"clientId": fmt.Sprintf(`%v`, input.clientId),
+		"steamid":  fmt.Sprintf(`%v`, input.steamid),
+		"code":     fmt.Sprintf(`%v`, input.code),
+		"codeType": fmt.Sprintf(`%v`, input.codeType),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4020,14 +4286,23 @@ func (i *iAuthenticationService) UpdateAuthSessionWithSteamGuardCodeV1(
 
 	return response, nil
 }
+
+type IAuthenticationServiceBeginAuthSessionViaQR1Input struct {
+	deviceFriendlyName string
+	platformType       any
+	deviceDetails      any
+	websiteId          string
+}
+
 func (i *iAuthenticationService) BeginAuthSessionViaQRV1(
-	deviceFriendlyName string,
-	websiteId string,
+	input IAuthenticationServiceBeginAuthSessionViaQR1Input,
 ) (Response, error) {
 	p := getPath("IAuthenticationService", "BeginAuthSessionViaQR", 1)
 	request := map[string]string{
-		"deviceFriendlyName": deviceFriendlyName,
-		"websiteId":          websiteId,
+		"deviceFriendlyName": fmt.Sprintf(`%v`, input.deviceFriendlyName),
+		"platformType":       fmt.Sprintf(`%v`, input.platformType),
+		"deviceDetails":      fmt.Sprintf(`%v`, input.deviceDetails),
+		"websiteId":          fmt.Sprintf(`%v`, input.websiteId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4038,20 +4313,27 @@ func (i *iAuthenticationService) BeginAuthSessionViaQRV1(
 
 	return response, nil
 }
+
+type IAuthenticationServiceUpdateAuthSessionWithMobileConfirmation1Input struct {
+	version     int32
+	clientId    uint64
+	steamid     uint64
+	signature   string
+	confirm     bool
+	persistence any
+}
+
 func (i *iAuthenticationService) UpdateAuthSessionWithMobileConfirmationV1(
-	version int32,
-	clientId uint64,
-	steamid uint64,
-	signature string,
-	confirm bool,
+	input IAuthenticationServiceUpdateAuthSessionWithMobileConfirmation1Input,
 ) (Response, error) {
 	p := getPath("IAuthenticationService", "UpdateAuthSessionWithMobileConfirmation", 1)
 	request := map[string]string{
-		"version":   fmt.Sprintf(`%v`, version),
-		"clientId":  fmt.Sprintf(`%v`, clientId),
-		"steamid":   fmt.Sprintf(`%v`, steamid),
-		"signature": signature,
-		"confirm":   strconv.FormatBool(confirm),
+		"version":     fmt.Sprintf(`%v`, input.version),
+		"clientId":    fmt.Sprintf(`%v`, input.clientId),
+		"steamid":     fmt.Sprintf(`%v`, input.steamid),
+		"signature":   fmt.Sprintf(`%v`, input.signature),
+		"confirm":     fmt.Sprintf(`%v`, input.confirm),
+		"persistence": fmt.Sprintf(`%v`, input.persistence),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4067,30 +4349,29 @@ type iBroadcastService struct {
 }
 
 type IBroadcastService interface {
-	PostGameDataFrameRTMPV1(
-		appid uint32,
-		steamid uint64,
-		rtmpToken string,
-		frameData string,
-	) (Response, error)
+	PostGameDataFrameRTMPV1(input IBroadcastServicePostGameDataFrameRTMP1Input) (Response, error)
 }
 
 func NewIBroadcastService() IBroadcastService {
 	return &iBroadcastService{}
 }
 
+type IBroadcastServicePostGameDataFrameRTMP1Input struct {
+	appid     uint32
+	steamid   uint64
+	rtmpToken string
+	frameData string
+}
+
 func (i *iBroadcastService) PostGameDataFrameRTMPV1(
-	appid uint32,
-	steamid uint64,
-	rtmpToken string,
-	frameData string,
+	input IBroadcastServicePostGameDataFrameRTMP1Input,
 ) (Response, error) {
 	p := getPath("IBroadcastService", "PostGameDataFrameRTMP", 1)
 	request := map[string]string{
-		"appid":     fmt.Sprintf(`%v`, appid),
-		"steamid":   fmt.Sprintf(`%v`, steamid),
-		"rtmpToken": rtmpToken,
-		"frameData": frameData,
+		"appid":     fmt.Sprintf(`%v`, input.appid),
+		"steamid":   fmt.Sprintf(`%v`, input.steamid),
+		"rtmpToken": fmt.Sprintf(`%v`, input.rtmpToken),
+		"frameData": fmt.Sprintf(`%v`, input.frameData),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4106,49 +4387,33 @@ type iContentServerConfigService struct {
 }
 
 type IContentServerConfigService interface {
-	SetSteamCacheClientFiltersV1(
-		key string,
-		cacheId uint32,
-		cacheKey string,
-		changeNotes string,
-		allowedIpBlocks string,
-	) (Response, error)
-	GetSteamCacheNodeParamsV1(
-		key string,
-		cacheId uint32,
-		cacheKey string,
-	) (Response, error)
-	SetSteamCachePerformanceStatsV1(
-		key string,
-		cacheId uint32,
-		cacheKey string,
-		mbpsSent uint32,
-		mbpsRecv uint32,
-		cpuPercent uint32,
-		cacheHitPercent uint32,
-		numConnectedIps uint32,
-		upstreamEgressUtilization uint32,
-	) (Response, error)
+	SetSteamCacheClientFiltersV1(input IContentServerConfigServiceSetSteamCacheClientFilters1Input) (Response, error)
+	GetSteamCacheNodeParamsV1(input IContentServerConfigServiceGetSteamCacheNodeParams1Input) (Response, error)
+	SetSteamCachePerformanceStatsV1(input IContentServerConfigServiceSetSteamCachePerformanceStats1Input) (Response, error)
 }
 
 func NewIContentServerConfigService() IContentServerConfigService {
 	return &iContentServerConfigService{}
 }
 
+type IContentServerConfigServiceSetSteamCacheClientFilters1Input struct {
+	key             string
+	cacheId         uint32
+	cacheKey        string
+	changeNotes     string
+	allowedIpBlocks string
+}
+
 func (i *iContentServerConfigService) SetSteamCacheClientFiltersV1(
-	key string,
-	cacheId uint32,
-	cacheKey string,
-	changeNotes string,
-	allowedIpBlocks string,
+	input IContentServerConfigServiceSetSteamCacheClientFilters1Input,
 ) (Response, error) {
 	p := getPath("IContentServerConfigService", "SetSteamCacheClientFilters", 1)
 	request := map[string]string{
-		"key":             key,
-		"cacheId":         fmt.Sprintf(`%v`, cacheId),
-		"cacheKey":        cacheKey,
-		"changeNotes":     changeNotes,
-		"allowedIpBlocks": allowedIpBlocks,
+		"key":             fmt.Sprintf(`%v`, input.key),
+		"cacheId":         fmt.Sprintf(`%v`, input.cacheId),
+		"cacheKey":        fmt.Sprintf(`%v`, input.cacheKey),
+		"changeNotes":     fmt.Sprintf(`%v`, input.changeNotes),
+		"allowedIpBlocks": fmt.Sprintf(`%v`, input.allowedIpBlocks),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4159,16 +4424,21 @@ func (i *iContentServerConfigService) SetSteamCacheClientFiltersV1(
 
 	return response, nil
 }
+
+type IContentServerConfigServiceGetSteamCacheNodeParams1Input struct {
+	key      string
+	cacheId  uint32
+	cacheKey string
+}
+
 func (i *iContentServerConfigService) GetSteamCacheNodeParamsV1(
-	key string,
-	cacheId uint32,
-	cacheKey string,
+	input IContentServerConfigServiceGetSteamCacheNodeParams1Input,
 ) (Response, error) {
 	p := getPath("IContentServerConfigService", "GetSteamCacheNodeParams", 1)
 	request := map[string]string{
-		"key":      key,
-		"cacheId":  fmt.Sprintf(`%v`, cacheId),
-		"cacheKey": cacheKey,
+		"key":      fmt.Sprintf(`%v`, input.key),
+		"cacheId":  fmt.Sprintf(`%v`, input.cacheId),
+		"cacheKey": fmt.Sprintf(`%v`, input.cacheKey),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4179,28 +4449,33 @@ func (i *iContentServerConfigService) GetSteamCacheNodeParamsV1(
 
 	return response, nil
 }
+
+type IContentServerConfigServiceSetSteamCachePerformanceStats1Input struct {
+	key                       string
+	cacheId                   uint32
+	cacheKey                  string
+	mbpsSent                  uint32
+	mbpsRecv                  uint32
+	cpuPercent                uint32
+	cacheHitPercent           uint32
+	numConnectedIps           uint32
+	upstreamEgressUtilization uint32
+}
+
 func (i *iContentServerConfigService) SetSteamCachePerformanceStatsV1(
-	key string,
-	cacheId uint32,
-	cacheKey string,
-	mbpsSent uint32,
-	mbpsRecv uint32,
-	cpuPercent uint32,
-	cacheHitPercent uint32,
-	numConnectedIps uint32,
-	upstreamEgressUtilization uint32,
+	input IContentServerConfigServiceSetSteamCachePerformanceStats1Input,
 ) (Response, error) {
 	p := getPath("IContentServerConfigService", "SetSteamCachePerformanceStats", 1)
 	request := map[string]string{
-		"key":                       key,
-		"cacheId":                   fmt.Sprintf(`%v`, cacheId),
-		"cacheKey":                  cacheKey,
-		"mbpsSent":                  fmt.Sprintf(`%v`, mbpsSent),
-		"mbpsRecv":                  fmt.Sprintf(`%v`, mbpsRecv),
-		"cpuPercent":                fmt.Sprintf(`%v`, cpuPercent),
-		"cacheHitPercent":           fmt.Sprintf(`%v`, cacheHitPercent),
-		"numConnectedIps":           fmt.Sprintf(`%v`, numConnectedIps),
-		"upstreamEgressUtilization": fmt.Sprintf(`%v`, upstreamEgressUtilization),
+		"key":                       fmt.Sprintf(`%v`, input.key),
+		"cacheId":                   fmt.Sprintf(`%v`, input.cacheId),
+		"cacheKey":                  fmt.Sprintf(`%v`, input.cacheKey),
+		"mbpsSent":                  fmt.Sprintf(`%v`, input.mbpsSent),
+		"mbpsRecv":                  fmt.Sprintf(`%v`, input.mbpsRecv),
+		"cpuPercent":                fmt.Sprintf(`%v`, input.cpuPercent),
+		"cacheHitPercent":           fmt.Sprintf(`%v`, input.cacheHitPercent),
+		"numConnectedIps":           fmt.Sprintf(`%v`, input.numConnectedIps),
+		"upstreamEgressUtilization": fmt.Sprintf(`%v`, input.upstreamEgressUtilization),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4216,42 +4491,33 @@ type iContentServerDirectoryService struct {
 }
 
 type IContentServerDirectoryService interface {
-	GetServersForSteamPipeV1(
-		cellId uint32,
-		maxServers uint32,
-		ipOverride string,
-		launcherType int32,
-		ipv6Public string,
-	) (Response, error)
-	GetClientUpdateHostsV1(
-		cachedSignature string,
-	) (Response, error)
-	GetDepotPatchInfoV1(
-		appid uint32,
-		depotid uint32,
-		sourceManifestid uint64,
-		targetManifestid uint64,
-	) (Response, error)
+	GetServersForSteamPipeV1(input IContentServerDirectoryServiceGetServersForSteamPipe1Input) (Response, error)
+	GetClientUpdateHostsV1(input IContentServerDirectoryServiceGetClientUpdateHosts1Input) (Response, error)
+	GetDepotPatchInfoV1(input IContentServerDirectoryServiceGetDepotPatchInfo1Input) (Response, error)
 }
 
 func NewIContentServerDirectoryService() IContentServerDirectoryService {
 	return &iContentServerDirectoryService{}
 }
 
+type IContentServerDirectoryServiceGetServersForSteamPipe1Input struct {
+	cellId       uint32
+	maxServers   uint32
+	ipOverride   string
+	launcherType int32
+	ipv6Public   string
+}
+
 func (i *iContentServerDirectoryService) GetServersForSteamPipeV1(
-	cellId uint32,
-	maxServers uint32,
-	ipOverride string,
-	launcherType int32,
-	ipv6Public string,
+	input IContentServerDirectoryServiceGetServersForSteamPipe1Input,
 ) (Response, error) {
 	p := getPath("IContentServerDirectoryService", "GetServersForSteamPipe", 1)
 	request := map[string]string{
-		"cellId":       fmt.Sprintf(`%v`, cellId),
-		"maxServers":   fmt.Sprintf(`%v`, maxServers),
-		"ipOverride":   ipOverride,
-		"launcherType": fmt.Sprintf(`%v`, launcherType),
-		"ipv6Public":   ipv6Public,
+		"cellId":       fmt.Sprintf(`%v`, input.cellId),
+		"maxServers":   fmt.Sprintf(`%v`, input.maxServers),
+		"ipOverride":   fmt.Sprintf(`%v`, input.ipOverride),
+		"launcherType": fmt.Sprintf(`%v`, input.launcherType),
+		"ipv6Public":   fmt.Sprintf(`%v`, input.ipv6Public),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4262,12 +4528,17 @@ func (i *iContentServerDirectoryService) GetServersForSteamPipeV1(
 
 	return response, nil
 }
+
+type IContentServerDirectoryServiceGetClientUpdateHosts1Input struct {
+	cachedSignature string
+}
+
 func (i *iContentServerDirectoryService) GetClientUpdateHostsV1(
-	cachedSignature string,
+	input IContentServerDirectoryServiceGetClientUpdateHosts1Input,
 ) (Response, error) {
 	p := getPath("IContentServerDirectoryService", "GetClientUpdateHosts", 1)
 	request := map[string]string{
-		"cachedSignature": cachedSignature,
+		"cachedSignature": fmt.Sprintf(`%v`, input.cachedSignature),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4278,18 +4549,23 @@ func (i *iContentServerDirectoryService) GetClientUpdateHostsV1(
 
 	return response, nil
 }
+
+type IContentServerDirectoryServiceGetDepotPatchInfo1Input struct {
+	appid            uint32
+	depotid          uint32
+	sourceManifestid uint64
+	targetManifestid uint64
+}
+
 func (i *iContentServerDirectoryService) GetDepotPatchInfoV1(
-	appid uint32,
-	depotid uint32,
-	sourceManifestid uint64,
-	targetManifestid uint64,
+	input IContentServerDirectoryServiceGetDepotPatchInfo1Input,
 ) (Response, error) {
 	p := getPath("IContentServerDirectoryService", "GetDepotPatchInfo", 1)
 	request := map[string]string{
-		"appid":            fmt.Sprintf(`%v`, appid),
-		"depotid":          fmt.Sprintf(`%v`, depotid),
-		"sourceManifestid": fmt.Sprintf(`%v`, sourceManifestid),
-		"targetManifestid": fmt.Sprintf(`%v`, targetManifestid),
+		"appid":            fmt.Sprintf(`%v`, input.appid),
+		"depotid":          fmt.Sprintf(`%v`, input.depotid),
+		"sourceManifestid": fmt.Sprintf(`%v`, input.sourceManifestid),
+		"targetManifestid": fmt.Sprintf(`%v`, input.targetManifestid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4305,145 +4581,28 @@ type iPublishedFileService struct {
 }
 
 type IPublishedFileService interface {
-	GetUserVoteSummaryV1(
-		publishedfileids uint64,
-	) (Response, error)
-	QueryFilesV1(
-		key string,
-		queryType uint32,
-		page uint32,
-		cursor string,
-		numperpage uint32,
-		creatorAppid uint32,
-		appid uint32,
-		requiredtags string,
-		excludedtags string,
-		matchAllTags bool,
-		requiredFlags string,
-		omittedFlags string,
-		searchText string,
-		filetype uint32,
-		childPublishedfileid uint64,
-		days uint32,
-		includeRecentVotesOnly bool,
-		cacheMaxAgeSeconds uint32,
-		language int32,
-		totalonly bool,
-		idsOnly bool,
-		returnVoteData bool,
-		returnTags bool,
-		returnKvTags bool,
-		returnPreviews bool,
-		returnChildren bool,
-		returnShortDescription bool,
-		returnForSaleData bool,
-		returnMetadata bool,
-		returnPlaytimeStats uint32,
-		returnDetails bool,
-		stripDescriptionBbcode bool,
-		returnReactions bool,
-	) (Response, error)
-	GetSubSectionDataV1(
-		key string,
-		publishedfileid uint64,
-		forTableOfContents bool,
-		specificSectionid uint64,
-	) (Response, error)
-	GetDetailsV1(
-		key string,
-		publishedfileids uint64,
-		includetags bool,
-		includeadditionalpreviews bool,
-		includechildren bool,
-		includekvtags bool,
-		includevotes bool,
-		shortDescription bool,
-		includeforsaledata bool,
-		includemetadata bool,
-		language int32,
-		returnPlaytimeStats uint32,
-		appid uint32,
-		stripDescriptionBbcode bool,
-		includereactions bool,
-	) (Response, error)
-	GetUserFilesV1(
-		key string,
-		steamid uint64,
-		appid uint32,
-		shortcutid uint32,
-		page uint32,
-		numperpage uint32,
-		t string,
-		sortmethod string,
-		privacy uint32,
-		requiredtags string,
-		excludedtags string,
-		filetype uint32,
-		creatorAppid uint32,
-		matchCloudFilename string,
-		cacheMaxAgeSeconds uint32,
-		language int32,
-		totalonly bool,
-		idsOnly bool,
-		returnVoteData bool,
-		returnTags bool,
-		returnKvTags bool,
-		returnPreviews bool,
-		returnChildren bool,
-		returnShortDescription bool,
-		returnForSaleData bool,
-		returnMetadata bool,
-		returnPlaytimeStats uint32,
-		stripDescriptionBbcode bool,
-		returnReactions bool,
-		startindexOverride uint32,
-		returnApps bool,
-	) (Response, error)
-	GetUserFileCountV1(
-		key string,
-		steamid uint64,
-		appid uint32,
-		shortcutid uint32,
-		page uint32,
-		numperpage uint32,
-		t string,
-		sortmethod string,
-		privacy uint32,
-		requiredtags string,
-		excludedtags string,
-		filetype uint32,
-		creatorAppid uint32,
-		matchCloudFilename string,
-		cacheMaxAgeSeconds uint32,
-		language int32,
-		totalonly bool,
-		idsOnly bool,
-		returnVoteData bool,
-		returnTags bool,
-		returnKvTags bool,
-		returnPreviews bool,
-		returnChildren bool,
-		returnShortDescription bool,
-		returnForSaleData bool,
-		returnMetadata bool,
-		returnPlaytimeStats uint32,
-		stripDescriptionBbcode bool,
-		returnReactions bool,
-		startindexOverride uint32,
-		returnApps bool,
-	) (Response, error)
+	GetUserVoteSummaryV1(input IPublishedFileServiceGetUserVoteSummary1Input) (Response, error)
+	QueryFilesV1(input IPublishedFileServiceQueryFiles1Input) (Response, error)
+	GetSubSectionDataV1(input IPublishedFileServiceGetSubSectionData1Input) (Response, error)
+	GetDetailsV1(input IPublishedFileServiceGetDetails1Input) (Response, error)
+	GetUserFilesV1(input IPublishedFileServiceGetUserFiles1Input) (Response, error)
+	GetUserFileCountV1(input IPublishedFileServiceGetUserFileCount1Input) (Response, error)
 }
 
 func NewIPublishedFileService() IPublishedFileService {
 	return &iPublishedFileService{}
 }
 
+type IPublishedFileServiceGetUserVoteSummary1Input struct {
+	publishedfileids uint64
+}
+
 func (i *iPublishedFileService) GetUserVoteSummaryV1(
-	publishedfileids uint64,
+	input IPublishedFileServiceGetUserVoteSummary1Input,
 ) (Response, error) {
 	p := getPath("IPublishedFileService", "GetUserVoteSummary", 1)
 	request := map[string]string{
-		"publishedfileids": fmt.Sprintf(`%v`, publishedfileids),
+		"publishedfileids": fmt.Sprintf(`%v`, input.publishedfileids),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4454,76 +4613,93 @@ func (i *iPublishedFileService) GetUserVoteSummaryV1(
 
 	return response, nil
 }
+
+type IPublishedFileServiceQueryFiles1Input struct {
+	key                        string
+	queryType                  uint32
+	page                       uint32
+	cursor                     string
+	numperpage                 uint32
+	creatorAppid               uint32
+	appid                      uint32
+	requiredtags               string
+	excludedtags               string
+	matchAllTags               bool
+	requiredFlags              string
+	omittedFlags               string
+	searchText                 string
+	filetype                   uint32
+	childPublishedfileid       uint64
+	days                       uint32
+	includeRecentVotesOnly     bool
+	cacheMaxAgeSeconds         uint32
+	language                   int32
+	requiredKvTags             any
+	taggroups                  any
+	dateRangeCreated           any
+	dateRangeUpdated           any
+	excludedContentDescriptors any
+	totalonly                  bool
+	idsOnly                    bool
+	returnVoteData             bool
+	returnTags                 bool
+	returnKvTags               bool
+	returnPreviews             bool
+	returnChildren             bool
+	returnShortDescription     bool
+	returnForSaleData          bool
+	returnMetadata             bool
+	returnPlaytimeStats        uint32
+	returnDetails              bool
+	stripDescriptionBbcode     bool
+	desiredRevision            any
+	returnReactions            bool
+}
+
 func (i *iPublishedFileService) QueryFilesV1(
-	key string,
-	queryType uint32,
-	page uint32,
-	cursor string,
-	numperpage uint32,
-	creatorAppid uint32,
-	appid uint32,
-	requiredtags string,
-	excludedtags string,
-	matchAllTags bool,
-	requiredFlags string,
-	omittedFlags string,
-	searchText string,
-	filetype uint32,
-	childPublishedfileid uint64,
-	days uint32,
-	includeRecentVotesOnly bool,
-	cacheMaxAgeSeconds uint32,
-	language int32,
-	totalonly bool,
-	idsOnly bool,
-	returnVoteData bool,
-	returnTags bool,
-	returnKvTags bool,
-	returnPreviews bool,
-	returnChildren bool,
-	returnShortDescription bool,
-	returnForSaleData bool,
-	returnMetadata bool,
-	returnPlaytimeStats uint32,
-	returnDetails bool,
-	stripDescriptionBbcode bool,
-	returnReactions bool,
+	input IPublishedFileServiceQueryFiles1Input,
 ) (Response, error) {
 	p := getPath("IPublishedFileService", "QueryFiles", 1)
 	request := map[string]string{
-		"key":                    key,
-		"queryType":              fmt.Sprintf(`%v`, queryType),
-		"page":                   fmt.Sprintf(`%v`, page),
-		"cursor":                 cursor,
-		"numperpage":             fmt.Sprintf(`%v`, numperpage),
-		"creatorAppid":           fmt.Sprintf(`%v`, creatorAppid),
-		"appid":                  fmt.Sprintf(`%v`, appid),
-		"requiredtags":           requiredtags,
-		"excludedtags":           excludedtags,
-		"matchAllTags":           strconv.FormatBool(matchAllTags),
-		"requiredFlags":          requiredFlags,
-		"omittedFlags":           omittedFlags,
-		"searchText":             searchText,
-		"filetype":               fmt.Sprintf(`%v`, filetype),
-		"childPublishedfileid":   fmt.Sprintf(`%v`, childPublishedfileid),
-		"days":                   fmt.Sprintf(`%v`, days),
-		"includeRecentVotesOnly": strconv.FormatBool(includeRecentVotesOnly),
-		"cacheMaxAgeSeconds":     fmt.Sprintf(`%v`, cacheMaxAgeSeconds),
-		"language":               fmt.Sprintf(`%v`, language),
-		"totalonly":              strconv.FormatBool(totalonly),
-		"idsOnly":                strconv.FormatBool(idsOnly),
-		"returnVoteData":         strconv.FormatBool(returnVoteData),
-		"returnTags":             strconv.FormatBool(returnTags),
-		"returnKvTags":           strconv.FormatBool(returnKvTags),
-		"returnPreviews":         strconv.FormatBool(returnPreviews),
-		"returnChildren":         strconv.FormatBool(returnChildren),
-		"returnShortDescription": strconv.FormatBool(returnShortDescription),
-		"returnForSaleData":      strconv.FormatBool(returnForSaleData),
-		"returnMetadata":         strconv.FormatBool(returnMetadata),
-		"returnPlaytimeStats":    fmt.Sprintf(`%v`, returnPlaytimeStats),
-		"returnDetails":          strconv.FormatBool(returnDetails),
-		"stripDescriptionBbcode": strconv.FormatBool(stripDescriptionBbcode),
-		"returnReactions":        strconv.FormatBool(returnReactions),
+		"key":                        fmt.Sprintf(`%v`, input.key),
+		"queryType":                  fmt.Sprintf(`%v`, input.queryType),
+		"page":                       fmt.Sprintf(`%v`, input.page),
+		"cursor":                     fmt.Sprintf(`%v`, input.cursor),
+		"numperpage":                 fmt.Sprintf(`%v`, input.numperpage),
+		"creatorAppid":               fmt.Sprintf(`%v`, input.creatorAppid),
+		"appid":                      fmt.Sprintf(`%v`, input.appid),
+		"requiredtags":               fmt.Sprintf(`%v`, input.requiredtags),
+		"excludedtags":               fmt.Sprintf(`%v`, input.excludedtags),
+		"matchAllTags":               fmt.Sprintf(`%v`, input.matchAllTags),
+		"requiredFlags":              fmt.Sprintf(`%v`, input.requiredFlags),
+		"omittedFlags":               fmt.Sprintf(`%v`, input.omittedFlags),
+		"searchText":                 fmt.Sprintf(`%v`, input.searchText),
+		"filetype":                   fmt.Sprintf(`%v`, input.filetype),
+		"childPublishedfileid":       fmt.Sprintf(`%v`, input.childPublishedfileid),
+		"days":                       fmt.Sprintf(`%v`, input.days),
+		"includeRecentVotesOnly":     fmt.Sprintf(`%v`, input.includeRecentVotesOnly),
+		"cacheMaxAgeSeconds":         fmt.Sprintf(`%v`, input.cacheMaxAgeSeconds),
+		"language":                   fmt.Sprintf(`%v`, input.language),
+		"requiredKvTags":             fmt.Sprintf(`%v`, input.requiredKvTags),
+		"taggroups":                  fmt.Sprintf(`%v`, input.taggroups),
+		"dateRangeCreated":           fmt.Sprintf(`%v`, input.dateRangeCreated),
+		"dateRangeUpdated":           fmt.Sprintf(`%v`, input.dateRangeUpdated),
+		"excludedContentDescriptors": fmt.Sprintf(`%v`, input.excludedContentDescriptors),
+		"totalonly":                  fmt.Sprintf(`%v`, input.totalonly),
+		"idsOnly":                    fmt.Sprintf(`%v`, input.idsOnly),
+		"returnVoteData":             fmt.Sprintf(`%v`, input.returnVoteData),
+		"returnTags":                 fmt.Sprintf(`%v`, input.returnTags),
+		"returnKvTags":               fmt.Sprintf(`%v`, input.returnKvTags),
+		"returnPreviews":             fmt.Sprintf(`%v`, input.returnPreviews),
+		"returnChildren":             fmt.Sprintf(`%v`, input.returnChildren),
+		"returnShortDescription":     fmt.Sprintf(`%v`, input.returnShortDescription),
+		"returnForSaleData":          fmt.Sprintf(`%v`, input.returnForSaleData),
+		"returnMetadata":             fmt.Sprintf(`%v`, input.returnMetadata),
+		"returnPlaytimeStats":        fmt.Sprintf(`%v`, input.returnPlaytimeStats),
+		"returnDetails":              fmt.Sprintf(`%v`, input.returnDetails),
+		"stripDescriptionBbcode":     fmt.Sprintf(`%v`, input.stripDescriptionBbcode),
+		"desiredRevision":            fmt.Sprintf(`%v`, input.desiredRevision),
+		"returnReactions":            fmt.Sprintf(`%v`, input.returnReactions),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4534,18 +4710,25 @@ func (i *iPublishedFileService) QueryFilesV1(
 
 	return response, nil
 }
+
+type IPublishedFileServiceGetSubSectionData1Input struct {
+	key                string
+	publishedfileid    uint64
+	forTableOfContents bool
+	specificSectionid  uint64
+	desiredRevision    any
+}
+
 func (i *iPublishedFileService) GetSubSectionDataV1(
-	key string,
-	publishedfileid uint64,
-	forTableOfContents bool,
-	specificSectionid uint64,
+	input IPublishedFileServiceGetSubSectionData1Input,
 ) (Response, error) {
 	p := getPath("IPublishedFileService", "GetSubSectionData", 1)
 	request := map[string]string{
-		"key":                key,
-		"publishedfileid":    fmt.Sprintf(`%v`, publishedfileid),
-		"forTableOfContents": strconv.FormatBool(forTableOfContents),
-		"specificSectionid":  fmt.Sprintf(`%v`, specificSectionid),
+		"key":                fmt.Sprintf(`%v`, input.key),
+		"publishedfileid":    fmt.Sprintf(`%v`, input.publishedfileid),
+		"forTableOfContents": fmt.Sprintf(`%v`, input.forTableOfContents),
+		"specificSectionid":  fmt.Sprintf(`%v`, input.specificSectionid),
+		"desiredRevision":    fmt.Sprintf(`%v`, input.desiredRevision),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4556,40 +4739,47 @@ func (i *iPublishedFileService) GetSubSectionDataV1(
 
 	return response, nil
 }
+
+type IPublishedFileServiceGetDetails1Input struct {
+	key                       string
+	publishedfileids          uint64
+	includetags               bool
+	includeadditionalpreviews bool
+	includechildren           bool
+	includekvtags             bool
+	includevotes              bool
+	shortDescription          bool
+	includeforsaledata        bool
+	includemetadata           bool
+	language                  int32
+	returnPlaytimeStats       uint32
+	appid                     uint32
+	stripDescriptionBbcode    bool
+	desiredRevision           any
+	includereactions          bool
+}
+
 func (i *iPublishedFileService) GetDetailsV1(
-	key string,
-	publishedfileids uint64,
-	includetags bool,
-	includeadditionalpreviews bool,
-	includechildren bool,
-	includekvtags bool,
-	includevotes bool,
-	shortDescription bool,
-	includeforsaledata bool,
-	includemetadata bool,
-	language int32,
-	returnPlaytimeStats uint32,
-	appid uint32,
-	stripDescriptionBbcode bool,
-	includereactions bool,
+	input IPublishedFileServiceGetDetails1Input,
 ) (Response, error) {
 	p := getPath("IPublishedFileService", "GetDetails", 1)
 	request := map[string]string{
-		"key":                       key,
-		"publishedfileids":          fmt.Sprintf(`%v`, publishedfileids),
-		"includetags":               strconv.FormatBool(includetags),
-		"includeadditionalpreviews": strconv.FormatBool(includeadditionalpreviews),
-		"includechildren":           strconv.FormatBool(includechildren),
-		"includekvtags":             strconv.FormatBool(includekvtags),
-		"includevotes":              strconv.FormatBool(includevotes),
-		"shortDescription":          strconv.FormatBool(shortDescription),
-		"includeforsaledata":        strconv.FormatBool(includeforsaledata),
-		"includemetadata":           strconv.FormatBool(includemetadata),
-		"language":                  fmt.Sprintf(`%v`, language),
-		"returnPlaytimeStats":       fmt.Sprintf(`%v`, returnPlaytimeStats),
-		"appid":                     fmt.Sprintf(`%v`, appid),
-		"stripDescriptionBbcode":    strconv.FormatBool(stripDescriptionBbcode),
-		"includereactions":          strconv.FormatBool(includereactions),
+		"key":                       fmt.Sprintf(`%v`, input.key),
+		"publishedfileids":          fmt.Sprintf(`%v`, input.publishedfileids),
+		"includetags":               fmt.Sprintf(`%v`, input.includetags),
+		"includeadditionalpreviews": fmt.Sprintf(`%v`, input.includeadditionalpreviews),
+		"includechildren":           fmt.Sprintf(`%v`, input.includechildren),
+		"includekvtags":             fmt.Sprintf(`%v`, input.includekvtags),
+		"includevotes":              fmt.Sprintf(`%v`, input.includevotes),
+		"shortDescription":          fmt.Sprintf(`%v`, input.shortDescription),
+		"includeforsaledata":        fmt.Sprintf(`%v`, input.includeforsaledata),
+		"includemetadata":           fmt.Sprintf(`%v`, input.includemetadata),
+		"language":                  fmt.Sprintf(`%v`, input.language),
+		"returnPlaytimeStats":       fmt.Sprintf(`%v`, input.returnPlaytimeStats),
+		"appid":                     fmt.Sprintf(`%v`, input.appid),
+		"stripDescriptionBbcode":    fmt.Sprintf(`%v`, input.stripDescriptionBbcode),
+		"desiredRevision":           fmt.Sprintf(`%v`, input.desiredRevision),
+		"includereactions":          fmt.Sprintf(`%v`, input.includereactions),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4600,72 +4790,85 @@ func (i *iPublishedFileService) GetDetailsV1(
 
 	return response, nil
 }
+
+type IPublishedFileServiceGetUserFiles1Input struct {
+	key                        string
+	steamid                    uint64
+	appid                      uint32
+	shortcutid                 uint32
+	page                       uint32
+	numperpage                 uint32
+	t                          string
+	sortmethod                 string
+	privacy                    uint32
+	requiredtags               string
+	excludedtags               string
+	requiredKvTags             any
+	filetype                   uint32
+	creatorAppid               uint32
+	matchCloudFilename         string
+	cacheMaxAgeSeconds         uint32
+	language                   int32
+	taggroups                  any
+	excludedContentDescriptors any
+	totalonly                  bool
+	idsOnly                    bool
+	returnVoteData             bool
+	returnTags                 bool
+	returnKvTags               bool
+	returnPreviews             bool
+	returnChildren             bool
+	returnShortDescription     bool
+	returnForSaleData          bool
+	returnMetadata             bool
+	returnPlaytimeStats        uint32
+	stripDescriptionBbcode     bool
+	returnReactions            bool
+	startindexOverride         uint32
+	desiredRevision            any
+	returnApps                 bool
+}
+
 func (i *iPublishedFileService) GetUserFilesV1(
-	key string,
-	steamid uint64,
-	appid uint32,
-	shortcutid uint32,
-	page uint32,
-	numperpage uint32,
-	t string,
-	sortmethod string,
-	privacy uint32,
-	requiredtags string,
-	excludedtags string,
-	filetype uint32,
-	creatorAppid uint32,
-	matchCloudFilename string,
-	cacheMaxAgeSeconds uint32,
-	language int32,
-	totalonly bool,
-	idsOnly bool,
-	returnVoteData bool,
-	returnTags bool,
-	returnKvTags bool,
-	returnPreviews bool,
-	returnChildren bool,
-	returnShortDescription bool,
-	returnForSaleData bool,
-	returnMetadata bool,
-	returnPlaytimeStats uint32,
-	stripDescriptionBbcode bool,
-	returnReactions bool,
-	startindexOverride uint32,
-	returnApps bool,
+	input IPublishedFileServiceGetUserFiles1Input,
 ) (Response, error) {
 	p := getPath("IPublishedFileService", "GetUserFiles", 1)
 	request := map[string]string{
-		"key":                    key,
-		"steamid":                fmt.Sprintf(`%v`, steamid),
-		"appid":                  fmt.Sprintf(`%v`, appid),
-		"shortcutid":             fmt.Sprintf(`%v`, shortcutid),
-		"page":                   fmt.Sprintf(`%v`, page),
-		"numperpage":             fmt.Sprintf(`%v`, numperpage),
-		"t":                      t,
-		"sortmethod":             sortmethod,
-		"privacy":                fmt.Sprintf(`%v`, privacy),
-		"requiredtags":           requiredtags,
-		"excludedtags":           excludedtags,
-		"filetype":               fmt.Sprintf(`%v`, filetype),
-		"creatorAppid":           fmt.Sprintf(`%v`, creatorAppid),
-		"matchCloudFilename":     matchCloudFilename,
-		"cacheMaxAgeSeconds":     fmt.Sprintf(`%v`, cacheMaxAgeSeconds),
-		"language":               fmt.Sprintf(`%v`, language),
-		"totalonly":              strconv.FormatBool(totalonly),
-		"idsOnly":                strconv.FormatBool(idsOnly),
-		"returnVoteData":         strconv.FormatBool(returnVoteData),
-		"returnTags":             strconv.FormatBool(returnTags),
-		"returnKvTags":           strconv.FormatBool(returnKvTags),
-		"returnPreviews":         strconv.FormatBool(returnPreviews),
-		"returnChildren":         strconv.FormatBool(returnChildren),
-		"returnShortDescription": strconv.FormatBool(returnShortDescription),
-		"returnForSaleData":      strconv.FormatBool(returnForSaleData),
-		"returnMetadata":         strconv.FormatBool(returnMetadata),
-		"returnPlaytimeStats":    fmt.Sprintf(`%v`, returnPlaytimeStats),
-		"stripDescriptionBbcode": strconv.FormatBool(stripDescriptionBbcode),
-		"returnReactions":        strconv.FormatBool(returnReactions),
-		"startindexOverride":     fmt.Sprintf(`%v`, startindexOverride),
-		"returnApps":             strconv.FormatBool(returnApps),
+		"key":                        fmt.Sprintf(`%v`, input.key),
+		"steamid":                    fmt.Sprintf(`%v`, input.steamid),
+		"appid":                      fmt.Sprintf(`%v`, input.appid),
+		"shortcutid":                 fmt.Sprintf(`%v`, input.shortcutid),
+		"page":                       fmt.Sprintf(`%v`, input.page),
+		"numperpage":                 fmt.Sprintf(`%v`, input.numperpage),
+		"t":                          fmt.Sprintf(`%v`, input.t),
+		"sortmethod":                 fmt.Sprintf(`%v`, input.sortmethod),
+		"privacy":                    fmt.Sprintf(`%v`, input.privacy),
+		"requiredtags":               fmt.Sprintf(`%v`, input.requiredtags),
+		"excludedtags":               fmt.Sprintf(`%v`, input.excludedtags),
+		"requiredKvTags":             fmt.Sprintf(`%v`, input.requiredKvTags),
+		"filetype":                   fmt.Sprintf(`%v`, input.filetype),
+		"creatorAppid":               fmt.Sprintf(`%v`, input.creatorAppid),
+		"matchCloudFilename":         fmt.Sprintf(`%v`, input.matchCloudFilename),
+		"cacheMaxAgeSeconds":         fmt.Sprintf(`%v`, input.cacheMaxAgeSeconds),
+		"language":                   fmt.Sprintf(`%v`, input.language),
+		"taggroups":                  fmt.Sprintf(`%v`, input.taggroups),
+		"excludedContentDescriptors": fmt.Sprintf(`%v`, input.excludedContentDescriptors),
+		"totalonly":                  fmt.Sprintf(`%v`, input.totalonly),
+		"idsOnly":                    fmt.Sprintf(`%v`, input.idsOnly),
+		"returnVoteData":             fmt.Sprintf(`%v`, input.returnVoteData),
+		"returnTags":                 fmt.Sprintf(`%v`, input.returnTags),
+		"returnKvTags":               fmt.Sprintf(`%v`, input.returnKvTags),
+		"returnPreviews":             fmt.Sprintf(`%v`, input.returnPreviews),
+		"returnChildren":             fmt.Sprintf(`%v`, input.returnChildren),
+		"returnShortDescription":     fmt.Sprintf(`%v`, input.returnShortDescription),
+		"returnForSaleData":          fmt.Sprintf(`%v`, input.returnForSaleData),
+		"returnMetadata":             fmt.Sprintf(`%v`, input.returnMetadata),
+		"returnPlaytimeStats":        fmt.Sprintf(`%v`, input.returnPlaytimeStats),
+		"stripDescriptionBbcode":     fmt.Sprintf(`%v`, input.stripDescriptionBbcode),
+		"returnReactions":            fmt.Sprintf(`%v`, input.returnReactions),
+		"startindexOverride":         fmt.Sprintf(`%v`, input.startindexOverride),
+		"desiredRevision":            fmt.Sprintf(`%v`, input.desiredRevision),
+		"returnApps":                 fmt.Sprintf(`%v`, input.returnApps),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4676,72 +4879,85 @@ func (i *iPublishedFileService) GetUserFilesV1(
 
 	return response, nil
 }
+
+type IPublishedFileServiceGetUserFileCount1Input struct {
+	key                        string
+	steamid                    uint64
+	appid                      uint32
+	shortcutid                 uint32
+	page                       uint32
+	numperpage                 uint32
+	t                          string
+	sortmethod                 string
+	privacy                    uint32
+	requiredtags               string
+	excludedtags               string
+	requiredKvTags             any
+	filetype                   uint32
+	creatorAppid               uint32
+	matchCloudFilename         string
+	cacheMaxAgeSeconds         uint32
+	language                   int32
+	taggroups                  any
+	excludedContentDescriptors any
+	totalonly                  bool
+	idsOnly                    bool
+	returnVoteData             bool
+	returnTags                 bool
+	returnKvTags               bool
+	returnPreviews             bool
+	returnChildren             bool
+	returnShortDescription     bool
+	returnForSaleData          bool
+	returnMetadata             bool
+	returnPlaytimeStats        uint32
+	stripDescriptionBbcode     bool
+	returnReactions            bool
+	startindexOverride         uint32
+	desiredRevision            any
+	returnApps                 bool
+}
+
 func (i *iPublishedFileService) GetUserFileCountV1(
-	key string,
-	steamid uint64,
-	appid uint32,
-	shortcutid uint32,
-	page uint32,
-	numperpage uint32,
-	t string,
-	sortmethod string,
-	privacy uint32,
-	requiredtags string,
-	excludedtags string,
-	filetype uint32,
-	creatorAppid uint32,
-	matchCloudFilename string,
-	cacheMaxAgeSeconds uint32,
-	language int32,
-	totalonly bool,
-	idsOnly bool,
-	returnVoteData bool,
-	returnTags bool,
-	returnKvTags bool,
-	returnPreviews bool,
-	returnChildren bool,
-	returnShortDescription bool,
-	returnForSaleData bool,
-	returnMetadata bool,
-	returnPlaytimeStats uint32,
-	stripDescriptionBbcode bool,
-	returnReactions bool,
-	startindexOverride uint32,
-	returnApps bool,
+	input IPublishedFileServiceGetUserFileCount1Input,
 ) (Response, error) {
 	p := getPath("IPublishedFileService", "GetUserFileCount", 1)
 	request := map[string]string{
-		"key":                    key,
-		"steamid":                fmt.Sprintf(`%v`, steamid),
-		"appid":                  fmt.Sprintf(`%v`, appid),
-		"shortcutid":             fmt.Sprintf(`%v`, shortcutid),
-		"page":                   fmt.Sprintf(`%v`, page),
-		"numperpage":             fmt.Sprintf(`%v`, numperpage),
-		"t":                      t,
-		"sortmethod":             sortmethod,
-		"privacy":                fmt.Sprintf(`%v`, privacy),
-		"requiredtags":           requiredtags,
-		"excludedtags":           excludedtags,
-		"filetype":               fmt.Sprintf(`%v`, filetype),
-		"creatorAppid":           fmt.Sprintf(`%v`, creatorAppid),
-		"matchCloudFilename":     matchCloudFilename,
-		"cacheMaxAgeSeconds":     fmt.Sprintf(`%v`, cacheMaxAgeSeconds),
-		"language":               fmt.Sprintf(`%v`, language),
-		"totalonly":              strconv.FormatBool(totalonly),
-		"idsOnly":                strconv.FormatBool(idsOnly),
-		"returnVoteData":         strconv.FormatBool(returnVoteData),
-		"returnTags":             strconv.FormatBool(returnTags),
-		"returnKvTags":           strconv.FormatBool(returnKvTags),
-		"returnPreviews":         strconv.FormatBool(returnPreviews),
-		"returnChildren":         strconv.FormatBool(returnChildren),
-		"returnShortDescription": strconv.FormatBool(returnShortDescription),
-		"returnForSaleData":      strconv.FormatBool(returnForSaleData),
-		"returnMetadata":         strconv.FormatBool(returnMetadata),
-		"returnPlaytimeStats":    fmt.Sprintf(`%v`, returnPlaytimeStats),
-		"stripDescriptionBbcode": strconv.FormatBool(stripDescriptionBbcode),
-		"returnReactions":        strconv.FormatBool(returnReactions),
-		"startindexOverride":     fmt.Sprintf(`%v`, startindexOverride),
-		"returnApps":             strconv.FormatBool(returnApps),
+		"key":                        fmt.Sprintf(`%v`, input.key),
+		"steamid":                    fmt.Sprintf(`%v`, input.steamid),
+		"appid":                      fmt.Sprintf(`%v`, input.appid),
+		"shortcutid":                 fmt.Sprintf(`%v`, input.shortcutid),
+		"page":                       fmt.Sprintf(`%v`, input.page),
+		"numperpage":                 fmt.Sprintf(`%v`, input.numperpage),
+		"t":                          fmt.Sprintf(`%v`, input.t),
+		"sortmethod":                 fmt.Sprintf(`%v`, input.sortmethod),
+		"privacy":                    fmt.Sprintf(`%v`, input.privacy),
+		"requiredtags":               fmt.Sprintf(`%v`, input.requiredtags),
+		"excludedtags":               fmt.Sprintf(`%v`, input.excludedtags),
+		"requiredKvTags":             fmt.Sprintf(`%v`, input.requiredKvTags),
+		"filetype":                   fmt.Sprintf(`%v`, input.filetype),
+		"creatorAppid":               fmt.Sprintf(`%v`, input.creatorAppid),
+		"matchCloudFilename":         fmt.Sprintf(`%v`, input.matchCloudFilename),
+		"cacheMaxAgeSeconds":         fmt.Sprintf(`%v`, input.cacheMaxAgeSeconds),
+		"language":                   fmt.Sprintf(`%v`, input.language),
+		"taggroups":                  fmt.Sprintf(`%v`, input.taggroups),
+		"excludedContentDescriptors": fmt.Sprintf(`%v`, input.excludedContentDescriptors),
+		"totalonly":                  fmt.Sprintf(`%v`, input.totalonly),
+		"idsOnly":                    fmt.Sprintf(`%v`, input.idsOnly),
+		"returnVoteData":             fmt.Sprintf(`%v`, input.returnVoteData),
+		"returnTags":                 fmt.Sprintf(`%v`, input.returnTags),
+		"returnKvTags":               fmt.Sprintf(`%v`, input.returnKvTags),
+		"returnPreviews":             fmt.Sprintf(`%v`, input.returnPreviews),
+		"returnChildren":             fmt.Sprintf(`%v`, input.returnChildren),
+		"returnShortDescription":     fmt.Sprintf(`%v`, input.returnShortDescription),
+		"returnForSaleData":          fmt.Sprintf(`%v`, input.returnForSaleData),
+		"returnMetadata":             fmt.Sprintf(`%v`, input.returnMetadata),
+		"returnPlaytimeStats":        fmt.Sprintf(`%v`, input.returnPlaytimeStats),
+		"stripDescriptionBbcode":     fmt.Sprintf(`%v`, input.stripDescriptionBbcode),
+		"returnReactions":            fmt.Sprintf(`%v`, input.returnReactions),
+		"startindexOverride":         fmt.Sprintf(`%v`, input.startindexOverride),
+		"desiredRevision":            fmt.Sprintf(`%v`, input.desiredRevision),
+		"returnApps":                 fmt.Sprintf(`%v`, input.returnApps),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4757,77 +4973,44 @@ type iEconService struct {
 }
 
 type IEconService interface {
-	GetTradeHistoryV1(
-		key string,
-		maxTrades uint32,
-		startAfterTime uint32,
-		startAfterTradeid uint64,
-		navigatingBack bool,
-		getDescriptions bool,
-		language string,
-		includeFailed bool,
-		includeTotal bool,
-	) (Response, error)
-	GetTradeStatusV1(
-		key string,
-		tradeid uint64,
-		getDescriptions bool,
-		language string,
-	) (Response, error)
-	GetTradeOffersV1(
-		key string,
-		getSentOffers bool,
-		getReceivedOffers bool,
-		getDescriptions bool,
-		language string,
-		activeOnly bool,
-		historicalOnly bool,
-		timeHistoricalCutoff uint32,
-		cursor uint32,
-	) (Response, error)
-	GetTradeOfferV1(
-		key string,
-		tradeofferid uint64,
-		language string,
-		getDescriptions bool,
-	) (Response, error)
-	GetTradeOffersSummaryV1(
-		key string,
-		timeLastVisit uint32,
-	) (Response, error)
-	GetTradeHoldDurationsV1(
-		key string,
-		steamidTarget uint64,
-		tradeOfferAccessToken string,
-	) (Response, error)
+	GetTradeHistoryV1(input IEconServiceGetTradeHistory1Input) (Response, error)
+	GetTradeStatusV1(input IEconServiceGetTradeStatus1Input) (Response, error)
+	GetTradeOffersV1(input IEconServiceGetTradeOffers1Input) (Response, error)
+	GetTradeOfferV1(input IEconServiceGetTradeOffer1Input) (Response, error)
+	GetTradeOffersSummaryV1(input IEconServiceGetTradeOffersSummary1Input) (Response, error)
+	GetTradeHoldDurationsV1(input IEconServiceGetTradeHoldDurations1Input) (Response, error)
 }
 
 func NewIEconService() IEconService {
 	return &iEconService{}
 }
 
+type IEconServiceGetTradeHistory1Input struct {
+	key               string
+	maxTrades         uint32
+	startAfterTime    uint32
+	startAfterTradeid uint64
+	navigatingBack    bool
+	getDescriptions   bool
+	language          string
+	includeFailed     bool
+	includeTotal      bool
+}
+
 func (i *iEconService) GetTradeHistoryV1(
-	key string,
-	maxTrades uint32,
-	startAfterTime uint32,
-	startAfterTradeid uint64,
-	navigatingBack bool,
-	getDescriptions bool,
-	language string,
-	includeFailed bool,
-	includeTotal bool,
+	input IEconServiceGetTradeHistory1Input,
 ) (Response, error) {
 	p := getPath("IEconService", "GetTradeHistory", 1)
 	request := map[string]string{
-		"key":               key,
-		"maxTrades":         fmt.Sprintf(`%v`, maxTrades),
-		"startAfterTime":    fmt.Sprintf(`%v`, startAfterTime),
-		"startAfterTradeid": fmt.Sprintf(`%v`, startAfterTradeid),
-		"navigatingBack":    strconv.FormatBool(navigatingBack),
-		"getDescriptions":   strconv.FormatBool(getDescriptions),
-		"language":          language,
-		"includeFailed":     strconv.FormatBool(includeFailed),
-		"includeTotal":      strconv.FormatBool(includeTotal),
+		"key":               fmt.Sprintf(`%v`, input.key),
+		"maxTrades":         fmt.Sprintf(`%v`, input.maxTrades),
+		"startAfterTime":    fmt.Sprintf(`%v`, input.startAfterTime),
+		"startAfterTradeid": fmt.Sprintf(`%v`, input.startAfterTradeid),
+		"navigatingBack":    fmt.Sprintf(`%v`, input.navigatingBack),
+		"getDescriptions":   fmt.Sprintf(`%v`, input.getDescriptions),
+		"language":          fmt.Sprintf(`%v`, input.language),
+		"includeFailed":     fmt.Sprintf(`%v`, input.includeFailed),
+		"includeTotal":      fmt.Sprintf(`%v`, input.includeTotal),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4838,18 +5021,23 @@ func (i *iEconService) GetTradeHistoryV1(
 
 	return response, nil
 }
+
+type IEconServiceGetTradeStatus1Input struct {
+	key             string
+	tradeid         uint64
+	getDescriptions bool
+	language        string
+}
+
 func (i *iEconService) GetTradeStatusV1(
-	key string,
-	tradeid uint64,
-	getDescriptions bool,
-	language string,
+	input IEconServiceGetTradeStatus1Input,
 ) (Response, error) {
 	p := getPath("IEconService", "GetTradeStatus", 1)
 	request := map[string]string{
-		"key":             key,
-		"tradeid":         fmt.Sprintf(`%v`, tradeid),
-		"getDescriptions": strconv.FormatBool(getDescriptions),
-		"language":        language,
+		"key":             fmt.Sprintf(`%v`, input.key),
+		"tradeid":         fmt.Sprintf(`%v`, input.tradeid),
+		"getDescriptions": fmt.Sprintf(`%v`, input.getDescriptions),
+		"language":        fmt.Sprintf(`%v`, input.language),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4860,28 +5048,33 @@ func (i *iEconService) GetTradeStatusV1(
 
 	return response, nil
 }
+
+type IEconServiceGetTradeOffers1Input struct {
+	key                  string
+	getSentOffers        bool
+	getReceivedOffers    bool
+	getDescriptions      bool
+	language             string
+	activeOnly           bool
+	historicalOnly       bool
+	timeHistoricalCutoff uint32
+	cursor               uint32
+}
+
 func (i *iEconService) GetTradeOffersV1(
-	key string,
-	getSentOffers bool,
-	getReceivedOffers bool,
-	getDescriptions bool,
-	language string,
-	activeOnly bool,
-	historicalOnly bool,
-	timeHistoricalCutoff uint32,
-	cursor uint32,
+	input IEconServiceGetTradeOffers1Input,
 ) (Response, error) {
 	p := getPath("IEconService", "GetTradeOffers", 1)
 	request := map[string]string{
-		"key":                  key,
-		"getSentOffers":        strconv.FormatBool(getSentOffers),
-		"getReceivedOffers":    strconv.FormatBool(getReceivedOffers),
-		"getDescriptions":      strconv.FormatBool(getDescriptions),
-		"language":             language,
-		"activeOnly":           strconv.FormatBool(activeOnly),
-		"historicalOnly":       strconv.FormatBool(historicalOnly),
-		"timeHistoricalCutoff": fmt.Sprintf(`%v`, timeHistoricalCutoff),
-		"cursor":               fmt.Sprintf(`%v`, cursor),
+		"key":                  fmt.Sprintf(`%v`, input.key),
+		"getSentOffers":        fmt.Sprintf(`%v`, input.getSentOffers),
+		"getReceivedOffers":    fmt.Sprintf(`%v`, input.getReceivedOffers),
+		"getDescriptions":      fmt.Sprintf(`%v`, input.getDescriptions),
+		"language":             fmt.Sprintf(`%v`, input.language),
+		"activeOnly":           fmt.Sprintf(`%v`, input.activeOnly),
+		"historicalOnly":       fmt.Sprintf(`%v`, input.historicalOnly),
+		"timeHistoricalCutoff": fmt.Sprintf(`%v`, input.timeHistoricalCutoff),
+		"cursor":               fmt.Sprintf(`%v`, input.cursor),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4892,18 +5085,23 @@ func (i *iEconService) GetTradeOffersV1(
 
 	return response, nil
 }
+
+type IEconServiceGetTradeOffer1Input struct {
+	key             string
+	tradeofferid    uint64
+	language        string
+	getDescriptions bool
+}
+
 func (i *iEconService) GetTradeOfferV1(
-	key string,
-	tradeofferid uint64,
-	language string,
-	getDescriptions bool,
+	input IEconServiceGetTradeOffer1Input,
 ) (Response, error) {
 	p := getPath("IEconService", "GetTradeOffer", 1)
 	request := map[string]string{
-		"key":             key,
-		"tradeofferid":    fmt.Sprintf(`%v`, tradeofferid),
-		"language":        language,
-		"getDescriptions": strconv.FormatBool(getDescriptions),
+		"key":             fmt.Sprintf(`%v`, input.key),
+		"tradeofferid":    fmt.Sprintf(`%v`, input.tradeofferid),
+		"language":        fmt.Sprintf(`%v`, input.language),
+		"getDescriptions": fmt.Sprintf(`%v`, input.getDescriptions),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4914,14 +5112,19 @@ func (i *iEconService) GetTradeOfferV1(
 
 	return response, nil
 }
+
+type IEconServiceGetTradeOffersSummary1Input struct {
+	key           string
+	timeLastVisit uint32
+}
+
 func (i *iEconService) GetTradeOffersSummaryV1(
-	key string,
-	timeLastVisit uint32,
+	input IEconServiceGetTradeOffersSummary1Input,
 ) (Response, error) {
 	p := getPath("IEconService", "GetTradeOffersSummary", 1)
 	request := map[string]string{
-		"key":           key,
-		"timeLastVisit": fmt.Sprintf(`%v`, timeLastVisit),
+		"key":           fmt.Sprintf(`%v`, input.key),
+		"timeLastVisit": fmt.Sprintf(`%v`, input.timeLastVisit),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4932,16 +5135,21 @@ func (i *iEconService) GetTradeOffersSummaryV1(
 
 	return response, nil
 }
+
+type IEconServiceGetTradeHoldDurations1Input struct {
+	key                   string
+	steamidTarget         uint64
+	tradeOfferAccessToken string
+}
+
 func (i *iEconService) GetTradeHoldDurationsV1(
-	key string,
-	steamidTarget uint64,
-	tradeOfferAccessToken string,
+	input IEconServiceGetTradeHoldDurations1Input,
 ) (Response, error) {
 	p := getPath("IEconService", "GetTradeHoldDurations", 1)
 	request := map[string]string{
-		"key":                   key,
-		"steamidTarget":         fmt.Sprintf(`%v`, steamidTarget),
-		"tradeOfferAccessToken": tradeOfferAccessToken,
+		"key":                   fmt.Sprintf(`%v`, input.key),
+		"steamidTarget":         fmt.Sprintf(`%v`, input.steamidTarget),
+		"tradeOfferAccessToken": fmt.Sprintf(`%v`, input.tradeOfferAccessToken),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4957,37 +5165,33 @@ type iGameNotificationsService struct {
 }
 
 type IGameNotificationsService interface {
-	UserCreateSessionV1(
-		appid uint32,
-		context uint64,
-		steamid uint64,
-	) (Response, error)
-	UserUpdateSessionV1(
-		sessionid uint64,
-		appid uint32,
-		steamid uint64,
-	) (Response, error)
-	UserDeleteSessionV1(
-		sessionid uint64,
-		appid uint32,
-		steamid uint64,
-	) (Response, error)
+	UserCreateSessionV1(input IGameNotificationsServiceUserCreateSession1Input) (Response, error)
+	UserUpdateSessionV1(input IGameNotificationsServiceUserUpdateSession1Input) (Response, error)
+	UserDeleteSessionV1(input IGameNotificationsServiceUserDeleteSession1Input) (Response, error)
 }
 
 func NewIGameNotificationsService() IGameNotificationsService {
 	return &iGameNotificationsService{}
 }
 
+type IGameNotificationsServiceUserCreateSession1Input struct {
+	appid   uint32
+	context uint64
+	title   any
+	users   any
+	steamid uint64
+}
+
 func (i *iGameNotificationsService) UserCreateSessionV1(
-	appid uint32,
-	context uint64,
-	steamid uint64,
+	input IGameNotificationsServiceUserCreateSession1Input,
 ) (Response, error) {
 	p := getPath("IGameNotificationsService", "UserCreateSession", 1)
 	request := map[string]string{
-		"appid":   fmt.Sprintf(`%v`, appid),
-		"context": fmt.Sprintf(`%v`, context),
-		"steamid": fmt.Sprintf(`%v`, steamid),
+		"appid":   fmt.Sprintf(`%v`, input.appid),
+		"context": fmt.Sprintf(`%v`, input.context),
+		"title":   fmt.Sprintf(`%v`, input.title),
+		"users":   fmt.Sprintf(`%v`, input.users),
+		"steamid": fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -4998,16 +5202,25 @@ func (i *iGameNotificationsService) UserCreateSessionV1(
 
 	return response, nil
 }
+
+type IGameNotificationsServiceUserUpdateSession1Input struct {
+	sessionid uint64
+	appid     uint32
+	title     any
+	users     any
+	steamid   uint64
+}
+
 func (i *iGameNotificationsService) UserUpdateSessionV1(
-	sessionid uint64,
-	appid uint32,
-	steamid uint64,
+	input IGameNotificationsServiceUserUpdateSession1Input,
 ) (Response, error) {
 	p := getPath("IGameNotificationsService", "UserUpdateSession", 1)
 	request := map[string]string{
-		"sessionid": fmt.Sprintf(`%v`, sessionid),
-		"appid":     fmt.Sprintf(`%v`, appid),
-		"steamid":   fmt.Sprintf(`%v`, steamid),
+		"sessionid": fmt.Sprintf(`%v`, input.sessionid),
+		"appid":     fmt.Sprintf(`%v`, input.appid),
+		"title":     fmt.Sprintf(`%v`, input.title),
+		"users":     fmt.Sprintf(`%v`, input.users),
+		"steamid":   fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -5018,16 +5231,21 @@ func (i *iGameNotificationsService) UserUpdateSessionV1(
 
 	return response, nil
 }
+
+type IGameNotificationsServiceUserDeleteSession1Input struct {
+	sessionid uint64
+	appid     uint32
+	steamid   uint64
+}
+
 func (i *iGameNotificationsService) UserDeleteSessionV1(
-	sessionid uint64,
-	appid uint32,
-	steamid uint64,
+	input IGameNotificationsServiceUserDeleteSession1Input,
 ) (Response, error) {
 	p := getPath("IGameNotificationsService", "UserDeleteSession", 1)
 	request := map[string]string{
-		"sessionid": fmt.Sprintf(`%v`, sessionid),
-		"appid":     fmt.Sprintf(`%v`, appid),
-		"steamid":   fmt.Sprintf(`%v`, steamid),
+		"sessionid": fmt.Sprintf(`%v`, input.sessionid),
+		"appid":     fmt.Sprintf(`%v`, input.appid),
+		"steamid":   fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -5043,46 +5261,33 @@ type iInventoryService struct {
 }
 
 type IInventoryService interface {
-	SplitItemStackV1(
-		key string,
-		appid uint32,
-		itemid uint64,
-		quantity uint32,
-		steamid uint64,
-	) (Response, error)
-	CombineItemStacksV1(
-		key string,
-		appid uint32,
-		fromitemid uint64,
-		destitemid uint64,
-		quantity uint32,
-		steamid uint64,
-	) (Response, error)
-	GetPriceSheetV1(
-		key string,
-		ecurrency int32,
-		currencyCode string,
-	) (Response, error)
+	SplitItemStackV1(input IInventoryServiceSplitItemStack1Input) (Response, error)
+	CombineItemStacksV1(input IInventoryServiceCombineItemStacks1Input) (Response, error)
+	GetPriceSheetV1(input IInventoryServiceGetPriceSheet1Input) (Response, error)
 }
 
 func NewIInventoryService() IInventoryService {
 	return &iInventoryService{}
 }
 
+type IInventoryServiceSplitItemStack1Input struct {
+	key      string
+	appid    uint32
+	itemid   uint64
+	quantity uint32
+	steamid  uint64
+}
+
 func (i *iInventoryService) SplitItemStackV1(
-	key string,
-	appid uint32,
-	itemid uint64,
-	quantity uint32,
-	steamid uint64,
+	input IInventoryServiceSplitItemStack1Input,
 ) (Response, error) {
 	p := getPath("IInventoryService", "SplitItemStack", 1)
 	request := map[string]string{
-		"key":      key,
-		"appid":    fmt.Sprintf(`%v`, appid),
-		"itemid":   fmt.Sprintf(`%v`, itemid),
-		"quantity": fmt.Sprintf(`%v`, quantity),
-		"steamid":  fmt.Sprintf(`%v`, steamid),
+		"key":      fmt.Sprintf(`%v`, input.key),
+		"appid":    fmt.Sprintf(`%v`, input.appid),
+		"itemid":   fmt.Sprintf(`%v`, input.itemid),
+		"quantity": fmt.Sprintf(`%v`, input.quantity),
+		"steamid":  fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -5093,22 +5298,27 @@ func (i *iInventoryService) SplitItemStackV1(
 
 	return response, nil
 }
+
+type IInventoryServiceCombineItemStacks1Input struct {
+	key        string
+	appid      uint32
+	fromitemid uint64
+	destitemid uint64
+	quantity   uint32
+	steamid    uint64
+}
+
 func (i *iInventoryService) CombineItemStacksV1(
-	key string,
-	appid uint32,
-	fromitemid uint64,
-	destitemid uint64,
-	quantity uint32,
-	steamid uint64,
+	input IInventoryServiceCombineItemStacks1Input,
 ) (Response, error) {
 	p := getPath("IInventoryService", "CombineItemStacks", 1)
 	request := map[string]string{
-		"key":        key,
-		"appid":      fmt.Sprintf(`%v`, appid),
-		"fromitemid": fmt.Sprintf(`%v`, fromitemid),
-		"destitemid": fmt.Sprintf(`%v`, destitemid),
-		"quantity":   fmt.Sprintf(`%v`, quantity),
-		"steamid":    fmt.Sprintf(`%v`, steamid),
+		"key":        fmt.Sprintf(`%v`, input.key),
+		"appid":      fmt.Sprintf(`%v`, input.appid),
+		"fromitemid": fmt.Sprintf(`%v`, input.fromitemid),
+		"destitemid": fmt.Sprintf(`%v`, input.destitemid),
+		"quantity":   fmt.Sprintf(`%v`, input.quantity),
+		"steamid":    fmt.Sprintf(`%v`, input.steamid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -5119,16 +5329,21 @@ func (i *iInventoryService) CombineItemStacksV1(
 
 	return response, nil
 }
+
+type IInventoryServiceGetPriceSheet1Input struct {
+	key          string
+	ecurrency    int32
+	currencyCode string
+}
+
 func (i *iInventoryService) GetPriceSheetV1(
-	key string,
-	ecurrency int32,
-	currencyCode string,
+	input IInventoryServiceGetPriceSheet1Input,
 ) (Response, error) {
 	p := getPath("IInventoryService", "GetPriceSheet", 1)
 	request := map[string]string{
-		"key":          key,
-		"ecurrency":    fmt.Sprintf(`%v`, ecurrency),
-		"currencyCode": currencyCode,
+		"key":          fmt.Sprintf(`%v`, input.key),
+		"ecurrency":    fmt.Sprintf(`%v`, input.ecurrency),
+		"currencyCode": fmt.Sprintf(`%v`, input.currencyCode),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -5144,48 +5359,41 @@ type iStoreService struct {
 }
 
 type IStoreService interface {
-	GetAppListV1(
-		key string,
-		ifModifiedSince uint32,
-		haveDescriptionLanguage string,
-		includeGames bool,
-		includeDlc bool,
-		includeSoftware bool,
-		includeVideos bool,
-		includeHardware bool,
-		lastAppid uint32,
-		maxResults uint32,
-	) (Response, error)
+	GetAppListV1(input IStoreServiceGetAppList1Input) (Response, error)
 }
 
 func NewIStoreService() IStoreService {
 	return &iStoreService{}
 }
 
+type IStoreServiceGetAppList1Input struct {
+	key                     string
+	ifModifiedSince         uint32
+	haveDescriptionLanguage string
+	includeGames            bool
+	includeDlc              bool
+	includeSoftware         bool
+	includeVideos           bool
+	includeHardware         bool
+	lastAppid               uint32
+	maxResults              uint32
+}
+
 func (i *iStoreService) GetAppListV1(
-	key string,
-	ifModifiedSince uint32,
-	haveDescriptionLanguage string,
-	includeGames bool,
-	includeDlc bool,
-	includeSoftware bool,
-	includeVideos bool,
-	includeHardware bool,
-	lastAppid uint32,
-	maxResults uint32,
+	input IStoreServiceGetAppList1Input,
 ) (Response, error) {
 	p := getPath("IStoreService", "GetAppList", 1)
 	request := map[string]string{
-		"key":                     key,
-		"ifModifiedSince":         fmt.Sprintf(`%v`, ifModifiedSince),
-		"haveDescriptionLanguage": haveDescriptionLanguage,
-		"includeGames":            strconv.FormatBool(includeGames),
-		"includeDlc":              strconv.FormatBool(includeDlc),
-		"includeSoftware":         strconv.FormatBool(includeSoftware),
-		"includeVideos":           strconv.FormatBool(includeVideos),
-		"includeHardware":         strconv.FormatBool(includeHardware),
-		"lastAppid":               fmt.Sprintf(`%v`, lastAppid),
-		"maxResults":              fmt.Sprintf(`%v`, maxResults),
+		"key":                     fmt.Sprintf(`%v`, input.key),
+		"ifModifiedSince":         fmt.Sprintf(`%v`, input.ifModifiedSince),
+		"haveDescriptionLanguage": fmt.Sprintf(`%v`, input.haveDescriptionLanguage),
+		"includeGames":            fmt.Sprintf(`%v`, input.includeGames),
+		"includeDlc":              fmt.Sprintf(`%v`, input.includeDlc),
+		"includeSoftware":         fmt.Sprintf(`%v`, input.includeSoftware),
+		"includeVideos":           fmt.Sprintf(`%v`, input.includeVideos),
+		"includeHardware":         fmt.Sprintf(`%v`, input.includeHardware),
+		"lastAppid":               fmt.Sprintf(`%v`, input.lastAppid),
+		"maxResults":              fmt.Sprintf(`%v`, input.maxResults),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -5201,36 +5409,32 @@ type iHelpRequestLogsService struct {
 }
 
 type IHelpRequestLogsService interface {
-	UploadUserApplicationLogV1(
-		appid uint32,
-		logType string,
-		versionString string,
-		logContents string,
-		requestId uint64,
-	) (Response, error)
-	GetApplicationLogDemandV1(
-		appid uint32,
-	) (Response, error)
+	UploadUserApplicationLogV1(input IHelpRequestLogsServiceUploadUserApplicationLog1Input) (Response, error)
+	GetApplicationLogDemandV1(input IHelpRequestLogsServiceGetApplicationLogDemand1Input) (Response, error)
 }
 
 func NewIHelpRequestLogsService() IHelpRequestLogsService {
 	return &iHelpRequestLogsService{}
 }
 
+type IHelpRequestLogsServiceUploadUserApplicationLog1Input struct {
+	appid         uint32
+	logType       string
+	versionString string
+	logContents   string
+	requestId     uint64
+}
+
 func (i *iHelpRequestLogsService) UploadUserApplicationLogV1(
-	appid uint32,
-	logType string,
-	versionString string,
-	logContents string,
-	requestId uint64,
+	input IHelpRequestLogsServiceUploadUserApplicationLog1Input,
 ) (Response, error) {
 	p := getPath("IHelpRequestLogsService", "UploadUserApplicationLog", 1)
 	request := map[string]string{
-		"appid":         fmt.Sprintf(`%v`, appid),
-		"logType":       logType,
-		"versionString": versionString,
-		"logContents":   logContents,
-		"requestId":     fmt.Sprintf(`%v`, requestId),
+		"appid":         fmt.Sprintf(`%v`, input.appid),
+		"logType":       fmt.Sprintf(`%v`, input.logType),
+		"versionString": fmt.Sprintf(`%v`, input.versionString),
+		"logContents":   fmt.Sprintf(`%v`, input.logContents),
+		"requestId":     fmt.Sprintf(`%v`, input.requestId),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -5241,12 +5445,17 @@ func (i *iHelpRequestLogsService) UploadUserApplicationLogV1(
 
 	return response, nil
 }
+
+type IHelpRequestLogsServiceGetApplicationLogDemand1Input struct {
+	appid uint32
+}
+
 func (i *iHelpRequestLogsService) GetApplicationLogDemandV1(
-	appid uint32,
+	input IHelpRequestLogsServiceGetApplicationLogDemand1Input,
 ) (Response, error) {
 	p := getPath("IHelpRequestLogsService", "GetApplicationLogDemand", 1)
 	request := map[string]string{
-		"appid": fmt.Sprintf(`%v`, appid),
+		"appid": fmt.Sprintf(`%v`, input.appid),
 	}
 	response := Response{}
 	uri := buildURL(p, request)
@@ -5262,60 +5471,49 @@ type iCheatReportingService struct {
 }
 
 type ICheatReportingService interface {
-	ReportCheatDataV1(
-		key string,
-		steamid uint64,
-		appid uint32,
-		pathandfilename string,
-		webcheaturl string,
-		timeNow uint64,
-		timeStarted uint64,
-		timeStopped uint64,
-		cheatname string,
-		gameProcessId uint32,
-		cheatProcessId uint32,
-		cheatParam1 uint64,
-		cheatParam2 uint64,
-		cheatDataDump string,
-	) (Response, error)
+	ReportCheatDataV1(input ICheatReportingServiceReportCheatData1Input) (Response, error)
 }
 
 func NewICheatReportingService() ICheatReportingService {
 	return &iCheatReportingService{}
 }
 
+type ICheatReportingServiceReportCheatData1Input struct {
+	key             string
+	steamid         uint64
+	appid           uint32
+	pathandfilename string
+	webcheaturl     string
+	timeNow         uint64
+	timeStarted     uint64
+	timeStopped     uint64
+	cheatname       string
+	gameProcessId   uint32
+	cheatProcessId  uint32
+	cheatParam1     uint64
+	cheatParam2     uint64
+	cheatDataDump   string
+}
+
 func (i *iCheatReportingService) ReportCheatDataV1(
-	key string,
-	steamid uint64,
-	appid uint32,
-	pathandfilename string,
-	webcheaturl string,
-	timeNow uint64,
-	timeStarted uint64,
-	timeStopped uint64,
-	cheatname string,
-	gameProcessId uint32,
-	cheatProcessId uint32,
-	cheatParam1 uint64,
-	cheatParam2 uint64,
-	cheatDataDump string,
+	input ICheatReportingServiceReportCheatData1Input,
 ) (Response, error) {
 	p := getPath("ICheatReportingService", "ReportCheatData", 1)
 	request := map[string]string{
-		"key":             key,
-		"steamid":         fmt.Sprintf(`%v`, steamid),
-		"appid":           fmt.Sprintf(`%v`, appid),
-		"pathandfilename": pathandfilename,
-		"webcheaturl":     webcheaturl,
-		"timeNow":         fmt.Sprintf(`%v`, timeNow),
-		"timeStarted":     fmt.Sprintf(`%v`, timeStarted),
-		"timeStopped":     fmt.Sprintf(`%v`, timeStopped),
-		"cheatname":       cheatname,
-		"gameProcessId":   fmt.Sprintf(`%v`, gameProcessId),
-		"cheatProcessId":  fmt.Sprintf(`%v`, cheatProcessId),
-		"cheatParam1":     fmt.Sprintf(`%v`, cheatParam1),
-		"cheatParam2":     fmt.Sprintf(`%v`, cheatParam2),
-		"cheatDataDump":   cheatDataDump,
+		"key":             fmt.Sprintf(`%v`, input.key),
+		"steamid":         fmt.Sprintf(`%v`, input.steamid),
+		"appid":           fmt.Sprintf(`%v`, input.appid),
+		"pathandfilename": fmt.Sprintf(`%v`, input.pathandfilename),
+		"webcheaturl":     fmt.Sprintf(`%v`, input.webcheaturl),
+		"timeNow":         fmt.Sprintf(`%v`, input.timeNow),
+		"timeStarted":     fmt.Sprintf(`%v`, input.timeStarted),
+		"timeStopped":     fmt.Sprintf(`%v`, input.timeStopped),
+		"cheatname":       fmt.Sprintf(`%v`, input.cheatname),
+		"gameProcessId":   fmt.Sprintf(`%v`, input.gameProcessId),
+		"cheatProcessId":  fmt.Sprintf(`%v`, input.cheatProcessId),
+		"cheatParam1":     fmt.Sprintf(`%v`, input.cheatParam1),
+		"cheatParam2":     fmt.Sprintf(`%v`, input.cheatParam2),
+		"cheatDataDump":   fmt.Sprintf(`%v`, input.cheatDataDump),
 	}
 	response := Response{}
 	uri := buildURL(p, request)

@@ -4,44 +4,38 @@ package {{ .PackageName }}
 
 import (
     "fmt"
-    "strconv"
 )
 
 {{ range $_, $interface := .Interfaces -}}
 
-type {{ camelCase $interface.Name }} struct {
-}
+    type {{ camelCase $interface.Name }} struct {
+    }
 
-type {{ $interface.Name }} interface {
-{{ range $_, $method := $interface.Methods -}}
-    {{ $method.Name }}V{{ $method.Version }} (
-        {{- range $_, $parameter := $method.Parameters -}}
-            {{ if isValidType $parameter.Type }}
-            {{ convertArg $parameter.Name }} {{ $parameter.Type }},
+    type {{ $interface.Name }} interface {
+    {{ range $_, $method := $interface.Methods -}}
+        {{ $method.Name }}V{{ $method.Version }} (input {{ getInputName $interface.Name $method }}) (Response, error)
+    {{ end }}
+    }
+
+    func New{{ $interface.Name }}() {{ $interface.Name }} {
+        return &{{ camelCase $interface.Name }}{}
+    }
+
+    {{ range $_, $method := $interface.Methods -}}
+        type {{ getInputName $interface.Name $method }} struct {
+            {{ range $_, $parameter := $method.Parameters }}
+                {{ convertArg $parameter.Name }} {{ convertType $parameter.Type }}
             {{- end }}
-        {{- end }}
-    ) (Response, error)
-{{ end }}
-}
+        }
 
-func New{{ $interface.Name }}() {{ $interface.Name }} {
-    return &{{ camelCase $interface.Name }}{}
-}
 
-{{ range $_, $method := $interface.Methods -}}
-func (i *{{ camelCase $interface.Name }}) {{ $method.Name }}V{{ $method.Version }} (
-{{- range $_, $parameter := $method.Parameters -}}
-    {{ if isValidType $parameter.Type }}
-    {{ convertArg $parameter.Name }} {{ $parameter.Type }},
-    {{- end }}
-{{- end }}
-) (Response, error) {
+    func (i *{{ camelCase $interface.Name }}) {{ $method.Name }}V{{ $method.Version }} (
+        input {{ getInputName $interface.Name $method }},
+    ) (Response, error) {
     p := getPath("{{ $interface.Name }}", "{{ $method.Name }}", {{ $method.Version }})
     request := map[string]string{
         {{- range $_, $parameter := $method.Parameters }}
-        {{- if isValidType $parameter.Type }}
-        "{{ convertArg $parameter.Name }}" : {{ convertToString $parameter.Type $parameter.Name }},
-        {{- end }}
+        "{{ convertArg $parameter.Name }}" : {{ convertToString $parameter.Name }},
         {{- end }}
     }
     response := Response{}
