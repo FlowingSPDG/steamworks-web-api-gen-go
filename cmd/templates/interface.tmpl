@@ -35,7 +35,7 @@ import (
     p := getPath("{{ $interface.Name }}", "{{ $method.Name }}", {{ $method.Version }})
     request := map[string]string{
         {{- range $_, $parameter := $method.Parameters }}
-        "{{ convertArg $parameter.Name }}" : {{ convertToString $parameter.Name }},
+        "{{ convertMapFieldKey $parameter.Name }}" : {{ convertToString $parameter.Name }},
         {{- end }}
     }
     response := Response{}

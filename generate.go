@@ -31,6 +31,19 @@ func convertArg(t string) string {
 	if t == "type" {
 		t = "t"
 	}
+	t = strcase.UpperCamelCase(t)
+
+	if strings.HasSuffix(t, "[0]") {
+		t = strings.TrimSuffix(t, "[0]")
+	}
+
+	return t
+}
+
+func convertMapFieldKey(t string) string {
+	if t == "type" {
+		t = "t"
+	}
 	t = strcase.LowerCamelCase(t)
 
 	if strings.HasSuffix(t, "[0]") {
@@ -51,10 +64,11 @@ func getInputName(interfaceName string, method Method) string {
 
 var (
 	FuncMap = template.FuncMap{
-		"convertType":     convertType,
-		"convertArg":      convertArg,
-		"convertToString": convertToString,
-		"camelCase":       camelCase,
-		"getInputName":    getInputName,
+		"convertType":        convertType,
+		"convertArg":         convertArg,
+		"convertToString":    convertToString,
+		"camelCase":          camelCase,
+		"getInputName":       getInputName,
+		"convertMapFieldKey": convertMapFieldKey,
 	}
 )
