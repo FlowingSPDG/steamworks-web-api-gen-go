@@ -46,7 +46,7 @@ func convertToString(value string) string {
 }
 
 func getInputName(interfaceName string, method Method) string {
-	return fmt.Sprintf("%s%s%dInput", interfaceName, method.Name, method.Version)
+	return fmt.Sprintf("%s%sV%dInput", interfaceName, method.Name, method.Version)
 }
 
 var (
